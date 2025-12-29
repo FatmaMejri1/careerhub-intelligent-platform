@@ -1,0 +1,185 @@
+/* Main Containers */
+.candidate-home {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+}
+
+.dashboard-card {
+    border-radius: 12px !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 2.1 Score Card - Circular Chart */
+.score-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.score-circle {
+    width: 200px;
+    height: 150px;
+}
+
+.circular-chart {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 250px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+.circular-chart.blue .circle {
+    stroke: #2563eb;
+}
+
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0f172a;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+/* 2.2 Job Cards */
+.job-card {
+    border-radius: 12px !important;
+    border-left: 4px solid transparent !important;
+    transition: all 0.2s;
+}
+
+.job-card:hover {
+    border-left-color: #2563eb !important;
+    background-color: #ffffff;
+    transform: translateX(4px);
+}
+
+.company-logo {
+    width: 48px;
+    height: 48px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #475569;
+    font-size: 1.2rem;
+}
+
+/* 2.5 Timeline */
+.timeline-card {
+    background: white;
+    border-radius: 12px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 16px;
+    padding-bottom: 24px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    /* Align with icon center (35px width / 2) */
+    top: 35px;
+    bottom: 0px;
+    width: 2px;
+    background: #f1f5f9;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-icon {
+    width: 36px;
+    height: 36px;
+    background: #f8fafc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* 2.3 Gamification Card */
+.level-card {
+    background: white;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+}
+
+.xp-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 4px 10px;
+    border-radius: 99px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+/* 2.4 Application Stats */
+.stat-box {
+    transition: transform 0.2s;
+}
+
+.stat-box:hover {
+    transform: scale(1.05);
+}
+
+.x-small {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 2.6 Training Preview */
+.training-preview-card {
+    background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
+}
+
+.border-secondary {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Utilities */
+.text-justify {
+    text-align: justify;
+}
+
+.fs-7 {
+    font-size: 0.8rem;
+}

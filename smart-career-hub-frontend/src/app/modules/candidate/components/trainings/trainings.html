@@ -1,0 +1,115 @@
+<div class="trainings-container container-fluid">
+    <!-- Header -->
+    <header class="page-header mb-5">
+        <h1>🎓 Formations Recommandées pour Vous</h1>
+        <p class="text-muted">Basé sur votre profil, vos candidatures et les compétences manquantes</p>
+    </header>
+
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-lg-9">
+
+            <!-- AI Insight Section -->
+            <div class="alert alert-info border-0 shadow-sm d-flex align-items-center gap-3 mb-4">
+                <i class="fas fa-robot fa-2x"></i>
+                <div>
+                    <h5 class="fw-bold mb-1">Analyse IA</h5>
+                    <p class="mb-0 small">Pour augmenter vos chances pour le poste de "Senior Java Developer", nous vous
+                        recommandons de vous concentrer sur <strong>Microservices</strong> et <strong>Cloud
+                            Architecture</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar d-flex gap-3 mb-4">
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par mot-clé..."
+                    class="form-control w-auto flex-grow-1">
+                <select class="form-select w-auto" [(ngModel)]="filterCategory">
+                    <option value="All">Toutes les Compétences</option>
+                    <option value="Backend">Backend</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="Soft Skills">Soft Skills</option>
+                </select>
+                <select class="form-select w-auto" [(ngModel)]="filterDuration">
+                    <option value="All">Toute Durée</option>
+                    <option value="Short">Courte (< 5h)</option>
+                    <option value="Medium">Moyenne (5-20h)</option>
+                    <option value="Long">Longue (> 20h)</option>
+                </select>
+            </div>
+
+            <!-- Training Grid -->
+            <h4 class="mb-4">Cours Recommandés</h4>
+            <div class="row g-4">
+                <div *ngFor="let t of recommendedTrainings" class="col-md-6 col-lg-4">
+                    <div class="card training-card h-100 border-0 shadow-sm">
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                            style="height: 160px;">
+                            <i [class]="t.icon + ' fa-4x text-muted'"></i>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge bg-light text-dark border">{{t.category}}</span>
+                                <span class="badge"
+                                    [ngClass]="{'bg-success': t.matchScore >= 90, 'bg-primary': t.matchScore < 90}">
+                                    {{t.matchScore}}% Match IA
+                                </span>
+                            </div>
+                            <h5 class="fw-bold mb-2">{{t.title}}</h5>
+                            <p class="text-muted small mb-3">{{t.provider}} • {{t.duration}}</p>
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a [href]="t.link" class="btn btn-primary flex-grow-1">Voir le Cours</a>
+                                <button *ngIf="!t.isCompleted" (click)="markCompleted(t.id)"
+                                    class="btn btn-outline-success" title="Marquer comme terminé">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button *ngIf="t.isCompleted" class="btn btn-success" disabled>Terminé</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-3">
+            <!-- Progress Widget -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-4">📊 Votre Progression</h5>
+                    <div class="text-center mb-3">
+                        <div class="display-6 fw-bold text-primary">{{completedCount}}/{{totalCount}}</div>
+                        <span class="small text-muted">Cours Terminés</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 10px;">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="(completedCount/totalCount)*100">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="small fw-bold">{{(completedCount/totalCount)*100 | number:'1.0-0'}}% Taux de
+                            Complétion</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Widget -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">📜 Historique</h5>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let h of history" class="mb-3 pb-3 border-bottom small">
+                            <div class="fw-bold">{{h.title}}</div>
+                            <div class="text-muted d-flex justify-content-between">
+                                <span>{{h.date}}</span>
+                                <span class="text-success"><i class="fas fa-check-circle"></i> Terminé</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

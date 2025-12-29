@@ -1,0 +1,204 @@
+<div class="offers-container fade-in">
+    <!-- Header -->
+    <header class="page-header">
+        <div>
+            <h1>Offres & Recrutements</h1>
+            <p class="text-muted">Supervision globale des offres et du contrôle qualité.</p>
+        </div>
+        <div class="header-actions">
+            <!-- Example: Global stats or refresh -->
+
+        </div>
+    </header>
+
+    <!-- Filters & Search -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold text-muted">Recherche</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-search text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0 bg-light"
+                            placeholder="Titre, entreprise..." [(ngModel)]="searchTerm" (keyup)="applyFilters()">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-muted">Statut</label>
+                    <select class="form-select bg-light" [(ngModel)]="statusFilter" (change)="applyFilters()">
+                        <option value="all">Tous</option>
+                        <option value="active">Active</option>
+                        <option value="expired">Expirée</option>
+                        <option value="flagged">Signalée</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-muted">Secteur</label>
+                    <select class="form-select bg-light" [(ngModel)]="sectorFilter" (change)="applyFilters()">
+                        <option value="all">Tous</option>
+                        <option value="IT">IT & Tech</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </div>
+                <!-- Reset Button -->
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-light w-100 text-muted" (click)="resetFilters()">
+                        <i class="fas fa-sync-alt me-1"></i> Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Offers Table -->
+        <div class="col-lg-8" [class.col-lg-12]="!selectedOffer">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">Titre du poste</th>
+                                    <th>Recruteur</th>
+                                    <th>Date</th>
+                                    <th class="text-center">Candidats</th>
+                                    <th>Statut</th>
+                                    <th>Qualité</th>
+                                    <th class="text-end pe-4">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let offer of filteredOffers" (click)="selectOffer(offer)"
+                                    [class.table-active]="selectedOffer?.id === offer.id" class="cursor-pointer">
+                                    <td class="ps-4">
+                                        <div class="fw-bold text-dark">{{offer.title}}</div>
+                                        <div class="small text-muted">{{offer.sector}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="avatar-xs me-2 bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fw-bold">
+                                                {{offer.company[0]}}
+                                            </div>
+                                            <span class="fw-medium">{{offer.company}}</span>
+                                        </div>
+                                    </td>
+                                    <td class="small text-muted">{{offer.date | date:'dd MMM yyyy'}}</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-light text-dark border">{{offer.applications}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill" [ngClass]="{
+                                                'bg-success-subtle text-success': offer.status === 'Active',
+                                                'bg-warning-subtle text-warning': offer.status === 'Signalée',
+                                                'bg-secondary-subtle text-secondary': offer.status === 'Expirée',
+                                                'bg-danger-subtle text-danger': offer.status === 'Bloquée'
+                                            }">
+                                            {{offer.status}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <!-- Quality Bar -->
+                                        <div class="d-flex align-items-center gap-2" title="Score Qualité IA">
+                                            <div class="progress flex-grow-1" style="width: 50px; height: 4px;">
+                                                <div class="progress-bar"
+                                                    [ngClass]="getQualityColor(offer.qualityScore)"
+                                                    [style.width.%]="offer.qualityScore"></div>
+                                            </div>
+                                            <span class="small fw-bold"
+                                                [ngClass]="getQualityTextColor(offer.qualityScore)">{{offer.qualityScore}}%</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-icon text-muted"
+                                            (click)="selectOffer(offer); $event.stopPropagation()">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offer Details Panel (Side) -->
+        <div class="col-lg-4" *ngIf="selectedOffer">
+            <div class="offer-details-panel card shadow-sm border-0 h-100 sticky-top" style="top: 90px;">
+                <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0 text-truncate" style="max-width: 200px;">{{selectedOffer.title}}</h5>
+                    <button class="btn btn-sm btn-light" (click)="selectedOffer = null">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="card-body p-4 scrollable-content">
+
+                    <!-- Quality Status -->
+                    <div class="alert mb-4"
+                        [ngClass]="selectedOffer.qualityScore > 70 ? 'alert-success border-0 bg-success-subtle text-success-emphasis' : 'alert-warning border-0 bg-warning-subtle text-warning-emphasis'">
+                        <div class="d-flex align-items-center">
+                            <i class="fas"
+                                [ngClass]="selectedOffer.qualityScore > 70 ? 'fa-check-circle' : 'fa-exclamation-triangle'"></i>
+                            <span class="ms-2 fw-bold">Score Qualité: {{selectedOffer.qualityScore}}/100</span>
+                        </div>
+                        <div class="small mt-1 opacity-75">
+                            {{ selectedOffer.qualityScore > 70 ? 'Contenu conforme et bien structuré.' : 'Attention:
+                            Titre court ou description vague détectés.' }}
+                        </div>
+                    </div>
+
+                    <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Détails de l'Offre</h6>
+                    <div class="mb-3">
+                        <label class="small text-muted d-block">Description</label>
+                        <p class="small text-dark">{{selectedOffer.description}}</p>
+                    </div>
+
+                    <div class="grid-2 mb-4">
+                        <div>
+                            <label class="small text-muted d-block">Type Contrat</label>
+                            <span class="badge bg-light text-dark border">{{selectedOffer.contract}}</span>
+                        </div>
+                        <div>
+                            <label class="small text-muted d-block">Salaire</label>
+                            <span class="fw-medium small">{{selectedOffer.salary}}</span>
+                        </div>
+                    </div>
+
+                    <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Compétences Requises</h6>
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <span class="badge bg-white border text-secondary"
+                            *ngFor="let skill of selectedOffer.skills">{{skill}}</span>
+                    </div>
+
+                    <!-- Admin Actions -->
+                    <div class="admin-actions border-top pt-4">
+                        <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Actions Administrateur</h6>
+
+                        <div class="d-grid gap-2">
+                            <div class="btn-group w-100">
+                                <button class="btn btn-outline-success btn-sm" (click)="updateStatus('Active')">
+                                    <i class="fas fa-check me-1"></i> Valider
+                                </button>
+                                <button class="btn btn-outline-warning btn-sm" (click)="updateStatus('Signalée')">
+                                    <i class="fas fa-flag me-1"></i> Signaler
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" (click)="updateStatus('Bloquée')">
+                                    <i class="fas fa-ban me-1"></i> Bloquer
+                                </button>
+                            </div>
+
+                            <textarea class="form-control bg-light fs-7 mt-2" rows="2"
+                                placeholder="Ajouter une note interne ou motif de blocage..."></textarea>
+                            <button class="btn btn-dark btn-sm mt-1">Enregistrer Note</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

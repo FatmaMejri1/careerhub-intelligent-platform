@@ -1,0 +1,315 @@
+<div class="row h-100 g-0 fade-in position-relative">
+    <!-- List Section -->
+    <div class="col-lg-{{selectedCandidate ? '7' : '12'}} d-flex flex-column h-100 transition-all">
+        <div class="p-4 h-100 d-flex flex-column">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold text-dark">Dossiers Candidats</h2>
+                    <p class="text-muted mb-0">Analysez et sélectionnez les meilleurs talents</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-secondary"><i class="fas fa-download me-2"></i>Export</button>
+                    <button class="btn btn-primary"><i class="fas fa-plus me-2"></i>Ajouter</button>
+                    <!-- Manual add for demo -->
+                </div>
+            </div>
+
+            <!-- KPIs -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm p-3 bg-white">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-shape bg-primary-subtle text-primary rounded me-3">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0">{{stats.total}}</h3>
+                                <small class="text-muted">Total</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm p-3 bg-white">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-shape bg-info-subtle text-info rounded me-3">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0">{{stats.preselected}}</h3>
+                                <small class="text-muted">Présélectionnés</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm p-3 bg-white">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-shape bg-warning-subtle text-warning rounded me-3">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0">{{stats.interview}}</h3>
+                                <small class="text-muted">Entretiens</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0 shadow-sm p-3 bg-white">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-shape bg-success-subtle text-success rounded me-3">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-0">{{stats.hired}}</h3>
+                                <small class="text-muted">Recrutés</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-3">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i
+                                        class="fas fa-search text-muted"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0"
+                                    placeholder="Nom, compétence..." [(ngModel)]="filters.search"
+                                    (input)="applyFilters()">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select bg-light" [(ngModel)]="filters.offer" (change)="applyFilters()">
+                                <option value="all">Toutes les offres</option>
+                                <option *ngFor="let offer of offers" [value]="offer">{{offer}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select bg-light" [(ngModel)]="filters.status" (change)="applyFilters()">
+                                <option value="all">Tous les statuts</option>
+                                <option value="Nouveau">Nouveau</option>
+                                <option value="Présélectionné">Présélectionné</option>
+                                <option value="Entretien">Entretien</option>
+                                <option value="Rejeté">Rejeté</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select bg-light" [(ngModel)]="filters.match" (change)="applyFilters()">
+                                <option value="0">Score IA</option>
+                                <option value="90">Top Matchs (>90%)</option>
+                                <option value="75">Bons Profils (>75%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Candidates Table -->
+            <div class="card border-0 shadow-sm flex-grow-1 overflow-hidden">
+                <div class="table-responsive h-100 custom-scrollbar">
+                    <table class="table table-hover align-middle mb-0 sticky-header">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4">Candidat</th>
+                                <th>Offre</th>
+                                <th>Score IA</th>
+                                <th>Expérience</th>
+                                <th>Statut</th>
+                                <th>Date</th>
+                                <th class="text-end pe-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let candidate of filteredCandidates" (click)="selectCandidate(candidate)"
+                                [class.table-active]="selectedCandidate?.id === candidate.id" class="cursor-pointer">
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm rounded-circle me-3 d-flex align-items-center justify-content-center text-white fw-bold shadow-sm"
+                                            [style.background-color]="candidate.avatarColor">
+                                            {{candidate.initials}}
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark">{{candidate.name}}</div>
+                                            <div class="small text-muted text-truncate" style="max-width: 150px;">
+                                                {{candidate.email}}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-light text-dark border">{{candidate.offerTitle}}</span></td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="progress w-50 me-2" style="height: 4px;">
+                                            <div class="progress-bar" [ngClass]="getScoreClass(candidate.matchScore)"
+                                                [style.width.%]="candidate.matchScore"></div>
+                                        </div>
+                                        <span class="small fw-bold"
+                                            [ngClass]="getTextScoreClass(candidate.matchScore)">{{candidate.matchScore}}%</span>
+                                    </div>
+                                </td>
+                                <td class="small">{{candidate.experience}}</td>
+                                <td>
+                                    <span class="badge" [ngClass]="getStatusBadgeClass(candidate.status)">
+                                        {{candidate.status}}
+                                    </span>
+                                </td>
+                                <td class="text-muted small">{{candidate.date | date:'dd MMM'}}</td>
+                                <td class="text-end pe-4">
+                                    <button class="btn btn-sm btn-icon btn-light rounded-circle">
+                                        <i class="fas fa-chevron-right text-muted"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div *ngIf="filteredCandidates.length === 0" class="text-center py-5">
+                        <div class="text-muted mb-3"><i class="fas fa-search fa-2x"></i></div>
+                        <p>Aucun candidat trouvé pour ces filtres.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Details Panel -->
+    <div class="col-lg-5 border-start bg-white h-100 shadow-lg details-panel" *ngIf="selectedCandidate">
+        <div class="d-flex flex-column h-100">
+            <!-- Panel Header -->
+            <div class="p-4 border-bottom">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <button class="btn btn-sm btn-light rounded-circle" (click)="closePanel()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown">
+                            Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
+                            <li><a class="dropdown-item" href="#"><i
+                                        class="fas fa-download me-2 text-muted"></i>Télécharger CV</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2 text-muted"></i>Envoyer
+                                    email</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#"><i
+                                        class="fas fa-trash me-2"></i>Refuser</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div class="avatar-lg rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center text-white fw-bold shadow"
+                        [style.background-color]="selectedCandidate.avatarColor">
+                        {{selectedCandidate.initials}}
+                    </div>
+                    <h4 class="fw-bold mb-1">{{selectedCandidate.name}}</h4>
+                    <p class="text-muted mb-2">{{selectedCandidate.offerTitle}}</p>
+                    <div class="d-flex justify-content-center gap-2 mb-3">
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            <i class="fas fa-phone me-1"></i> Contacter
+                        </button>
+                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                            <i class="fas fa-file-alt me-1"></i> Voir CV
+                        </button>
+                    </div>
+
+                    <!-- Pipeline Status Stepper -->
+                    <div class="status-stepper d-flex justify-content-between position-relative mt-4 px-3">
+                        <div class="step" [class.active]="isStatusActive('Nouveau')" (click)="updateStatus('Nouveau')">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Reçu</span>
+                        </div>
+                        <div class="step" [class.active]="isStatusActive('Présélectionné')"
+                            (click)="updateStatus('Présélectionné')">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Sélection</span>
+                        </div>
+                        <div class="step" [class.active]="isStatusActive('Entretien')"
+                            (click)="updateStatus('Entretien')">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Entretien</span>
+                        </div>
+                        <div class="step" [class.active]="isStatusActive('Recruté')" (click)="updateStatus('Recruté')">
+                            <div class="step-dot"></div>
+                            <span class="step-label">Offre</span>
+                        </div>
+                        <div class="progress-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel Content (Scrollable) -->
+            <div class="flex-grow-1 overflow-auto p-4 custom-scrollbar">
+
+                <!-- AI Analysis -->
+                <div class="card bg-primary-subtle border-0 mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-robot me-2"></i>Analyse IA</h6>
+                            <span class="badge bg-primary">{{selectedCandidate.matchScore}}% Match</span>
+                        </div>
+                        <p class="small text-muted mb-0">
+                            Excellent profil correspondant aux exigences techniques. Forte expérience en
+                            {{selectedCandidate.topSkill}}.
+                            Points d'attention: Niveau d'anglais à vérifier.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Compétences Clés</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-dark border"
+                            *ngFor="let skill of selectedCandidate.skills">{{skill}}</span>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Parcours Professionnel</h6>
+                    <div class="timeline">
+                        <div class="timeline-item pb-3 border-start ps-3 position-relative"
+                            *ngFor="let exp of selectedCandidate.history">
+                            <div class="timeline-dot bg-secondary border border-white"></div>
+                            <h6 class="fw-bold mb-0 text-dark">{{exp.role}}</h6>
+                            <div class="small text-muted mb-1">{{exp.company}} • {{exp.duration}}</div>
+                            <p class="small text-muted mb-0">{{exp.description}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Formation</h6>
+                    <div class="timeline">
+                        <div class="timeline-item pb-3 border-start ps-3 position-relative"
+                            *ngFor="let edu of selectedCandidate.education">
+                            <div class="timeline-dot bg-secondary border border-white"></div>
+                            <h6 class="fw-bold mb-0 text-dark">{{edu.degree}}</h6>
+                            <div class="small text-muted mb-0">{{edu.school}} • {{edu.year}}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Panel Footer Actions -->
+            <div class="p-3 border-top bg-light">
+                <div class="d-flex gap-2">
+                    <button class="btn btn-danger flex-grow-1" (click)="updateStatus('Rejeté')">Rejeter</button>
+                    <button class="btn btn-success flex-grow-1" (click)="updateStatus('Entretien')">Planifier
+                        Entretien</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

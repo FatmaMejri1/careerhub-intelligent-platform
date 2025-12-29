@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+/* Import Bootstrap */
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Variables personnalisées */
+:root {
+  --primary: #0a66c2;
+  --primary-dark: #004182;
+  --primary-light: #e3f2fd;
+  --secondary: #6f42c1;
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+}
+
+/* Styles globaux personnalisés */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+}
+
+/* Override Bootstrap */
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+/* Custom utilities */
+.rounded-lg {
+  border-radius: 1rem !important;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Section spacing */
+.section-py {
+  padding: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-py {
+    padding: 3rem 0;
+  }
+}

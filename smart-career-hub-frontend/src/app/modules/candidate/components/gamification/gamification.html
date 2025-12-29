@@ -1,0 +1,182 @@
+<div class="gamification-page container-fluid">
+
+    <!-- 1. Header -->
+    <header class="page-header mb-5 text-center">
+        <h1>🎮 Zone de Gaming</h1>
+        <p class="text-muted">Améliorez vos compétences techniques avec des jeux et quiz interactifs</p>
+    </header>
+
+    <div class="row">
+
+        <!-- Main Content: Games & Challenges -->
+        <div class="col-lg-8">
+
+            <!-- Quiz Section -->
+            <section class="mb-5">
+                <h4 class="section-title mb-4"><i class="fas fa-brain me-2 text-primary"></i> Quiz Techniques
+                </h4>
+                <div class="row g-4">
+                    <div *ngFor="let game of games" [ngClass]="{'d-none': game.type !== 'QUIZ'}" class="col-md-6">
+                        <div class="card game-card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <span class="badge difficulty-badge"
+                                    [ngClass]="game.difficulty.toLowerCase()">{{game.difficulty}}</span>
+                                <div class="text-center my-4">
+                                    <div class="game-icon-circle mb-3">
+                                        <i [class]="game.icon"></i>
+                                    </div>
+                                    <h5 class="fw-bold">{{game.title}}</h5>
+                                    <p class="text-muted small mb-0">{{game.duration}} • +{{game.xpPoints}} XP</p>
+                                </div>
+                                <button class="btn btn-primary w-100 rounded-pill"
+                                    (click)="playGame(game)">Démarrer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Challenges Section -->
+            <section class="mb-5">
+                <h4 class="section-title mb-4"><i class="fas fa-code me-2 text-success"></i> Mini Défis de Code</h4>
+                <div class="row g-4">
+                    <div *ngFor="let game of games" [ngClass]="{'d-none': game.type !== 'CHALLENGE'}" class="col-md-12">
+                        <div class="card challenge-card border-0 shadow-sm">
+                            <div class="card-body d-flex align-items-center justify-content-between flex-wrap gap-3">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="challenge-icon bg-success-subtle text-success">
+                                        <i [class]="game.icon"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-1">{{game.title}}</h5>
+                                        <p class="text-muted small mb-0">{{game.description}}</p>
+                                        <div class="d-flex gap-2 mt-2">
+                                            <span class="badge bg-light text-dark border">{{game.difficulty}}</span>
+                                            <span class="badge bg-warning text-dark">+{{game.xpPoints}} XP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-success" (click)="playGame(game)">Relever le
+                                    Défi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logic Games Section -->
+            <section class="mb-5">
+                <h4 class="section-title mb-4"><i class="fas fa-puzzle-piece me-2 text-warning"></i> Jeux de Logique
+                </h4>
+                <div class="row g-4">
+                    <div *ngFor="let game of games" [ngClass]="{'d-none': game.type !== 'LOGIC'}" class="col-md-6">
+                        <div class="card logic-card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="fw-bold">{{game.title}}</h5>
+                                    <i [class]="game.icon + ' text-warning fa-lg'"></i>
+                                </div>
+                                <p class="text-muted small">{{game.description}}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-4">
+                                    <span class="fw-bold text-warning small">+{{game.xpPoints}} XP</span>
+                                    <button class="btn btn-sm btn-light" (click)="playGame(game)">Jouer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Sidebar: Stats, Progression, History -->
+        <div class="col-lg-4">
+
+            <!-- Level Card -->
+            <div class="card border-0 shadow-sm mb-4 level-card text-white">
+                <div class="card-body text-center p-4">
+                    <div class="mb-3">
+                        <span class="display-4 fw-bold">{{playerLevel}}</span>
+                        <div class="text-uppercase small ls-1">Niveau Actuel</div>
+                    </div>
+                    <div class="progress bg-white bg-opacity-25 mb-2" style="height: 8px;">
+                        <div class="progress-bar bg-white" [style.width.%]="xpPercentage"></div>
+                    </div>
+                    <div class="d-flex justify-content-between small opacity-75">
+                        <span>{{currentXp}} XP</span>
+                        <span>{{nextLevelXp}} XP</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Progression -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-4">📈 Progression</h5>
+
+                    <div *ngFor="let skill of skills" class="mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="small fw-bold">{{skill.name}}</span>
+                            <span class="small text-muted">{{skill.progress}}%</span>
+                        </div>
+                        <div class="progress" style="height: 6px;">
+                            <div [class]="'progress-bar ' + skill.color" [style.width.%]="skill.progress"></div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="alert alert-primary d-flex align-items-start gap-2 mt-4 mb-0 p-2 border-0 bg-primary-subtle text-primary">
+                        <i class="fas fa-robot mt-1"></i>
+                        <small class="lh-sm">Conseil IA : Complétez 2 quiz Java de plus pour atteindre le niveau
+                            <strong>Expert</strong>.</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Badges -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">🏅 Vos Badges</h5>
+                    <div class="d-flex flex-wrap gap-2 justify-content-center">
+                        <div *ngFor="let badge of badges" class="badge-item text-center"
+                            [class.locked]="!badge.unlocked" [title]="badge.name">
+                            <div
+                                [class]="'badge-icon rounded-circle mb-1 mx-auto d-flex align-items-center justify-content-center ' + badge.colorClass">
+                                <i [class]="badge.icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employability Impact -->
+            <div class="card border-0 shadow-sm mb-4 bg-success-subtle">
+                <div class="card-body text-center">
+                    <h5 class="fw-bold text-success mb-1">+{{employabilityBoost}}%</h5>
+                    <p class="small text-success mb-0 fw-semibold">Boost d'Employabilité</p>
+                    <small class="text-muted d-block mt-2">Basé sur votre activité récente</small>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">📜 Historique</h5>
+                    <div class="history-list">
+                        <div *ngFor="let item of history" class="history-item py-2 border-bottom">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-bold small">{{item.gameTitle}}</span>
+                                <span class="small text-warning fw-bold">+{{item.xpEarned}} XP</span>
+                            </div>
+                            <div class="d-flex justify-content-between small text-muted">
+                                <span>{{item.skillImproved}}</span>
+                                <span>{{item.date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,358 @@
+.profile-container {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+}
+
+/* Premium Header */
+.profile-header-premium {
+    height: 300px;
+    background: linear-gradient(135deg, #0a66c2 0%, #004182 100%), url('https://img.freepik.com/free-photo/abstract-polygonal-space-low-poly-dark-background-with-connecting-dots-lines_1217-1981.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.profile-header-content {
+    width: 100%;
+    z-index: 2;
+}
+
+.profile-avatar-wrapper {
+    position: relative;
+}
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.avatar-container:hover {
+    transform: scale(1.03);
+}
+
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #e9ecef;
+    background: #f8f9fa;
+    border-radius: 15px;
+}
+
+.btn-avatar-edit {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: #0a66c2;
+    border: 3px solid white;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-avatar-edit:hover {
+    background: #004182;
+    transform: scale(1.1);
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+/* Cards & Components */
+.rounded-lg {
+    border-radius: 1rem !important;
+}
+
+.bio-text {
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+}
+
+.linkedin {
+    background: #0077b5;
+}
+
+.github {
+    background: #333;
+}
+
+.portfolio {
+    background: #0a66c2;
+}
+
+.skill-badge {
+    background: #e7f1ff;
+    color: #0a66c2;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+.bg-primary-dark {
+    background: linear-gradient(45deg, #004182, #0a66c2);
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 50px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: #dee2e6;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-icon {
+    position: absolute;
+    left: -50px;
+    width: 36px;
+    height: 36px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    border: 1px solid #dee2e6;
+}
+
+.timeline-icon img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.timeline-content {
+    transition: transform 0.2s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(5px);
+}
+
+.nav-link-premium {
+    color: #6c757d;
+    font-weight: 700;
+    text-decoration: none;
+    padding-bottom: 10px;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-link-premium.active {
+    color: #0a66c2;
+    border-bottom-color: #0a66c2;
+}
+
+.section-title-premium {
+    position: relative;
+    padding-left: 15px;
+    font-weight: 800;
+}
+
+.section-title-premium::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: #0a66c2;
+    border-radius: 2px;
+}
+
+/* Project Card */
+.project-card {
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-img {
+    height: 140px;
+    object-fit: cover;
+}
+
+.cert-icon-premium {
+    width: 50px;
+    height: 50px;
+    background: #fff8e1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.hover-lift-sm:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.2s;
+}
+
+/* Floating Action Bar */
+.save-actions-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 102, 194, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.bg-purple-light {
+    background: #f3e5f5;
+}
+
+.text-purple {
+    color: #6f42c1;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .profile-header-premium {
+        height: 250px;
+    }
+
+    .avatar-container {
+        width: 120px;
+        height: 120px;
+    }
+
+    .header-info-main h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-header-premium {
+        height: auto;
+        padding-top: 40px;
+    }
+
+    .avatar-container {
+        margin: 0 auto;
+    }
+
+    .profile-header-content .d-flex {
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .header-info-main {
+        margin-top: 15px;
+    }
+
+    .ms-auto {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}

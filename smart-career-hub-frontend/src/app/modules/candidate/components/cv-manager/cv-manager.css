@@ -1,0 +1,258 @@
+.cv-manager-wrapper {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.shadow-soft {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.bg-primary-light {
+    background-color: #e3f2fd;
+}
+
+.bg-purple-light {
+    background-color: #f3e5f5;
+}
+
+.text-purple {
+    color: #6f42c1;
+}
+
+.bg-success-light {
+    background-color: #e8f5e9;
+}
+
+.icon-shape {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: #dee2e6;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0a66c2;
+    border-bottom: 2px solid #0a66c2;
+    background: linear-gradient(to bottom, rgba(10, 102, 194, 0.02), rgba(10, 102, 194, 0.05));
+}
+
+.cv-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.border-dashed {
+    border: 2px dashed #0a66c2;
+    border-radius: 1rem;
+    background: rgba(10, 102, 194, 0.02);
+}
+
+.border-dashed-rect {
+    border: 2px dashed #dee2e6;
+    border-radius: 1rem;
+    background: white;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.hover-bg-light:hover {
+    background-color: #f1f3f5 !important;
+}
+
+.transition {
+    transition: all 0.2s ease;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.badge.bg-success-light {
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.btn-link:focus {
+    box-shadow: none;
+}
+
+.dropdown-item {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+}
+
+.dropdown-item i {
+    width: 20px;
+}
+
+/* Custom scrollbar for some reason? Let's add it for extra premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+/* Modal and AI Special Effects */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-card {
+    background: white;
+    border-radius: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    animation: modalSlideUp 0.3s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ai-border {
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white),
+        linear-gradient(45deg, #0a66c2, #6f42c1);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ai-border:hover {
+    background-image: linear-gradient(white, white),
+        linear-gradient(45deg, #6f42c1, #0a66c2);
+    box-shadow: 0 10px 30px rgba(111, 66, 193, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #0a66c2, #6f42c1);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #004182, #5a32a3);
+}
+
+.bg-danger-light {
+    background-color: #fff5f5;
+}
+
+.btn-purple {
+    background-color: #6f42c1;
+    border-color: #6f42c1;
+}
+
+.btn-purple:hover {
+    background-color: #5a32a3;
+    border-color: #5a32a3;
+}
+
+.text-purple {
+    color: #6f42c1;
+}
+
+.upload-zone {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.upload-zone:hover {
+    background-color: rgba(111, 66, 193, 0.05);
+    border-color: #6f42c1 !important;
+}
+
+.analysis-modal {
+    max-width: 600px;
+}
+
+.score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#6f42c1 calc(var(--score) * 1%), #e9ecef 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.score-circle::before {
+    content: "";
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    background: white;
+    border-radius: 50%;
+}
+
+.score-value {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #6f42c1;
+}

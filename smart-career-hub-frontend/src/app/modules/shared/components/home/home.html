@@ -1,0 +1,394 @@
+<app-header></app-header>
+
+<!-- Hero Section -->
+<section class="hero-section pt-5 mt-5" id="home">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">
+          Votre carrière,
+          <span class="text-primary">intelligemment accompagnée</span>
+        </h1>
+        <p class="lead text-muted mb-4">
+          Smart Career Hub révolutionne votre recherche d'emploi avec l'IA.
+          Trouvez des opportunités qui correspondent réellement à votre profil,
+          préparez-vous aux entretiens et développez vos compétences.
+        </p>
+        <div class="d-flex gap-3 mb-4">
+          @if (isAuthenticated) {
+          <button class="btn btn-primary btn-lg px-4" routerLink="/candidate">
+            <i class="bi bi-briefcase me-2"></i>Mon tableau de bord
+          </button>
+          } @else {
+          <button class="btn btn-primary btn-lg px-4" [routerLink]="['/auth', 'login']">
+            <i class="bi bi-rocket-takeoff me-2"></i>Commencer gratuitement
+          </button>
+          }
+          <a class="btn btn-outline-secondary btn-lg px-4" href="assets/images/DEMO.mp4" target="_blank">
+            <i class="bi bi-play-circle me-2"></i>Voir la démo
+          </a>
+        </div>
+        <div class="d-flex align-items-center text-muted">
+          <i class="bi bi-shield-check text-success me-2"></i>
+          <small>Rejoignez 10 000+ professionnels qui ont trouvé leur voie</small>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-lg">
+          <div class="card-body p-4">
+            <h5 class="card-title mb-3">
+              <i class="bi bi-search text-primary me-2"></i>Recherche d'opportunités
+            </h5>
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-light">
+                <i class="bi bi-search"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Titre du poste, compétence ou entreprise">
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text bg-light">
+                <i class="bi bi-geo-alt"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Ville, région ou télétravail">
+            </div>
+            <button class="btn btn-primary w-100">
+              <i class="bi bi-lightning me-2"></i>Trouver des opportunités
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5 bg-white" id="about">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-3">Une plateforme pensée pour votre avenir</h2>
+        <p class="text-muted mb-3">
+          Smart Career Hub est une plateforme simple et intelligente qui connecte les talents,
+          les clubs, les organisations et les entreprises. Tout est réuni pour vous aider à
+          construire une carrière solide, étape par étape.
+        </p>
+        <p class="text-muted mb-4">
+          Que vous soyez étudiant, jeune diplômé ou professionnel expérimenté, nous vous
+          accompagnons avec des outils modernes et des opportunités adaptées à votre profil.
+        </p>
+        <ul class="list-unstyled text-muted">
+          <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Interface claire et professionnelle</li>
+          <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Accès rapide aux offres et clubs</li>
+          <li><i class="bi bi-check2-circle text-primary me-2"></i>Accompagnement continu avec coaching</li>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="card border-0 shadow-soft rounded-lg h-100">
+              <div class="card-body">
+                <h6 class="text-primary fw-bold mb-2">Clubs & Organisations</h6>
+                <p class="text-muted mb-0">Rejoignez des communautés actives et développez votre réseau.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card border-0 shadow-soft rounded-lg h-100">
+              <div class="card-body">
+                <h6 class="text-primary fw-bold mb-2">Stages & Emplois</h6>
+                <p class="text-muted mb-0">Des opportunités adaptées à votre niveau et à vos objectifs.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card border-0 shadow-soft rounded-lg h-100">
+              <div class="card-body">
+                <h6 class="text-primary fw-bold mb-2">Formations</h6>
+                <p class="text-muted mb-0">Renforcez vos compétences avec des parcours ciblés.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card border-0 shadow-soft rounded-lg h-100">
+              <div class="card-body">
+                <h6 class="text-primary fw-bold mb-2">Accompagnement</h6>
+                <p class="text-muted mb-0">Des conseils personnalisés pour chaque étape de votre carrière.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Opportunities Section -->
+<section class="opportunities-section py-5 bg-light" id="opportunities">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">Des opportunités pour chaque profil</h2>
+      <p class="text-muted">
+        Clubs, organisations, stages, emplois et plus encore pour faire évoluer votre carrière
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6" *ngFor="let feature of features">
+        <div class="card h-100 border-0 shadow-sm hover-shadow">
+          <div class="card-body text-center p-4">
+            <div class="icon-wrapper mb-3">
+              <i [class]="'bi ' + feature.icon + ' display-4 text-primary'"></i>
+            </div>
+            <h5 class="card-title fw-bold">{{feature.title}}</h5>
+            <p class="card-text text-muted">{{feature.description}}</p>
+            @if (isAuthenticated) {
+            <a class="btn btn-outline-primary btn-sm" href="#trending">Explorer →</a>
+            } @else {
+            <a class="btn btn-outline-primary btn-sm" [routerLink]="['/auth', 'login']">Explorer →</a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trending Jobs Section -->
+<section class="trending-section py-5" id="trending">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+      <div>
+        <h2 class="fw-bold mb-2">Offres tendances du moment</h2>
+        <p class="text-muted">Des opportunités qui matchent avec votre profil</p>
+      </div>
+      <a routerLink="/jobs" class="btn btn-link text-decoration-none">
+        Voir toutes les offres <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6" *ngFor="let job of trendingJobs">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <span class="badge bg-primary rounded-pill">{{job.type}}</span>
+              <span class="badge bg-success rounded-pill">{{job.match}}% match</span>
+            </div>
+            <h6 class="card-title fw-bold">{{job.title}}</h6>
+            <p class="card-text text-muted mb-2">
+              <i class="bi bi-building me-1"></i>{{job.company}}
+            </p>
+            <p class="card-text text-muted mb-3">
+              <i class="bi bi-geo-alt me-1"></i>{{job.location}}
+            </p>
+            @if (isAuthenticated) {
+            <button class="btn btn-outline-primary w-100 btn-sm" (click)="applyToJob(job)">
+              Postuler maintenant
+            </button>
+            } @else {
+            <button class="btn btn-outline-primary w-100 btn-sm" [routerLink]="['/auth', 'login']">
+              Postuler maintenant
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recruiter Section -->
+<section class="recruiter-section py-5 bg-primary text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h2 class="fw-bold mb-3">Vous êtes recruteur ?</h2>
+        <p class="lead mb-4">
+          Publiez vos offres et trouvez les talents parfaits avec notre moteur d'IA avancé.
+          Réduisez votre temps de recrutement et améliorez la qualité de vos recrutements.
+        </p>
+        <ul class="list-unstyled mb-4">
+          <li class="mb-2"><i class="bi bi-check-circle me-2"></i>Matching intelligent avec IA</li>
+          <li class="mb-2"><i class="bi bi-check-circle me-2"></i>Analyse automatique des compétences</li>
+          <li class="mb-2"><i class="bi bi-check-circle me-2"></i>Détection de fraude intégrée</li>
+          <li><i class="bi bi-check-circle me-2"></i>Tableau de bord analytique</li>
+        </ul>
+      </div>
+      <div class="col-lg-4 text-center">
+        <div class="p-4 bg-white rounded text-dark shadow-soft">
+          <h5 class="fw-bold mb-3">Publier une offre</h5>
+          <p class="text-muted mb-4">Commencez gratuitement avec 2 offres</p>
+          <button class="btn btn-primary btn-lg w-100 mb-3" [routerLink]="['/auth', 'login']">
+            <i class="bi bi-plus-circle me-2"></i>Créer une offre
+          </button>
+          <small class="text-muted">Pas de carte de crédit requise</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Coaching Section -->
+<section class="py-5 bg-white" id="coaching">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h2 class="fw-bold mb-3">Un coaching pour chaque étape</h2>
+        <p class="text-muted mb-3">
+          Bénéficiez de l'accompagnement de coachs et de mentors pour structurer votre parcours,
+          préparer vos entretiens et valoriser votre profil.
+        </p>
+        <p class="text-muted mb-4">
+          Sessions individuelles, ateliers collectifs et ressources pratiques vous aident à avancer
+          plus sereinement vers vos objectifs professionnels.
+        </p>
+        <ul class="list-unstyled text-muted mb-4">
+          <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Coaching CV & profil LinkedIn</li>
+          <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Préparation aux entretiens</li>
+          <li><i class="bi bi-check2 text-primary me-2"></i>Suivi personnalisé de votre progression</li>
+        </ul>
+        @if (isAuthenticated) {
+        <button class="btn btn-outline-primary btn-lg" (click)="startCoaching()">
+          Commencer le coaching
+        </button>
+        } @else {
+        <button class="btn btn-outline-primary btn-lg" [routerLink]="['/auth', 'login']">
+          Commencer le coaching
+        </button>
+        }
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-soft h-100">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Coaching individuel</h6>
+                <p class="text-muted mb-0">Des sessions adaptées à votre rythme et à vos besoins.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-soft h-100">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Ateliers collectifs</h6>
+                <p class="text-muted mb-0">Apprenez avec d'autres professionnels et partagez vos retours.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-soft h-100">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Ressources pratiques</h6>
+                <p class="text-muted mb-0">Guides, modèles et check-lists prêts à l'emploi.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-soft h-100">
+              <div class="card-body">
+                <h6 class="fw-bold mb-1">Suivi continu</h6>
+                <p class="text-muted mb-0">Visualisez vos progrès et vos prochaines étapes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-3">Ils nous font confiance</h2>
+      <p class="text-muted">Découvrez les retours de nos utilisateurs</p>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-md-4" *ngFor="let testimonial of testimonials">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <div class="mb-3">
+              <i class="bi bi-quote display-4 text-light"></i>
+            </div>
+            <p class="card-text mb-4 fst-italic">"{{testimonial.text}}"</p>
+            <div class="d-flex align-items-center">
+              <div class="avatar bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width: 50px; height: 50px;">
+                <span class="text-white fw-bold">{{getInitial(testimonial.name)}}</span>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-0">{{testimonial.name}}</h6>
+                <small class="text-muted">{{testimonial.role}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5 bg-light">
+  <div class="container text-center py-5">
+    <h2 class="display-5 fw-bold mb-4">Prêt à booster votre carrière ?</h2>
+    <p class="lead text-muted mb-5">
+      Rejoignez des milliers de professionnels qui utilisent Smart Career Hub
+    </p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      @if (isAuthenticated) {
+      <button class="btn btn-primary btn-lg px-5" routerLink="/candidate">
+        <i class="bi bi-briefcase me-2"></i>Accéder à mon profil
+      </button>
+      <button class="btn btn-outline-secondary btn-lg px-5" (click)="exploreOpportunities()">
+        <i class="bi bi-search me-2"></i>Explorer les opportunités
+      </button>
+      } @else {
+      <button class="btn btn-primary btn-lg px-5" [routerLink]="['/auth', 'login']">
+        <i class="bi bi-rocket-takeoff me-2"></i>Commencer gratuitement
+      </button>
+      <button class="btn btn-outline-secondary btn-lg px-5" [routerLink]="['/auth', 'login']">
+        <i class="bi bi-calendar me-2"></i>Planifier une démo
+      </button>
+      }
+    </div>
+    <p class="text-muted mt-4">
+      <i class="bi bi-shield-check text-success me-2"></i>
+      Essai gratuit de 14 jours • Aucune carte requise
+    </p>
+  </div>
+</section>
+
+<!-- Footer (inspiré du modèle) -->
+<footer class="footer">
+  <div class="footer-inner">
+    <!-- Brand -->
+    <div class="footer-brand">
+      Smart Career Hub
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#trending">Trending</a>
+      <a href="#coaching">Coaching</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Social icons -->
+    <div class="footer-social">
+      <a href="#" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copy">
+      Copyright © 2024 Smart Career Hub. Tous droits réservés.
+    </div>
+  </div>
+</footer>

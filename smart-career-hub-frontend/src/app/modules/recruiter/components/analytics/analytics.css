@@ -1,0 +1,112 @@
+.icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.bg-indigo-subtle {
+    background-color: #e0e7ff;
+}
+
+.text-indigo {
+    color: #4338ca;
+}
+
+.bg-blue-subtle {
+    background-color: #dbeafe;
+}
+
+.text-blue {
+    color: #1d4ed8;
+}
+
+/* Funnel Chart Simulation */
+.funnel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.funnel-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.funnel-step .label {
+    width: 120px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #475569;
+    text-align: right;
+}
+
+.funnel-step .bar {
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    transition: width 1s ease-out;
+}
+
+.funnel-step .count {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0f172a;
+}
+
+.funnel-step .count.text-white {
+    color: white;
+}
+
+/* Pie Chart Simulation */
+.pie-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-circle {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

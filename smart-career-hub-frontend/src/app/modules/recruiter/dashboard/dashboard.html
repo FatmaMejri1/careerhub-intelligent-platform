@@ -1,0 +1,56 @@
+<div class="dashboard-layout">
+  <!-- Header shared or distinct? Assuming shared but wrapped -->
+  <app-header></app-header>
+
+  <aside class="sidebar" [class.active]="sidebarActive">
+    <div class="sidebar-logo mb-4 text-center">
+      <div class="profile-photo-container mx-auto" routerLink="/recruiter/profile">
+        <div class="photo-placeholder-icon" *ngIf="!profileImage">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <img *ngIf="profileImage" [src]="profileImage" class="profile-photo">
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" routerLink="/recruiter/home" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-th-large"></i>
+        <span>Tableau de Bord</span>
+      </a>
+      <a class="nav-item" routerLink="/recruiter/profile" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-user-tie"></i>
+        <span>Mon Profil</span>
+      </a>
+      <a class="nav-item" routerLink="/recruiter/offers" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-briefcase"></i>
+        <span>Gestion Offres</span>
+      </a>
+      <a class="nav-item" routerLink="/recruiter/candidates" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-users"></i>
+        <span>Candidats</span>
+      </a>
+      <a class="nav-item" routerLink="/recruiter/analytics" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-chart-pie"></i>
+        <span>Statistiques</span>
+      </a>
+
+      <div class="mt-auto"></div>
+
+      <a class="nav-item" routerLink="/recruiter/settings" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-cog"></i>
+        <span>Paramètres</span>
+      </a>
+      <a class="nav-item text-danger mt-3" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Déconnexion</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <button class="mobile-menu-btn" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <router-outlet></router-outlet>
+  </main>
+</div>

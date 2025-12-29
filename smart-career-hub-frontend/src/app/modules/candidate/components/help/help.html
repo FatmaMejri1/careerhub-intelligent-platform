@@ -1,0 +1,78 @@
+<div class="help-container fade-in">
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-5">
+            <h2 class="fw-bold mb-4 text-center">Centre d'Aide</h2>
+            <p class="text-muted text-center mb-5">
+                Vous avez une question ou besoin d'aide ? Envoyez-nous un message et notre équipe administrative vous
+                répondra sous peu.
+            </p>
+
+            <form (ngSubmit)="sendMessage()" #helpForm="ngForm">
+                <div class="mb-3">
+                    <label for="subject" class="form-label fw-bold">Sujet</label>
+                    <select class="form-select" id="subject" [(ngModel)]="message.subject" name="subject" required>
+                        <option value="" disabled selected>Sélectionnez un sujet</option>
+                        <option value="technical">Problème Technique</option>
+                        <option value="account">Compte & Profil</option>
+                        <option value="billing">Facturation & Paiements</option>
+                        <option value="other">Autre Demande</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="message" class="form-label fw-bold">Message</label>
+                    <textarea class="form-control" id="message" rows="6" [(ngModel)]="message.content" name="message"
+                        placeholder="Décrivez votre problème ou question en détail..." required></textarea>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="!helpForm.form.valid">
+                        <i class="fas fa-paper-plane me-2"></i> Envoyer le Message
+                    </button>
+                </div>
+            </form>
+
+            <div *ngIf="successMessage" class="alert alert-success mt-4 d-flex align-items-center" role="alert">
+                <i class="fas fa-check-circle me-2"></i>
+                <div>{{ successMessage }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section (Optional) -->
+    <div class="mt-5">
+        <h4 class="fw-bold mb-3">Questions Fréquentes</h4>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item border-0 shadow-sm mb-2 rounded">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Comment améliorer mon Score d'Employabilité ?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body text-muted">
+                        Vous pouvez améliorer votre score en complétant les formations recommandées, en ajoutant plus de
+                        compétences à votre profil et en obtenant des certifications.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item border-0 shadow-sm mb-2 rounded">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Comment postuler à des emplois ?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body text-muted">
+                        Parcourez la section 'Offres Recommandées' de votre tableau de bord ou visitez la page complète
+                        des offres. Cliquez sur 'Postuler' sur n'importe quelle offre pour commencer votre candidature.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

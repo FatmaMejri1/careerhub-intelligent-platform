@@ -1,0 +1,208 @@
+<div class="users-container fade-in">
+    <!-- Header -->
+    <header class="page-header">
+        <div>
+            <h1>Gestion des Utilisateurs</h1>
+            <p class="text-muted">Supervision et contrôle des comptes candidats et recruteurs.</p>
+        </div>
+        <div class="header-actions">
+            <span class="badge bg-primary text-white p-2">Total: {{filteredUsers.length}} Utilisateurs</span>
+        </div>
+    </header>
+
+    <!-- Filters & Search -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label small fw-bold text-muted">Recherche</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-search text-muted"></i></span>
+                        <input type="text" class="form-control border-start-0 bg-light" placeholder="Nom, Email..."
+                            [(ngModel)]="searchTerm" (keyup)="applyFilters()">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-muted">Rôle</label>
+                    <select class="form-select bg-light" [(ngModel)]="roleFilter" (change)="applyFilters()">
+                        <option value="all">Tous</option>
+                        <option value="candidate">Candidat</option>
+                        <option value="recruiter">Recruteur</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small fw-bold text-muted">Statut</label>
+                    <select class="form-select bg-light" [(ngModel)]="statusFilter" (change)="applyFilters()">
+                        <option value="all">Tous</option>
+                        <option value="Actif">Actif</option>
+                        <option value="Suspendu">Suspendu</option>
+                        <option value="En attente">En attente</option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <button class="btn btn-light w-100 text-muted" (click)="resetFilters()">
+                        <i class="fas fa-sync-alt me-1"></i> Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Users Table -->
+        <div class="col-lg-8" [class.col-lg-12]="!selectedUser">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">Utilisateur</th>
+                                    <th>Rôle</th>
+                                    <th>Statut</th>
+                                    <th>Fiabilité</th>
+                                    <th>Activité</th>
+                                    <th class="text-end pe-4">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of filteredUsers" (click)="selectUser(user)"
+                                    [class.table-active]="selectedUser?.id === user.id" class="cursor-pointer">
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="avatar-sm me-3 bg-light rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold">
+                                                {{user.name[0]}}
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold text-dark">{{user.name}}</div>
+                                                <div class="small text-muted">{{user.email}}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge border"
+                                            [ngClass]="user.role === 'candidate' ? 'bg-info-subtle text-info border-info' : 'bg-purple-subtle text-purple border-purple'">
+                                            {{user.role | titlecase}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill" [ngClass]="{
+                                                'bg-success-subtle text-success': user.status === 'Actif',
+                                                'bg-danger-subtle text-danger': user.status === 'Suspendu',
+                                                'bg-warning-subtle text-warning': user.status === 'En attente'
+                                            }">
+                                            {{user.status}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="progress flex-grow-1" style="width: 50px; height: 4px;">
+                                                <div class="progress-bar"
+                                                    [ngClass]="getReliabilityColor(user.reliabilityScore)"
+                                                    [style.width.%]="user.reliabilityScore"></div>
+                                            </div>
+                                            <span class="small fw-bold"
+                                                [ngClass]="getReliabilityTextColor(user.reliabilityScore)">{{user.reliabilityScore}}%</span>
+                                        </div>
+                                    </td>
+                                    <td class="small text-muted">{{user.lastActivity | date:'dd MMM yyyy'}}</td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-icon text-muted"
+                                            (click)="selectUser(user); $event.stopPropagation()">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Details Panel -->
+        <div class="col-lg-4" *ngIf="selectedUser">
+            <div class="details-panel card shadow-sm border-0 h-100 sticky-top" style="top: 90px;">
+                <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0 text-truncate">Détails Utilisateur</h5>
+                    <button class="btn btn-sm btn-light" (click)="selectedUser = null">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="card-body p-4 scrollable-content">
+
+                    <div class="text-center mb-4">
+                        <div
+                            class="avatar-lg mx-auto bg-light rounded-circle d-flex align-items-center justify-content-center text-primary fw-bold mb-3">
+                            {{selectedUser.name[0]}}
+                        </div>
+                        <h5 class="fw-bold mb-1">{{selectedUser.name}}</h5>
+                        <p class="text-muted small mb-2">{{selectedUser.email}}</p>
+                        <span class="badge border"
+                            [ngClass]="selectedUser.role === 'candidate' ? 'bg-info-subtle text-info border-info' : 'bg-purple-subtle text-purple border-purple'">
+                            {{selectedUser.role | titlecase}}
+                        </span>
+                    </div>
+
+                    <div class="alert mb-4"
+                        [ngClass]="selectedUser.reliabilityScore > 75 ? 'alert-success border-0 bg-success-subtle' : 'alert-warning border-0 bg-warning-subtle'">
+                        <div class="d-flex align-items-center">
+                            <i class="fas"
+                                [ngClass]="selectedUser.reliabilityScore > 75 ? 'fa-check-circle' : 'fa-exclamation-triangle'"></i>
+                            <span class="ms-2 fw-bold">Fiabilité: {{selectedUser.reliabilityScore}}/100</span>
+                        </div>
+                    </div>
+
+                    <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Informations & Activité</h6>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between py-2 border-bottom border-light">
+                            <span class="small text-muted">ID</span>
+                            <span class="small fw-medium">{{selectedUser.id}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2 border-bottom border-light">
+                            <span class="small text-muted">Inscrit le</span>
+                            <span class="small fw-medium">{{selectedUser.joinDate | date:'dd MMM yyyy'}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2 border-bottom border-light">
+                            <span class="small text-muted">Dernière Connexion</span>
+                            <span class="small fw-medium">{{selectedUser.lastActivity | date:'short'}}</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2 border-bottom border-light">
+                            <span class="small text-muted">{{selectedUser.role === 'candidate' ? 'Candidatures' :
+                                'Offres Publiées'}}</span>
+                            <span class="small fw-medium">{{selectedUser.activityCount}}</span>
+                        </div>
+                    </div>
+
+                    <!-- Admin Actions -->
+                    <div class="admin-actions border-top pt-4 mt-4">
+                        <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Actions Administrateur</h6>
+
+                        <div class="d-grid gap-2">
+                            <button *ngIf="selectedUser.status !== 'Actif'" class="btn btn-success btn-sm"
+                                (click)="updateStatus('Actif')">
+                                <i class="fas fa-check-circle me-1"></i> Activer le Compte
+                            </button>
+
+                            <button *ngIf="selectedUser.status !== 'Suspendu'" class="btn btn-warning btn-sm"
+                                (click)="updateStatus('Suspendu')">
+                                <i class="fas fa-pause-circle me-1"></i> Suspendre Temporairement
+                            </button>
+
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteUser()">
+                                <i class="fas fa-trash-alt me-1"></i> Supprimer le Compte
+                            </button>
+
+                            <textarea class="form-control bg-light fs-7 mt-3" rows="2"
+                                placeholder="Ajouter une note interne..."></textarea>
+                            <button class="btn btn-light btn-sm border mt-1">Ajouter Note</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+.kpi-card {
+    transition: transform 0.2s;
+    border-radius: 12px;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+}
+
+.text-purple {
+    color: #8b5cf6;
+}
+
+.bg-purple-subtle {
+    background-color: #f3e8ff;
+}
+
+.fs-7 {
+    font-size: 0.85rem;
+}
+
+.x-small {
+    font-size: 0.75rem;
+}
+
+.avatar-sm {
+    width: 32px;
+    height: 32px;
+    line-height: 28px;
+    font-size: 0.9rem;
+}

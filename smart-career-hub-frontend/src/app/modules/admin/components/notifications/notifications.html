@@ -1,0 +1,89 @@
+<div class="notifications-container fade-in">
+    <!-- Header -->
+    <header class="page-header mb-4">
+        <div>
+            <h1>Notifications</h1>
+            <p class="text-muted">Centre de messages et alertes système.</p>
+        </div>
+
+    </header>
+
+    <!-- Filters -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body p-2">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer" [class.active]="filter === 'all'" (click)="setFilter('all')">
+                        Tous
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer" [class.active]="filter === 'unread'"
+                        (click)="setFilter('unread')">
+                        Non lus <span class="badge bg-danger ms-1" *ngIf="unreadCount > 0">{{unreadCount}}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer" [class.active]="filter === 'system'"
+                        (click)="setFilter('system')">
+                        Système
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cursor-pointer" [class.active]="filter === 'alert'" (click)="setFilter('alert')">
+                        Alertes
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="list-group shadow-sm">
+
+                <!-- Empty State -->
+                <div *ngIf="filteredNotifications.length === 0" class="text-center p-5 bg-white rounded">
+                    <div class="mb-3 text-muted opacity-50">
+                        <i class="fas fa-bell-slash fa-4x"></i>
+                    </div>
+                    <h5 class="text-muted">Aucune notification</h5>
+                    <p class="small text-muted">Vous êtes à jour !</p>
+                </div>
+
+                <!-- Item -->
+                <div *ngFor="let notif of filteredNotifications"
+                    class="list-group-item list-group-item-action border-0 mb-1 rounded p-3 d-flex align-items-start gap-3"
+                    [class.bg-white]="notif.read" [class.bg-blue-subtle]="!notif.read">
+
+                    <!-- Icon -->
+                    <div class="avatar-sm rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                        [ngClass]="getIconClass(notif.type)">
+                        <i [class]="getIcon(notif.type)"></i>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="flex-grow-1" (click)="markAsRead(notif)">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h6 class="mb-0 fw-bold" [class.text-primary]="!notif.read">{{notif.title}}</h6>
+                            <small class="text-muted x-small">{{notif.date | date:'short'}}</small>
+                        </div>
+                        <p class="mb-1 text-secondary small">{{notif.message}}</p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="dropdown">
+                        <button class="btn btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
+                            <li *ngIf="!notif.read"><a class="dropdown-item small" (click)="markAsRead(notif)"><i
+                                        class="fas fa-check me-2"></i>Marquer comme lu</a></li>
+                            <li><a class="dropdown-item small text-danger" (click)="deleteNotification(notif.id)"><i
+                                        class="fas fa-trash-alt me-2"></i>Supprimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>

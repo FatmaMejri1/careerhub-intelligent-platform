@@ -1,0 +1,25 @@
+import { Routes } from '@angular/router';
+import { CandidateDashboardComponent } from './dashboard/dashboard';
+import { CandidateHome } from './components/candidate-home/candidate-home';
+import { MyProfile } from './components/my-profile/my-profile';
+import { authGuard } from '../shared/guards/auth-guard';
+
+export const candidateRoutes: Routes = [
+  {
+    path: '',
+    component: CandidateDashboardComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: CandidateHome },
+      { path: 'my-profile', component: MyProfile },
+      { path: 'my-applications', loadComponent: () => import('./components/my-applications/my-applications').then(m => m.MyApplicationsComponent) },
+      { path: 'trainings', loadComponent: () => import('./components/trainings/trainings').then(m => m.TrainingsComponent) },
+      { path: 'cv-manager', loadComponent: () => import('./components/cv-manager/cv-manager').then(m => m.CvManagerComponent) },
+      { path: 'gamification', loadComponent: () => import('./components/gamification/gamification').then(m => m.GamificationComponent) },
+      { path: 'settings', loadComponent: () => import('./components/settings/settings').then(m => m.SettingsComponent) },
+      { path: 'help', loadComponent: () => import('./components/help/help').then(m => m.HelpComponent) },
+      { path: '**', redirectTo: 'dashboard' }
+    ]
+  }
+];

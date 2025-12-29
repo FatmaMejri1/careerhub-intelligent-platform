@@ -1,0 +1,91 @@
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #1e1b4b;
+    margin-bottom: 0.25rem;
+}
+
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+}
+
+.avatar-lg {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.table-active {
+    background-color: #f8fafc !important;
+    border-left: 3px solid #4f46e5;
+}
+
+.x-small {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+
+.fs-7 {
+    font-size: 0.85rem;
+}
+
+/* Custom Colors for badges */
+.bg-purple-subtle {
+    background-color: #f3e8ff;
+}
+
+.text-purple {
+    color: #7e22ce;
+}
+
+.border-purple {
+    border-color: #d8b4fe !important;
+}
+
+.details-panel {
+    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.scrollable-content {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+/* Scrollbar styling */
+.scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}

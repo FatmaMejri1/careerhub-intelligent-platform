@@ -1,0 +1,90 @@
+.icon-box {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.bg-indigo {
+    background-color: #4f46e5;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.active {
+    background-color: #10b981;
+}
+
+.status-dot.closed {
+    background-color: #64748b;
+}
+
+.status-dot.draft {
+    background-color: #f59e0b;
+}
+
+.badge-cdi {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-stage {
+    background-color: #fce7f3;
+    color: #9d174d;
+}
+
+.badge-cdd {
+    background-color: #ffedd5;
+    color: #9a3412;
+}
+
+.badge-freelance {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.avatar-xs {
+    width: 24px;
+    height: 24px;
+    font-size: 0.6rem;
+}
+
+.avatar-group .avatar-xs {
+    margin-left: -8px;
+}
+
+.avatar-group .avatar-xs:first-child {
+    margin-left: 0;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}

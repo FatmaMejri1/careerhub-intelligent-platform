@@ -1,0 +1,71 @@
+<div class="dashboard-layout">
+  <app-header></app-header>
+
+  <aside class="sidebar" [class.active]="sidebarActive">
+    <div class="sidebar-profile">
+      <div class="profile-photo-container" routerLink="/admin/profile" style="cursor: pointer;">
+        <div class="photo-placeholder-icon" *ngIf="!profileImage">
+          <i class="fas fa-user-shield"></i>
+        </div>
+        <img *ngIf="profileImage" [src]="profileImage"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+
+        <!-- Camera Icon Badge -->
+        <div class="sidebar-photo-badge">
+          <i class="fas fa-camera"></i>
+        </div>
+      </div>
+      <h3 class="sidebar-username">Admin</h3>
+      <small class="text-xs text-white-50">Administrator</small>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" routerLink="/admin/dashboard" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-columns"></i>
+        <span>Dashboard</span>
+      </a>
+      <a class="nav-item" routerLink="/admin/profile" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-user-circle"></i>
+        <span>Mon Profile</span>
+      </a>
+      <a class="nav-item" routerLink="/admin/users" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-users"></i>
+        <span>Utilisateurs</span>
+      </a>
+      <a class="nav-item" routerLink="/admin/offers" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-briefcase"></i>
+        <span>Offres & Recrutements</span>
+      </a>
+      <a class="nav-item" routerLink="/admin/fraud" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-shield-alt"></i>
+        <span>Détection de Fraudes</span>
+      </a>
+
+      <a class="nav-item" routerLink="/admin/notifications" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+      </a>
+
+      <!-- Separation for Bottom Items -->
+      <div class="mt-auto"></div>
+
+      <a class="nav-item" routerLink="/admin/settings" routerLinkActive="active" (click)="sidebarActive = false">
+        <i class="fas fa-cog"></i>
+        <span>Paramètres</span>
+      </a>
+
+      <a class="nav-item text-danger mt-3" (click)="disconnect()">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Déconnexion</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <button class="mobile-menu-btn" (click)="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <router-outlet></router-outlet>
+  </main>
+</div>

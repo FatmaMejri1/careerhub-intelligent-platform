@@ -1,0 +1,202 @@
+<div class="fraud-container fade-in">
+    <!-- Header -->
+    <header class="page-header mb-4">
+        <div>
+            <h1>Détection de Fraudes</h1>
+            <p class="text-muted">Analyse en temps réel des activités suspectes et conformité.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-dark" (click)="refreshData()">
+                <i class="fas fa-sync-alt me-2"></i> Actualiser
+            </button>
+            <button class="btn btn-danger" (click)="purgeHighRisk()">
+                <i class="fas fa-skull me-2"></i> Purger Hauts Risques
+            </button>
+        </div>
+    </header>
+
+    <!-- KPI Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm border-start border-4 border-danger h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted x-small fw-bold">Alertes Critiques</h6>
+                    <h2 class="text-danger fw-bold mb-0">12</h2>
+                    <small class="text-danger"><i class="fas fa-arrow-up"></i> +3 cette heure</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm border-start border-4 border-warning h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted x-small fw-bold">Suspects</h6>
+                    <h2 class="text-warning fw-bold mb-0">45</h2>
+                    <small class="text-muted">En attente de révision</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm border-start border-4 border-success h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted x-small fw-bold">Résolus (24h)</h6>
+                    <h2 class="text-success fw-bold mb-0">89</h2>
+                    <small class="text-success">Traitement efficace</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-primary text-white h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-white-50 x-small fw-bold">Score Global Sécurité</h6>
+                    <h2 class="fw-bold mb-0">92%</h2>
+                    <small class="text-white-50">Niveau de protection: Haut</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Fraud Table -->
+        <div class="col-lg-8" [class.col-lg-12]="!selectedAlert">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom p-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold mb-0">Journal des Alertes</h5>
+
+                        <div class="d-flex gap-2">
+                            <select class="form-select form-select-sm bg-light border-0" style="width: 150px;">
+                                <option>Tous les types</option>
+                                <option>Offres Fausses</option>
+                                <option>Usurpation ID</option>
+                                <option>Spam</option>
+                            </select>
+                            <input type="text" class="form-control form-control-sm bg-light border-0"
+                                placeholder="Rechercher..." style="width: 200px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4">Source</th>
+                                    <th>Type</th>
+                                    <th>Détecté le</th>
+                                    <th>Score Risque</th>
+                                    <th>Statut</th>
+                                    <th class="text-end pe-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let alert of alerts" (click)="selectAlert(alert)"
+                                    [class.table-active]="selectedAlert?.id === alert.id" class="cursor-pointer">
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar-sm me-2 rounded d-flex align-items-center justify-content-center fw-bold"
+                                                [ngClass]="getTypeIcon(alert.type).bgClass">
+                                                <i [class]="getTypeIcon(alert.type).icon"></i>
+                                            </div>
+                                            <div>
+                                                <div class="fw-bold text-dark">{{alert.sourceName}}</div>
+                                                <div class="small text-muted">{{alert.id}}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="small fw-medium">{{alert.type}}</span>
+                                    </td>
+                                    <td class="small text-muted">{{alert.date | date:'shortTime'}}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div class="progress flex-grow-1" style="width: 50px; height: 4px;">
+                                                <div class="progress-bar" [ngClass]="getRiskColor(alert.riskScore)"
+                                                    [style.width.%]="alert.riskScore"></div>
+                                            </div>
+                                            <span class="small fw-bold"
+                                                [ngClass]="getRiskTextColor(alert.riskScore)">{{alert.riskScore}}%</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill" [ngClass]="{
+                                                'bg-danger-subtle text-danger': alert.status === 'Nouveau',
+                                                'bg-warning-subtle text-warning': alert.status === 'En cours',
+                                                'bg-success-subtle text-success': alert.status === 'Résolu'
+                                            }">
+                                            {{alert.status}}
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <button class="btn btn-sm btn-light border"
+                                            (click)="selectAlert(alert); $event.stopPropagation()">
+                                            Review
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detail Panel -->
+        <div class="col-lg-4" *ngIf="selectedAlert">
+            <div class="details-panel card shadow-sm border-0 h-100 sticky-top" style="top: 90px;">
+                <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0 text-danger"><i class="fas fa-exclamation-triangle me-2"></i>Détails Alerte
+                    </h5>
+                    <button class="btn btn-sm btn-light" (click)="selectedAlert = null">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="card-body p-4 scrollable-content">
+
+                    <div class="text-center mb-4">
+                        <div class="display-4 fw-bold" [ngClass]="getRiskTextColor(selectedAlert.riskScore)">
+                            {{selectedAlert.riskScore}}%
+                        </div>
+                        <div class="text-muted small text-uppercase fw-bold">Probabilité de Fraude</div>
+                    </div>
+
+                    <div class="alert alert-light border mb-4">
+                        <h6 class="fw-bold mb-2">Analyse IA</h6>
+                        <p class="small text-muted mb-0">{{selectedAlert.aiAnalysis}}</p>
+                    </div>
+
+                    <h6 class="text-uppercase text-muted x-small fw-bold mb-3">Preuves Détectées</h6>
+                    <ul class="list-group list-group-flush mb-4 small">
+                        <li class="list-group-item px-0 d-flex justify-content-between align-items-center"
+                            *ngFor="let proof of selectedAlert.evidence">
+                            <span>{{proof.label}}</span>
+                            <span class="badge bg-secondary-subtle text-secondary">{{proof.value}}</span>
+                        </li>
+                    </ul>
+
+                    <!-- Actions -->
+                    <div class="d-grid gap-2">
+                        <h6 class="text-uppercase text-muted x-small fw-bold mb-2">Actions Requises</h6>
+
+                        <button class="btn btn-warning" (click)="updateStatus('En cours')">
+                            <i class="fas fa-search me-2"></i> Investiguer
+                        </button>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <button class="btn btn-success w-100" (click)="resolveAlert('Ignorer')">
+                                    <i class="fas fa-check me-1"></i> Faux Positif
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-danger w-100" (click)="resolveAlert('Bloquer')">
+                                    <i class="fas fa-ban me-1"></i> Bloquer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

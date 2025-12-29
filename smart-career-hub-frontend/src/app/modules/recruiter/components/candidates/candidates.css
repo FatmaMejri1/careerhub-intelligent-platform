@@ -1,0 +1,187 @@
+/* Layout & Transitions */
+.transition-all {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.details-panel {
+    position: fixed;
+    top: 76px;
+    /* Below header */
+    right: 0;
+    bottom: 0;
+    width: 450px;
+    z-index: 50;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@media (min-width: 992px) {
+    /* When panel is open, shrink the main list area if needed or overlay it. 
+       Here we chose overlay/absolute positioning for simplicity in fixed dashboard layout */
+}
+
+/* Animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Icons & Avatars */
+.icon-shape {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.avatar-sm {
+    width: 42px;
+    height: 42px;
+    font-size: 0.9rem;
+}
+
+.avatar-lg {
+    width: 80px;
+    height: 80px;
+    font-size: 1.75rem;
+}
+
+/* Table */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.sticky-header th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 10;
+}
+
+/* Status Badges */
+.badge-status-new {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+.badge-status-preselected {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-status-interview {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+}
+
+.badge-status-hired {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.badge-status-rejected {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Stepper */
+.status-stepper {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.progress-line {
+    position: absolute;
+    top: 6px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: #e5e7eb;
+    z-index: 0;
+}
+
+.step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.step-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid #cbd5e1;
+    transition: all 0.2s;
+    margin-bottom: 6px;
+}
+
+.step.active .step-dot {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    transform: scale(1.2);
+}
+
+.step-label {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.step.active .step-label {
+    color: #2563eb;
+}
+
+/* TImeline */
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    left: -5px;
+    top: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

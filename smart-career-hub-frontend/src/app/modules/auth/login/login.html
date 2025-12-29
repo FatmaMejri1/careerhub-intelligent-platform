@@ -1,0 +1,59 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Bienvenue</h2>
+    <p class="login-subtitle">Connectez-vous pour continuer sur Smart Career Hub</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="exemple@domain.com"
+          [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        />
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <span class="error-message">Veuillez saisir un email valide.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Votre mot de passe"
+          [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        />
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <span class="error-message">Mot de passe requis (6 caractères minimum).</span>
+        }
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-alert">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <button type="submit" [disabled]="loginForm.invalid || isLoading" class="submit-btn">
+        @if (isLoading) {
+          <span>Connexion en cours...</span>
+        } @else {
+          <span>Se connecter</span>
+        }
+      </button>
+    </form>
+
+    <div class="links">
+      <a routerLink="/auth/forgot-password" class="link forgot-link">Mot de passe oublié ?</a>
+      <p>Pas encore de compte ?
+        <a routerLink="/auth/register" class="link">Créer un compte</a>
+      </p>
+    </div>
+  </div>
+</div>

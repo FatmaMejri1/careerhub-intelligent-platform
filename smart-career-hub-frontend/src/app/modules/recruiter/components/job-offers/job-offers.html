@@ -1,0 +1,232 @@
+<div class="fade-in">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark">Gestion des Offres</h2>
+            <p class="text-muted">Créez, suivez et optimisez vos recrutements.</p>
+        </div>
+        <button class="btn btn-primary" (click)="openModal()">
+            <i class="fas fa-plus me-2"></i>Nouvelle Offre
+        </button>
+    </div>
+
+    <!-- KPIs -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-primary-subtle text-primary rounded me-3">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-0">{{kpiData.total}}</h3>
+                        <small class="text-muted">Offres Totales</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-success-subtle text-success rounded me-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-0">{{kpiData.active}}</h3>
+                        <small class="text-muted">Actives</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-3">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-warning-subtle text-warning rounded me-3">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-0">{{kpiData.pending}}</h3>
+                        <small class="text-muted">En Attente</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-3 bg-indigo text-white" style="background: var(--primary);">
+                <div class="d-flex align-items-center">
+                    <div class="icon-box bg-white text-primary rounded me-3 bg-opacity-25">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3 class="fw-bold mb-0">{{kpiData.totalApplications}}</h3>
+                        <small class="text-white-50">Candidatures Reçues</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters & List -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white py-3 border-bottom-0">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="fas fa-search text-muted"></i></span>
+                        <input type="text" class="form-control bg-light border-start-0"
+                            placeholder="Rechercher une offre..." [(ngModel)]="filters.search" (input)="applyFilters()">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select bg-light" [(ngModel)]="filters.type" (change)="applyFilters()">
+                        <option value="all">Tous les types</option>
+                        <option value="CDI">CDI</option>
+                        <option value="CDD">CDD</option>
+                        <option value="Stage">Stage</option>
+                        <option value="Freelance">Freelance</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select bg-light" [(ngModel)]="filters.status" (change)="applyFilters()">
+                        <option value="all">Tous les statuts</option>
+                        <option value="Active">Active</option>
+                        <option value="Clôturée">Clôturée</option>
+                        <option value="Brouillon">Brouillon</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">Intitulé du Poste</th>
+                        <th>Type</th>
+                        <th>Statut</th>
+                        <th>Candidats</th>
+                        <th>Performance</th>
+                        <th>Date</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offer of filteredOffers">
+                        <td class="ps-4">
+                            <div class="fw-bold text-dark">{{offer.title}}</div>
+                            <small class="text-muted">{{offer.location}}</small>
+                        </td>
+                        <td>
+                            <span class="badge" [ngClass]="getBadgeClass(offer.type)">{{offer.type}}</span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="status-dot me-2" [ngClass]="getStatusDotClass(offer.status)"></span>
+                                <span class="small">{{offer.status}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-group me-2">
+                                    <div class="avatar-xs rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center border border-white"
+                                        *ngFor="let i of [1,2,3]">+</div>
+                                </div>
+                                <span class="fw-bold">{{offer.applicationsCount}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center" title="Taux de conversion">
+                                <i class="fas fa-chart-line text-success me-2"></i>
+                                <span class="small fw-bold">{{offer.performanceScore}}%</span>
+                            </div>
+                        </td>
+                        <td class="text-muted small">{{offer.date | date:'dd MMM yyyy'}}</td>
+                        <td class="text-end pe-4">
+                            <button class="btn btn-sm btn-light me-1" title="Voir Candidats">
+                                <i class="fas fa-users text-primary"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light me-1" (click)="editOffer(offer)" title="Modifier">
+                                <i class="fas fa-pen text-secondary"></i>
+                            </button>
+                            <button class="btn btn-sm btn-light text-danger" (click)="deleteOffer(offer.id)"
+                                title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Empty State -->
+            <div *ngIf="filteredOffers.length === 0" class="text-center py-5">
+                <div class="text-muted mb-3"><i class="fas fa-search fa-2x"></i></div>
+                <p>Aucune offre trouvée.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Creation/Edition (Simplified Overlay) -->
+<div class="modal-backdrop fade show" *ngIf="showModal"></div>
+<div class="modal fade show d-block" *ngIf="showModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom">
+                <h5 class="modal-title fw-bold">{{isEditing ? 'Modifier l\'offre' : 'Créer une nouvelle offre'}}</h5>
+                <button type="button" class="btn-close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label small fw-bold">Intitulé du poste</label>
+                            <input type="text" class="form-control" [(ngModel)]="currentOffer.title" name="title"
+                                placeholder="Ex: Développeur Angular Senior">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold">Type de contrat</label>
+                            <select class="form-select" [(ngModel)]="currentOffer.type" name="type">
+                                <option value="CDI">CDI</option>
+                                <option value="CDD">CDD</option>
+                                <option value="Stage">Stage</option>
+                                <option value="Freelance">Freelance</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Lieu</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" [(ngModel)]="currentOffer.location"
+                                    name="location" placeholder="Ex: Tunis, Les Berges du Lac">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold">Statut</label>
+                            <select class="form-select" [(ngModel)]="currentOffer.status" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Brouillon">Brouillon</option>
+                                <option value="Clôturée">Clôturée</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Description du poste</label>
+                            <textarea class="form-control" rows="4" [(ngModel)]="currentOffer.description"
+                                name="description" placeholder="Décrivez les missions principales..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-bold">Compétences requises (séparées par des
+                                virgules)</label>
+                            <input type="text" class="form-control" [(ngModel)]="currentOffer.skills" name="skills"
+                                placeholder="Ex: Angular, TypeScript, Node.js">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer bg-light border-top-0">
+                <button type="button" class="btn btn-outline-secondary" (click)="closeModal()">Annuler</button>
+                <button type="button" class="btn btn-primary" (click)="saveOffer()">{{isEditing ? 'Mettre à jour' :
+                    'Publier l\'offre'}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Créer votre compte</h2>
+    <p class="register-subtitle">
+      Rejoignez Smart Career Hub et construisez votre prochain chapitre professionnel.
+    </p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Full name -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Nom complet</label>
+          <input
+            id="fullName"
+            type="text"
+            class="form-control"
+            formControlName="fullName"
+            placeholder="Votre nom et prénom"
+          />
+        </div>
+      </div>
+
+      <!-- Email + Phone -->
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="exemple@domain.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Téléphone</label>
+          <input
+            id="phone"
+            type="tel"
+            class="form-control"
+            formControlName="phone"
+            placeholder="+33 ..."
+          />
+        </div>
+      </div>
+
+      <!-- Objective selector -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="objective">Vous recherchez</label>
+          <select
+            id="objective"
+            class="form-control"
+            formControlName="objective"
+          >
+            <option value="" disabled selected>Sélectionnez une option</option>
+            <option value="job">Un emploi</option>
+            <option value="club">Rejoindre un club / une organisation</option>
+            <option value="internship">Un stage / une alternance</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Passwords -->
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Créer un mot de passe"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmer le mot de passe</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+            placeholder="Répétez le mot de passe"
+          />
+          @if (passwordMismatch) {
+            <span class="error-message">Les mots de passe ne correspondent pas.</span>
+          }
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Centres d'intérêt</label>
+          <div class="chips">
+            <label class="chip" *ngFor="let interest of interestOptions">
+              <input
+                type="checkbox"
+                [value]="interest"
+                (change)="onInterestChange($event.target.checked, interest)"
+              />
+              <span>{{ interest }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience / parcours -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="experience">Votre parcours / expériences</label>
+          <textarea
+            id="experience"
+            rows="4"
+            class="form-control"
+            formControlName="experience"
+            placeholder="Décrivez brièvement votre formation, vos expériences et ce que vous recherchez..."
+          ></textarea>
+        </div>
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-alert" style="background-color: #fdecea; border-radius: 8px; padding: 10px 12px; font-size: 0.85rem; color: #b71c1c; margin-bottom: 12px;">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || isLoading">
+        @if (isLoading) {
+          <span>Création du compte...</span>
+        } @else {
+          <span>Créer mon compte</span>
+        }
+      </button>
+    </form>
+  </div>
+</div>

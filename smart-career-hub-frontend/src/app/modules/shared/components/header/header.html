@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" [routerLink]="['/']" (click)="closeMobileMenu()">
+      <img src="assets/images/sch.png" alt="Smart Career Hub" style="height: 48px;" />
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" (click)="toggleMobileMenu()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navigation Links + Profil / Connect -->
+    <div class="collapse navbar-collapse justify-content-end" [ngClass]="{ 'show': isMobileMenuOpen }">
+      <ul class="navbar-nav me-3">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/'" fragment="home" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">A propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/'" fragment="trending">opportunités</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/'" fragment="coaching">Formations</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center mb-2 mb-lg-0">
+        @if (isAuthenticated) {
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle me-2"></i>{{ currentUser?.firstName || currentUser?.name || 'Mon compte' }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" routerLink="/candidate">Mon espace</a>
+            </li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li>
+              <button class="dropdown-item" (click)="logout()">Déconnexion</button>
+            </li>
+          </ul>
+        </div>
+        } @else {
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Connect
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/auth', 'login']" (click)="closeMobileMenu()">Sign in</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/auth', 'register']" (click)="closeMobileMenu()">Sign up</a>
+            </li>
+          </ul>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</nav>

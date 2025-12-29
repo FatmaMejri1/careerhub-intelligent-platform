@@ -1,0 +1,211 @@
+.profile-container {
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+/* Premium Header matching candidate */
+.profile-header-premium {
+    height: 280px;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%), url('https://img.freepik.com/free-photo/abstract-polygonal-space-low-poly-dark-background-with-connecting-dots-lines_1217-1981.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.profile-header-content {
+    width: 100%;
+    z-index: 2;
+}
+
+.profile-avatar-wrapper {
+    position: relative;
+}
+
+.avatar-container {
+    width: 150px;
+    height: 150px;
+    background: white;
+    border-radius: 20px;
+    padding: 5px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: #cbd5e1;
+    background: #f1f5f9;
+}
+
+.btn-avatar-edit {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: #2563eb;
+    border: 3px solid white;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+.btn-avatar-edit:hover {
+    background: #1d4ed8;
+    transform: scale(1.1);
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.btn-glass-danger {
+    background: rgba(239, 68, 68, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fee2e2;
+}
+
+/* Cards & UI */
+.rounded-lg {
+    border-radius: 1rem !important;
+}
+
+.value-text {
+    padding: 0.75rem 0;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+}
+
+.linkedin {
+    background: #0077b5;
+}
+
+.twitter {
+    background: #1da1f2;
+}
+
+.portfolio {
+    background: #2563eb;
+}
+
+.skill-badge {
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.save-actions-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-lift-sm:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s;
+}
+
+@media (max-width: 768px) {
+    .profile-header-premium {
+        height: auto;
+        padding-top: 40px;
+    }
+
+    .profile-header-flex {
+        flex-direction: column;
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .ms-auto {
+        margin: 15px auto !important;
+    }
+}
