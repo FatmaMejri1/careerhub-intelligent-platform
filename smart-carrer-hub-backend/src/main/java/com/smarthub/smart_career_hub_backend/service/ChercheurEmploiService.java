@@ -55,13 +55,38 @@ public class ChercheurEmploiService {
         ChercheurEmploi chercheur = chercheurEmploiRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
 
+        System.out.println("=== UPDATE CHERCHEUR DEBUG ===");
+        System.out.println("Telephone: " + chercheurDetails.getTelephone());
+        System.out.println("Adresse: " + chercheurDetails.getAdresse());
+        System.out.println("PhotoUrl: " + (chercheurDetails.getPhotoUrl() != null ? "Present (length: " + chercheurDetails.getPhotoUrl().length() + ")" : "null"));
+
+        // Basic Info
         chercheur.setNom(chercheurDetails.getNom());
         chercheur.setPrenom(chercheurDetails.getPrenom());
-        chercheur.setEmail(chercheurDetails.getEmail());
-        chercheur.setMotDePasse(chercheurDetails.getMotDePasse());
-        chercheur.setRole(chercheurDetails.getRole());
+        chercheur.setTelephone(chercheurDetails.getTelephone());
+        chercheur.setPhotoUrl(chercheurDetails.getPhotoUrl()); // Persist photo URL
+        
+        // Profile Details
+        chercheur.setTitre(chercheurDetails.getTitre());
+        chercheur.setAdresse(chercheurDetails.getAdresse());
+        chercheur.setObjectif(chercheurDetails.getObjectif());
+        chercheur.setCvUrl(chercheurDetails.getCvUrl());
 
-        return chercheurEmploiRepository.save(chercheur);
+        // Socials
+        chercheur.setLinkedin(chercheurDetails.getLinkedin());
+        chercheur.setGithub(chercheurDetails.getGithub());
+        chercheur.setPortfolio(chercheurDetails.getPortfolio());
+
+        // JSON Lists (Now stored as strings)
+        chercheur.setCompetences(chercheurDetails.getCompetences());
+        chercheur.setExperiences(chercheurDetails.getExperiences());
+        chercheur.setEducations(chercheurDetails.getEducations());
+        chercheur.setProjects(chercheurDetails.getProjects());
+        chercheur.setCertifications(chercheurDetails.getCertifications());
+
+        ChercheurEmploi saved = chercheurEmploiRepository.save(chercheur);
+        System.out.println("Saved successfully with ID: " + saved.getId());
+        return saved;
     }
 
     // =========================

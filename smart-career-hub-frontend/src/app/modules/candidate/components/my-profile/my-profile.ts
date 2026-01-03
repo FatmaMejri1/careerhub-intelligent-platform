@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CandidateDataService } from '../../services/candidate-data.service';
@@ -12,27 +12,78 @@ import { CandidateDataService } from '../../services/candidate-data.service';
 export class MyProfile {
   userPhoto$;
 
-  constructor(private candidateDataService: CandidateDataService) {
+  constructor(
+    private candidateDataService: CandidateDataService,
+    private cdr: ChangeDetectorRef
+  ) {
     this.userPhoto$ = this.candidateDataService.userPhoto$;
+  }
+
+  ngOnInit() {
+    this.loadProfile();
+  }
+
+  loadProfile() {
+    this.candidateDataService.getProfile().subscribe({
+      next: (data) => {
+        if (data) {
+          console.log('Received profile data:', data); // Debug logging
+
+          this.user.firstName = data.prenom || '';
+          this.user.lastName = data.nom || '';
+          this.user.email = data.email || '';
+          this.user.phone = data.telephone || '';
+          this.user.role = data.titre || 'Chercheur d\'emploi';
+          this.user.address = data.adresse || '';
+          this.user.bio = data.objectif || ''; // Using objectif as bio
+
+          // Socials
+          this.user.socials.linkedin = data.linkedin || 'https://linkedin.com/in/';
+          this.user.socials.github = data.github || 'https://github.com/';
+          this.user.socials.portfolio = data.portfolio || '';
+
+          // Generic JSON parser
+          const parseJson = (str: string) => {
+            if (!str || str === 'null') return [];
+            try { return JSON.parse(str); } catch (e) {
+              console.warn('JSON Parse Error for:', str); return [];
+            }
+          };
+
+          this.user.skills = parseJson(data.competences);
+          this.user.experience = parseJson(data.experiences);
+          this.user.education = parseJson(data.educations);
+          this.user.projects = parseJson(data.projects);
+          this.user.certifications = parseJson(data.certifications);
+
+          if (data.photoUrl) {
+            this.candidateDataService.updatePhoto(data.photoUrl);
+          }
+
+          this.cdr.detectChanges(); // Force UI update
+        }
+      },
+      error: (err) => console.error('Failed to load profile', err)
+    });
   }
 
   isEditing = false; // Toggle for edit mode
 
   // Expanded user model
   user = {
-    firstName: 'Fatma',
-    lastName: 'Mejri', // Assuming surname
-    role: 'Ingénieur Logiciel Junior',
-    email: 'fatma@example.com',
-    phone: '+216 55 123 456',
-    address: 'Tunis, Tunisia',
-    bio: 'Développeuse passionnée à la recherche de nouvelles opportunités. Expérimentée dans la création d\'applications web évolutives.',
+    firstName: '',
+    lastName: '',
+    role: '',
+    email: '',
+    phone: '',
+    address: '',
+    bio: '',
 
     // Social Links
     socials: {
-      linkedin: 'https://linkedin.com/in/fatma',
-      github: 'https://github.com/fatma',
-      portfolio: 'https://fatma.dev'
+      linkedin: 'https://linkedin.com/in/',
+      github: 'https://github.com/',
+      portfolio: ''
     },
 
     // Password Section (Mock)
@@ -43,48 +94,19 @@ export class MyProfile {
     },
 
     // Skills
-    skills: ['Angular', 'TypeScript', 'Node.js', 'Python', 'UI/UX Design', 'SQL'],
+    skills: [] as string[],
 
     // Experience
-    experience: [
-      {
-        title: 'Stagiaire Développeur Frontend',
-        company: 'Tech Solutions',
-        period: 'Jan 2024 - Juin 2024',
-        description: 'Développement d\'interfaces web réactives avec Angular et Tailwind CSS.',
-        logo: 'https://cdn-icons-png.flaticon.com/512/281/281764.png'
-      }
-    ],
+    experience: [] as any[],
 
     // Education
-    education: [
-      {
-        degree: 'Master en Ingénierie Logicielle',
-        school: 'Institut Supérieur d\'Informatique',
-        period: '2022 - 2024',
-        description: 'Spécialisation dans les architectures web modernes et l\'IA.'
-      }
-    ],
+    education: [] as any[],
 
     // Academic Projects
-    projects: [
-      {
-        name: 'Smart Career Hub',
-        description: 'Une plateforme d\'orientation professionnelle alimentée par l\'IA utilisant Angular et Python.',
-        link: 'https://github.com/fatma/smart-career',
-        image: 'https://img.freepik.com/free-vector/job-search-concept-with-person-looking-through-magnifying-glass_23-2148498293.jpg'
-      }
-    ],
+    projects: [] as any[],
 
     // Certifications
-    certifications: [
-      {
-        name: 'Développeur Angular Certifié',
-        issuer: 'Google',
-        date: '2023',
-        credlyLink: 'https://www.credly.com/earner/earned/badge/...'
-      }
-    ]
+    certifications: [] as any[]
   };
 
   newSkill = '';
@@ -136,10 +158,28 @@ export class MyProfile {
     this.user.certifications.splice(index, 1);
   }
 
-  saveProfile() {
-    this.isEditing = false;
-    // Logic to save to backend would go here
-    console.log('Profile Saved', this.user);
+  calculateCompletionStatus(): number {
+    let score = 0;
+    const totalWeight = 100;
+
+    // Weighted criteria
+    if (this.user.firstName && this.user.lastName) score += 10;
+    if (this.user.role) score += 5;
+    if (this.user.bio) score += 10;
+    if (this.user.address) score += 5;
+    if (this.user.phone) score += 5;
+
+    if (this.user.skills && this.user.skills.length > 0) score += 15;
+    if (this.user.experience && this.user.experience.length > 0) score += 15;
+    if (this.user.education && this.user.education.length > 0) score += 15;
+    if (this.user.projects && this.user.projects.length > 0) score += 10;
+    if (this.user.certifications && this.user.certifications.length > 0) score += 10;
+
+    return Math.min(score, 100);
+  }
+
+  get completionPercentage(): number {
+    return this.calculateCompletionStatus();
   }
 
   onPhotoSelected(event: any): void {
@@ -147,10 +187,55 @@ export class MyProfile {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const photo = e.target?.result || null;
+        const photo = e.target?.result as string;
         this.candidateDataService.updatePhoto(photo);
+        // Also update local user object so it binds immediately if needed
+        // But actual upload happens on Save Profile
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  saveProfile() {
+    this.isEditing = false;
+
+    let currentPhoto = '';
+    this.userPhoto$.subscribe(p => {
+      if (typeof p === 'string') {
+        currentPhoto = p;
+      } else {
+        currentPhoto = '';
+      }
+    }).unsubscribe();
+
+    const payload = {
+      prenom: this.user.firstName,
+      nom: this.user.lastName,
+      telephone: this.user.phone,
+      titre: this.user.role,
+      adresse: this.user.address,
+      objectif: this.user.bio,
+      photoUrl: currentPhoto, // Send the Photo URL (Base64)
+
+      linkedin: this.user.socials.linkedin,
+      github: this.user.socials.github,
+      portfolio: this.user.socials.portfolio,
+
+      competences: JSON.stringify(this.user.skills),
+      experiences: JSON.stringify(this.user.experience),
+      educations: JSON.stringify(this.user.education),
+      projects: JSON.stringify(this.user.projects),
+      certifications: JSON.stringify(this.user.certifications)
+    };
+
+    console.log('Saving payload:', payload);
+
+    this.candidateDataService.updateProfile(payload).subscribe({
+      next: (res) => {
+        console.log('Profile updated', res);
+        this.loadProfile();
+      },
+      error: (err) => console.error('Error updating profile', err)
+    });
   }
 }

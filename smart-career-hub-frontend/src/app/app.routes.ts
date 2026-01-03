@@ -48,5 +48,10 @@ export const routes: Routes = [
         .then(m => m.AuthModule)
   },
 
+  {
+    path: 'opportunities',
+    loadComponent: () => import('./modules/shared/components/opportunities/opportunities.component').then(m => m.OpportunitiesComponent)
+  },
+
   { path: '**', redirectTo: '' }
 ];

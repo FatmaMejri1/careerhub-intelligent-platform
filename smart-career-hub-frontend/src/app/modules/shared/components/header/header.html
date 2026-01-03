@@ -21,7 +21,8 @@
           <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">A propos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/'" fragment="trending">opportunités</a>
+          <a class="nav-link" [routerLink]="['/opportunities']" routerLinkActive="active"
+            (click)="closeMobileMenu()">Opportunités</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'/'" fragment="coaching">Formations</a>
@@ -36,7 +37,7 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
-              <a class="dropdown-item" routerLink="/candidate">Mon espace</a>
+              <a class="dropdown-item" [routerLink]="getDashboardLink()" (click)="closeMobileMenu()">Mon espace</a>
             </li>
             <li>
               <hr class="dropdown-divider" />

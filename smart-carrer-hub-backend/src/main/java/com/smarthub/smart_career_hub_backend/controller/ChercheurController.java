@@ -44,12 +44,18 @@ public class ChercheurController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ChercheurEmploi> update(@PathVariable Long id, @RequestBody ChercheurEmploi chercheur) {
+        System.out.println("Update request for ID: " + id);
+        System.out.println("Received payload: " + chercheur);
+        System.out.println("Compétences: " + chercheur.getCompetences());
+        System.out.println("Experiences: " + chercheur.getExperiences());
         try {
             ChercheurEmploi updatedChercheur = chercheurEmploiService.updateChercheur(id, chercheur);
             return ResponseEntity.ok(updatedChercheur);
         } catch (RuntimeException e) {
+            System.out.println("Error updating: " + e.getMessage());
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }

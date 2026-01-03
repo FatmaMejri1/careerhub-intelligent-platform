@@ -22,6 +22,7 @@ public class Candidature {
     @JoinColumn(name = "chercheur_id")
     @JsonIgnoreProperties({"quizList","coachings"})
     private ChercheurEmploi chercheurEmploi;
+    
      //can receive many applications from different candidates.
     @ManyToOne
     @JoinColumn(name = "offre_id")

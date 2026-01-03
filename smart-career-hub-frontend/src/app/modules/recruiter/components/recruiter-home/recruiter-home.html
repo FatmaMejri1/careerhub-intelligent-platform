@@ -16,8 +16,9 @@
                         </div>
                         <h6 class="mb-0 text-muted text-uppercase fw-bold small">Offres Actives</h6>
                     </div>
-                    <h2 class="fw-bold mb-0">5</h2>
-                    <small class="text-success fw-medium"><i class="fas fa-arrow-up"></i> +2 cette semaine</small>
+                    <h2 class="fw-bold mb-0">{{stats?.totalOffers || 0}}</h2>
+                    <small class="text-success fw-medium"><i class="fas fa-arrow-up"></i> +{{stats?.offersGrowth ||
+                        0}}%</small>
                 </div>
             </div>
         </div>
@@ -32,8 +33,9 @@
                         </div>
                         <h6 class="mb-0 text-muted text-uppercase fw-bold small">Candidatures</h6>
                     </div>
-                    <h2 class="fw-bold mb-0">42</h2>
-                    <small class="text-success fw-medium"><i class="fas fa-arrow-up"></i> +12% vs mois dernier</small>
+                    <h2 class="fw-bold mb-0">{{stats?.totalApplications || 0}}</h2>
+                    <small class="text-success fw-medium"><i class="fas fa-arrow-up"></i> +{{stats?.appsGrowth ||
+                        0}}%</small>
                 </div>
             </div>
         </div>
@@ -46,10 +48,10 @@
                         <div class="icon-shape bg-warning-subtle text-warning rounded-3 me-3">
                             <i class="fas fa-star fa-lg"></i>
                         </div>
-                        <h6 class="mb-0 text-muted text-uppercase fw-bold small">Présélectionnés</h6>
+                        <h6 class="mb-0 text-muted text-uppercase fw-bold small">Acceptées</h6>
                     </div>
-                    <h2 class="fw-bold mb-0">8</h2>
-                    <small class="text-muted">En attente d'entretien</small>
+                    <h2 class="fw-bold mb-0">{{stats?.statusDistribution?.['ACCEPTEE'] || 0}}</h2>
+                    <small class="text-muted">Prêts pour entretien</small>
                 </div>
             </div>
         </div>

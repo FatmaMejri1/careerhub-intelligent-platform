@@ -24,7 +24,7 @@
                         <i class="fas fa-file-pdf fa-2x"></i>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-0">{{ cvList.length }}</h5>
+                        <h5 class="fw-bold mb-0">{{ cvCount }}</h5>
                         <small class="text-muted">CVs Enregistrés</small>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <i class="fas fa-file-word fa-2x"></i>
                     </div>
                     <div>
-                        <h5 class="fw-bold mb-0">{{ coverLetters.length }}</h5>
+                        <h5 class="fw-bold mb-0">{{ coverLetterCount }}</h5>
                         <small class="text-muted">Lettres de Motivation</small>
                     </div>
                 </div>
@@ -86,12 +86,14 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
                                     <div class="file-icon"
-                                        [ngClass]="cv.type === 'pdf' ? 'text-danger' : 'text-primary'">
-                                        <i class="fas" [ngClass]="cv.type === 'pdf' ? 'fa-file-pdf' : 'fa-file-word'"
+                                        [ngClass]="cv.fileType === 'pdf' ? 'text-danger' : 'text-primary'">
+                                        <i class="fas"
+                                            [ngClass]="cv.fileType === 'pdf' ? 'fa-file-pdf' : 'fa-file-word'"
                                             style="font-size: 2.5rem;"></i>
                                     </div>
                                     <div class="d-flex gap-1">
-                                        <button class="btn btn-sm btn-light border shadow-sm" title="Télécharger">
+                                        <button class="btn btn-sm btn-light border shadow-sm" title="Télécharger"
+                                            (click)="downloadDocument(cv)">
                                             <i class="fas fa-download text-primary"></i>
                                         </button>
                                         <div class="dropdown">
@@ -100,12 +102,11 @@
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </button>
                                             <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                                <li><a class="dropdown-item" href="#"><i
-                                                            class="fas fa-eye me-2"></i>Aperçu</a></li>
-                                                <li><a class="dropdown-item" href="#"><i
-                                                            class="fas fa-edit me-2"></i>Renommer</a></li>
+                                                <li><a class="dropdown-item" href="#" (click)="setAsDefault(cv.id!)"><i
+                                                            class="fas fa-star me-2"></i>Définir par défaut</a></li>
                                                 <li class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item text-danger" href="#"><i
+                                                <li><a class="dropdown-item text-danger" href="#"
+                                                        (click)="deleteDocument(cv.id!, 'cv')"><i
                                                             class="fas fa-trash me-2"></i>Supprimer</a></li>
                                             </ul>
                                         </div>
@@ -113,23 +114,24 @@
                                 </div>
                                 <h6 class="fw-bold text-truncate mb-1" [title]="cv.name">{{ cv.name }}</h6>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">{{ cv.date }}</small>
+                                    <small class="text-muted">{{ formatDate(cv.createdAt || '') }}</small>
                                     <span *ngIf="cv.isDefault"
                                         class="badge bg-success-light text-success rounded-pill">Par défaut</span>
                                 </div>
+                                <small class="text-muted d-block mt-1">{{ formatFileSize(cv.fileSize || 0) }}</small>
                             </div>
                         </div>
                     </div>
 
                     <!-- Add CV Placeholder Card -->
                     <div class="col-md-6 col-lg-4">
-                        <div (click)="openGenerator('cv')"
+                        <div (click)="openUploadModal('cv')"
                             class="card border-dashed h-100 d-flex flex-column align-items-center justify-content-center p-4 cursor-pointer hover-bg-light transition ai-border">
                             <div class="rounded-circle bg-primary-light p-3 mb-2 text-primary">
-                                <i class="fas fa-magic fa-lg"></i>
+                                <i class="fas fa-upload fa-lg"></i>
                             </div>
-                            <span class="fw-semibold text-primary">Générer un nouveau CV</span>
-                            <p class="small text-muted mb-0 text-center">Laissez l'IA optimiser votre profil</p>
+                            <span class="fw-semibold text-primary">Télécharger un CV</span>
+                            <p class="small text-muted mb-0 text-center">Formats acceptés: PDF, DOCX</p>
                         </div>
                     </div>
                 </div>
@@ -146,15 +148,17 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <h6 class="fw-bold mb-0 text-truncate">{{ lm.name }}</h6>
-                                    <small class="text-muted">Modifié le {{ lm.date }}</small>
+                                    <small class="text-muted">Modifié le {{ formatDate(lm.updatedAt || '') }}</small>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-light border" title="Télécharger">
+                                    <button class="btn btn-sm btn-light border" title="Télécharger"
+                                        (click)="downloadDocument(lm)">
                                         <i class="fas fa-download text-primary"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-light border"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-sm btn-light border text-danger"><i
-                                            class="fas fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-light border text-danger"
+                                        (click)="deleteDocument(lm.id!, 'coverLetter')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -162,11 +166,11 @@
 
                     <!-- Add LM Placeholder Card -->
                     <div class="col-12">
-                        <div (click)="openGenerator('lm')"
+                        <div (click)="openUploadModal('lm')"
                             class="border-dashed-rect p-4 text-center rounded-lg cursor-pointer hover-bg-light transition ai-border">
-                            <i class="fas fa-magic fa-2x text-primary mb-2"></i>
-                            <p class="fw-semibold text-primary mb-0">Générer une lettre de motivation avec l'IA</p>
-                            <p class="small text-muted mb-0">Basé sur vos compétences et l'offre ciblée</p>
+                            <i class="fas fa-upload fa-2x text-primary mb-2"></i>
+                            <p class="fw-semibold text-primary mb-0">Télécharger une lettre de motivation</p>
+                            <p class="small text-muted mb-0">Formats acceptés: PDF, DOCX</p>
                         </div>
                     </div>
                 </div>
@@ -300,6 +304,45 @@
                         (click)="analysisResult = null; selectedFile = null">Recommencer</button>
                     <button class="btn btn-purple text-white flex-grow-1" (click)="openGenerator('cv')">Optimiser avec
                         l'IA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div *ngIf="showUploadModal" class="modal-overlay fade-in">
+        <div class="modal-card shadow-lg p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold mb-0">
+                    <i class="fas fa-upload text-primary me-2"></i>
+                    Télécharger {{ generationType === 'cv' ? 'un CV' : 'une Lettre de Motivation' }}
+                </h4>
+                <button class="btn-close" (click)="closeModals()"></button>
+            </div>
+
+            <div class="text-center py-4">
+                <div class="upload-zone p-5 border-dashed rounded-lg mb-4" (click)="fileUploadInput.click()">
+                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                    <h5 class="fw-semibold">Sélectionnez un fichier</h5>
+                    <p class="text-muted small">Cliquez ici pour importer votre document (PDF/DOCX)</p>
+                    <input type="file" #fileUploadInput (change)="onFileSelected($event)" class="d-none"
+                        accept=".pdf,.docx,.doc">
+                    <div *ngIf="selectedFile" class="mt-3 text-primary">
+                        <i class="fas fa-file-alt me-2"></i>{{ selectedFile.name }}
+                        <small class="d-block text-muted">{{ formatFileSize(selectedFile.size) }}</small>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-primary py-2" [disabled]="!selectedFile || isUploading"
+                        (click)="uploadDocument()">
+                        <span *ngIf="!isUploading">
+                            <i class="fas fa-upload me-2"></i>Télécharger le Document
+                        </span>
+                        <span *ngIf="isUploading">
+                            <span class="spinner-border spinner-border-sm me-2"></span>Téléchargement en cours...
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>

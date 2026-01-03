@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 interface Application {
     id: number;
-    jobId: number;
+    jobId: string | number;
     companyName: string;
     jobTitle: string;
     location: string;
@@ -14,6 +14,7 @@ interface Application {
     logo?: string;
     timelineStep: number;
     salary?: string;
+    coverLetter?: string;
 }
 
 @Component({
@@ -23,59 +24,48 @@ interface Application {
     templateUrl: './my-applications.html',
     styleUrl: './my-applications.css'
 })
-export class MyApplicationsComponent {
+export class MyApplicationsComponent implements OnInit {
     searchTerm: string = '';
     statusFilter: string = 'ALL';
     dateFilter: string = 'newest';
 
-    applications: Application[] = [
-        {
-            id: 1,
-            jobId: 101,
-            companyName: 'Tech Solutions Inc.',
-            jobTitle: 'Développeur Angular Senior',
-            location: 'Tunis, Tunisie (Télétravail)',
-            appliedDate: '2024-05-12',
-            status: 'IN_REVIEW',
-            timelineStep: 2,
-            salary: '4500 TND'
-        },
-        {
-            id: 2,
-            jobId: 102,
-            companyName: 'Global Corp',
-            jobTitle: 'Ingénieur Frontend',
-            location: 'Paris, France',
-            appliedDate: '2024-05-15',
-            status: 'PENDING',
-            timelineStep: 1,
-            salary: '3200 EUR'
-        },
-        {
-            id: 3,
-            jobId: 103,
-            companyName: 'StartUp AI',
-            jobTitle: 'Développeur Full Stack',
-            location: 'Berlin, Allemagne',
-            appliedDate: '2024-04-20',
-            status: 'REJECTED',
-            timelineStep: 3,
-            salary: '55000 EUR/an'
-        },
-        {
-            id: 4,
-            jobId: 104,
-            companyName: 'Smart Systems',
-            jobTitle: 'Designer UI/UX',
-            location: 'Londres, UK',
-            appliedDate: '2024-05-01',
-            status: 'ACCEPTED',
-            timelineStep: 3,
-            salary: '3000 GBP'
-        }
-    ];
+    applications: Application[] = [];
 
     constructor(private router: Router) { }
+
+    ngOnInit() {
+        this.loadApplications();
+    }
+
+    loadApplications() {
+        const apps = localStorage.getItem('user_applications');
+        if (apps) {
+            const parsedApps = JSON.parse(apps);
+            this.applications = parsedApps.map((app: any) => ({
+                id: app.id,
+                jobId: app.jobId,
+                companyName: app.company,
+                jobTitle: app.title,
+                location: app.location || 'Non spécifié',
+                appliedDate: app.appliedDate,
+                status: app.status,
+                timelineStep: this.getTimelineStep(app.status),
+                salary: app.salary,
+                coverLetter: app.coverLetter
+            }));
+        }
+    }
+
+    getTimelineStep(status: string): number {
+        switch (status) {
+            case 'PENDING': return 1;
+            case 'IN_REVIEW': return 2;
+            case 'INTERVIEW': return 2;
+            case 'ACCEPTED': return 3;
+            case 'REJECTED': return 3;
+            default: return 1;
+        }
+    }
 
     get filteredApplications() {
         return this.applications.filter(app => {
@@ -91,7 +81,7 @@ export class MyApplicationsComponent {
         switch (status) {
             case 'PENDING': return 'status-pending';
             case 'IN_REVIEW': return 'status-review';
-            case 'INTERVIEW': return 'status-interview'; // Added style class
+            case 'INTERVIEW': return 'status-interview';
             case 'ACCEPTED': return 'status-accepted';
             case 'REJECTED': return 'status-rejected';
             default: return '';
@@ -112,16 +102,35 @@ export class MyApplicationsComponent {
     cancelApplication(id: number) {
         if (confirm('Êtes-vous sûr de vouloir annuler cette candidature ?')) {
             this.applications = this.applications.filter(app => app.id !== id);
+
+            // Update localStorage
+            const apps = localStorage.getItem('user_applications');
+            if (apps) {
+                const parsedApps = JSON.parse(apps);
+                const updated = parsedApps.filter((app: any) => app.id !== id);
+                localStorage.setItem('user_applications', JSON.stringify(updated));
+            }
         }
     }
 
-    viewJob(jobId: number) {
+    viewJob(jobId: string | number) {
         console.log('Naviguer vers l\'offre:', jobId);
-        // this.router.navigate(['/jobs', jobId]);
+        this.router.navigate(['/opportunities']);
     }
 
     viewApplication(id: number) {
-        console.log('Voir détails candidature:', id);
-        // this.router.navigate(['/candidate/applications', id]);
+        const app = this.applications.find(a => a.id === id);
+        if (app) {
+            let details = `Détails de la candidature\n\n`;
+            details += `Poste: ${app.jobTitle}\n`;
+            details += `Entreprise: ${app.companyName}\n`;
+            details += `Lieu: ${app.location}\n`;
+            if (app.salary) details += `Salaire: ${app.salary}\n`;
+            details += `Date de candidature: ${new Date(app.appliedDate).toLocaleDateString('fr-FR')}\n`;
+            details += `Statut: ${this.getStatusLabel(app.status)}\n`;
+            if (app.coverLetter) details += `\nLettre de motivation:\n${app.coverLetter}`;
+
+            alert(details);
+        }
     }
 }

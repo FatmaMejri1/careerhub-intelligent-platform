@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/offre")
+@CrossOrigin(origins = "http://localhost:4200")
 public class OffreController {
 
     @Autowired
@@ -18,6 +19,11 @@ public class OffreController {
     @GetMapping
     public List<Offre> getAll() {
         return offreService.getAllOffres();
+    }
+
+    @GetMapping("/recruteur/{recruteurId}")
+    public List<Offre> getByRecruteur(@PathVariable Long recruteurId) {
+        return offreService.getOffresByRecruteur(recruteurId);
     }
 
     @GetMapping("/{id}")

@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="opportunities-container">
+    <div class="hero-section">
+        <header class="page-header-modern">
+            <div class="badge-pill">
+                <i class="bi bi-stars"></i> Fresh Opportunities Daily
+            </div>
+            <h1>Find Your <span class="highlight-text">Dream Job</span></h1>
+            <p>Explore the best career opportunities from various platforms around the web.</p>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-container">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" placeholder="Search by job title, company, or location..."
+                    class="search-input-modern" (input)="filterJobs($event)">
+            </div>
+        </div>
+    </div>
+
+    <div class="jobs-grid">
+        <app-job-card *ngFor="let job of filteredOpportunities" [job]="job" (showDetails)="openJobDetails($event)">
+        </app-job-card>
+    </div>
+
+    <!-- Centralized Modal -->
+    <app-job-details-modal [job]="selectedJob" [isOpen]="isModalOpen" [showApplicationForm]="isApplicationMode"
+        (closeModal)="closeModal()" (apply)="onApplyFromModal($event)">
+    </app-job-details-modal>
+</div>

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CandidateDataService } from '../../services/candidate-data.service';
+import { AuthService } from '../../../shared/services/auth';
 
 @Component({
   selector: 'app-candidate-home',
@@ -9,17 +11,21 @@ import { Router } from '@angular/router';
   templateUrl: './candidate-home.html',
   styleUrl: './candidate-home.css',
 })
-export class CandidateHome {
-  constructor(private router: Router) { }
+export class CandidateHome implements OnInit {
+  constructor(
+    private router: Router,
+    private candidateDataService: CandidateDataService,
+    private authService: AuthService
+  ) { }
 
-  candidateName = 'Fatma';
-  headline = 'Ingénieur Logiciel Junior · À l\'écoute d\'opportunités';
+  candidateName = 'Candidat';
+  headline = 'À l\'écoute d\'opportunités';
 
   // 2.1 Employability Score
   employability = {
-    score: 82,
-    level: 'Intermédiaire',
-    recommendation: 'Pour atteindre le niveau "Avancé", concentrez-vous sur la maîtrise de la Conception Système et l\'Architecture Cloud (AWS/Azure).'
+    score: 0,
+    level: 'Débutant',
+    recommendation: 'Complétez votre profil pour améliorer votre score d\'employabilité.'
   };
 
   // 2.2 AI Recommended Jobs
@@ -55,38 +61,26 @@ export class CandidateHome {
 
   // 2.3 Gamification & Skills
   gamification = {
-    level: 4,
-    title: 'Guerrier du Code',
-    currentXp: 850,
+    level: 1,
+    title: 'Débutant',
+    currentXp: 0,
     nextLevelXp: 1000,
-    skills: [
-      { name: 'Java', progress: 75, color: 'bg-danger' },
-      { name: 'Spring Boot', progress: 60, color: 'bg-success' },
-      { name: 'Angular', progress: 50, color: 'bg-primary' },
-      { name: 'SQL', progress: 80, color: 'bg-warning' }
-    ]
+    skills: [] as any[]
   };
 
   // 2.4 My Applications Stats
   applicationStats = {
-    pending: 3,
-    inReview: 2,
-    accepted: 1,
-    rejected: 1
+    pending: 0,
+    inReview: 0,
+    accepted: 0,
+    rejected: 0
   };
 
   // 2.4 Recent Applications List
-  recentApplications = [
-    { title: 'Dév Java Junior', company: 'Orange Business', status: 'IN_REVIEW', date: '2024-05-18' },
-    { title: 'Intégrateur Web', company: 'Vermeg', status: 'PENDING', date: '2024-05-20' }
-  ];
+  recentApplications: any[] = [];
 
   // 2.5 Recent Timeline
-  timeline = [
-    { type: 'QUIZ', title: 'Quiz Java Core terminé (+50 XP)', icon: 'fas fa-brain', color: 'text-warning', time: 'il y a 2 heures' },
-    { type: 'JOB', title: 'Nouvelle Offre Recommandée : Dév Backend', icon: 'fas fa-briefcase', color: 'text-primary', time: 'il y a 1 jour' },
-    { type: 'STATUS', title: 'Candidature "Orange" passée En Revue', icon: 'fas fa-check-circle', color: 'text-success', time: 'il y a 2 jours' }
-  ];
+  timeline: any[] = [];
 
   // 2.6 Recommended Trainings (Preview)
   recommendedTrainings = [
@@ -94,9 +88,187 @@ export class CandidateHome {
     { title: 'Docker pour Débutants', provider: 'Coursera', focus: 'DevOps' }
   ];
 
+  ngOnInit() {
+    this.loadDashboardData();
+  }
+
+  loadDashboardData() {
+    // Load profile data
+    this.candidateDataService.getProfile().subscribe({
+      next: (data) => {
+        if (data) {
+          this.candidateName = data.prenom || 'Candidat';
+          this.headline = data.titre || 'À l\'écoute d\'opportunités';
+
+          // Calculate employability score
+          this.calculateEmployabilityScore(data);
+
+          // Load skills
+          this.loadSkills(data);
+
+          // Load gamification data
+          this.loadGamificationData(data);
+        }
+      },
+      error: (err) => console.error('Error loading profile', err)
+    });
+
+    // Load application stats (from localStorage for now)
+    this.loadApplicationStats();
+
+    // Build timeline
+    this.buildTimeline();
+  }
+
+  calculateEmployabilityScore(profileData: any) {
+    let score = 0;
+
+    // Basic info (20 points)
+    if (profileData.prenom && profileData.nom) score += 5;
+    if (profileData.telephone) score += 5;
+    if (profileData.adresse) score += 5;
+    if (profileData.photoUrl) score += 5;
+
+    // Professional info (30 points)
+    if (profileData.titre) score += 10;
+    if (profileData.objectif) score += 10;
+    if (profileData.cvUrl) score += 10;
+
+    // Skills & Experience (50 points)
+    const skills = this.parseJson(profileData.competences);
+    const experiences = this.parseJson(profileData.experiences);
+    const educations = this.parseJson(profileData.educations);
+    const projects = this.parseJson(profileData.projects);
+
+    if (skills.length > 0) score += 15;
+    if (experiences.length > 0) score += 15;
+    if (educations.length > 0) score += 10;
+    if (projects.length > 0) score += 10;
+
+    this.employability.score = Math.min(score, 100);
+
+    // Determine level
+    if (score >= 80) {
+      this.employability.level = 'Avancé';
+      this.employability.recommendation = 'Excellent profil! Continuez à postuler aux meilleures opportunités.';
+    } else if (score >= 50) {
+      this.employability.level = 'Intermédiaire';
+      this.employability.recommendation = 'Bon profil. Ajoutez plus de projets et certifications pour atteindre le niveau Avancé.';
+    } else {
+      this.employability.level = 'Débutant';
+      this.employability.recommendation = 'Complétez votre profil avec vos expériences, compétences et projets.';
+    }
+  }
+
+  loadSkills(profileData: any) {
+    const skills = this.parseJson(profileData.competences);
+
+    if (skills.length > 0) {
+      // Take first 4 skills and assign random progress for demo
+      this.gamification.skills = skills.slice(0, 4).map((skill: string, index: number) => ({
+        name: skill,
+        progress: 60 + (index * 5), // Demo progress
+        color: ['bg-danger', 'bg-success', 'bg-primary', 'bg-warning'][index % 4]
+      }));
+    }
+  }
+
+  loadGamificationData(profileData: any) {
+    // Calculate level based on profile completion
+    const completionScore = this.employability.score;
+
+    if (completionScore >= 80) {
+      this.gamification.level = 5;
+      this.gamification.title = 'Maître du Code';
+      this.gamification.currentXp = 1800;
+      this.gamification.nextLevelXp = 2000;
+    } else if (completionScore >= 60) {
+      this.gamification.level = 4;
+      this.gamification.title = 'Guerrier du Code';
+      this.gamification.currentXp = 1200;
+      this.gamification.nextLevelXp = 1500;
+    } else if (completionScore >= 40) {
+      this.gamification.level = 3;
+      this.gamification.title = 'Explorateur';
+      this.gamification.currentXp = 600;
+      this.gamification.nextLevelXp = 1000;
+    } else if (completionScore >= 20) {
+      this.gamification.level = 2;
+      this.gamification.title = 'Apprenti';
+      this.gamification.currentXp = 200;
+      this.gamification.nextLevelXp = 500;
+    } else {
+      this.gamification.level = 1;
+      this.gamification.title = 'Débutant';
+      this.gamification.currentXp = 50;
+      this.gamification.nextLevelXp = 200;
+    }
+  }
+
+  loadApplicationStats() {
+    // For now, use localStorage (later can be replaced with API call)
+    const applications = localStorage.getItem('user_applications');
+    if (applications) {
+      const apps = JSON.parse(applications);
+      this.applicationStats = {
+        pending: apps.filter((a: any) => a.status === 'PENDING').length,
+        inReview: apps.filter((a: any) => a.status === 'IN_REVIEW').length,
+        accepted: apps.filter((a: any) => a.status === 'ACCEPTED').length,
+        rejected: apps.filter((a: any) => a.status === 'REJECTED').length
+      };
+
+      // Get recent 2 applications
+      this.recentApplications = apps.slice(0, 2);
+    }
+  }
+
+  buildTimeline() {
+    this.timeline = [];
+
+    // Add profile completion event
+    if (this.employability.score > 50) {
+      this.timeline.push({
+        type: 'PROFILE',
+        title: 'Profil complété à ' + this.employability.score + '%',
+        icon: 'fas fa-user-check',
+        color: 'text-success',
+        time: 'Aujourd\'hui'
+      });
+    }
+
+    // Add recent applications
+    if (this.recentApplications.length > 0) {
+      this.timeline.push({
+        type: 'APPLICATION',
+        title: 'Candidature envoyée: ' + this.recentApplications[0].title,
+        icon: 'fas fa-paper-plane',
+        color: 'text-primary',
+        time: 'il y a 1 jour'
+      });
+    }
+
+    // Add job recommendation
+    this.timeline.push({
+      type: 'JOB',
+      title: 'Nouvelle Offre Recommandée : ' + this.recommendedJobs[0].title,
+      icon: 'fas fa-briefcase',
+      color: 'text-warning',
+      time: 'il y a 2 heures'
+    });
+  }
+
+  parseJson(str: string): any[] {
+    if (!str || str === 'null') return [];
+    try {
+      return JSON.parse(str);
+    } catch (e) {
+      return [];
+    }
+  }
+
   // Actions
   viewRecommendations() {
-    alert('Navigation vers les recommandations d\'offres...');
+    this.router.navigate(['/opportunities']);
   }
 
   applyToJob(job: any) {

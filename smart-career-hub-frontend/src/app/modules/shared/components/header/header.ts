@@ -10,18 +10,25 @@ import { AuthService } from '../../services/auth';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class HeaderComponent implements  OnInit {
+export class HeaderComponent implements OnInit {
   public isMobileMenuOpen = false;
   public isAuthenticated = false;
   public currentUser: any = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => {
       this.isAuthenticated = !!user;
       this.currentUser = user;
     });
+  }
+
+  public getDashboardLink(): string {
+    if (this.currentUser?.role === 'recruiter') {
+      return '/recruiter';
+    }
+    return '/candidate';
   }
 
   public toggleMobileMenu(): void {

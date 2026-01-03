@@ -16,6 +16,41 @@ import lombok.AllArgsConstructor;
 @Table(name = "chercheurs")
 public class ChercheurEmploi extends Utilisateur {
 
+    private String objectif; // Used as Bio
+    private String niveauExperience; // Experience level (junior, mid, senior)
+    private String adresse;
+    private String titre; // Professional title
+
+    // JSON Arrays stored as Strings (TEXT/LONGTEXT)
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String competences; 
+    
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String experiences;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String educations;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String projects;
+
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String certifications;
+    
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String cvUrl;
+
+    // Social Links
+    private String linkedin;
+    private String github;
+    private String portfolio;
+
     @OneToMany(mappedBy = "chercheurEmploi")
     @JsonIgnore
     private List<Quiz> quizList;

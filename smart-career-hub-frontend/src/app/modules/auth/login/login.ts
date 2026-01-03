@@ -37,28 +37,19 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe({
         next: (response: any) => {
           this.isLoading = false;
-          // Mock mode: toujours réussir la connexion
-          if (response.user && response.token) {
-            this.authService.setUser(response.user, response.token);
-            // Redirect based on user role
-            this.redirectUser(response.user.role);
+          if (response && response.role) {
+            // User is already set in AuthService via tap
+            this.redirectUser(response.role);
           } else {
-            // Fallback pour le mode mock
-            const mockUser = {
-              id: '1',
-              email: email,
-              name: email.split('@')[0],
-              role: 'candidate' as const
-            };
-            this.authService.setUser(mockUser, 'mock-token');
-            this.redirectUser('candidate');
+            // Fallback if role is not directly in response root, check user object
+            const role = response.user?.role || 'candidate';
+            this.redirectUser(role);
           }
         },
         error: (error) => {
           this.isLoading = false;
-          // En mode mock, on ne devrait jamais arriver ici
-          // Mais on garde la gestion d'erreur pour plus tard
-          this.errorMessage = error.error?.message || 'Erreur de connexion. Veuillez réessayer.';
+          console.error('Login error:', error);
+          this.errorMessage = error.error?.message || 'Identifiants incorrects ou erreur serveur.';
         }
       });
     }

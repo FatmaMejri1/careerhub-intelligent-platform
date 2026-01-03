@@ -14,12 +14,31 @@ import { CandidateDataService } from '../services/candidate-data.service';
 export class CandidateDashboardComponent {
   sidebarActive = false;
   userPhoto$;
+  userName = 'Candidat'; // Default
 
   constructor(
     private candidateDataService: CandidateDataService,
     private router: Router
   ) {
     this.userPhoto$ = this.candidateDataService.userPhoto$;
+    this.loadUserInfo();
+  }
+
+  loadUserInfo() {
+    this.candidateDataService.getProfile().subscribe({
+      next: (data) => {
+        if (data) {
+          this.userName = data.prenom || data.nom || 'Candidat';
+          if (data.photoUrl) {
+            this.candidateDataService.updatePhoto(data.photoUrl);
+          }
+        }
+      },
+      error: () => {
+        // Fallback to local storage user if API fails or specific fields missing
+        // This logic is optional but good for UX
+      }
+    });
   }
 
   toggleSidebar(): void {
@@ -32,6 +51,7 @@ export class CandidateDashboardComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         const photo = e.target?.result || null;
+        // In a real app, you would upload this file to the backend here
         this.candidateDataService.updatePhoto(photo);
       };
       reader.readAsDataURL(file);

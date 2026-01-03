@@ -1,59 +1,79 @@
 <div class="register-container">
   <div class="register-card">
-    <h2>Créer votre compte</h2>
-    <p class="register-subtitle">
-      Rejoignez Smart Career Hub et construisez votre prochain chapitre professionnel.
-    </p>
+    <div class="header">
+      <div class="role-badge" [class.recruiter]="userRole === 'recruiter'">
+        <i class="fas" [class.fa-user-tie]="userRole === 'candidate'"
+          [class.fa-building]="userRole === 'recruiter'"></i>
+        {{ userRole === 'recruiter' ? 'Recruteur' : 'Chercheur d\'emploi' }}
+      </div>
+      <h2>Créer votre compte</h2>
+      <p class="register-subtitle">
+        {{ userRole === 'recruiter' ? 'Trouvez les meilleurs talents pour votre entreprise' : 'Rejoignez Smart Career
+        Hub et construisez votre prochain chapitre professionnel' }}
+      </p>
+    </div>
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <!-- Full name -->
+      <!-- Common Fields -->
       <div class="form-row">
         <div class="form-group">
-          <label for="fullName">Nom complet</label>
-          <input
-            id="fullName"
-            type="text"
-            class="form-control"
-            formControlName="fullName"
-            placeholder="Votre nom et prénom"
-          />
+          <label for="fullName">Nom complet *</label>
+          <input id="fullName" type="text" class="form-control" formControlName="fullName"
+            placeholder="Votre nom et prénom" autocomplete="name" />
         </div>
       </div>
 
-      <!-- Email + Phone -->
       <div class="form-row two-cols">
         <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            class="form-control"
-            formControlName="email"
-            placeholder="exemple@domain.com"
-          />
+          <label for="email">Email *</label>
+          <input id="email" type="email" class="form-control" formControlName="email" placeholder="exemple@domain.com"
+            autocomplete="email" />
         </div>
 
         <div class="form-group">
-          <label for="phone">Téléphone</label>
-          <input
-            id="phone"
-            type="tel"
-            class="form-control"
-            formControlName="phone"
-            placeholder="+33 ..."
-          />
+          <label for="phone">Téléphone *</label>
+          <input id="phone" type="tel" class="form-control" formControlName="phone" placeholder="+216 ..."
+            autocomplete="tel" />
         </div>
       </div>
 
-      <!-- Objective selector -->
+      <!-- Recruiter-specific fields -->
+      @if (userRole === 'recruiter') {
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="companyName">Nom de l'entreprise *</label>
+          <input id="companyName" type="text" class="form-control" formControlName="companyName"
+            placeholder="Votre entreprise" autocomplete="organization" />
+        </div>
+
+        <div class="form-group">
+          <label for="jobTitle">Votre poste *</label>
+          <input id="jobTitle" type="text" class="form-control" formControlName="jobTitle"
+            placeholder="Ex: Talent Acquisition Manager" autocomplete="organization-title" />
+        </div>
+      </div>
+
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="website">Site web</label>
+          <input id="website" type="url" class="form-control" formControlName="website"
+            placeholder="https://www.example.com" autocomplete="url" />
+        </div>
+
+        <div class="form-group">
+          <label for="companyAddress">Adresse de l'entreprise</label>
+          <input id="companyAddress" type="text" class="form-control" formControlName="companyAddress"
+            placeholder="Ville, Pays" autocomplete="street-address" />
+        </div>
+      </div>
+      }
+
+      <!-- Candidate-specific fields -->
+      @if (userRole === 'candidate') {
       <div class="form-row">
         <div class="form-group">
-          <label for="objective">Vous recherchez</label>
-          <select
-            id="objective"
-            class="form-control"
-            formControlName="objective"
-          >
+          <label for="objective">Vous recherchez *</label>
+          <select id="objective" class="form-control" formControlName="objective">
             <option value="" disabled selected>Sélectionnez une option</option>
             <option value="job">Un emploi</option>
             <option value="club">Rejoindre un club / une organisation</option>
@@ -62,78 +82,63 @@
         </div>
       </div>
 
-      <!-- Passwords -->
-      <div class="form-row two-cols">
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input
-            id="password"
-            type="password"
-            class="form-control"
-            formControlName="password"
-            placeholder="Créer un mot de passe"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="confirmPassword">Confirmer le mot de passe</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            class="form-control"
-            formControlName="confirmPassword"
-            placeholder="Répétez le mot de passe"
-          />
-          @if (passwordMismatch) {
-            <span class="error-message">Les mots de passe ne correspondent pas.</span>
-          }
-        </div>
-      </div>
-
-      <!-- Interests -->
       <div class="form-row">
         <div class="form-group">
           <label>Centres d'intérêt</label>
           <div class="chips">
             <label class="chip" *ngFor="let interest of interestOptions">
-              <input
-                type="checkbox"
-                [value]="interest"
-                (change)="onInterestChange($event.target.checked, interest)"
-              />
+              <input type="checkbox" [value]="interest"
+                (change)="onInterestChange($any($event.target).checked, interest)" />
               <span>{{ interest }}</span>
             </label>
           </div>
         </div>
       </div>
 
-      <!-- Experience / parcours -->
       <div class="form-row">
         <div class="form-group">
           <label for="experience">Votre parcours / expériences</label>
-          <textarea
-            id="experience"
-            rows="4"
-            class="form-control"
-            formControlName="experience"
-            placeholder="Décrivez brièvement votre formation, vos expériences et ce que vous recherchez..."
-          ></textarea>
+          <textarea id="experience" rows="4" class="form-control" formControlName="experience"
+            placeholder="Décrivez brièvement votre formation, vos expériences et ce que vous recherchez..."></textarea>
+        </div>
+      </div>
+      }
+
+      <!-- Passwords -->
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="password">Mot de passe *</label>
+          <input id="password" type="password" class="form-control" formControlName="password"
+            placeholder="Créer un mot de passe" autocomplete="new-password" />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmer le mot de passe *</label>
+          <input id="confirmPassword" type="password" class="form-control" formControlName="confirmPassword"
+            placeholder="Répétez le mot de passe" autocomplete="new-password" />
+          @if (passwordMismatch) {
+          <span class="error-message">Les mots de passe ne correspondent pas.</span>
+          }
         </div>
       </div>
 
       @if (errorMessage) {
-        <div class="error-alert" style="background-color: #fdecea; border-radius: 8px; padding: 10px 12px; font-size: 0.85rem; color: #b71c1c; margin-bottom: 12px;">
-          {{ errorMessage }}
-        </div>
+      <div class="error-alert">
+        {{ errorMessage }}
+      </div>
       }
 
       <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || isLoading">
         @if (isLoading) {
-          <span>Création du compte...</span>
+        <span>Création du compte...</span>
         } @else {
-          <span>Créer mon compte</span>
+        <span>Créer mon compte</span>
         }
       </button>
+
+      <div class="login-link">
+        <p>Vous avez déjà un compte ? <a routerLink="/auth/login">Se connecter</a></p>
+      </div>
     </form>
   </div>
 </div>

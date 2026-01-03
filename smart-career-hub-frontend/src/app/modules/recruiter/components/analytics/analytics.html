@@ -1,4 +1,4 @@
-<div class="fade-in">
+<div class="fade-in" *ngIf="!isLoading && stats">
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
@@ -17,49 +17,50 @@
     <!-- KPIs Overlay -->
     <div class="row g-4 mb-4">
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm p-3">
+            <div class="card border-0 shadow-sm p-3 h-100">
                 <div class="d-flex align-items-center mb-2">
                     <div class="icon-box bg-indigo-subtle text-indigo rounded me-3">
                         <i class="fas fa-briefcase"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold mb-0">12</h3>
+                <h3 class="fw-bold mb-0">{{stats.totalOffers}}</h3>
                 <small class="text-muted">Offres Publiées</small>
-                <div class="mt-2 text-success small"><i class="fas fa-arrow-up"></i> +4 vs mois dernier</div>
+                <div class="mt-2 text-success small"><i class="fas fa-arrow-up"></i> +{{stats.offersGrowth}}% vs mois
+                    dernier</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm p-3">
+            <div class="card border-0 shadow-sm p-3 h-100">
                 <div class="d-flex align-items-center mb-2">
                     <div class="icon-box bg-blue-subtle text-blue rounded me-3">
                         <i class="fas fa-users"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold mb-0">142</h3>
+                <h3 class="fw-bold mb-0">{{stats.totalApplications}}</h3>
                 <small class="text-muted">Candidatures Reçues</small>
-                <div class="mt-2 text-success small"><i class="fas fa-arrow-up"></i> +12%</div>
+                <div class="mt-2 text-success small"><i class="fas fa-arrow-up"></i> +{{stats.appsGrowth}}%</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm p-3">
+            <div class="card border-0 shadow-sm p-3 h-100">
                 <div class="d-flex align-items-center mb-2">
                     <div class="icon-box bg-warning-subtle text-warning rounded me-3">
                         <i class="fas fa-hourglass-half"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold mb-0">18 jours</h3>
+                <h3 class="fw-bold mb-0">{{stats.averageTimeToHire}} jours</h3>
                 <small class="text-muted">Temps Moyen Recrutement</small>
-                <div class="mt-2 text-danger small"><i class="fas fa-arrow-down"></i> -2 jours</div>
+                <div class="mt-2 text-muted small">Cible: 15 jours</div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-0 shadow-sm p-3">
+            <div class="card border-0 shadow-sm p-3 h-100">
                 <div class="d-flex align-items-center mb-2">
                     <div class="icon-box bg-success-subtle text-success rounded me-3">
                         <i class="fas fa-check-circle"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold mb-0">15%</h3>
+                <h3 class="fw-bold mb-0">{{stats.conversionRate | number:'1.1-1'}}%</h3>
                 <small class="text-muted">Taux Transformation</small>
                 <div class="mt-2 text-muted small">Moyenne secteur: 12%</div>
             </div>
@@ -78,31 +79,29 @@
                         <div class="funnel-step">
                             <div class="label">Candidatures Reçues</div>
                             <div class="bar" style="width: 100%; background-color: #e0f2fe;">
-                                <span class="count">142</span>
+                                <span class="count">{{stats.totalApplications}}</span>
                             </div>
                         </div>
                         <div class="funnel-step">
-                            <div class="label">Présélectionnés</div>
-                            <div class="bar" style="width: 65%; background-color: #bae6fd;">
-                                <span class="count">92 (65%)</span>
+                            <div class="label">Acceptées</div>
+                            <div class="bar" [style.width]="getBarWidth('ACCEPTEE')" style="background-color: #bae6fd;">
+                                <span class="count">{{getStatusCount('ACCEPTEE')}}
+                                    ({{getPercentage('ACCEPTEE')}})</span>
                             </div>
                         </div>
                         <div class="funnel-step">
-                            <div class="label">Entretiens</div>
-                            <div class="bar" style="width: 35%; background-color: #7dd3fc;">
-                                <span class="count">45 (32%)</span>
+                            <div class="label">En Attente</div>
+                            <div class="bar" [style.width]="getBarWidth('EN_ATTENTE')"
+                                style="background-color: #7dd3fc;">
+                                <span class="count">{{getStatusCount('EN_ATTENTE')}}
+                                    ({{getPercentage('EN_ATTENTE')}})</span>
                             </div>
                         </div>
                         <div class="funnel-step">
-                            <div class="label">Offres Envoyées</div>
-                            <div class="bar" style="width: 15%; background-color: #38bdf8;">
-                                <span class="count">18 (12%)</span>
-                            </div>
-                        </div>
-                        <div class="funnel-step">
-                            <div class="label">Recrutés</div>
-                            <div class="bar" style="width: 10%; background-color: #0284c7;">
-                                <span class="count text-white">12 (8%)</span>
+                            <div class="label">Refusées</div>
+                            <div class="bar" [style.width]="getBarWidth('REFUSEE')" style="background-color: #ef4444;">
+                                <span class="count text-white">{{getStatusCount('REFUSEE')}}
+                                    ({{getPercentage('REFUSEE')}})</span>
                             </div>
                         </div>
                     </div>
@@ -120,7 +119,7 @@
                     <div class="pie-chart mb-4"
                         style="background: conic-gradient(#10b981 0% 35%, #3b82f6 35% 65%, #f59e0b 65% 90%, #ef4444 90% 100%);">
                         <div class="inner-circle">
-                            <span class="fs-4 fw-bold">87%</span>
+                            <span class="fs-4 fw-bold">82%</span>
                             <span class="small text-muted">Pertinence Moyenne</span>
                         </div>
                     </div>
@@ -170,40 +169,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="ps-4 fw-bold">Développeur Full Stack</td>
-                        <td>1,250</td>
-                        <td>45</td>
-                        <td>3.6%</td>
-                        <td><span class="text-success fw-bold">88%</span></td>
-                        <td>24</td>
-                    </tr>
-                    <tr>
-                        <td class="ps-4 fw-bold">UX/UI Designer</td>
-                        <td>980</td>
-                        <td>22</td>
-                        <td>2.2%</td>
-                        <td><span class="text-primary fw-bold">76%</span></td>
-                        <td>18</td>
-                    </tr>
-                    <tr>
-                        <td class="ps-4 fw-bold">Product Owner</td>
-                        <td>1,500</td>
-                        <td>35</td>
-                        <td>2.3%</td>
-                        <td><span class="text-success fw-bold">92%</span></td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td class="ps-4 fw-bold">Data Analyst</td>
-                        <td>850</td>
-                        <td>40</td>
-                        <td>4.7%</td>
-                        <td><span class="text-warning fw-bold">65%</span></td>
-                        <td>15</td>
+                    <tr *ngFor="let offer of stats.topOffers">
+                        <td class="ps-4 fw-bold">{{offer.title}}</td>
+                        <td>{{offer.views | number}}</td>
+                        <td>{{offer.applications}}</td>
+                        <td>{{offer.conversionRate | percent:'1.1-1'}}</td>
+                        <td><span
+                                [class]="offer.averageQuality > 80 ? 'text-success' : offer.averageQuality > 60 ? 'text-primary' : 'text-warning'"
+                                class="fw-bold">{{offer.averageQuality | number:'1.0-0'}}%</span></td>
+                        <td>{{offer.delayDays}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+
+<div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement...</span>
+    </div>
+    <p class="mt-2 text-muted">Récupération des statistiques...</p>
+</div>
+
+<div *ngIf="!isLoading && error" class="alert alert-danger mx-auto mt-4" style="max-width: 500px;">
+    <i class="fas fa-exclamation-triangle me-2"></i> {{error}}
+    <button class="btn btn-sm btn-outline-danger ms-3" (click)="loadStats()">Réessayer</button>
 </div>

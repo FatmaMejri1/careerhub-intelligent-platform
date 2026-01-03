@@ -1,4 +1,4 @@
-classe3.pngpackage com.smarthub.smart_career_hub_backend.entity;
+package com.smarthub.smart_career_hub_backend.entity;
 
 import jakarta.persistence.*;
 import com.smarthub.smart_career_hub_backend.enums.Role;
@@ -23,7 +23,11 @@ public class Utilisateur {
     private String nom;
     private String prenom;
     private String email;
+    private String telephone;
     private String motDePasse;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
+    private String photoUrl;
 
     @Enumerated(EnumType.STRING)
     private Role role;

@@ -1,0 +1,42 @@
+<div class="role-selection-container">
+    <div class="role-selection-card">
+        <h1>Rejoignez Smart Career Hub</h1>
+        <p class="subtitle">Choisissez votre profil pour commencer</p>
+
+        <div class="role-options">
+            <div class="role-card" (click)="selectRole('candidate')">
+                <div class="role-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Chercheur d'emploi</h3>
+                <p>Trouvez votre prochain emploi, stage ou opportunité</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Accès aux offres d'emploi</li>
+                    <li><i class="fas fa-check"></i> Coaching personnalisé</li>
+                    <li><i class="fas fa-check"></i> Formations et quiz</li>
+                    <li><i class="fas fa-check"></i> Suivi des candidatures</li>
+                </ul>
+                <button class="select-btn">Commencer</button>
+            </div>
+
+            <div class="role-card" (click)="selectRole('recruiter')">
+                <div class="role-icon recruiter">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Recruteur</h3>
+                <p>Publiez des offres et trouvez les meilleurs talents</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Publier des offres</li>
+                    <li><i class="fas fa-check"></i> Gérer les candidatures</li>
+                    <li><i class="fas fa-check"></i> Rechercher des profils</li>
+                    <li><i class="fas fa-check"></i> Tableau de bord complet</li>
+                </ul>
+                <button class="select-btn recruiter-btn">Commencer</button>
+            </div>
+        </div>
+
+        <div class="login-link">
+            <p>Vous avez déjà un compte ? <a routerLink="/auth/login">Se connecter</a></p>
+        </div>
+    </div>
+</div>

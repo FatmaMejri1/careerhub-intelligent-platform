@@ -9,7 +9,9 @@ import java.util.List;
 @Repository
 public interface CandidatureRepository extends JpaRepository<Candidature, Long> {
 
+    List<Candidature> findByChercheurEmploiId(Long chercheurId);
 
-    List<Candidature> findByChercheurEmploiId(Long chercheurId); // récupère toutes les candidatures d'un chercheur
-    List<Candidature> findByOffreId(Long offreId);               // récupère toutes les candidatures pour une offre donnée
+    List<Candidature> findByOffreId(Long offreId);
+
+    List<Candidature> findByOffre_Recruteur_Id(Long recruiterId);
 }

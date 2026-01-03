@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api';
 
 export interface User {
   id: string;
   email: string;
   role: 'candidate' | 'recruiter' | 'admin';
   name?: string;
+  token?: string;
 }
 
 @Injectable({
@@ -17,51 +19,45 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 
-  // Mode mock pour développement frontend uniquement
-  private MOCK_MODE = true;
-
-  constructor(private router: Router) {
+  constructor(private router: Router, private apiService: ApiService) {
     this.loadUserFromStorage();
   }
 
   login(email: string, password: string): Observable<any> {
-    if (this.MOCK_MODE) {
-      // Simulation d'une connexion réussie après 1 seconde
-      return of({
-        user: {
-          id: '1',
-          email: email,
-          name: email.split('@')[0],
-          // Check specifically for roles - using French 'recruteur' as requested
-          role: (email === 'admin@gmail.com' ? 'admin' : (email === 'recruteur@gmail.com' ? 'recruiter' : 'candidate')) as any
-        },
-        token: 'mock-token-' + Date.now()
-      }).pipe(delay(1000));
-    }
-    // TODO: Quand le backend sera prêt, décommenter cette ligne
-    // return this.apiService.post('auth/login', { email, password });
-    return of({}).pipe(delay(1000));
+    return this.apiService.post<User>('auth/login', { email, password }).pipe(
+      tap((response: any) => {
+        if (response && response.token) {
+          // We adapt the user object from the response if needed
+          const user: User = {
+            id: response.id || response.userId || '0', // Adjust based on actual backend response
+            email: response.email || email,
+            role: response.role,
+            name: response.name || email.split('@')[0]
+          };
+          this.setUser(user, response.token);
+        }
+      })
+    );
   }
 
   register(userData: any): Observable<any> {
-    if (this.MOCK_MODE) {
-      // Simulation d'une inscription réussie après 1 seconde
-      return of({
-        user: {
-          id: '1',
-          email: userData.email,
-          name: userData.fullName || userData.email.split('@')[0],
-          role: 'candidate' as const
-        },
-        token: 'mock-token-' + Date.now()
-      }).pipe(delay(1000));
-    }
-    // TODO: Quand le backend sera prêt, décommenter cette ligne
-    // return this.apiService.post('auth/register', userData);
-    return of({}).pipe(delay(1000));
+    return this.apiService.post('auth/register', userData).pipe(
+      tap((response: any) => {
+        if (response && response.token) {
+          const user: User = {
+            id: response.id || response.userId || '0',
+            email: response.email || userData.email,
+            role: response.role || 'candidate', // Default to candidate
+            name: response.name || userData.fullName
+          };
+          this.setUser(user, response.token);
+        }
+      })
+    );
   }
 
   logout(): void {
+    // We only remove the token, as we want to clear the session
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -73,6 +69,13 @@ export class AuthService {
   setUser(user: User, token: string): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    this.currentUserSubject.next(user);
+  }
+
+  updateUser(user: User): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.setItem('user', JSON.stringify(user));
     }
     this.currentUserSubject.next(user);
@@ -107,3 +110,4 @@ export class AuthService {
     }
   }
 }
+

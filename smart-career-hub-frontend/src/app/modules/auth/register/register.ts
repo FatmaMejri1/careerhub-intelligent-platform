@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../shared/services/auth';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isLoading = false;
   errorMessage = '';
+  userRole: 'candidate' | 'recruiter' = 'candidate';
 
   interestOptions: string[] = [
     'Développement Web',
@@ -29,18 +30,45 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
-    this.registerForm = this.fb.group({
-      fullName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]],
-      objective: ['', [Validators.required]], // job, club, internship
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      interests: [[]],
-      experience: ['']
-    }, { validators: this.passwordsMatchValidator });
+    this.registerForm = this.fb.group({});
+  }
+
+  ngOnInit(): void {
+    // Get role from route parameter
+    this.route.params.subscribe(params => {
+      this.userRole = params['role'] || 'candidate';
+      this.buildForm();
+    });
+  }
+
+  private buildForm(): void {
+    if (this.userRole === 'recruiter') {
+      this.registerForm = this.fb.group({
+        fullName: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required]],
+        companyName: ['', [Validators.required]],
+        jobTitle: ['', [Validators.required]],
+        website: [''],
+        companyAddress: [''],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      }, { validators: this.passwordsMatchValidator });
+    } else {
+      this.registerForm = this.fb.group({
+        fullName: ['', [Validators.required, Validators.minLength(3)]],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required]],
+        objective: ['', [Validators.required]], // job, club, internship
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        interests: [[]],
+        experience: ['']
+      }, { validators: this.passwordsMatchValidator });
+    }
   }
 
   private passwordsMatchValidator(group: FormGroup) {
@@ -68,35 +96,34 @@ export class RegisterComponent {
       this.errorMessage = '';
 
       const formData = this.registerForm.value;
-      
-      // Préparer les données pour l'inscription
-      const registerData = {
+
+      const registerData: any = {
         email: formData.email,
         fullName: formData.fullName,
         phone: formData.phone,
-        objective: formData.objective,
-        interests: formData.interests,
-        experience: formData.experience,
-        password: formData.password
+        password: formData.password,
+        role: this.userRole
       };
+
+      if (this.userRole === 'recruiter') {
+        registerData.companyName = formData.companyName;
+        registerData.jobTitle = formData.jobTitle;
+        registerData.website = formData.website;
+        registerData.companyAddress = formData.companyAddress;
+      } else {
+        registerData.objective = formData.objective;
+        registerData.interests = formData.interests;
+        registerData.experience = formData.experience;
+      }
 
       this.authService.register(registerData).subscribe({
         next: (response: any) => {
           this.isLoading = false;
-          if (response.user && response.token) {
-            this.authService.setUser(response.user, response.token);
-            // Rediriger vers le dashboard candidat
-            this.router.navigate(['/candidate']);
+          if (response && (response.token || response.id)) {
+            const targetRoute = this.userRole === 'recruiter' ? '/recruiter' : '/candidate';
+            this.router.navigate([targetRoute]);
           } else {
-            // Fallback pour le mode mock
-            const mockUser = {
-              id: '1',
-              email: formData.email,
-              name: formData.fullName,
-              role: 'candidate' as const
-            };
-            this.authService.setUser(mockUser, 'mock-token');
-            this.router.navigate(['/candidate']);
+            this.errorMessage = 'Inscription réussie mais réponse inattendue.';
           }
         },
         error: (error) => {

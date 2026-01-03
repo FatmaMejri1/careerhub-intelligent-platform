@@ -17,11 +17,38 @@
                     <input #fileInput type="file" (change)="onPhotoSelected($event)" class="d-none" accept="image/*">
                 </div>
                 <div class="header-info-main mb-3">
-                    <h2 class="fw-bold text-white mb-0">{{user.firstName}} {{user.lastName}}</h2>
-                    <p class="text-white-50 mb-2 fs-5">{{user.role}}</p>
-                    <div class="d-flex gap-3 text-white-50 small">
-                        <span><i class="fas fa-map-marker-alt me-2"></i>{{user.address}}</span>
-                        <span><i class="fas fa-envelope me-2"></i>{{user.email}}</span>
+                    <div *ngIf="!isEditing">
+                        <h2 class="fw-bold text-white mb-0">{{user.firstName}} {{user.lastName}}</h2>
+                        <p class="text-white-50 mb-2 fs-5">{{user.role}}</p>
+                        <div class="d-flex gap-3 text-white-50 small">
+                            <span><i class="fas fa-map-marker-alt me-2"></i>{{user.address}}</span>
+                            <span><i class="fas fa-phone me-2"></i>{{user.phone}}</span>
+                            <span><i class="fas fa-envelope me-2"></i>{{user.email}}</span>
+                        </div>
+                    </div>
+                    <div *ngIf="isEditing" class="text-white">
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <input [(ngModel)]="user.firstName" class="form-control form-control-sm"
+                                    placeholder="Prénom">
+                            </div>
+                            <div class="col-6">
+                                <input [(ngModel)]="user.lastName" class="form-control form-control-sm"
+                                    placeholder="Nom">
+                            </div>
+                        </div>
+                        <input [(ngModel)]="user.role" class="form-control form-control-sm mb-2"
+                            placeholder="Titre professionnel">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <input [(ngModel)]="user.address" class="form-control form-control-sm"
+                                    placeholder="Adresse">
+                            </div>
+                            <div class="col-6">
+                                <input [(ngModel)]="user.phone" class="form-control form-control-sm"
+                                    placeholder="Téléphone">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="ms-auto mb-3">
@@ -45,9 +72,24 @@
                     <div *ngIf="!isEditing" class="text-muted bio-text line-height-relaxed">
                         {{user.bio}}
                     </div>
-                    <textarea *ngIf="isEditing" [(ngModel)]="user.bio" class="form-control" rows="5"></textarea>
+                    <div *ngIf="isEditing">
+                        <textarea [(ngModel)]="user.bio" class="form-control mb-3" rows="5"
+                            placeholder="Votre bio..."></textarea>
 
-                    <div class="mt-4 pt-3 border-top">
+                        <label class="small text-muted mb-1">LinkedIn</label>
+                        <input [(ngModel)]="user.socials.linkedin" class="form-control form-control-sm mb-2"
+                            placeholder="https://linkedin.com/in/...">
+
+                        <label class="small text-muted mb-1">GitHub</label>
+                        <input [(ngModel)]="user.socials.github" class="form-control form-control-sm mb-2"
+                            placeholder="https://github.com/...">
+
+                        <label class="small text-muted mb-1">Portfolio</label>
+                        <input [(ngModel)]="user.socials.portfolio" class="form-control form-control-sm"
+                            placeholder="https://mon-portfolio.com">
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top" *ngIf="!isEditing">
                         <div class="social-links-grid d-flex gap-3">
                             <a [href]="user.socials.linkedin" target="_blank" class="social-btn linkedin"
                                 title="LinkedIn">
@@ -90,13 +132,16 @@
                 <div class="card-body p-4 text-white">
                     <h6 class="fw-bold mb-3 opacity-75">Statut du Profil</h6>
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="fs-4 fw-bold">85%</span>
-                        <span class="small opacity-75">Presque fini !</span>
+                        <span class="fs-4 fw-bold">{{completionPercentage}}%</span>
+                        <span class="small opacity-75">{{completionPercentage === 100 ? 'Complet !' : 'En
+                            cours'}}</span>
                     </div>
                     <div class="progress mb-3" style="height: 8px;">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                        <div class="progress-bar bg-success" role="progressbar" [style.width.%]="completionPercentage">
+                        </div>
                     </div>
-                    <p class="small mb-0 opacity-75">Ajoutez une certification pour atteindre 100%.</p>
+                    <p class="small mb-0 opacity-75" *ngIf="completionPercentage < 100">Ajoutez des sections pour
+                        atteindre 100%.</p>
                 </div>
             </div>
         </div>
@@ -202,16 +247,28 @@
                             <img *ngIf="project.image" [src]="project.image" class="card-img-top project-img"
                                 alt="Project">
                             <div class="card-body p-3">
-                                <h6 class="fw-bold mb-2">{{project.name}}</h6>
-                                <p class="small text-muted mb-3">{{project.description}}</p>
-                                <div class="d-flex justify-content-between align-items-center mt-auto">
-                                    <a *ngIf="project.link" [href]="project.link" target="_blank"
-                                        class="btn btn-sm btn-link p-0 text-primary fw-bold">
-                                        Voir sur GitHub <i class="fas fa-chevron-right ms-1 small"></i>
-                                    </a>
-                                    <button *ngIf="isEditing" class="btn btn-sm btn-outline-danger border-0"
+                                <div *ngIf="!isEditing">
+                                    <h6 class="fw-bold mb-2">{{project.name}}</h6>
+                                    <p class="small text-muted mb-3">{{project.description}}</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                                        <a *ngIf="project.link" [href]="project.link" target="_blank"
+                                            class="btn btn-sm btn-link p-0 text-primary fw-bold">
+                                            Voir sur GitHub <i class="fas fa-chevron-right ms-1 small"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div *ngIf="isEditing" class="edit-mode-item">
+                                    <input [(ngModel)]="project.name" class="form-control mb-2 fw-bold"
+                                        placeholder="Nom du projet">
+                                    <textarea [(ngModel)]="project.description" class="form-control mb-2" rows="2"
+                                        placeholder="Description"></textarea>
+                                    <input [(ngModel)]="project.link" class="form-control mb-2"
+                                        placeholder="Lien GitHub/Demo">
+                                    <input [(ngModel)]="project.image" class="form-control mb-2"
+                                        placeholder="URL Image (Optionnel)">
+                                    <button class="btn btn-sm btn-outline-danger border-0 mt-2"
                                         (click)="removeProject(i)">
-                                        <i class="fas fa-trash"></i>
+                                        <i class="fas fa-trash me-2"></i> Supprimer ce projet
                                     </button>
                                 </div>
                             </div>

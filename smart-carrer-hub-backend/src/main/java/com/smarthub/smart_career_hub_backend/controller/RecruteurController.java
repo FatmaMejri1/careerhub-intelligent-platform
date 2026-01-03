@@ -12,52 +12,97 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/recruteur")
+@CrossOrigin(origins = "http://localhost:4200")
 public class RecruteurController {
 
     @Autowired
     private RecruteurService recruteurService;
 
+    // =========================
+    // GET all recruteurs
+    // =========================
     @GetMapping
-    public List<Recruteur> getAll() {
-        return recruteurService.getAllRecruteurs();
+    public ResponseEntity<List<Recruteur>> getAll() {
+        List<Recruteur> recruteurs = recruteurService.getAllRecruteurs();
+        return ResponseEntity.ok(recruteurs);
     }
 
+    // =========================
+    // GET by ID
+    // =========================
     @GetMapping("/{id}")
     public ResponseEntity<Recruteur> getById(@PathVariable Long id) {
         Optional<Recruteur> recruteur = recruteurService.getRecruteurById(id);
         return recruteur.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
     }
 
+    // =========================
+    // CREATE recruteur
+    // =========================
     @PostMapping
-    public ResponseEntity<Recruteur> create(@RequestBody Recruteur recruteur) {
+    public ResponseEntity<?> create(@RequestBody Recruteur recruteur) {
         try {
-            Recruteur savedRecruteur = recruteurService.ajouterRecruteur(recruteur);
+            Recruteur savedRecruteur = recruteurService.createRecruteur(recruteur);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedRecruteur);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error creating recruiter: " + e.getMessage());
         }
     }
 
+    @PutMapping("/promote/{id}")
+    public ResponseEntity<?> promote(@PathVariable Long id, @RequestBody Recruteur recruteur) {
+        try {
+            Recruteur promoted = recruteurService.promoteUserToRecruiter(id, recruteur);
+            return ResponseEntity.ok(promoted);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error promoting user: " + e.getMessage());
+        }
+    }
+
+    // =========================
+    // UPDATE recruteur
+    // =========================
     @PutMapping("/{id}")
     public ResponseEntity<Recruteur> update(@PathVariable Long id, @RequestBody Recruteur recruteur) {
         try {
             Recruteur updatedRecruteur = recruteurService.updateRecruteur(id, recruteur);
             return ResponseEntity.ok(updatedRecruteur);
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
+    // =========================
+    // DELETE recruteur
+    // =========================
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         try {
             recruteurService.deleteRecruteur(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    // =========================
+    // UPDATE profile image
+    // =========================
+    @PutMapping("/{id}/profile-image")
+    public ResponseEntity<Void> updateProfileImage(@PathVariable Long id, @RequestBody String base64Image) {
+        try {
+            recruteurService.updateProfileImage(id, base64Image);
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }

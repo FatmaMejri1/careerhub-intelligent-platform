@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RecruiterProfileService } from '../../services/recruiter-profile.service';
+import { Recruiter } from '../../services/recruiter.service';
+import { AuthService, User } from '../../../shared/services/auth';
 
 @Component({
     selector: 'app-recruiter-profile',
@@ -15,35 +17,58 @@ export class RecruiterProfileComponent implements OnInit {
     profileImage: string | null = null;
     newSkill = '';
 
-    // Expanded Recruiter model matching candidate style
-    user = {
-        firstName: 'Ahmed',
-        lastName: 'Salah',
-        role: 'Talent Acquisition Manager',
-        email: 'ahmed.salah@techsolutions.com',
-        phone: '+216 22 333 444',
-        address: 'Tunis, Tunisia',
-        companyName: 'Tech Solutions Inc.',
-        website: 'www.techsolutions.com',
-        bio: 'Passionné par le recrutement de talents dans le secteur technologique. Toujours à la recherche de profils innovants et passionnés par le développement.',
-
-        // Social Links
+    // Initialize with empty structure to avoid template errors before load
+    user: any = {
+        firstName: '',
+        lastName: '',
+        role: '',
+        email: '',
+        phone: '',
+        address: '',
+        companyName: '',
+        website: '',
+        bio: '',
         socials: {
-            linkedin: 'https://linkedin.com/in/ahmedsalah',
-            twitter: 'https://twitter.com/ahmedsalah',
-            company: 'https://techsolutions.com'
+            linkedin: '',
+            twitter: '',
+            company: ''
         },
-
-        // Recruiting specialities
-        specialities: ['Java/Spring Boot', 'Angular', 'DevOps', 'Cloud Architecture', 'Product Management']
+        specialities: []
     };
 
     originalData: any;
+    currentRecruiterId?: number;
 
-    constructor(private profileService: RecruiterProfileService) { }
+    constructor(
+        private profileService: RecruiterProfileService,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
-        this.originalData = JSON.parse(JSON.stringify(this.user));
+        this.profileService.profile$.subscribe(profile => {
+            if (profile) {
+                this.currentRecruiterId = profile.id;
+                this.user = {
+                    firstName: profile.prenom,
+                    lastName: profile.nom,
+                    role: profile.poste || '',
+                    email: profile.email,
+                    phone: profile.telephone || '',
+                    address: profile.adresseEntreprise || '',
+                    companyName: profile.nomEntreprise || '',
+                    website: profile.siteWeb || '',
+                    bio: profile.descriptionEntreprise || '',
+                    socials: {
+                        linkedin: profile.linkedin || '',
+                        twitter: profile.twitter || '',
+                        company: profile.siteWeb || ''
+                    },
+                    specialities: profile.specialities || []
+                };
+                this.originalData = JSON.parse(JSON.stringify(this.user));
+            }
+        });
+
         this.profileService.profileImage$.subscribe(img => {
             this.profileImage = img || null;
         });
@@ -58,14 +83,80 @@ export class RecruiterProfileComponent implements OnInit {
 
     cancelEdit() {
         this.isEditing = false;
-        this.user = JSON.parse(JSON.stringify(this.originalData));
+        if (this.originalData) {
+            this.user = JSON.parse(JSON.stringify(this.originalData));
+        }
     }
 
     saveProfile() {
-        this.isEditing = false;
-        this.originalData = JSON.parse(JSON.stringify(this.user));
-        // Logic to save to backend
-        alert('Profil mis à jour avec succès !');
+        if (!this.currentRecruiterId) return;
+
+        const updatedRecruiter: Recruiter = {
+            id: this.currentRecruiterId,
+            nom: this.user.lastName,
+            prenom: this.user.firstName,
+            email: this.user.email,
+            telephone: this.user.phone,
+            poste: this.user.role,
+            nomEntreprise: this.user.companyName,
+            siteWeb: this.user.website,
+            descriptionEntreprise: this.user.bio,
+            adresseEntreprise: this.user.address,
+            linkedin: this.user.socials.linkedin,
+            twitter: this.user.socials.twitter,
+            specialities: this.user.specialities,
+            photoUrl: this.profileImage || undefined
+        };
+
+        this.profileService.updateProfile(updatedRecruiter).subscribe({
+            next: () => {
+                this.isEditing = false;
+                this.originalData = JSON.parse(JSON.stringify(this.user));
+
+                // Update local auth state to reflect potential changes
+                const currentUser = this.authService.getCurrentUser();
+                if (currentUser) {
+                    this.authService.updateUser({
+                        ...currentUser,
+                        name: this.user.fullName
+                    });
+                }
+
+                alert('Profil mis à jour avec succès !');
+            },
+            error: (err) => {
+                console.error('Error saving profile', err);
+
+                // If update fails with 404, it means we need to PROMOTE the user
+                if (err.status === 404 && this.currentRecruiterId) {
+                    this.profileService.promoteProfile(this.currentRecruiterId, updatedRecruiter).subscribe({
+                        next: (newProfile) => {
+                            this.isEditing = false;
+                            this.originalData = JSON.parse(JSON.stringify(this.user));
+
+                            // CRITICAL: Update role to recruiter in auth state
+                            const currentUser = this.authService.getCurrentUser();
+                            if (currentUser) {
+                                this.authService.updateUser({
+                                    ...currentUser,
+                                    role: 'recruiter',
+                                    name: this.user.fullName
+                                });
+                            }
+
+                            alert('Profil créé avec succès (Promotion) !');
+                        },
+                        error: (createErr) => {
+                            console.error('Error promoting profile', createErr);
+                            alert("Erreur critique: Impossible de créer le profil recruteur.");
+                        }
+                    });
+
+                } else {
+                    alert('Erreur lors de la mise à jour du profil.');
+                }
+            }
+        });
     }
 
     onFileSelected(event: any) {

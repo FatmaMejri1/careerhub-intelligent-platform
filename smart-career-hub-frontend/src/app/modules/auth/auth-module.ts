@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login';
 import { RegisterComponent } from './register/register';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password';
+import { RoleSelectionComponent } from './role-selection/role-selection';
 
 @NgModule({
   imports: [
@@ -12,11 +13,14 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    RoleSelectionComponent,
     RouterModule.forChild([
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
+      { path: 'role-selection', component: RoleSelectionComponent },
+      { path: 'register/:role', component: RegisterComponent },
+      { path: 'register', redirectTo: 'role-selection', pathMatch: 'full' },
       { path: 'forgot-password', component: ForgotPasswordComponent }
     ])
   ]
 })
-export class AuthModule {}
+export class AuthModule { }

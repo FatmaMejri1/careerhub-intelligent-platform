@@ -114,16 +114,16 @@
                 <tbody>
                     <tr *ngFor="let offer of filteredOffers">
                         <td class="ps-4">
-                            <div class="fw-bold text-dark">{{offer.title}}</div>
+                            <div class="fw-bold text-dark">{{offer.titre}}</div>
                             <small class="text-muted">{{offer.location}}</small>
                         </td>
                         <td>
-                            <span class="badge" [ngClass]="getBadgeClass(offer.type)">{{offer.type}}</span>
+                            <span class="badge" [ngClass]="getBadgeClass(offer.type || '')">{{offer.type}}</span>
                         </td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <span class="status-dot me-2" [ngClass]="getStatusDotClass(offer.status)"></span>
-                                <span class="small">{{offer.status}}</span>
+                                <span class="status-dot me-2" [ngClass]="getStatusDotClass(offer.statut)"></span>
+                                <span class="small">{{getDisplayStatus(offer.statut)}}</span>
                             </div>
                         </td>
                         <td>
@@ -141,7 +141,7 @@
                                 <span class="small fw-bold">{{offer.performanceScore}}%</span>
                             </div>
                         </td>
-                        <td class="text-muted small">{{offer.date | date:'dd MMM yyyy'}}</td>
+                        <td class="text-muted small">{{offer.dateCreation | date:'dd MMM yyyy'}}</td>
                         <td class="text-end pe-4">
                             <button class="btn btn-sm btn-light me-1" title="Voir Candidats">
                                 <i class="fas fa-users text-primary"></i>
@@ -149,7 +149,7 @@
                             <button class="btn btn-sm btn-light me-1" (click)="editOffer(offer)" title="Modifier">
                                 <i class="fas fa-pen text-secondary"></i>
                             </button>
-                            <button class="btn btn-sm btn-light text-danger" (click)="deleteOffer(offer.id)"
+                            <button class="btn btn-sm btn-light text-danger" (click)="deleteOffer(offer.id!)"
                                 title="Supprimer">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -180,7 +180,7 @@
                     <div class="row g-3">
                         <div class="col-md-8">
                             <label class="form-label small fw-bold">Intitulé du poste</label>
-                            <input type="text" class="form-control" [(ngModel)]="currentOffer.title" name="title"
+                            <input type="text" class="form-control" [(ngModel)]="currentOffer.titre" name="titre"
                                 placeholder="Ex: Développeur Angular Senior">
                         </div>
                         <div class="col-md-4">
@@ -202,10 +202,10 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label small fw-bold">Statut</label>
-                            <select class="form-select" [(ngModel)]="currentOffer.status" name="status">
-                                <option value="Active">Active</option>
-                                <option value="Brouillon">Brouillon</option>
-                                <option value="Clôturée">Clôturée</option>
+                            <select class="form-select" [(ngModel)]="currentOffer.statut" name="statut">
+                                <option value="ACTIVE">Active</option>
+                                <option value="BROUILLON">Brouillon</option>
+                                <option value="CLOTUREE">Clôturée</option>
                             </select>
                         </div>
                         <div class="col-12">
@@ -213,20 +213,16 @@
                             <textarea class="form-control" rows="4" [(ngModel)]="currentOffer.description"
                                 name="description" placeholder="Décrivez les missions principales..."></textarea>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label small fw-bold">Compétences requises (séparées par des
-                                virgules)</label>
-                            <input type="text" class="form-control" [(ngModel)]="currentOffer.skills" name="skills"
-                                placeholder="Ex: Angular, TypeScript, Node.js">
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </div> <!-- Close row -->
+                </form> <!-- Close form -->
+            </div> <!-- Close modal-body -->
             <div class="modal-footer bg-light border-top-0">
                 <button type="button" class="btn btn-outline-secondary" (click)="closeModal()">Annuler</button>
-                <button type="button" class="btn btn-primary" (click)="saveOffer()">{{isEditing ? 'Mettre à jour' :
-                    'Publier l\'offre'}}</button>
+                <button type="button" class="btn btn-primary" (click)="saveOffer()" [disabled]="isLoading">
+                    <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                    {{isLoading ? 'Traitement...' : (isEditing ? 'Mettre à jour' : 'Publier l\'offre')}}
+                </button>
             </div>
-        </div>
-    </div>
-</div>
+        </div> <!-- Close modal-content -->
+    </div> <!-- Close modal-dialog -->
+</div> <!-- Close modal -->
