@@ -18,6 +18,7 @@ public class UserAdminDTO {
     private String role;
     private String status; // Actif, Suspendu, En attente
     private Double reliabilityScore; // Based on fraudScore for candidates
+    private Double fraudScore;
     private LocalDateTime lastActivity;
     private LocalDateTime joinDate;
     private Long activityCount; // Applications for candidates, Offers for recruiters

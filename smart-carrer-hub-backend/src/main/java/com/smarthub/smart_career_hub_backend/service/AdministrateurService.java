@@ -142,4 +142,28 @@ public class AdministrateurService {
     public List<Notification> getNotificationsByAdmin(Long adminId) {
         return notificationRepository.findByAdministrateurId(adminId);
     }
+
+    public String uploadPhoto(Long adminId, org.springframework.web.multipart.MultipartFile file) {
+        try {
+            Administrateur admin = getAdminById(adminId);
+
+            String uploadDir = "uploads/admins/";
+            java.io.File directory = new java.io.File(uploadDir);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String fileName = adminId + "_" + System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            java.nio.file.Path filePath = java.nio.file.Paths.get(uploadDir + fileName);
+            java.nio.file.Files.write(filePath, file.getBytes());
+
+            String fileUrl = "/uploads/admins/" + fileName;
+            admin.setProfileImage(fileUrl);
+            administrateurRepository.save(admin);
+
+            return fileUrl;
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store file " + file.getOriginalFilename() + ". Please try again!", e);
+        }
+    }
 }

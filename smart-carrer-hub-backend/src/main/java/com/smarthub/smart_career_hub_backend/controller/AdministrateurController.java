@@ -69,6 +69,20 @@ public class AdministrateurController {
         }
     }
 
+    @PostMapping(value = "/{id}/photo", consumes = "multipart/form-data")
+    public ResponseEntity<?> uploadPhoto(@PathVariable Long id,
+            @RequestParam("file") org.springframework.web.multipart.MultipartFile file) {
+        try {
+            String url = administrateurService.uploadPhoto(id, file);
+            java.util.Map<String, String> response = new java.util.HashMap<>();
+            response.put("url", url);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error uploading photo: " + e.getMessage());
+        }
+    }
+
     /*
      * =========================
      * Notifications

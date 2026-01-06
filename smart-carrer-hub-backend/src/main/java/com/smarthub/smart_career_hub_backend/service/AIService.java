@@ -52,7 +52,8 @@ public class AIService {
 
     public CVAnalysisResponseDTO analyzeCV(CVAnalysisRequestDTO request) {
         try {
-            System.out.println("Sending CV text to AI (len=" + (request.getCvText() != null ? request.getCvText().length() : 0) + ")");
+            System.out.println("Sending CV text to AI (len="
+                    + (request.getCvText() != null ? request.getCvText().length() : 0) + ")");
             return this.webClient.post()
                     .uri("/api/analysis/cv")
                     .bodyValue(request)
@@ -72,7 +73,9 @@ public class AIService {
                     .uri("/api/analysis/generate")
                     .bodyValue(request)
                     .retrieve()
-                    .bodyToMono(new org.springframework.core.ParameterizedTypeReference<java.util.Map<String, Object>>() {})
+                    .bodyToMono(
+                            new org.springframework.core.ParameterizedTypeReference<java.util.Map<String, Object>>() {
+                            })
                     .block();
         } catch (Exception e) {
             System.err.println("Error in AIService generating document: " + e.getMessage());
@@ -87,11 +90,33 @@ public class AIService {
                     .uri("/api/analysis/recommend-profile")
                     .bodyValue(profileData)
                     .retrieve()
-                    .bodyToMono(new org.springframework.core.ParameterizedTypeReference<java.util.Map<String, Object>>() {})
+                    .bodyToMono(
+                            new org.springframework.core.ParameterizedTypeReference<java.util.Map<String, Object>>() {
+                            })
                     .block();
         } catch (Exception e) {
             System.err.println("Error in AIService recommending for profile: " + e.getMessage());
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public java.util.Map<String, Object> analyzeFraud(java.util.Map<String, Object> request) {
+        try {
+            System.out.println(
+                    "DEBUG: Sending Fraud Analysis request to AI Microservice for: " + request.get("full_name"));
+            java.util.Map<String, Object> response = this.webClient.post()
+                    .uri("/api/fraud/analyze")
+                    .bodyValue(request)
+                    .retrieve()
+                    .bodyToMono(
+                            new org.springframework.core.ParameterizedTypeReference<java.util.Map<String, Object>>() {
+                            })
+                    .block();
+            System.out.println("DEBUG: Received Fraud Analysis response. Success: " + (response != null));
+            return response;
+        } catch (Exception e) {
+            System.err.println("Error in AIService for Fraud Analysis: " + e.getMessage());
             return null;
         }
     }

@@ -77,7 +77,7 @@ class CVAnalyzer:
         You are an expert HR AI analyst. Your task is to analyze the following Curriculum Vitae (CV) text and extract structured data.
         
         CV TEXT:
-        {cv_text[:3000]}  # Limit text length if needed
+        {(cv_text or "No CV text provided")[:3000]}  # Limit text length if needed
         """
         
         if job_description:

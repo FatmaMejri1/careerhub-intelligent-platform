@@ -43,7 +43,11 @@ export class AdminProfileComponent implements OnInit {
                     phone: data.phone || ''
                 };
                 if (data.profileImage) {
-                    this.profileImage = data.profileImage;
+                    let img = data.profileImage;
+                    if (!img.startsWith('http') && !img.startsWith('data:')) {
+                        img = `http://localhost:9099${img}`;
+                    }
+                    this.profileImage = img;
                 }
             }
         });
@@ -75,12 +79,25 @@ export class AdminProfileComponent implements OnInit {
     onFileSelected(event: any) {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (e: any) => {
-                this.profileImage = e.target.result;
-                this.profileService.updateProfileImage(this.profileImage!);
-            };
-            reader.readAsDataURL(file);
+            // Upload directly
+            this.profileService.uploadPhoto(file).subscribe({
+                next: (response) => {
+                    if (response && response.url) {
+                        // Construct full URL since it's a static resource from backend
+                        const fullUrl = `http://localhost:9099${response.url}`;
+                        this.profileImage = fullUrl;
+                        this.profileService.updateProfileImage(fullUrl);
+                        // Also update adminData to ensure it syncs if we save later
+                        // (Though updateProfile might overwrite it with string? 
+                        // Backend updateProfile updates profileImage if not null. 
+                        // If we save now, we send fullUrl string. Backend saves it. Correct.)
+                    }
+                },
+                error: (error) => {
+                    console.error('Error uploading photo:', error);
+                    alert('Erreur lors du téléchargement de la photo.');
+                }
+            });
         }
     }
 }

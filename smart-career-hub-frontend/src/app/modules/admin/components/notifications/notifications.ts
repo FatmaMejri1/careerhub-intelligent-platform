@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdminNotificationService } from '../../services/admin-notification.service';
+import { AuthService } from '../../../shared/services/auth';
 
 interface Notification {
     id: number;
     title: string;
     message: string;
-    type: 'info' | 'success' | 'warning' | 'alert' | 'system';
+    type: string;
     date: Date;
     read: boolean;
 }
@@ -22,63 +24,45 @@ export class AdminNotificationsComponent implements OnInit {
 
     notifications: Notification[] = [];
     filter: 'all' | 'unread' | 'system' | 'alert' = 'all';
+    adminId: number | null = null;
 
     // New Alert Logic
     showSendModal = false;
     newAlert = {
         target: 'all',
-        type: 'info' as const,
+        type: 'INFO' as const,
         title: '',
         message: ''
     };
 
+    constructor(
+        private notificationService: AdminNotificationService,
+        private authService: AuthService
+    ) { }
+
     ngOnInit() {
-        this.loadMockData();
+        const user = this.authService.getCurrentUser();
+        if (user && user.id) {
+            this.adminId = Number(user.id);
+            this.loadNotifications();
+        }
     }
 
-    loadMockData() {
-        this.notifications = [
-            {
-                id: 1,
-                title: 'Nouveau Rapport Mensuel',
-                message: 'Le rapport d\'analyse des recrutements du mois de Mars est disponible.',
-                type: 'info',
-                date: new Date(),
-                read: false
+    loadNotifications() {
+        if (!this.adminId) return;
+        this.notificationService.getNotifications(this.adminId).subscribe({
+            next: (data) => {
+                this.notifications = data.map(n => ({
+                    id: n.id,
+                    title: n.title || 'Notification',
+                    message: n.message,
+                    type: n.type?.toLowerCase() || 'info',
+                    date: new Date(n.dateCreation),
+                    read: n.isRead
+                }));
             },
-            {
-                id: 2,
-                title: 'Alerte de Sécurité',
-                message: 'Tentative de connexion suspecte détectée depuis IP 192.168.1.55',
-                type: 'alert',
-                date: new Date(Date.now() - 3600000), // 1 hour ago
-                read: false
-            },
-            {
-                id: 3,
-                title: 'Maintenance Système',
-                message: 'Une maintenance est prévue ce soir à 23h00. La plateforme sera inaccessible pendant 30min.',
-                type: 'system',
-                date: new Date(Date.now() - 86400000), // 1 day ago
-                read: true
-            },
-            {
-                id: 4,
-                title: 'Inscription Recruteur',
-                message: 'L\'entreprise "TechCorp" a finalisé son inscription et attend validation.',
-                type: 'success',
-                date: new Date(Date.now() - 90000000),
-                read: true
-            },
-            {
-                id: 5,
-                title: 'Mise à jour IA',
-                message: 'Le modèle de matching a été mis à jour avec succès (v2.4).',
-                type: 'system',
-                date: new Date(Date.now() - 200000000),
-                read: true
-            }
-        ];
+            error: (err) => console.error('Error loading notifications', err)
+        });
     }
 
     get filteredNotifications() {
@@ -116,27 +100,26 @@ export class AdminNotificationsComponent implements OnInit {
     }
 
     sendAlert() {
-        if (!this.newAlert.title || !this.newAlert.message) {
+        if (!this.newAlert.title || !this.newAlert.message || !this.adminId) {
             alert('Veuillez remplir le titre et le message');
             return;
         }
 
-        // Mock sending alert
-        alert(`Alerte envoyée avec succès à : ${this.newAlert.target}`);
+        const payload = {
+            title: this.newAlert.title,
+            message: this.newAlert.message,
+            type: this.newAlert.type
+        };
 
-        // Add to local list for feedback
-        this.notifications.unshift({
-            id: Date.now(),
-            title: 'Alerte Envoyée: ' + this.newAlert.title,
-            message: `Envoyé à ${this.newAlert.target} : ${this.newAlert.message}`,
-            type: 'system',
-            date: new Date(),
-            read: true
+        this.notificationService.sendNotification(this.adminId, payload).subscribe({
+            next: () => {
+                alert(`Alerte envoyée avec succès à : ${this.newAlert.target}`);
+                this.loadNotifications(); // Refresh list
+                this.showSendModal = false;
+                this.newAlert = { target: 'all', type: 'INFO', title: '', message: '' };
+            },
+            error: (err) => console.error('Error sending notification', err)
         });
-
-        // Reset and close
-        this.showSendModal = false;
-        this.newAlert = { target: 'all', type: 'info', title: '', message: '' };
     }
 
     // UI Helpers

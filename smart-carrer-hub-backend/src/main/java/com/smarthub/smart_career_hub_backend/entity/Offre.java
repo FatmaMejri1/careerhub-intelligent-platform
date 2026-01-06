@@ -45,6 +45,7 @@ public class Offre {
     private java.time.LocalDateTime dateCreation;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private StatutOffre statut;
     // Many offers (`Offre`) can belong to **one recruiter** (`Recruteur`).
     @ManyToOne

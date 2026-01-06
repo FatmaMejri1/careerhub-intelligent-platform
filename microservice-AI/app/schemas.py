@@ -92,6 +92,27 @@ class CourseRecommendation(BaseModel):
     level: str
     match_score: float
 
+class FraudAnalysisRequest(BaseModel):
+    user_id: Optional[int] = None
+    full_name: str
+    cv_text: Optional[str] = None
+    social_links: List[str] = []
+    experiences: List[Dict[str, Any]] = []
+    education: List[Dict[str, Any]] = []
+
+class FraudEvidence(BaseModel):
+    label: str
+    value: str
+    severity: str # 'low', 'medium', 'high'
+
+class FraudAnalysisResponse(BaseModel):
+    fraud_score: int # Final combined score
+    heuristic_score: int # Calculated by rules
+    ai_fraud_score: int # Calculated by AI
+    is_suspicious: bool
+    ai_analysis: str
+    evidence: List[FraudEvidence]
+
 class APIError(BaseModel):
     detail: str
     error_code: str

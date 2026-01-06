@@ -19,10 +19,15 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String title;
     private String message;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 30)
     private TypeNotification type;
+
+    private boolean isRead = false;
+    private java.time.LocalDateTime dateCreation = java.time.LocalDateTime.now();
 
     // Notification belongs to one admin
     @ManyToOne

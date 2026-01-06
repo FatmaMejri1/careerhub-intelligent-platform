@@ -152,8 +152,12 @@ public class StatsService {
 
         return CandidateStatsDTO.builder()
                 .totalApplications(candidatures.size())
-                .profileCompletion(chercheur != null && chercheur.getEmployabilityScore() != null ? chercheur.getEmployabilityScore() : 0.0)
-                .employabilityScore(chercheur != null && chercheur.getEmployabilityScore() != null ? chercheur.getEmployabilityScore() : 0.0)
+                .profileCompletion(chercheur != null && chercheur.getEmployabilityScore() != null
+                        ? chercheur.getEmployabilityScore()
+                        : 0.0)
+                .employabilityScore(chercheur != null && chercheur.getEmployabilityScore() != null
+                        ? chercheur.getEmployabilityScore()
+                        : 0.0)
                 .fraudScore(chercheur != null && chercheur.getFraudScore() != null ? chercheur.getFraudScore() : 0.0)
                 .bestQuizScore(bestQuizScore)
                 .applicationStatusDistribution(distribution)
@@ -201,6 +205,7 @@ public class StatsService {
                 .filter(c -> c.getFraudScore() != null && c.getFraudScore() > 30) // Threshold for alert
                 .map(c -> {
                     Map<String, Object> map = new HashMap<>();
+                    map.put("id", c.getId());
                     map.put("user", c.getPrenom() + " " + c.getNom());
                     map.put("role", "Candidat");
                     map.put("type", "Suspicion de données non vérifiables");

@@ -29,9 +29,9 @@ public class UtilisateurService {
     private final AdministrateurRepository administrateurRepository;
 
     public UtilisateurService(UtilisateurRepository utilisateurRepository,
-                              ChercheurEmploiRepository chercheurEmploiRepository,
-                              RecruteurRepository recruteurRepository,
-                              AdministrateurRepository administrateurRepository) {
+            ChercheurEmploiRepository chercheurEmploiRepository,
+            RecruteurRepository recruteurRepository,
+            AdministrateurRepository administrateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.recruteurRepository = recruteurRepository;
@@ -53,7 +53,9 @@ public class UtilisateurService {
 
             if (u instanceof ChercheurEmploi) {
                 ChercheurEmploi c = (ChercheurEmploi) u;
-                builder.reliabilityScore(100 - (c.getFraudScore() != null ? c.getFraudScore() : 0.0));
+                Double fScore = c.getFraudScore() != null ? c.getFraudScore() : 0.0;
+                builder.fraudScore(fScore);
+                builder.reliabilityScore(100 - fScore);
                 builder.activityCount((long) (c.getQuizList() != null ? c.getQuizList().size() : 0));
             } else if (u instanceof Recruteur) {
                 Recruteur r = (Recruteur) u;

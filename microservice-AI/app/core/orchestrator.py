@@ -4,11 +4,13 @@ from app.intelligence.generators.quiz_generator import QuizGenerator
 from app.evaluation.scoring.quiz_scorer import QuizScorer
 from app.intelligence.recommenders.course_recommender import CourseRecommender
 from app.intelligence.analyzers.cv_analyzer import CVAnalyzer
+from app.intelligence.analyzers.fraud_analyzer import FraudAnalyzer
 from app.intelligence.generators.cv_generator import CVGenerator
 from app.intelligence.generators.profile_recommender import ProfileRecommender
 from app.llm.providers.gemini_provider import GeminiProvider # Or use get_llm_provider
 from app.dependencies import get_llm_provider
 from app.storage.cache.memory_cache import MemoryCache
+from app.schemas import FraudAnalysisRequest
 import logging
 import uuid
 
@@ -22,6 +24,7 @@ class AIOrchestrator:
         self.quiz_scorer = QuizScorer()
         self.course_recommender = CourseRecommender()
         self.cv_analyzer = CVAnalyzer()
+        self.fraud_analyzer = FraudAnalyzer()
         self.cv_generator = CVGenerator()
         
         # Get LLM provider for recommender
@@ -184,6 +187,19 @@ class AIOrchestrator:
             # Continue with LLM results (links will be missing/default)
             
         return result
+
+    async def analyze_fraud_workflow(self, request: FraudAnalysisRequest) -> Dict[str, Any]:
+        """
+        Candidate profile fraud analysis workflow
+        """
+        logger.info(f"Starting fraud analysis workflow for user: {request.user_id or request.full_name}")
+        
+        profile_data = request.dict()
+        result = await self.fraud_analyzer.analyze(profile_data)
+        
+        score = result.get('fraud_score', 0) if result else 0
+        logger.info(f"Fraud analysis completed with score: {score}")
+        return result or self.fraud_analyzer._fallback_fraud_analysis([])
 
     def _get_quiz_from_cache(self, quiz_id: str) -> Dict[str, Any]:
         """Get quiz from cache (mock for now)"""

@@ -27,13 +27,14 @@ app.add_middleware(
 )
 
 # Import routers
-from app.api import health, quiz, analysis, recommendations
+from app.api import health, quiz, analysis, recommendations, fraud
 
 # Include routers
 app.include_router(health.router, prefix="/api", tags=["Health"])
 app.include_router(quiz.router, prefix="/api/quiz", tags=["Quiz"])
 app.include_router(analysis.router, prefix="/api/analysis", tags=["Analysis"])
 app.include_router(recommendations.router, prefix="/api/recommendations", tags=["Recommendations"])
+app.include_router(fraud.router, prefix="/api/fraud", tags=["Fraud Detection"])
 
 @app.on_event("startup")
 async def startup_event():

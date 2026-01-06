@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AdminFraudService } from '../../services/admin-fraud.service';
 
 interface FraudAlert {
-    id: string;
+    id: any;
     sourceName: string;
-    type: 'Offre Suspecte' | 'Profil Faux' | 'Spam' | 'Usurpation';
+    type: string;
     date: Date;
     riskScore: number;
     status: 'Nouveau' | 'En cours' | 'Résolu';
     aiAnalysis: string;
-    evidence: { label: string; value: string }[];
+    evidence: { label: string; value: string; severity?: string }[];
 }
 
 @Component({
@@ -23,39 +24,64 @@ export class AdminFraudComponent implements OnInit {
 
     selectedAlert: FraudAlert | null = null;
     alerts: FraudAlert[] = [];
+    isAnalyzing: boolean = false;
+
+    constructor(private fraudService: AdminFraudService) { }
 
     ngOnInit() {
-        this.loadMockData();
+        this.loadAlerts();
     }
 
-    loadMockData() {
-        this.alerts = [
-            {
-                id: 'ALT-9921', sourceName: 'Rapid Cash Ltd.', type: 'Offre Suspecte', date: new Date(), riskScore: 95, status: 'Nouveau',
-                aiAnalysis: 'L\'offre contient des mots-clés typiques d\'arnaques pyramidales et demande des frais d\'inscription.',
-                evidence: [
-                    { label: 'Mots Interdits', value: 'argent facile, frais dossier' },
-                    { label: 'Email Domaine', value: 'domaine-bizarre.xyz' },
-                    { label: 'Rapport Utilisateurs', value: '5 signalements' }
-                ]
+    loadAlerts() {
+        this.fraudService.getAlerts().subscribe({
+            next: (data) => {
+                this.alerts = data.map((a: any) => ({
+                    id: a.id,
+                    sourceName: a.user,
+                    type: a.type,
+                    date: new Date(),
+                    riskScore: a.score,
+                    status: 'Nouveau',
+                    aiAnalysis: 'Attente d\'analyse approfondie.',
+                    evidence: [
+                        { label: 'Rôle', value: a.role },
+                        { label: 'Détails', value: a.type }
+                    ]
+                }));
             },
-            {
-                id: 'ALT-9922', sourceName: 'Jean Dupont (Fake)', type: 'Profil Faux', date: new Date(Date.now() - 3600000), riskScore: 88, status: 'Nouveau',
-                aiAnalysis: 'La photo de profil est une image de stock connue et l\'adresse IP est blacklistée.',
-                evidence: [
-                    { label: 'Photo Match', value: 'Shutterstock #1234' },
-                    { label: 'IP Reputation', value: 'Blacklisted (SpamHaus)' }
-                ]
+            error: (err) => console.error('Error loading fraud alerts', err)
+        });
+    }
+
+    runAIAnalysis() {
+        if (!this.selectedAlert) return;
+
+        this.isAnalyzing = true;
+        this.fraudService.getAIAnalysis(this.selectedAlert.id).subscribe({
+            next: (res) => {
+                this.isAnalyzing = false;
+                if (this.selectedAlert && (this.selectedAlert.id === res.user_id || this.selectedAlert.id === res.id)) {
+                    this.selectedAlert.riskScore = res.fraud_score;
+                    this.selectedAlert.aiAnalysis = res.ai_analysis;
+                    this.selectedAlert.evidence = res.evidence;
+                    // Update main list score
+                    const target = this.alerts.find(a => a.id === this.selectedAlert!.id);
+                    if (target) {
+                        target.riskScore = res.fraud_score;
+                    }
+                } else if (this.selectedAlert) {
+                    // Fallback for ID mismatch if backend returns different structure
+                    this.selectedAlert.riskScore = res.fraud_score;
+                    this.selectedAlert.aiAnalysis = res.ai_analysis;
+                    this.selectedAlert.evidence = res.evidence;
+                }
             },
-            {
-                id: 'ALT-9923', sourceName: 'Tech Recruitment Bot', type: 'Spam', date: new Date(Date.now() - 7200000), riskScore: 65, status: 'En cours',
-                aiAnalysis: 'Envoi massif de messages identiques à 50 candidats en 1 minute.',
-                evidence: [
-                    { label: 'Vitesse Message', value: '50 msg/min' },
-                    { label: 'Similarité Texte', value: '100% Identique' }
-                ]
+            error: (err) => {
+                this.isAnalyzing = false;
+                console.error('AI Analysis failed', err);
+                alert('Analyse IA échouée: ' + (err.error || 'Serveur indisponible'));
             }
-        ];
+        });
     }
 
     selectAlert(alert: FraudAlert) {
@@ -63,25 +89,25 @@ export class AdminFraudComponent implements OnInit {
     }
 
     refreshData() {
-        this.selectedAlert = null;
-        // Simulate refresh
-        const newAlert = {
-            id: 'ALT-' + Math.floor(Math.random() * 10000),
-            sourceName: 'Nouvelle Menace',
-            type: 'Usurpation' as const,
-            date: new Date(),
-            riskScore: Math.floor(Math.random() * (100 - 50) + 50),
-            status: 'Nouveau' as const,
-            aiAnalysis: 'Activité inhabituelle détectée récemment.',
-            evidence: [{ label: 'Anomalie', value: 'Pattern inconnu' }]
-        };
-        this.alerts.unshift(newAlert);
+        this.loadAlerts();
     }
 
     purgeHighRisk() {
         if (confirm('Purger toutes les alertes critiques résolues ?')) {
             // Mock action
         }
+    }
+
+    downloadReport() {
+        if (!this.selectedAlert) return;
+        const reportUrl = `http://localhost:9099/api/admin/fraud/report/${this.selectedAlert.id}`;
+        window.open(reportUrl, '_blank');
+    }
+
+    downloadReportForAlert(alert: FraudAlert) {
+        if (!alert) return;
+        const reportUrl = `http://localhost:9099/api/admin/fraud/report/${alert.id}`;
+        window.open(reportUrl, '_blank');
     }
 
     // Actions
@@ -93,9 +119,14 @@ export class AdminFraudComponent implements OnInit {
 
     resolveAlert(action: 'Ignorer' | 'Bloquer') {
         if (this.selectedAlert) {
-            this.selectedAlert.status = 'Résolu';
-            alert(`Action effectuée: ${action} pour ${this.selectedAlert.sourceName}`);
-            this.selectedAlert = null;
+            this.fraudService.resolveAlert(this.selectedAlert.id, action).subscribe({
+                next: (res) => {
+                    alert(res.message || `Action effectuée: ${action}`);
+                    this.loadAlerts(); // Refresh
+                    this.selectedAlert = null;
+                },
+                error: (err) => console.error('Error resolving alert', err)
+            });
         }
     }
 

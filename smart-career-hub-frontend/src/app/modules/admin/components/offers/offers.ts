@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdminOffersService } from '../../services/admin-offers.service';
 
 interface Offer {
     id: string;
@@ -26,34 +27,8 @@ interface Offer {
 })
 export class AdminOffersComponent implements OnInit {
 
-    // Mock Data
-    allOffers: Offer[] = [
-        {
-            id: '1', title: 'Senior Angular Developer', company: 'TechSolutions', sector: 'IT', date: new Date('2024-03-10'), applications: 12, status: 'Active', qualityScore: 92,
-            description: 'We are looking for an experienced Angular developer to lead our frontend team. Must have 5+ years experience.',
-            contract: 'CDI', salary: '50k - 65k', skills: ['Angular', 'RxJS', 'TypeScript']
-        },
-        {
-            id: '2', title: 'Marketing Assistant', company: 'Creative Agency', sector: 'Marketing', date: new Date('2024-03-12'), applications: 45, status: 'Signalée', qualityScore: 45,
-            description: 'Need someone for marketing. Call me.',
-            contract: 'Stage', salary: 'Non rémunéré', skills: ['Social Media']
-        },
-        {
-            id: '3', title: 'Financial Analyst', company: 'Global Bank', sector: 'Finance', date: new Date('2024-02-28'), applications: 8, status: 'Expirée', qualityScore: 88,
-            description: 'Analyze financial data and trends.',
-            contract: 'CDI', salary: '45k - 55k', skills: ['Excel', 'Analysis', 'Finance']
-        },
-        {
-            id: '4', title: 'Junior Data Scientist', company: 'DataCorp', sector: 'IT', date: new Date('2024-03-14'), applications: 22, status: 'Active', qualityScore: 78,
-            description: 'Join our data team to build predictive models.',
-            contract: 'CDD', salary: '35k - 40k', skills: ['Python', 'SQL', 'Machine Learning']
-        },
-        {
-            id: '5', title: 'Rapid Money Maker', company: 'Unknown', sector: 'Marketing', date: new Date('2024-03-15'), applications: 0, status: 'Bloquée', qualityScore: 12,
-            description: 'Make money fast from home!!! 1000$ per day!!!',
-            contract: 'Freelance', salary: 'Commission', skills: ['None']
-        }
-    ];
+    // Data
+    allOffers: Offer[] = [];
 
     filteredOffers: Offer[] = [];
     selectedOffer: Offer | null = null;
@@ -63,8 +38,45 @@ export class AdminOffersComponent implements OnInit {
     statusFilter: string = 'all';
     sectorFilter: string = 'all';
 
+    constructor(private offersService: AdminOffersService) { }
+
     ngOnInit() {
-        this.filteredOffers = [...this.allOffers];
+        this.loadOffers();
+    }
+
+    loadOffers() {
+        this.offersService.getAllOffers().subscribe({
+            next: (data: any[]) => {
+                this.allOffers = data.map((offer: any) => ({
+                    id: offer.id.toString(),
+                    title: offer.title,
+                    company: offer.company,
+                    sector: offer.sector,
+                    date: new Date(offer.date),
+                    applications: offer.applications || 0,
+                    status: this.mapBackendStatus(offer.status),
+                    qualityScore: offer.qualityScore || 0,
+                    description: offer.description,
+                    contract: offer.contract,
+                    salary: offer.salary,
+                    skills: offer.skills || []
+                }));
+                this.filteredOffers = [...this.allOffers];
+            },
+            error: (err: any) => console.error('Failed to load offers', err)
+        });
+    }
+
+    mapBackendStatus(status: string): 'Active' | 'Signalée' | 'Expirée' | 'Bloquée' {
+        if (!status) return 'Active';
+        switch (status) {
+            case 'ACTIVE': return 'Active';
+            case 'CLOTUREE': return 'Expirée';
+            case 'SIGNALEE': return 'Signalée';
+            case 'BLOQUEE': return 'Bloquée';
+            case 'BROUILLON': return 'Expirée'; // or inactive
+            default: return 'Active';
+        }
     }
 
     applyFilters() {
@@ -105,8 +117,25 @@ export class AdminOffersComponent implements OnInit {
     // Admin Action
     updateStatus(newStatus: 'Active' | 'Signalée' | 'Expirée' | 'Bloquée') {
         if (this.selectedOffer) {
-            this.selectedOffer.status = newStatus;
-            // In a real app, call API here
+            // Map UI status to Backend Enum strings to avoid accent issues
+            let backendStatus = 'ACTIVE';
+            switch (newStatus) {
+                case 'Active': backendStatus = 'ACTIVE'; break;
+                case 'Signalée': backendStatus = 'SIGNALEE'; break;
+                case 'Bloquée': backendStatus = 'BLOQUEE'; break;
+                case 'Expirée': backendStatus = 'CLOTUREE'; break;
+            }
+
+            this.offersService.updateStatus(this.selectedOffer.id, backendStatus).subscribe({
+                next: () => {
+                    this.selectedOffer!.status = newStatus;
+                    // Update main list
+                    const target = this.allOffers.find(o => o.id === this.selectedOffer!.id);
+                    if (target) target.status = newStatus;
+                    this.applyFilters(); // Re-filter in case status changed visibility
+                },
+                error: (err: any) => alert('Failed to update status: ' + (err.error || 'Server Error'))
+            });
         }
     }
 }

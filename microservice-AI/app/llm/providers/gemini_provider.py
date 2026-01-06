@@ -65,11 +65,22 @@ class GeminiProvider(BaseLLMProvider):
             
             full_prompt = f"{prompt}\n\nRespond with a JSON object matching this schema: {json.dumps(schema)}"
             
-            response = self.model.generate_content(
+            response = await self.model.generate_content_async(
                 full_prompt,
                 generation_config=generation_config
             )
             
+            # Safety check: if Gemini blocks the response, .text will raise an error
+            if not response or not response.candidates:
+                logger.error("Gemini returned no candidates (blocked or empty).")
+                raise Exception("Response blocked or empty from Gemini")
+            
+            # Check if the first candidate has parts
+            if not response.candidates[0].content.parts:
+                finish_reason = response.candidates[0].finish_reason
+                logger.warning(f"Gemini response has no parts. Finish reason: {finish_reason}")
+                raise Exception(f"Empty response from Gemini (Reason: {finish_reason})")
+
             return json.loads(response.text)
         except Exception as e:
             logger.error(f"Gemini structured generation failed: {str(e)}")
