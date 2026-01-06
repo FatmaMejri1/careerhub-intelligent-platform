@@ -9,14 +9,62 @@
         <!-- Main Content -->
         <div class="col-lg-9">
 
-            <!-- AI Insight Section -->
-            <div class="alert alert-info border-0 shadow-sm d-flex align-items-center gap-3 mb-4">
-                <i class="fas fa-robot fa-2x"></i>
-                <div>
-                    <h5 class="fw-bold mb-1">Analyse IA</h5>
-                    <p class="mb-0 small">Pour augmenter vos chances pour le poste de "Senior Java Developer", nous vous
-                        recommandons de vous concentrer sur <strong>Microservices</strong> et <strong>Cloud
-                            Architecture</strong>.</p>
+            <!-- Dynamic AI Recommender -->
+            <div class="card ai-recommendations-card mb-4 overflow-hidden border-0 shadow-sm">
+                <div class="card-glow"></div>
+                <div class="card-body position-relative">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="fw-bold mb-1"><i class="fas fa-magic text-primary me-2"></i>Analyse IA
+                                Personnalisée</h5>
+                            <p class="text-muted small mb-0">Basé sur votre profil: <strong>{{userProfile?.titre ||
+                                    'Candidat'}}</strong></p>
+                        </div>
+                        <button class="btn btn-ai-gradient btn-sm rounded-pill px-3" (click)="getAIRecommendations()"
+                            [disabled]="isLoadingRecommendations">
+                            <i class="fas fa-sync-alt me-2" [class.fa-spin]="isLoadingRecommendations"></i>
+                            Actualiser
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div *ngIf="isLoadingRecommendations" class="text-center py-4">
+                        <div class="spinner-border text-primary spinner-border-sm mb-2"></div>
+                        <p class="small text-muted mb-0">L'IA analyse vos compétences...</p>
+                    </div>
+
+                    <!-- Content -->
+                    <div *ngIf="recommendations && !isLoadingRecommendations" class="row g-3">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold small text-uppercase text-muted mb-3">Cours Stratégiques</h6>
+                            <div class="ai-item-mini p-2 mb-2" *ngFor="let course of recommendations.courses">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="fw-bold small">{{course.title}}</span>
+                                    <span
+                                        class="badge bg-soft-primary text-primary tiny-badge">{{course.difficulty}}</span>
+                                </div>
+                                <div class="text-muted tiny-text">{{course.platform}}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold small text-uppercase text-muted mb-3">Certifications Visées</h6>
+                            <div class="ai-item-mini p-2 mb-2" *ngFor="let cert of recommendations.certifications">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="fw-bold small">{{cert.title}}</span>
+                                    <span
+                                        class="badge bg-soft-warning text-warning tiny-badge">{{cert.difficulty}}</span>
+                                </div>
+                                <div class="text-muted tiny-text">{{cert.organization}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hint if no recommendations -->
+                    <div *ngIf="!recommendations && !isLoadingRecommendations"
+                        class="alert alert-light border small mb-0">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                        Complétez votre profil pour obtenir des recommandations plus précises.
+                    </div>
                 </div>
             </div>
 

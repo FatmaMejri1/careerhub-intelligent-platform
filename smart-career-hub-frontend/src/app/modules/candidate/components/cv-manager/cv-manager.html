@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h2 class="fw-bold mb-1">Gestionnaire de Documents</h2>
-            <p class="text-muted mb-0">Gérez vos CVs et lettres de motivation pour vos candidatures.</p>
+            <p class="text-muted mb-0">Gérez vos CVs pour vos candidatures.</p>
         </div>
         <div class="d-flex gap-2">
             <button class="btn btn-outline-secondary rounded-pill px-4" (click)="openAnalysis()">
@@ -33,19 +33,6 @@
         <div class="col-md-4">
             <div class="card border-0 shadow-soft h-100 p-3 hover-lift">
                 <div class="d-flex align-items-center">
-                    <div class="icon-shape bg-purple-light text-purple rounded-lg p-3 me-3">
-                        <i class="fas fa-file-word fa-2x"></i>
-                    </div>
-                    <div>
-                        <h5 class="fw-bold mb-0">{{ coverLetterCount }}</h5>
-                        <small class="text-muted">Lettres de Motivation</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-soft h-100 p-3 hover-lift">
-                <div class="d-flex align-items-center">
                     <div class="icon-shape bg-success-light text-success rounded-lg p-3 me-3">
                         <i class="fas fa-check-circle fa-2x"></i>
                     </div>
@@ -63,15 +50,8 @@
         <div class="card-header bg-white border-bottom p-0">
             <ul class="nav nav-tabs nav-fill border-0">
                 <li class="nav-item">
-                    <a class="nav-link py-3 fw-semibold" [class.active]="activeTab === 'cv'"
-                        (click)="setActiveTab('cv')" href="javascript:void(0)">
+                    <a class="nav-link py-3 fw-semibold active" href="javascript:void(0)">
                         <i class="fas fa-file-alt me-2"></i>Mes CVs
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link py-3 fw-semibold" [class.active]="activeTab === 'lm'"
-                        (click)="setActiveTab('lm')" href="javascript:void(0)">
-                        <i class="fas fa-envelope-open-text me-2"></i>Mes Lettres
                     </a>
                 </li>
             </ul>
@@ -79,7 +59,7 @@
 
         <div class="card-body p-4">
             <!-- CV List Content -->
-            <div *ngIf="activeTab === 'cv'" class="fade-in">
+            <div class="fade-in">
                 <div class="row g-4">
                     <div class="col-md-6 col-lg-4" *ngFor="let cv of cvList">
                         <div class="cv-card card border shadow-sm h-100 hover-lift">
@@ -137,44 +117,6 @@
                 </div>
             </div>
 
-            <!-- Cover Letter List Content -->
-            <div *ngIf="activeTab === 'lm'" class="fade-in">
-                <div class="row g-4">
-                    <div class="col-md-6" *ngFor="let lm of coverLetters">
-                        <div class="card border shadow-sm p-3 hover-lift">
-                            <div class="d-flex align-items-center">
-                                <div class="file-icon-small text-primary me-3">
-                                    <i class="fas fa-file-word fa-2x"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h6 class="fw-bold mb-0 text-truncate">{{ lm.name }}</h6>
-                                    <small class="text-muted">Modifié le {{ formatDate(lm.updatedAt || '') }}</small>
-                                </div>
-                                <div class="btn-group">
-                                    <button class="btn btn-sm btn-light border" title="Télécharger"
-                                        (click)="downloadDocument(lm)">
-                                        <i class="fas fa-download text-primary"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-light border text-danger"
-                                        (click)="deleteDocument(lm.id!, 'coverLetter')">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Add LM Placeholder Card -->
-                    <div class="col-12">
-                        <div (click)="openUploadModal('lm')"
-                            class="border-dashed-rect p-4 text-center rounded-lg cursor-pointer hover-bg-light transition ai-border">
-                            <i class="fas fa-upload fa-2x text-primary mb-2"></i>
-                            <p class="fw-semibold text-primary mb-0">Télécharger une lettre de motivation</p>
-                            <p class="small text-muted mb-0">Formats acceptés: PDF, DOCX</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -198,19 +140,20 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold mb-0">
                     <i class="fas fa-magic text-primary me-2"></i>
-                    Générer {{ generationType === 'cv' ? 'votre CV' : 'votre Lettre' }}
+                    Générer votre CV
                 </h4>
                 <button class="btn-close" (click)="closeModals()"></button>
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-semibold">Quel poste visez-vous ?</label>
-                <input type="text" class="form-control" placeholder="ex: Développeur Fullstack Senior">
+                <input type="text" class="form-control" [(ngModel)]="targetJob"
+                    placeholder="ex: Développeur Fullstack Senior">
             </div>
 
             <div class="mb-4">
                 <label class="form-label fw-semibold">Informations complémentaires</label>
-                <textarea class="form-control" rows="4"
+                <textarea class="form-control" rows="4" [(ngModel)]="additionalInfo"
                     placeholder="Quelles compétences ou expériences voulez-vous mettre en avant ?"></textarea>
             </div>
 
@@ -242,7 +185,7 @@
                 <div class="upload-zone p-5 border-dashed rounded-lg mb-4" (click)="fileInput.click()">
                     <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
                     <h5 class="fw-semibold">Sélectionnez un fichier</h5>
-                    <p class="text-muted small">Cliquer ici pour importer votre CV ou Lettre (PDF/DOCX)</p>
+                    <p class="text-muted small">Cliquer ici pour importer votre CV (PDF/DOCX)</p>
                     <input type="file" #fileInput (change)="onFileSelected($event)" class="d-none">
                     <div *ngIf="selectedFile" class="mt-3 text-primary">
                         <i class="fas fa-file-alt me-2"></i>{{ selectedFile.name }}
@@ -263,46 +206,94 @@
             </div>
 
             <div *ngIf="analysisResult" class="analysis-results fade-in">
-                <div class="text-center mb-4">
-                    <div class="score-circle mx-auto mb-2" [style.--score]="analysisResult.score">
-                        <span class="score-value">{{ analysisResult.score }}%</span>
+                <div class="row align-items-center mb-4">
+                    <div class="col-md-4 text-center">
+                        <div class="score-circle mx-auto mb-2" [style.--score]="analysisResult.clarity_score">
+                            <span class="score-value">{{ analysisResult.clarity_score }}%</span>
+                        </div>
+                        <h6 class="fw-bold small">Score de Clarté</h6>
                     </div>
-                    <h5 class="fw-bold">Score d'optimisation</h5>
+                    <div class="col-md-8">
+                        <h5 class="fw-bold mb-1">{{ analysisResult.experience_level }}</h5>
+                        <p class="text-muted small mb-0">{{ analysisResult.summary }}</p>
+                    </div>
                 </div>
 
+                <!-- Analysis Grid -->
                 <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="p-3 bg-success-light rounded-lg h-100">
-                            <h6 class="fw-bold text-success mb-2 small"><i class="fas fa-check-circle me-2"></i>Forces
-                            </h6>
-                            <ul class="list-unstyled mb-0 small">
-                                <li *ngFor="let s of analysisResult.strengths"><i class="fas fa-caret-right me-1"></i>
-                                    {{s}}</li>
+                    <!-- Linguistic Faults -->
+                    <div class="col-md-6" *ngIf="analysisResult.linguistic_faults.length > 0">
+                        <div class="p-3 bg-danger-light rounded h-100">
+                            <h6 class="fw-bold text-danger mb-1 small"><i class="fas fa-language me-2"></i>Fautes
+                                Linguistiques</h6>
+                            <ul class="list-unstyled mb-0 tiny-text">
+                                <li *ngFor="let fault of analysisResult.linguistic_faults"><i
+                                        class="fas fa-times me-1"></i>{{fault}}</li>
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Visibility -->
+                    <div class="col-md-6" *ngIf="analysisResult.visibility_recommendations.length > 0">
+                        <div class="p-3 bg-success-light rounded h-100">
+                            <h6 class="fw-bold text-success mb-1 small"><i class="fas fa-eye me-2"></i>Visibilité</h6>
+                            <ul class="list-unstyled mb-0 tiny-text">
+                                <li *ngFor="let tip of analysisResult.visibility_recommendations"><i
+                                        class="fas fa-check me-1"></i>{{tip}}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Jobs -->
+                    <div class="col-md-12">
+                        <div class="p-3 bg-primary-light rounded">
+                            <h6 class="fw-bold text-primary mb-2 small"><i class="fas fa-briefcase me-2"></i>Métiers
+                                Recommandés</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-primary rounded-pill"
+                                    *ngFor="let job of analysisResult.recommended_jobs">{{job}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools to Learn -->
                     <div class="col-md-6">
-                        <div class="p-3 bg-danger-light rounded-lg h-100">
-                            <h6 class="fw-bold text-danger mb-2 small"><i
-                                    class="fas fa-exclamation-circle me-2"></i>Axes d'amélioration</h6>
-                            <ul class="list-unstyled mb-0 small">
-                                <li *ngFor="let w of analysisResult.weaknesses"><i class="fas fa-caret-right me-1"></i>
-                                    {{w}}</li>
+                        <div class="p-3 bg-warning-light rounded h-100">
+                            <h6 class="fw-bold text-warning mb-2 small"><i class="fas fa-tools me-2"></i>Outils à
+                                apprendre</h6>
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="badge bg-white text-dark border"
+                                    *ngFor="let tool of analysisResult.tools_to_learn">{{tool}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificates -->
+                    <div class="col-md-6">
+                        <div class="p-3 bg-purple-light rounded h-100">
+                            <h6 class="fw-bold text-purple mb-2 small"><i
+                                    class="fas fa-certificate me-2"></i>Certifications recommandées</h6>
+                            <ul class="list-unstyled mb-0 tiny-text">
+                                <li *ngFor="let cert of analysisResult.recommended_certificates" class="mb-1"><i
+                                        class="fas fa-award me-1"></i>{{cert}}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-4 p-3 bg-purple-light rounded-lg">
-                    <h6 class="fw-bold text-purple mb-2 small"><i class="fas fa-lightbulb me-2"></i>Recommandation IA
-                    </h6>
-                    <p class="mb-0 small">{{ analysisResult.recommendation }}</p>
+                <div class="mt-4 p-3 bg-light rounded border border-primary-light">
+                    <h6 class="fw-bold text-primary mb-1 small"><i class="fas fa-comment-dots me-2"></i>Feedback
+                        Structurel</h6>
+                    <p class="mb-0 small text-muted font-italic">{{ analysisResult.structural_feedback }}</p>
                 </div>
 
                 <div class="mt-4 d-flex gap-2">
                     <button class="btn btn-outline-secondary flex-grow-1"
                         (click)="analysisResult = null; selectedFile = null">Recommencer</button>
-                    <button class="btn btn-purple text-white flex-grow-1" (click)="openGenerator('cv')">Optimiser avec
+                    <button class="btn btn-purple text-white flex-grow-1" (click)="downloadAnalysisReport()">
+                        <i class="fas fa-file-download me-2"></i>Télécharger le Rapport
+                    </button>
+                    <button class="btn btn-primary flex-grow-1" (click)="openGenerator('cv')">Optimiser avec
                         l'IA</button>
                 </div>
             </div>
@@ -315,7 +306,7 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h4 class="fw-bold mb-0">
                     <i class="fas fa-upload text-primary me-2"></i>
-                    Télécharger {{ generationType === 'cv' ? 'un CV' : 'une Lettre de Motivation' }}
+                    Télécharger un CV
                 </h4>
                 <button class="btn-close" (click)="closeModals()"></button>
             </div>

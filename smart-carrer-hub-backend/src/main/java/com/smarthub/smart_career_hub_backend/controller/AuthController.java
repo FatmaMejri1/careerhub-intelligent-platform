@@ -63,9 +63,12 @@ public class AuthController {
             }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("message", "Invalid credentials"));
         } catch (Exception e) {
+            System.err.println("CRITICAL: Login failure for email: " + loginRequest.getEmail());
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("message", "Login error: " + e.getMessage()));
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Login error: " + (e.getMessage() != null ? e.getMessage() : e.toString()));
+            errorResponse.put("type", e.getClass().getName());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
 

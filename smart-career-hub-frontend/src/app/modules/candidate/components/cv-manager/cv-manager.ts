@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnalysisService, CVAnalysisResult } from '../../../../core/services/analysis.service';
+import { FormsModule } from '@angular/forms';
 
 export interface CVDocument {
   id?: number;
@@ -16,27 +18,29 @@ export interface CVDocument {
 @Component({
   selector: 'app-cv-manager',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cv-manager.html',
   styleUrls: ['./cv-manager.css']
 })
 export class CvManagerComponent implements OnInit {
   cvList: CVDocument[] = [];
-  coverLetters: CVDocument[] = [];
-
   cvCount = 0;
-  coverLetterCount = 0;
 
-  activeTab: 'cv' | 'lm' = 'cv';
   showGenerator = false;
   showAnalysis = false;
   showUploadModal = false;
-  generationType: 'cv' | 'lm' = 'cv';
+  generationType: 'cv' = 'cv';
   isGenerating = false;
   isAnalyzing = false;
   isUploading = false;
-  analysisResult: any = null;
+  analysisResult: CVAnalysisResult | null = null;
   selectedFile: File | null = null;
+
+  // Generator inputs
+  targetJob = '';
+  additionalInfo = '';
+
+  constructor(private analysisService: AnalysisService) { }
 
   ngOnInit() {
     this.loadDocuments();
@@ -46,29 +50,22 @@ export class CvManagerComponent implements OnInit {
   loadDocuments() {
     // Load from localStorage
     const cvs = localStorage.getItem('user_cvs');
-    const letters = localStorage.getItem('user_cover_letters');
-
     this.cvList = cvs ? JSON.parse(cvs) : [];
-    this.coverLetters = letters ? JSON.parse(letters) : [];
   }
 
   loadStats() {
     this.cvCount = this.cvList.length;
-    this.coverLetterCount = this.coverLetters.length;
   }
 
-  setActiveTab(tab: 'cv' | 'lm') {
-    this.activeTab = tab;
-  }
 
-  openGenerator(type: 'cv' | 'lm') {
+  openGenerator(type: 'cv') {
     this.generationType = type;
     this.showGenerator = true;
     this.showAnalysis = false;
     this.showUploadModal = false;
   }
 
-  openUploadModal(type: 'cv' | 'lm') {
+  openUploadModal(type: 'cv') {
     this.generationType = type;
     this.showUploadModal = true;
     this.showGenerator = false;
@@ -107,7 +104,7 @@ export class CvManagerComponent implements OnInit {
       const document: CVDocument = {
         id: Date.now(),
         name: this.selectedFile!.name,
-        type: this.generationType === 'cv' ? 'cv' : 'coverLetter',
+        type: 'cv',
         fileType: fileExtension,
         fileUrl: fileUrl,
         fileSize: this.selectedFile!.size,
@@ -116,13 +113,8 @@ export class CvManagerComponent implements OnInit {
         updatedAt: new Date().toISOString()
       };
 
-      if (this.generationType === 'cv') {
-        this.cvList.unshift(document);
-        localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
-      } else {
-        this.coverLetters.unshift(document);
-        localStorage.setItem('user_cover_letters', JSON.stringify(this.coverLetters));
-      }
+      this.cvList.unshift(document);
+      localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
 
       this.isUploading = false;
       this.closeModals();
@@ -138,9 +130,6 @@ export class CvManagerComponent implements OnInit {
     if (type === 'cv') {
       this.cvList = this.cvList.filter(doc => doc.id !== documentId);
       localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
-    } else {
-      this.coverLetters = this.coverLetters.filter(doc => doc.id !== documentId);
-      localStorage.setItem('user_cover_letters', JSON.stringify(this.coverLetters));
     }
 
     this.loadStats();
@@ -164,24 +153,157 @@ export class CvManagerComponent implements OnInit {
     if (!this.selectedFile) return;
 
     this.isAnalyzing = true;
-    setTimeout(() => {
-      this.isAnalyzing = false;
-      this.analysisResult = {
-        score: 85,
-        strengths: ['Bonne structure', 'Compétences techniques claires'],
-        weaknesses: ['Manque de chiffres clés', 'Description de poste trop courte'],
-        recommendation: 'Ajoutez des résultats quantifiables pour vos expériences précédentes.'
-      };
-    }, 2500);
+    this.analysisService.analyzeCV(this.selectedFile).subscribe({
+      next: (result) => {
+        this.analysisResult = result;
+        this.isAnalyzing = false;
+      },
+      error: (err) => {
+        console.error('Analysis failed:', err);
+        this.isAnalyzing = false;
+        alert('L\'analyse a échoué. Veuillez réessayer.');
+      }
+    });
   }
 
   generateDocument() {
+    if (!this.targetJob) {
+      alert('Veuillez spécifier le poste visé.');
+      return;
+    }
+
     this.isGenerating = true;
-    setTimeout(() => {
-      this.isGenerating = false;
-      this.showGenerator = false;
-      this.loadStats();
-    }, 2000);
+    this.analysisService.generateDocument(this.targetJob, this.additionalInfo, this.generationType).subscribe({
+      next: (result) => {
+        // Create a fake file from the generated content
+        const generatedText = this.formatGeneratedCV(result);
+
+        const blob = new Blob([generatedText], { type: 'text/plain' });
+        const fileName = `CV_${this.targetJob.replace(/\s+/g, '_')}.txt`;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const fileUrl = e.target?.result as string;
+
+          const document: CVDocument = {
+            id: Date.now(),
+            name: fileName,
+            type: 'cv',
+            fileType: 'txt',
+            fileUrl: fileUrl,
+            fileSize: blob.size,
+            isDefault: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+          };
+
+          this.cvList.unshift(document);
+          localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
+
+          this.isGenerating = false;
+          this.showGenerator = false;
+          this.loadStats();
+          this.targetJob = '';
+          this.additionalInfo = '';
+          alert('Document généré avec succès !');
+        };
+        reader.readAsDataURL(blob);
+      },
+      error: (err) => {
+        console.error('Generation failed:', err);
+        this.isGenerating = false;
+        alert('La génération a échoué. Veuillez réessayer.');
+      }
+    });
+  }
+
+  private formatGeneratedCV(data: any): string {
+    let cv = `CURRICULUM VITAE\n`;
+    cv += `================\n\n`;
+    cv += `NOM: ${data.full_name || '[Votre Nom]'}\n\n`;
+    cv += `RÉSUMÉ PROFESSIONNEL\n`;
+    cv += `---------------------\n`;
+    cv += `${data.professional_summary || ''}\n\n`;
+
+    cv += `COMPÉTENCES\n`;
+    cv += `-----------\n`;
+    if (data.skills) {
+      data.skills.forEach((s: string) => cv += `- ${s}\n`);
+    }
+    cv += `\n`;
+
+    cv += `EXPÉRIENCES PROFESSIONNELLES\n`;
+    cv += `----------------------------\n`;
+    if (data.experiences) {
+      data.experiences.forEach((exp: any) => {
+        cv += `${exp.title} | ${exp.company} | ${exp.duration}\n`;
+        if (exp.responsibilities) {
+          exp.responsibilities.forEach((r: string) => cv += `  * ${r}\n`);
+        }
+        cv += `\n`;
+      });
+    }
+
+    cv += `FORMATION\n`;
+    cv += `---------\n`;
+    if (data.education) {
+      data.education.forEach((edu: string) => cv += `- ${edu}\n`);
+    }
+
+    return cv;
+  }
+
+  downloadAnalysisReport() {
+    if (!this.analysisResult) return;
+
+    let report = `RAPPORT D'ANALYSE IA - SMART CAREER HUB\n`;
+    report += `=======================================\n\n`;
+    report += `SCORE DE CLARTÉ : ${this.analysisResult.clarity_score}%\n`;
+    report += `NIVEAU D'EXPÉRIENCE : ${this.analysisResult.experience_level}\n`;
+    report += `ANNÉES D'EXPÉRIENCE : ${this.analysisResult.years_experience}\n\n`;
+
+    report += `RÉSUMÉ DU PROFIL\n`;
+    report += `----------------\n`;
+    report += `${this.analysisResult.summary}\n\n`;
+
+    if (this.analysisResult.linguistic_faults.length > 0) {
+      report += `FAUTES LINGUISTIQUES DÉTECTÉES\n`;
+      report += `-----------------------------\n`;
+      this.analysisResult.linguistic_faults.forEach(f => report += `- ${f}\n`);
+      report += `\n`;
+    }
+
+    report += `RECOMMANDATIONS DE VISIBILITÉ\n`;
+    report += `-----------------------------\n`;
+    this.analysisResult.visibility_recommendations.forEach(r => report += `- ${r}\n`);
+    report += `\n`;
+
+    report += `MÉTIERS RECOMMANDÉS\n`;
+    report += `-------------------\n`;
+    this.analysisResult.recommended_jobs.forEach(j => report += `- ${j}\n`);
+    report += `\n`;
+
+    report += `OUTILS À APPRENDRE\n`;
+    report += `------------------\n`;
+    this.analysisResult.tools_to_learn.forEach(t => report += `- ${t}\n`);
+    report += `\n`;
+
+    report += `CERTIFICATIONS RECOMMANDÉES\n`;
+    report += `---------------------------\n`;
+    this.analysisResult.recommended_certificates.forEach(c => report += `- ${c}\n`);
+    report += `\n`;
+
+    report += `FEEDBACK STRUCTUREL\n`;
+    report += `-------------------\n`;
+    report += `${this.analysisResult.structural_feedback}\n`;
+
+    const blob = new Blob([report], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Rapport_Analyse_CV_${new Date().getTime()}.txt`;
+    link.click();
+    window.URL.revokeObjectURL(url);
   }
 
   formatDate(dateString: string): string {

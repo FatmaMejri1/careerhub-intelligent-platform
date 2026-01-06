@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CandidateDataService } from '../../services/candidate-data.service';
 
 interface Application {
     id: number;
@@ -31,38 +32,41 @@ export class MyApplicationsComponent implements OnInit {
 
     applications: Application[] = [];
 
-    constructor(private router: Router) { }
+    constructor(
+        private router: Router,
+        private candidateService: CandidateDataService
+    ) { }
 
     ngOnInit() {
         this.loadApplications();
     }
 
     loadApplications() {
-        const apps = localStorage.getItem('user_applications');
-        if (apps) {
-            const parsedApps = JSON.parse(apps);
-            this.applications = parsedApps.map((app: any) => ({
-                id: app.id,
-                jobId: app.jobId,
-                companyName: app.company,
-                jobTitle: app.title,
-                location: app.location || 'Non spécifié',
-                appliedDate: app.appliedDate,
-                status: app.status,
-                timelineStep: this.getTimelineStep(app.status),
-                salary: app.salary,
-                coverLetter: app.coverLetter
-            }));
-        }
+        this.candidateService.getApplications().subscribe({
+            next: (apps) => {
+                this.applications = apps.map((app: any) => ({
+                    id: app.id,
+                    jobId: app.offre?.id,
+                    companyName: app.offre?.recruteur?.nomEntreprise || 'N/A',
+                    jobTitle: app.offre?.titre || 'Poste inconnu',
+                    location: app.offre?.location || 'Non spécifié',
+                    appliedDate: app.dateCandidature || new Date().toISOString(),
+                    status: app.statut,
+                    timelineStep: this.getTimelineStep(app.statut),
+                    salary: 'N/A', // Mock until available in DB
+                }));
+            },
+            error: (err) => console.error('Error loading applications', err)
+        });
     }
 
     getTimelineStep(status: string): number {
         switch (status) {
-            case 'PENDING': return 1;
-            case 'IN_REVIEW': return 2;
+            case 'EN_ATTENTE': return 1;
+            case 'A_L_EXAMEN': return 2;
             case 'INTERVIEW': return 2;
-            case 'ACCEPTED': return 3;
-            case 'REJECTED': return 3;
+            case 'ACCEPTEE': return 3;
+            case 'REFUSEE': return 3;
             default: return 1;
         }
     }
@@ -101,15 +105,16 @@ export class MyApplicationsComponent implements OnInit {
 
     cancelApplication(id: number) {
         if (confirm('Êtes-vous sûr de vouloir annuler cette candidature ?')) {
-            this.applications = this.applications.filter(app => app.id !== id);
-
-            // Update localStorage
-            const apps = localStorage.getItem('user_applications');
-            if (apps) {
-                const parsedApps = JSON.parse(apps);
-                const updated = parsedApps.filter((app: any) => app.id !== id);
-                localStorage.setItem('user_applications', JSON.stringify(updated));
-            }
+            this.candidateService.cancelApplication(id).subscribe({
+                next: () => {
+                    alert('Candidature annulée avec succès.');
+                    this.loadApplications();
+                },
+                error: (err) => {
+                    console.error('Cancel error', err);
+                    alert('Erreur lors de l\'annulation.');
+                }
+            });
         }
     }
 

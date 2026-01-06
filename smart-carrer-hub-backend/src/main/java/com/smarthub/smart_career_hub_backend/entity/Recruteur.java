@@ -7,11 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, exclude = { "offres" })
+@EqualsAndHashCode(callSuper = true, exclude = { "offres" })
 @Entity
 @Table(name = "recruteurs")
 public class Recruteur extends Utilisateur {

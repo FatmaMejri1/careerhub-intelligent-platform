@@ -7,6 +7,7 @@ import { HeaderComponent } from '../header/header';
 import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
 import { AuthService } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
+import { QuizComponent } from '../quiz/quiz';
 
 interface Job {
     id: string;
@@ -27,7 +28,7 @@ interface Job {
 @Component({
     selector: 'app-opportunities',
     standalone: true,
-    imports: [CommonModule, HttpClientModule, JobCardComponent, HeaderComponent, JobDetailsModalComponent, RouterModule],
+    imports: [CommonModule, HttpClientModule, JobCardComponent, HeaderComponent, JobDetailsModalComponent, RouterModule, QuizComponent],
     templateUrl: './opportunities.component.html',
     styleUrls: ['./opportunities.component.css']
 })
@@ -40,6 +41,10 @@ export class OpportunitiesComponent implements OnInit {
     selectedJob: any = null;
     isModalOpen = false;
     isApplicationMode = false;
+
+    // Quiz State
+    isQuizOpen = false;
+    selectedJobForQuiz: any = null;
 
     constructor(
         private http: HttpClient,
@@ -145,27 +150,63 @@ export class OpportunitiesComponent implements OnInit {
         }
 
         if (event.job.isInternal) {
-            const userId = Number(user.id);
-            const offreId = event.job.internalId;
-
-            this.http.post(`http://localhost:9099/api/candidature/chercheur/${userId}/offre/${offreId}`, {}).subscribe({
-                next: () => {
-                    alert('Candidature envoyée avec succès !');
-                    this.trackApplication(event.job.id);
-                    this.closeModal();
-                },
-                error: (err) => {
-                    console.error('Error applying directly:', err);
-                    alert('Erreur lors de l\'envoi de la candidature. Veuillez réessayer.');
-                    this.closeModal();
-                }
-            });
+            // Trigger Quiz instead of direct apply
+            this.selectedJobForQuiz = event.job;
+            this.isQuizOpen = true;
+            this.closeModal();
         } else {
             // External application tracking
             console.log('Applied via modal (external):', event);
             this.trackApplication(event.job.id);
             this.closeModal();
         }
+    }
+
+    onQuizFinished(result: { score: number, passed: boolean, cv?: File, letter?: string }): void {
+        if (result.passed) {
+            this.finalizeApplication(this.selectedJobForQuiz, result.score, result.cv, result.letter);
+        } else {
+            // The quiz component handles showing failure state
+        }
+    }
+
+    finalizeApplication(job: any, score?: number, cv?: File, letter?: string): void {
+        const user = this.authService.getCurrentUser();
+        if (!user) return;
+
+        const userId = Number(user.id);
+        const offreId = job.internalId;
+
+        const url = `http://localhost:9099/api/candidature/chercheur/${userId}/offre/${offreId}`;
+
+        const formData = new FormData();
+        if (score !== undefined) {
+            formData.append('score', score.toString());
+        }
+        if (cv) {
+            formData.append('cv', cv);
+        }
+        if (letter) {
+            formData.append('letter', letter);
+        }
+
+        this.http.post(url, formData).subscribe({
+            next: () => {
+                alert('Félicitations ! Votre candidature a été transmise au recruteur avec succès.');
+                this.trackApplication(job.id);
+                this.closeQuiz();
+            },
+            error: (err) => {
+                console.error('Error applying with details:', err);
+                alert('Erreur lors de l\'envoi de la candidature (Problème serveur ou fichier trop volumineux).');
+                this.closeQuiz();
+            }
+        });
+    }
+
+    closeQuiz(): void {
+        this.isQuizOpen = false;
+        this.selectedJobForQuiz = null;
     }
 
     private trackApplication(jobId: string): void {

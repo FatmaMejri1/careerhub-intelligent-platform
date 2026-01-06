@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RecruiterService } from '../../services/recruiter.service';
+import { AuthService } from '../../../shared/services/auth';
+import { finalize } from 'rxjs';
 
 interface Candidate {
     id: number;
@@ -17,6 +20,8 @@ interface Candidate {
     skills: string[];
     history: any[];
     education: any[];
+    fraudScore?: number;
+    cvUrl?: string;
 }
 
 @Component({
@@ -27,6 +32,9 @@ interface Candidate {
     styleUrls: ['./candidates.css']
 })
 export class RecruiterCandidatesComponent implements OnInit {
+
+    offers: string[] = [];
+    isLoading = false;
 
     // Stats
     stats = {
@@ -44,58 +52,100 @@ export class RecruiterCandidatesComponent implements OnInit {
         match: '0'
     };
 
-    offers = ['Développeur Full Stack Angular', 'UX/UI Designer', 'Product Owner', 'Data Analyst'];
-
+    allCandidates: Candidate[] = [];
+    filteredCandidates: Candidate[] = [];
     selectedCandidate: Candidate | null = null;
 
-    // Mock Data
-    allCandidates: Candidate[] = [
-        {
-            id: 1, name: 'Amine Ben Ali', initials: 'AB', email: 'amine.benali@gmail.com', avatarColor: '#3b82f6',
-            offerTitle: 'Développeur Full Stack Angular', matchScore: 92, experience: '3 ans', topSkill: 'Angular',
-            status: 'Nouveau', date: new Date('2023-12-10'),
-            skills: ['Angular', 'TypeScript', 'Node.js', 'MongoDB'],
-            history: [{ role: 'Développeur Frontend', company: 'Tech Corp', duration: '2021-2023', description: 'Développement d\'interfaces web complexes.' }],
-            education: [{ degree: 'Ingénieur Informatique', school: 'ENSI', year: '2021' }]
-        },
-        {
-            id: 2, name: 'Sarah Mejbri', initials: 'SM', email: 'sarah.m@yahoo.fr', avatarColor: '#ec4899',
-            offerTitle: 'UX/UI Designer', matchScore: 88, experience: '5 ans', topSkill: 'Figma',
-            status: 'Présélectionné', date: new Date('2023-12-08'),
-            skills: ['Figma', 'Adobe XD', 'Prototyping', 'User Research'],
-            history: [{ role: 'Lead Designer', company: 'WebAgency', duration: '2019-2023', description: 'Gestion d\'une équipe de 3 designers.' }],
-            education: [{ degree: 'Master Design', school: 'ESAD', year: '2018' }]
-        },
-        {
-            id: 3, name: 'Karim Jaziri', initials: 'KJ', email: 'karim.jaz@outlook.com', avatarColor: '#10b981',
-            offerTitle: 'Product Owner', matchScore: 74, experience: '4 ans', topSkill: 'Agile',
-            status: 'Entretien', date: new Date('2023-11-28'),
-            skills: ['Scrum', 'Jira', 'User Stories', 'Roadmapping'],
-            history: [{ role: 'Product Owner', company: 'StartupTN', duration: '2020-2023', description: 'Lancement de 2 produits SaaS.' }],
-            education: [{ degree: 'Licence Gestion', school: 'IHEC', year: '2019' }]
-        },
-        {
-            id: 4, name: 'Leila Tounsi', initials: 'LT', email: 'leila.t@gmail.com', avatarColor: '#f59e0b',
-            offerTitle: 'Développeur Full Stack Angular', matchScore: 95, experience: '2 ans', topSkill: 'Angular',
-            status: 'Recruté', date: new Date('2023-11-15'),
-            skills: ['Angular', 'RxJS', 'Sass', 'Firebase'],
-            history: [{ role: 'Développeur Web', company: 'Freelance', duration: '2021-2023', description: 'Projets divers pour clients internationaux.' }],
-            education: [{ degree: 'Ingénieur Logiciel', school: 'INSAT', year: '2021' }]
-        },
-        {
-            id: 5, name: 'Youssef Karray', initials: 'YK', email: 'youssef.k@gmail.com', avatarColor: '#6366f1',
-            offerTitle: 'Data Analyst', matchScore: 65, experience: '1 an', topSkill: 'Python',
-            status: 'Rejeté', date: new Date('2023-10-05'),
-            skills: ['Python', 'Pandas', 'SQL', 'Tableau'],
-            history: [{ role: 'Stage Data', company: 'Bank TN', duration: '2022', description: 'Analyse de risques crédits.' }],
-            education: [{ degree: 'Master Big Data', school: 'Esprit', year: '2023' }]
-        }
-    ];
-
-    filteredCandidates: Candidate[] = [];
+    constructor(
+        private recruiterService: RecruiterService,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
-        this.applyFilters();
+        this.loadCandidates();
+    }
+
+    loadCandidates() {
+        const user = this.authService.getCurrentUser();
+        if (!user || user.role !== 'recruiter') return;
+
+        this.isLoading = true;
+        this.recruiterService.getCandidaturesByRecruiterId(Number(user.id))
+            .pipe(finalize(() => this.isLoading = false))
+            .subscribe({
+                next: (data) => {
+                    this.allCandidates = data.map(c => this.mapBackendToCandidate(c));
+                    this.offers = [...new Set(this.allCandidates.map(c => c.offerTitle))];
+                    this.applyFilters();
+                },
+                error: (err) => {
+                    console.error('Error fetching candidates:', err);
+                    this.isLoading = false;
+                }
+            });
+    }
+
+    mapBackendToCandidate(c: any): Candidate {
+        console.log('DEBUG: Raw backend data for candidature:', c.id, c);
+        const chercheur = c.chercheurEmploi || {};
+        const name = `${chercheur.nom || ''} ${chercheur.prenom || ''}`.trim() || 'Candidat';
+        const initials = (chercheur.nom?.[0] || '') + (chercheur.prenom?.[0] || '');
+
+        let skills = [];
+        try {
+            skills = typeof chercheur.competences === 'string' ? JSON.parse(chercheur.competences) : (chercheur.competences || []);
+        } catch (e) { skills = []; }
+
+        let history = [];
+        try {
+            history = typeof chercheur.experiences === 'string' ? JSON.parse(chercheur.experiences) : (chercheur.experiences || []);
+        } catch (e) { history = []; }
+
+        let education = [];
+        try {
+            education = typeof chercheur.educations === 'string' ? JSON.parse(chercheur.educations) : (chercheur.educations || []);
+        } catch (e) { education = []; }
+
+        const colors = ['#3b82f6', '#ec4899', '#10b981', '#f59e0b', '#6366f1', '#8b5cf6'];
+        const randomColor = colors[Math.floor(Math.random() * (c.id % colors.length))];
+
+        let status: any = 'Nouveau';
+        if (c.statut === 'ACCEPTEE') status = 'Présélectionné';
+        else if (c.statut === 'REFUSEE') status = 'Rejeté';
+        else if (c.statut === 'ENTRETIEN') status = 'Entretien';
+        else if (c.statut === 'RECRUTE') status = 'Recruté';
+
+        // Check all possible CV URL sources
+        const cvFromCandidature = c.cvUrl;
+        const cvFromChercheur = chercheur.cvUrl;
+        const finalCvUrl = cvFromCandidature || cvFromChercheur || '';
+
+        console.log(`DEBUG: CV URLs for ${name}:`, {
+            candidatureCV: cvFromCandidature,
+            chercheurCV: cvFromChercheur,
+            final: finalCvUrl
+        });
+
+        const candidateResult = {
+            id: c.id,
+            name: name,
+            initials: initials || 'C',
+            email: chercheur.email || 'N/A',
+            avatarColor: randomColor,
+            offerTitle: c.offre?.titre || 'Offre inconnue',
+            matchScore: Math.round(chercheur.employabilityScore || c.quizScore || 0),
+            experience: chercheur.niveauExperience || 'N/A',
+            topSkill: (skills && skills.length > 0) ? skills[0] : 'N/A',
+            status: status,
+            date: c.dateCreation ? new Date(c.dateCreation) : (c.offre?.dateCreation ? new Date(c.offre.dateCreation) : new Date()),
+            skills: skills || [],
+            history: history || [],
+            education: education || [],
+            fraudScore: chercheur.fraudScore || 0,
+            cvUrl: finalCvUrl
+        };
+
+        return candidateResult;
     }
 
     applyFilters() {
@@ -127,7 +177,6 @@ export class RecruiterCandidatesComponent implements OnInit {
         this.selectedCandidate = null;
     }
 
-    // Helper functions for UI
     getStatusBadgeClass(status: string) {
         switch (status) {
             case 'Nouveau': return 'badge-status-new';
@@ -153,18 +202,85 @@ export class RecruiterCandidatesComponent implements OnInit {
 
     updateStatus(newStatus: 'Nouveau' | 'Présélectionné' | 'Entretien' | 'Recruté' | 'Rejeté') {
         if (this.selectedCandidate) {
+            const oldStatus = this.selectedCandidate.status;
             this.selectedCandidate.status = newStatus;
-            this.updateStats();
-            // Typically call backend update here
+
+            let backendStatut = 'EN_ATTENTE';
+            if (newStatus === 'Présélectionné') backendStatut = 'ACCEPTEE';
+            else if (newStatus === 'Rejeté') backendStatut = 'REFUSEE';
+            else if (newStatus === 'Entretien') backendStatut = 'ENTRETIEN';
+            else if (newStatus === 'Recruté') backendStatut = 'RECRUTE';
+
+            this.recruiterService.updateCandidatureStatus(this.selectedCandidate.id, backendStatut)
+                .subscribe({
+                    next: () => {
+                        this.updateStats();
+                    },
+                    error: (err) => {
+                        console.error('Error updating status:', err);
+                        this.selectedCandidate!.status = oldStatus;
+                    }
+                });
         }
     }
 
+    exportReport() {
+        if (this.filteredCandidates.length === 0) return;
+
+        const headers = ['Nom', 'Email', 'Offre', 'Score IA', 'Expérience', 'Statut', 'Date'];
+        const csvRows = [
+            headers.join(','),
+            ...this.filteredCandidates.map(c => [
+                `"${c.name}"`,
+                `"${c.email}"`,
+                `"${c.offerTitle}"`,
+                `${c.matchScore}%`,
+                `"${c.experience}"`,
+                `"${c.status}"`,
+                `"${c.date.toLocaleDateString()}"`
+            ].join(','))
+        ];
+
+        const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `rapport_candidats_${new Date().toISOString().split('T')[0]}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
     isStatusActive(step: string): boolean {
-        // Simple logic for illustration logic of stepper
-        // In real app, define order: Nouveau > Présélectionné > Entretien > Recruté
         const order = ['Nouveau', 'Présélectionné', 'Entretien', 'Recruté'];
         const currentIdx = order.indexOf(this.selectedCandidate?.status || '');
         const stepIdx = order.indexOf(step);
         return stepIdx <= currentIdx && currentIdx !== -1;
+    }
+
+    viewCv(candidate: Candidate) {
+        console.log('Attempting to view CV for:', candidate.name, 'URL:', candidate.cvUrl);
+        if (candidate.cvUrl) {
+            // Use the new file serving endpoint
+            const url = `http://localhost:9099/api/files/cv?path=${encodeURIComponent(candidate.cvUrl)}`;
+            console.log('Opening CV at:', url);
+            window.open(url, '_blank');
+        } else {
+            console.warn('No CV URL available for candidate:', candidate);
+            alert('CV non disponible pour ce candidat.');
+        }
+    }
+
+    contactCandidate(candidate: Candidate) {
+        window.location.href = `mailto:${candidate.email}?subject=Candidature pour ${candidate.offerTitle}`;
+    }
+
+    onUpdateStatus(event: Event, candidate: Candidate, status: 'Présélectionné' | 'Rejeté') {
+        event.stopPropagation();
+        const oldSelected = this.selectedCandidate;
+        this.selectedCandidate = candidate;
+        this.updateStatus(status);
+        if (!oldSelected) this.selectedCandidate = null; // Reset if none was selected
+        else this.selectedCandidate = oldSelected; // Restore previous selection
     }
 }

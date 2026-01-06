@@ -20,15 +20,14 @@ public class CandidatureService {
     private final ChercheurEmploiRepository chercheurEmploiRepository;
     private final OffreRepository offreRepository;
 
-    //constructor injection
+    // constructor injection
     public CandidatureService(CandidatureRepository candidatureRepository,
-                              ChercheurEmploiRepository chercheurEmploiRepository,
-                              OffreRepository offreRepository) {
+            ChercheurEmploiRepository chercheurEmploiRepository,
+            OffreRepository offreRepository) {
         this.candidatureRepository = candidatureRepository;
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.offreRepository = offreRepository;
     }
-
 
     // Gestion Candidature (crud)
 
@@ -36,13 +35,15 @@ public class CandidatureService {
     public List<Candidature> getAllCandidatures() {
         return candidatureRepository.findAll();
     }
-    //return optional pour gérer le cas id n'existe pas
+
+    // return optional pour gérer le cas id n'existe pas
     public Optional<Candidature> getCandidatureById(Long id) {
         return candidatureRepository.findById(id);
     }
 
-    //Ajouter une candidature
-    public Candidature ajouterCandidature(Long chercheurId, Long offreId) {
+    // Ajouter une candidature
+    public Candidature ajouterCandidature(Long chercheurId, Long offreId, Double quizScore, String cvUrl,
+            String lettreMotivation) {
         ChercheurEmploi chercheur = chercheurEmploiRepository.findById(chercheurId)
                 .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
         Offre offre = offreRepository.findById(offreId)
@@ -52,17 +53,22 @@ public class CandidatureService {
         candidature.setChercheurEmploi(chercheur);
         candidature.setOffre(offre);
         candidature.setStatut(StatutCandidature.EN_ATTENTE);
+        candidature.setQuizScore(quizScore);
+        candidature.setCvUrl(cvUrl);
+        candidature.setLettreMotivation(lettreMotivation);
 
         return candidatureRepository.save(candidature);
     }
-     // mise a jour le statut de candidature
+
+    // mise a jour le statut de candidature
     public Candidature updateStatut(Long candidatureId, StatutCandidature statut) {
         Candidature candidature = candidatureRepository.findById(candidatureId)
                 .orElseThrow(() -> new RuntimeException("Candidature non trouvée"));
         candidature.setStatut(statut);
         return candidatureRepository.save(candidature);
     }
-     // supprimer une candidature
+
+    // supprimer une candidature
     public void deleteCandidature(Long id) {
         candidatureRepository.deleteById(id);
     }
@@ -80,10 +86,15 @@ public class CandidatureService {
     }
 
     public List<Candidature> getCandidaturesByOffre(Long offreId) {
+        return candidatureRepository.findByOffreId(offreId);
+    }
+
+    public List<Candidature> getCandidaturesByRecruteur(Long recruiterId) {
         return candidatureRepository.findAll().stream()
                 .filter(c -> c.getOffre() != null
-                        && c.getOffre().getId() != null
-                        && c.getOffre().getId().equals(offreId))
+                        && c.getOffre().getRecruteur() != null
+                        && c.getOffre().getRecruteur().getId() != null
+                        && c.getOffre().getRecruteur().getId().equals(recruiterId))
                 .toList();
     }
 
@@ -115,14 +126,14 @@ public class CandidatureService {
                     .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
             candidature.setChercheurEmploi(chercheur);
         }
-        
+
         // Mettre à jour l'offre si fournie
         if (candidatureDetails.getOffreId() != null) {
             Offre offre = offreRepository.findById(candidatureDetails.getOffreId())
                     .orElseThrow(() -> new RuntimeException("Offre non trouvée"));
             candidature.setOffre(offre);
         }
-        
+
         // Mettre à jour le statut si fourni
         if (candidatureDetails.getStatut() != null) {
             candidature.setStatut(candidatureDetails.getStatut());

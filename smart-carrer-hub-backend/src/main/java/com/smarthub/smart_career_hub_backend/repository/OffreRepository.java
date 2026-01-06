@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OffreRepository extends JpaRepository<Offre, Long> {
     java.util.List<Offre> findByRecruteur_Id(Long recruteurId);
+
+    java.util.List<Offre> findTop5ByOrderByIdDesc();
 }

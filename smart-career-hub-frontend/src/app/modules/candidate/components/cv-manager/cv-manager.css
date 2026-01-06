@@ -256,3 +256,39 @@
     font-weight: 800;
     color: #6f42c1;
 }
+
+.bg-warning-light {
+    background-color: #fff9db;
+}
+
+.tiny-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.bg-danger-light {
+    background-color: #fff5f5;
+}
+
+.bg-success-light {
+    background-color: #ebfbee;
+}
+
+.bg-primary-light {
+    background-color: #e7f5ff;
+}
+
+.analysis-results {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.analysis-results::-webkit-scrollbar {
+    width: 4px;
+}
+
+.analysis-results::-webkit-scrollbar-thumb {
+    background: #dee2e6;
+    border-radius: 4px;
+}

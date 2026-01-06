@@ -45,16 +45,35 @@ public class CandidatureController {
         }
     }
 
-    @PostMapping("/chercheur/{chercheurId}/offre/{offreId}")
+    @PostMapping(value = "/chercheur/{chercheurId}/offre/{offreId}", consumes = { "multipart/form-data" })
     public ResponseEntity<Candidature> createCandidature(
             @PathVariable Long chercheurId,
-            @PathVariable Long offreId) {
+            @PathVariable Long offreId,
+            @RequestParam(required = false) Double score,
+            @RequestParam(value = "cv", required = false) org.springframework.web.multipart.MultipartFile cvFile,
+            @RequestParam(value = "letter", required = false) String letter) {
         try {
-            Candidature candidature = candidatureService.ajouterCandidature(chercheurId, offreId);
+            String cvUrl = null;
+            if (cvFile != null && !cvFile.isEmpty()) {
+                // Simple local file save
+                String uploadDir = "uploads/cvs/";
+                java.io.File directory = new java.io.File(uploadDir);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                String fileName = java.util.UUID.randomUUID().toString() + "_" + cvFile.getOriginalFilename();
+                java.nio.file.Path filePath = java.nio.file.Paths.get(uploadDir + fileName);
+                java.nio.file.Files.write(filePath, cvFile.getBytes());
+                cvUrl = "/uploads/cvs/" + fileName;
+            }
+
+            Candidature candidature = candidatureService.ajouterCandidature(chercheurId, offreId, score, cvUrl, letter);
             return ResponseEntity.status(HttpStatus.CREATED).body(candidature);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -109,6 +128,52 @@ public class CandidatureController {
             return ResponseEntity.ok(candidatures);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/recruteur/{recruteurId}")
+    public ResponseEntity<?> getCandidaturesByRecruteur(@PathVariable Long recruteurId) {
+        try {
+            List<Candidature> candidatures = candidatureService.getCandidaturesByRecruteur(recruteurId);
+            // Manuel mapping to avoid circular dependencies during testing
+            List<java.util.Map<String, Object>> result = candidatures.stream().map(c -> {
+                java.util.Map<String, Object> map = new java.util.HashMap<>();
+                map.put("id", c.getId());
+                map.put("statut", c.getStatut());
+                map.put("quizScore", c.getQuizScore());
+                System.out.println("DEBUG: Mapping candidature " + c.getId() + " - cvUrl: " + c.getCvUrl());
+                map.put("dateCreation", c.getOffre() != null ? c.getOffre().getDateCreation() : null);
+
+                if (c.getOffre() != null) {
+                    java.util.Map<String, Object> offreMap = new java.util.HashMap<>();
+                    offreMap.put("id", c.getOffre().getId());
+                    offreMap.put("titre", c.getOffre().getTitre());
+                    map.put("offre", offreMap);
+                }
+
+                if (c.getChercheurEmploi() != null) {
+                    java.util.Map<String, Object> ceMap = new java.util.HashMap<>();
+                    ceMap.put("id", c.getChercheurEmploi().getId());
+                    ceMap.put("nom", c.getChercheurEmploi().getNom());
+                    ceMap.put("prenom", c.getChercheurEmploi().getPrenom());
+                    ceMap.put("email", c.getChercheurEmploi().getEmail());
+                    ceMap.put("competences", c.getChercheurEmploi().getCompetences());
+                    ceMap.put("experiences", c.getChercheurEmploi().getExperiences());
+                    ceMap.put("educations", c.getChercheurEmploi().getEducations());
+                    ceMap.put("niveauExperience", c.getChercheurEmploi().getNiveauExperience());
+                    ceMap.put("employabilityScore", c.getChercheurEmploi().getEmployabilityScore());
+                    ceMap.put("fraudScore", c.getChercheurEmploi().getFraudScore());
+                    ceMap.put("cvUrl", c.getChercheurEmploi().getCvUrl());
+                    map.put("chercheurEmploi", ceMap);
+                }
+                map.put("cvUrl", c.getCvUrl());
+
+                return map;
+            }).toList();
+            return ResponseEntity.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 }

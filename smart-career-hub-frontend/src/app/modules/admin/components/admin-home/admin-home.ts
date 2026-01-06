@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AdminStatsService } from '../../services/admin-stats.service';
 
 @Component({
     selector: 'app-admin-home',
@@ -8,13 +9,30 @@ import { CommonModule } from '@angular/common';
     templateUrl: './admin-home.html',
     styleUrls: ['./admin-home.css']
 })
-export class AdminHomeComponent {
+export class AdminHomeComponent implements OnInit {
+    stats: any = {
+        totalUsers: 0,
+        totalOffers: 0,
+        reportedFrauds: 0,
+        recentUsers: [],
+        fraudAlerts: []
+    };
 
-    fraudAlerts = [
-        { user: 'John Doe', role: 'Candidate', type: 'Faux Diplôme', score: 88 },
-        { user: 'Tech Corp LLC', role: 'Recruiter', type: 'Offre Suspecte', score: 75 },
-        { user: 'Sam Smith', role: 'Candidate', type: 'Incohérence CV', score: 62 },
-        { user: 'Global HR', role: 'Recruiter', type: 'Spam Massif', score: 95 }
-    ];
+    fraudAlerts: any[] = [];
 
+    constructor(private statsService: AdminStatsService) { }
+
+    ngOnInit(): void {
+        this.loadStats();
+    }
+
+    loadStats(): void {
+        this.statsService.getAdminStats().subscribe({
+            next: (data) => {
+                this.stats = data;
+                this.fraudAlerts = data.fraudAlerts || [];
+            },
+            error: (err) => console.error('Error loading admin stats', err)
+        });
+    }
 }

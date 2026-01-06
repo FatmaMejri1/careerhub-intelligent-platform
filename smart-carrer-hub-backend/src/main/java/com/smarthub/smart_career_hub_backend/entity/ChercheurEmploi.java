@@ -7,25 +7,34 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, exclude = { "quizList", "coachings" })
+@EqualsAndHashCode(callSuper = true, exclude = { "quizList", "coachings" })
 @Entity
 @Table(name = "chercheurs")
 public class ChercheurEmploi extends Utilisateur {
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String objectif; // Used as Bio
+
     private String niveauExperience; // Experience level (junior, mid, senior)
+
+    @Column(length = 500)
     private String adresse;
+
+    @Column(length = 500)
     private String titre; // Professional title
 
     // JSON Arrays stored as Strings (TEXT/LONGTEXT)
     @Lob
     @Column(columnDefinition = "LONGTEXT")
-    private String competences; 
-    
+    private String competences;
+
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String experiences;
@@ -41,7 +50,7 @@ public class ChercheurEmploi extends Utilisateur {
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String certifications;
-    
+
     @Lob
     @Column(columnDefinition = "LONGTEXT")
     private String cvUrl;
@@ -50,6 +59,10 @@ public class ChercheurEmploi extends Utilisateur {
     private String linkedin;
     private String github;
     private String portfolio;
+
+    // Scores
+    private Double employabilityScore = 0.0;
+    private Double fraudScore = 0.0;
 
     @OneToMany(mappedBy = "chercheurEmploi")
     @JsonIgnore

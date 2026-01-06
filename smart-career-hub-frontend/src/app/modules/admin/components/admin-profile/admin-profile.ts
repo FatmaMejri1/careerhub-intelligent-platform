@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminProfileService } from '../../services/admin-profile.service';
@@ -10,16 +10,16 @@ import { AdminProfileService } from '../../services/admin-profile.service';
     templateUrl: './admin-profile.html',
     styleUrls: ['./admin-profile.css']
 })
-export class AdminProfileComponent {
+export class AdminProfileComponent implements OnInit {
     isEditing = false;
     profileImage: string | null = null;
 
-    adminData = {
-        firstName: 'Fatma',
-        lastName: 'Mejri',
-        email: 'admin@smartcareer.hub',
-        phone: '+216 55 123 456',
-        role: 'System Administrator'
+    adminData: any = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        role: 'Administrateur Système'
     };
 
     constructor(private profileService: AdminProfileService) {
@@ -28,14 +28,48 @@ export class AdminProfileComponent {
         });
     }
 
+    ngOnInit(): void {
+        this.loadProfile();
+    }
+
+    loadProfile(): void {
+        this.profileService.getProfile().subscribe(data => {
+            if (data) {
+                this.adminData = {
+                    ...this.adminData,
+                    firstName: data.firstName || '',
+                    lastName: data.lastName || '',
+                    email: data.email || '',
+                    phone: data.phone || ''
+                };
+                if (data.profileImage) {
+                    this.profileImage = data.profileImage;
+                }
+            }
+        });
+    }
+
     toggleEdit() {
         this.isEditing = !this.isEditing;
     }
 
     saveProfile() {
-        this.isEditing = false;
-        // In a real app, call API here
-        alert('Profil mis à jour avec succès !');
+        const { role, ...rest } = this.adminData;
+        const payload = {
+            ...rest,
+            profileImage: this.profileImage
+        };
+        this.profileService.updateProfile(payload).subscribe({
+            next: () => {
+                this.isEditing = false;
+                alert('Profil mis à jour avec succès !');
+                this.loadProfile();
+            },
+            error: (err) => {
+                console.error('Error saving profile', err);
+                alert('Erreur lors de la mise à jour du profil.');
+            }
+        });
     }
 
     onFileSelected(event: any) {

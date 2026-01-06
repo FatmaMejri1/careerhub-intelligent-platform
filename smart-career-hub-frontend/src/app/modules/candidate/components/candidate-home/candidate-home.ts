@@ -20,6 +20,8 @@ export class CandidateHome implements OnInit {
 
   candidateName = 'Candidat';
   headline = 'À l\'écoute d\'opportunités';
+  fraudScore = 0;
+  bestQuizScore = 0;
 
   // 2.1 Employability Score
   employability = {
@@ -113,11 +115,55 @@ export class CandidateHome implements OnInit {
       error: (err) => console.error('Error loading profile', err)
     });
 
-    // Load application stats (from localStorage for now)
-    this.loadApplicationStats();
+    // Load application stats and recent activity from Backend
+    this.candidateDataService.getDashboardStats().subscribe({
+      next: (stats) => {
+        if (stats) {
+          this.applicationStats = {
+            pending: stats.applicationStatusDistribution?.EN_ATTENTE || 0,
+            inReview: stats.applicationStatusDistribution?.A_L_EXAMEN || 0,
+            accepted: stats.applicationStatusDistribution?.ACCEPTEE || 0,
+            rejected: stats.applicationStatusDistribution?.REFUSEE || 0
+          };
 
-    // Build timeline
-    this.buildTimeline();
+          // Update Employability and other scores from real backend data
+          this.employability.score = stats.employabilityScore || 0;
+          this.fraudScore = stats.fraudScore || 0;
+          this.bestQuizScore = stats.bestQuizScore || 0;
+
+          this.updateEmployabilityLevel(this.employability.score);
+
+          this.recentApplications = (stats.recentApplications || []).map((app: any) => ({
+            ...app,
+            status: this.formatStatus(app.status)
+          }));
+
+          this.recommendedJobs = (stats.recommendedJobs || []).map((job: any) => ({
+            ...job,
+            contract: 'Temps Plein', // API doesn't provide this yet
+            postedTime: 'Récemment' // Mapping placeholder
+          }));
+
+          // Building timeline after data is loaded
+          this.buildTimeline();
+        }
+      },
+      error: (err) => {
+        console.error('Error loading stats', err);
+        // Build timeline even if stats fail
+        this.buildTimeline();
+      }
+    });
+  }
+
+  private formatStatus(status: string): string {
+    const map: any = {
+      'EN_ATTENTE': 'En attente',
+      'A_L_EXAMEN': 'En examen',
+      'ACCEPTEE': 'Acceptée',
+      'REFUSEE': 'Refusée'
+    };
+    return map[status] || status;
   }
 
   calculateEmployabilityScore(profileData: any) {
@@ -146,7 +192,10 @@ export class CandidateHome implements OnInit {
     if (projects.length > 0) score += 10;
 
     this.employability.score = Math.min(score, 100);
+    this.updateEmployabilityLevel(this.employability.score);
+  }
 
+  updateEmployabilityLevel(score: number) {
     // Determine level
     if (score >= 80) {
       this.employability.level = 'Avancé';
@@ -236,16 +285,26 @@ export class CandidateHome implements OnInit {
       });
     }
 
-    // Add recent applications
-    if (this.recentApplications.length > 0) {
+    // Add recent applications to timeline
+    this.recentApplications.forEach(app => {
       this.timeline.push({
         type: 'APPLICATION',
-        title: 'Candidature envoyée: ' + this.recentApplications[0].title,
+        title: 'Candidature envoyée: ' + app.title,
         icon: 'fas fa-paper-plane',
         color: 'text-primary',
-        time: 'il y a 1 jour'
+        time: app.date || 'Récemment'
       });
-    }
+
+      if (app.quizScore) {
+        this.timeline.push({
+          type: 'QUIZ',
+          title: `Quiz Réussi: ${app.title} (${app.quizScore.toFixed(0)}%)`,
+          icon: 'fas fa-trophy',
+          color: 'text-warning',
+          time: app.date || 'Récemment'
+        });
+      }
+    });
 
     // Add job recommendation
     this.timeline.push({
@@ -272,7 +331,18 @@ export class CandidateHome implements OnInit {
   }
 
   applyToJob(job: any) {
-    alert(`Candidature envoyée pour ${job.title} chez ${job.company} !`);
+    if (confirm(`Voulez-vous postuler pour le poste de ${job.title} chez ${job.company} ?`)) {
+      this.candidateDataService.submitApplication(job.id).subscribe({
+        next: () => {
+          alert(`Félicitations ! Votre candidature pour ${job.title} a été envoyée.`);
+          this.loadDashboardData(); // Refresh stats
+        },
+        error: (err) => {
+          console.error('Apply error', err);
+          alert('Erreur lors de l\'envoi de la candidature.');
+        }
+      });
+    }
   }
 
   playQuiz() {

@@ -1,0 +1,132 @@
+<div class="quiz-overlay" (click)="closeQuiz.emit()">
+    <div class="quiz-card" (click)="$event.stopPropagation()">
+
+        <!-- Loading State -->
+        <div class="loading-state" *ngIf="isLoading">
+            <div class="spinner"></div>
+            <h3>Test Technique (IA)...</h3>
+            <p>Génération de 4 questions techniques sur <strong>{{jobTitle}}</strong>.</p>
+            <small>Cette analyse approfondie peut prendre un moment...</small>
+        </div>
+
+        <!-- Quiz Content -->
+        <ng-container *ngIf="!isLoading && quizData && !isFinished">
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="progress-bar"
+                        [style.width.%]="quizData && quizData.questions.length > 0 ? ((currentQuestionIndex + 1) / quizData.questions.length) * 100 : 0">
+                    </div>
+                </div>
+                <div class="quiz-info">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="step">Question {{currentQuestionIndex + 1}} / {{quizData.questions.length}}</span>
+                        <div class="quiz-timer" [class.urgent]="timeLeft < 30">
+                            <i class="bi bi-clock me-1"></i> {{formatTime()}}
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="badge difficulty-badge" [class]="getDifficultyClass()">
+                            {{getDifficultyLabel()}}
+                        </span>
+                        <h2>{{quizData.title}}</h2>
+                    </div>
+                </div>
+                <button class="close-btn" (click)="closeQuiz.emit()">&times;</button>
+            </div>
+
+            <div class="quiz-body">
+                <h3 class="question-text">{{quizData.questions[currentQuestionIndex].question}}</h3>
+
+                <div class="options-grid">
+                    <div *ngFor="let option of quizData.questions[currentQuestionIndex].options; let i = index"
+                        class="option-item" [class.selected]="userAnswers[currentQuestionIndex] === i"
+                        (click)="selectOption(i)">
+                        <span class="option-letter">{{ ['A', 'B', 'C', 'D'][i] }}</span>
+                        <span class="option-content">{{option}}</span>
+                        <div class="check-icon" *ngIf="userAnswers[currentQuestionIndex] === i">
+                            <i class="bi bi-check-circle-fill"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <button class="btn-secondary" (click)="prevQuestion()"
+                    [disabled]="currentQuestionIndex === 0">Précédent</button>
+                <button class="btn-primary" (click)="nextQuestion()"
+                    [disabled]="userAnswers[currentQuestionIndex] === -1">
+                    {{ currentQuestionIndex === quizData.questions.length - 1 ? 'Terminer' : 'Suivant' }}
+                </button>
+            </div>
+        </ng-container>
+
+        <!-- Results State -->
+        <div class="results-state" *ngIf="isFinished">
+            <div class="result-header" [class.passed]="score >= 65" [class.failed]="score < 65">
+                <div class="score-circle">
+                    <span class="score-value">{{score | number:'1.0-0'}}%</span>
+                    <span class="score-label">Employabilité</span>
+                </div>
+                <h2 *ngIf="score >= 65">Succès !</h2>
+                <h2 *ngIf="score < 65">Presque...</h2>
+            </div>
+
+            <div class="result-body">
+                <!-- Success View -->
+                <div class="feedback-box" *ngIf="score >= 65 && !isApplicationFormVisible">
+                    <i class="bi bi-award-fill"></i>
+                    <p><strong>Succès :</strong> Possibilité d'être embauché ! Votre profil correspond bien.</p>
+                    <div class="next-step">Cliquez ci-dessous pour postuler.</div>
+                </div>
+
+                <!-- Application Form -->
+                <div class="application-form p-3" *ngIf="score >= 65 && isApplicationFormVisible">
+                    <h4 class="mb-3">Finaliser ma candidature</h4>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Votre CV (PDF/Word)</label>
+                        <input type="file" class="form-control" (change)="onFileSelected($event)"
+                            accept=".pdf,.doc,.docx">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Lettre de Motivation</label>
+                        <textarea class="form-control" rows="4" [(ngModel)]="coverLetter"
+                            placeholder="Pourquoi ce poste ?"></textarea>
+                    </div>
+                    <button class="btn btn-primary w-100" (click)="submitApplication()">
+                        Envoyer ma candidature <i class="bi bi-send ms-2"></i>
+                    </button>
+                    <button class="btn btn-link w-100 mt-2 text-muted"
+                        (click)="isApplicationFormVisible = false">Retour</button>
+                </div>
+
+                <!-- Failure View -->
+                <div class="feedback-box warning" *ngIf="score < 65">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <p>Vos chances d'être embauché sont faibles pour le moment.</p>
+                    <p class="small">Je vous recommande ces cours pour améliorer vos compétences techniques :</p>
+
+                    <div class="recommendations">
+                        <div *ngFor="let area of getRecommendations()" class="recommendation-item">
+                            <span class="badge bg-secondary me-2">{{area}}</span>
+                            <a [href]="getUdemyLink(area)" target="_blank"
+                                class="text-primary fw-bold text-decoration-none">
+                                Voir cours sur Udemy <i class="bi bi-box-arrow-up-right small"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-footer" *ngIf="!isApplicationFormVisible">
+                <button class="btn-secondary" (click)="closeQuiz.emit()">Plus tard</button>
+                <button *ngIf="score >= 65" class="btn-primary" (click)="proceedToApplication()">
+                    Postuler
+                </button>
+                <button *ngIf="score < 65" class="btn-primary" (click)="retry()">
+                    Réessayer
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

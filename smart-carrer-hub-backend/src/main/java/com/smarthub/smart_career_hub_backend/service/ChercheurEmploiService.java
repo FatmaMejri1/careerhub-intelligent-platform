@@ -21,15 +21,18 @@ public class ChercheurEmploiService {
     private final QuizRepository quizRepository;
     private final CoachingRepository coachingRepository;
     private final FormationRepository formationRepository;
+    private final ScoreService scoreService;
 
     public ChercheurEmploiService(ChercheurEmploiRepository chercheurEmploiRepository,
                                   QuizRepository quizRepository,
                                   CoachingRepository coachingRepository,
-                                  FormationRepository formationRepository) {
+                                  FormationRepository formationRepository,
+                                  ScoreService scoreService) {
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.quizRepository = quizRepository;
         this.coachingRepository = coachingRepository;
         this.formationRepository = formationRepository;
+        this.scoreService = scoreService;
     }
 
     // =========================
@@ -54,11 +57,6 @@ public class ChercheurEmploiService {
     public ChercheurEmploi updateChercheur(Long id, ChercheurEmploi chercheurDetails) {
         ChercheurEmploi chercheur = chercheurEmploiRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
-
-        System.out.println("=== UPDATE CHERCHEUR DEBUG ===");
-        System.out.println("Telephone: " + chercheurDetails.getTelephone());
-        System.out.println("Adresse: " + chercheurDetails.getAdresse());
-        System.out.println("PhotoUrl: " + (chercheurDetails.getPhotoUrl() != null ? "Present (length: " + chercheurDetails.getPhotoUrl().length() + ")" : "null"));
 
         // Basic Info
         chercheur.setNom(chercheurDetails.getNom());
@@ -85,6 +83,14 @@ public class ChercheurEmploiService {
         chercheur.setCertifications(chercheurDetails.getCertifications());
 
         ChercheurEmploi saved = chercheurEmploiRepository.save(chercheur);
+        
+        // Recalculate scores
+        try {
+            scoreService.updateScores(saved);
+        } catch (Exception e) {
+            System.err.println("Error updating scores: " + e.getMessage());
+        }
+
         System.out.println("Saved successfully with ID: " + saved.getId());
         return saved;
     }

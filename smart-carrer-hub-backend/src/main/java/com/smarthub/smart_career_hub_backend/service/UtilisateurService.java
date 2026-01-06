@@ -10,11 +10,17 @@ import com.smarthub.smart_career_hub_backend.repository.ChercheurEmploiRepositor
 import com.smarthub.smart_career_hub_backend.repository.RecruteurRepository;
 import com.smarthub.smart_career_hub_backend.repository.AdministrateurRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
+
+import com.smarthub.smart_career_hub_backend.dto.UserAdminDTO;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UtilisateurService {
 
     private final UtilisateurRepository utilisateurRepository;
@@ -32,9 +38,35 @@ public class UtilisateurService {
         this.administrateurRepository = administrateurRepository;
     }
 
-    // =========================
-    // CRUD général utilisateurs
-    // =========================
+    @Transactional(readOnly = true)
+    public List<UserAdminDTO> getAllUsersAdmin() {
+        return utilisateurRepository.findAll().stream().map(u -> {
+            UserAdminDTO.UserAdminDTOBuilder builder = UserAdminDTO.builder()
+                    .id(u.getId())
+                    .name((u.getPrenom() != null ? u.getPrenom() : "") + " " + (u.getNom() != null ? u.getNom() : ""))
+                    .email(u.getEmail())
+                    .role(u.getRole() != null ? u.getRole().name() : "N/A")
+                    .status(u.getStatut())
+                    .photoUrl(u.getPhotoUrl())
+                    .joinDate(u.getDateCreation())
+                    .lastActivity(LocalDateTime.now());
+
+            if (u instanceof ChercheurEmploi) {
+                ChercheurEmploi c = (ChercheurEmploi) u;
+                builder.reliabilityScore(100 - (c.getFraudScore() != null ? c.getFraudScore() : 0.0));
+                builder.activityCount((long) (c.getQuizList() != null ? c.getQuizList().size() : 0));
+            } else if (u instanceof Recruteur) {
+                Recruteur r = (Recruteur) u;
+                builder.reliabilityScore(95.0);
+                builder.activityCount((long) (r.getOffres() != null ? r.getOffres().size() : 0));
+            } else {
+                builder.reliabilityScore(100.0);
+                builder.activityCount(0L);
+            }
+
+            return builder.build();
+        }).collect(Collectors.toList());
+    }
 
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurRepository.findAll();

@@ -3,10 +3,10 @@
     <div class="hero-section">
         <header class="page-header-modern">
             <div class="badge-pill">
-                <i class="bi bi-stars"></i> Fresh Opportunities Daily
+                <i class="bi bi-stars"></i> Nouvelles opportunités chaque jour
             </div>
-            <h1>Find Your <span class="highlight-text">Dream Job</span></h1>
-            <p>Explore the best career opportunities from various platforms around the web.</p>
+            <h1>Trouvez votre <span class="highlight-text">emploi de vos rêves</span></h1>
+            <p>Explorez les meilleures opportunités de carrière sur le web</p>
         </header>
 
         <div class="search-wrapper">
@@ -27,4 +27,10 @@
     <app-job-details-modal [job]="selectedJob" [isOpen]="isModalOpen" [showApplicationForm]="isApplicationMode"
         (closeModal)="closeModal()" (apply)="onApplyFromModal($event)">
     </app-job-details-modal>
+
+    <!-- Dynamic Quiz Assessment -->
+    <app-quiz *ngIf="isQuizOpen && selectedJobForQuiz" [jobTitle]="selectedJobForQuiz.title"
+        [jobDescription]="selectedJobForQuiz.description" (quizFinished)="onQuizFinished($event)"
+        (closeQuiz)="closeQuiz()">
+    </app-quiz>
 </div>

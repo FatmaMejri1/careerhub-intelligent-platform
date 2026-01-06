@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import com.smarthub.smart_career_hub_backend.dto.UserAdminDTO;
+
 @RestController
 @RequestMapping("/api/utilisateur")
 public class UtilisateurController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+
+    @GetMapping("/admin/users")
+    public List<UserAdminDTO> getAdminUsers() {
+        return utilisateurService.getAllUsersAdmin();
+    }
 
     @GetMapping
     public List<Utilisateur> getAll() {
@@ -38,5 +45,14 @@ public class UtilisateurController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         utilisateurService.deleteUtilisateur(id);
+    }
+
+    @PatchMapping("/{id}/statut")
+    public Utilisateur updateStatut(@PathVariable Long id, @RequestBody java.util.Map<String, String> body) {
+        String nouveauStatut = body.get("statut");
+        Utilisateur u = utilisateurService.getUtilisateurById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+        u.setStatut(nouveauStatut);
+        return utilisateurService.ajouterUtilisateur(u);
     }
 }

@@ -1,9 +1,13 @@
 package com.smarthub.smart_career_hub_backend.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class RegisterRequest {
     private String email;
     private String password;

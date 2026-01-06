@@ -1,23 +1,59 @@
-
-//entity or model : les classes = les tables de la bdd
 package com.smarthub.smart_career_hub_backend.entity;
 
-import jakarta.persistence.*;// pour importer les annotation et classes jpa
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
-import java.util.List; //importer l'interface list pour stocker la collection de notif
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-
-@Entity // cette classe est une entité persistante elle sera mappée à une table bdd permet de demander constructeur sans argument
-@Table(name = "administrateurs")// pour modifier le nom de la table par rapport le classe dans la bdd
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Table(name = "administrateurs")
 public class Administrateur extends Utilisateur {
-   // il hérite les attributs du class user
-    @OneToMany(mappedBy = "administrateur") //relation un à pluisuers : admin can get multiple notif
-    private List<Notification> notifications ;// list of objects notif
 
-    // Getters et Setters
+    /*
+     * =========================
+     * Informations personnelles
+     * =========================
+     */
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "phone", length = 20)
+    private String phone;
+
+    /**
+     * Stocke l’URL ou le chemin de l’image de profil ou base64
+     * ex: /uploads/admins/admin_1.jpg
+     */
+    @Lob
+    @Column(name = "profile_image", columnDefinition = "LONGTEXT")
+    private String profileImage;
+
+    /*
+     * =========================
+     * Sécurité & activité
+     * =========================
+     */
+
+    @Column(name = "last_login")
+    private LocalDateTime lastLogin;
+
+    /*
+     * =========================
+     * Relations
+     * =========================
+     */
+
+    @OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Notification> managedNotifications;
 }

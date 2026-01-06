@@ -1,185 +1,188 @@
-/* Main Containers */
-.candidate-home {
-    background-color: #f8fafc;
-    min-height: 100vh;
-    font-family: 'Inter', sans-serif;
+.hero-section {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    position: relative;
+    overflow: hidden;
 }
 
-.dashboard-card {
-    border-radius: 12px !important;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* 2.1 Score Card - Circular Chart */
-.score-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-}
-
-.score-circle {
-    width: 200px;
-    height: 150px;
-}
-
-.circular-chart {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 250px;
-}
-
-.circle-bg {
-    fill: none;
-    stroke: #e2e8f0;
-    stroke-width: 3.8;
-}
-
-.circle {
-    fill: none;
-    stroke-width: 2.8;
-    stroke-linecap: round;
-    animation: progress 1s ease-out forwards;
-}
-
-.circular-chart.blue .circle {
-    stroke: #2563eb;
-}
-
-.percentage {
+.hero-section::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #0f172a;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 0;
 }
 
-@keyframes progress {
-    0% {
-        stroke-dasharray: 0 100;
-    }
+.hero-section * {
+    position: relative;
+    z-index: 1;
 }
 
-/* 2.2 Job Cards */
-.job-card {
-    border-radius: 12px !important;
-    border-left: 4px solid transparent !important;
-    transition: all 0.2s;
-}
-
-.job-card:hover {
-    border-left-color: #2563eb !important;
-    background-color: #ffffff;
-    transform: translateX(4px);
-}
-
-.company-logo {
-    width: 48px;
-    height: 48px;
-    background: #f1f5f9;
-    border-radius: 10px;
+.profile-score-circle {
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    color: #475569;
-    font-size: 1.2rem;
+    border: 4px solid rgba(255, 255, 255, 0.3);
 }
 
-/* 2.5 Timeline */
-.timeline-card {
+.score-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.score-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.stat-card {
     background: white;
+    transition: all 0.3s ease;
+}
+
+.stat-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
 }
 
-.timeline-item {
+.bg-primary-light {
+    background-color: rgba(79, 70, 229, 0.1);
+}
+
+.bg-info-light {
+    background-color: rgba(8, 145, 178, 0.1);
+}
+
+.bg-success-light {
+    background-color: rgba(22, 163, 74, 0.1);
+}
+
+.bg-danger-light {
+    background-color: rgba(220, 38, 38, 0.1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+.hover-border-primary:hover {
+    border-color: #4f46e5 !important;
+    background-color: #f8faff;
+}
+
+.company-logo {
+    width: 60px;
+    height: 60px;
     display: flex;
-    gap: 16px;
-    padding-bottom: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-hexagon {
+    width: 80px;
+    height: 80px;
+    background: #f59e0b;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4);
+}
+
+.timeline-item {
     position: relative;
 }
 
-.timeline-item::before {
-    content: '';
+.timeline-line {
     position: absolute;
-    left: 17px;
-    /* Align with icon center (35px width / 2) */
-    top: 35px;
-    bottom: 0px;
+    left: 20px;
+    top: 40px;
+    bottom: -40px;
     width: 2px;
-    background: #f1f5f9;
+    background: #e5e7eb;
 }
 
-.timeline-item:last-child {
-    padding-bottom: 0;
-}
-
-.timeline-item:last-child::before {
+.timeline-item:last-child .timeline-line {
     display: none;
 }
 
-.timeline-icon {
-    width: 36px;
-    height: 36px;
-    background: #f8fafc;
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.score-mini-circle {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
-}
-
-/* 2.3 Gamification Card */
-.level-card {
-    background: white;
-}
-
-.bg-gradient-primary {
-    background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
-}
-
-.xp-badge {
-    background: #eff6ff;
-    color: #2563eb;
-    padding: 4px 10px;
-    border-radius: 99px;
-    font-weight: 700;
-    font-size: 0.75rem;
-}
-
-/* 2.4 Application Stats */
-.stat-box {
-    transition: transform 0.2s;
-}
-
-.stat-box:hover {
-    transform: scale(1.05);
-}
-
-.x-small {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* 2.6 Training Preview */
-.training-preview-card {
-    background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%) !important;
-}
-
-.border-secondary {
-    border-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Utilities */
-.text-justify {
-    text-align: justify;
-}
-
-.fs-7 {
-    font-size: 0.8rem;
+    font-weight: 800;
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }

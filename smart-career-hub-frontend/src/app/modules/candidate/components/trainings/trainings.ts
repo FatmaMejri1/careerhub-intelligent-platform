@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AnalysisService } from '../../../../core/services/analysis.service';
+import { CandidateDataService } from '../../services/candidate-data.service';
 
 interface Training {
     id: number;
@@ -30,82 +32,103 @@ interface CompletedTraining {
     styleUrl: './trainings.css'
 })
 export class TrainingsComponent {
+    recommendations: any = null;
+    isLoadingRecommendations = false;
+    userProfile: any = null;
+
+    constructor(
+        private analysisService: AnalysisService,
+        private candidateDataService: CandidateDataService
+    ) { }
+
+    ngOnInit() {
+        this.loadUserProfile();
+    }
+
+    loadUserProfile() {
+        this.candidateDataService.getProfile().subscribe({
+            next: (data) => {
+                this.userProfile = data;
+                // Automatically generate recommendations if profile is available
+                if (data) {
+                    this.getAIRecommendations();
+                }
+            },
+            error: (err) => console.error('Failed to load profile', err)
+        });
+    }
+
+    getAIRecommendations() {
+        if (!this.userProfile) return;
+
+        this.isLoadingRecommendations = true;
+
+        const profileData = {
+            titre: this.userProfile.titre || 'Chercheur d\'emploi',
+            niveau_experience: this.calculateExperienceLevel(),
+            competences: this.parseSkills(this.userProfile.competences),
+            objectif: this.userProfile.objectif || ''
+        };
+
+        this.analysisService.recommendForProfile(profileData).subscribe({
+            next: (res) => {
+                this.recommendations = res;
+                // Populate the main grid with AI recommendations
+                if (res && res.courses) {
+                    this.allTrainings = res.courses.map((c: any, index: number) => ({
+                        id: index + 1,
+                        provider: c.platform || 'Online',
+                        title: c.title,
+                        focus: 'General', // Could be inferred
+                        category: 'Recommended',
+                        level: c.difficulty || 'Tous niveaux',
+                        duration: 'Flexible',
+                        durationCategory: 'Medium',
+                        matchScore: 95, // AI recommended
+                        icon: 'fas fa-graduation-cap',
+                        link: c.link || '#', // Ensure link is mapped if available
+                        isCompleted: false
+                    }));
+                }
+                this.isLoadingRecommendations = false;
+            },
+            error: (err) => {
+                console.error('Failed to get recommendations', err);
+                this.isLoadingRecommendations = false;
+            }
+        });
+    }
+
+    private parseSkills(skillsStr: string): string[] {
+        if (!skillsStr) return [];
+        try {
+            return JSON.parse(skillsStr);
+        } catch (e) {
+            return [];
+        }
+    }
+
+    calculateExperienceLevel(): string {
+        if (!this.userProfile || !this.userProfile.experiences) return 'Junior';
+        try {
+            const exps = JSON.parse(this.userProfile.experiences);
+            if (exps.length === 0) return 'Junior/Student';
+            if (exps.length < 3) return 'Intermediate';
+            return 'Senior';
+        } catch (e) {
+            return 'Junior';
+        }
+    }
     // Filters
     searchTerm: string = '';
     filterCategory: string = 'All';
     filterDuration: string = 'All';
 
     // Data Source
-    allTrainings: Training[] = [
-        {
-            id: 1,
-            provider: 'Coursera',
-            title: 'Spring Boot & REST APIs',
-            focus: 'Backend',
-            category: 'Backend',
-            level: 'Intermédiaire',
-            duration: '12h',
-            durationCategory: 'Medium',
-            matchScore: 95,
-            icon: 'fab fa-java',
-            link: '#',
-            isCompleted: false
-        },
-        {
-            id: 2,
-            provider: 'Udemy',
-            title: 'Docker pour Débutants',
-            focus: 'DevOps',
-            category: 'DevOps',
-            level: 'Débutant',
-            duration: '4h',
-            durationCategory: 'Short',
-            matchScore: 92,
-            icon: 'fab fa-docker',
-            link: '#',
-            isCompleted: false
-        },
-        {
-            id: 3,
-            provider: 'OpenClassrooms',
-            title: 'Requêtes SQL Avancées',
-            focus: 'Database',
-            category: 'Backend',
-            level: 'Avancé',
-            duration: '8h',
-            durationCategory: 'Medium',
-            matchScore: 88,
-            icon: 'fas fa-database',
-            link: '#',
-            isCompleted: false
-        },
-        {
-            id: 4,
-            provider: 'Pluralsight',
-            title: 'Angular Architecture',
-            focus: 'Frontend',
-            category: 'Frontend',
-            level: 'Avancé',
-            duration: '25h',
-            durationCategory: 'Long',
-            matchScore: 85,
-            icon: 'fab fa-angular',
-            link: '#',
-            isCompleted: false
-        }
-    ];
+    allTrainings: Training[] = [];
 
     // Mock History
-    history: CompletedTraining[] = [
-        {
-            title: 'Angular Core',
-            date: '10 Mars 2024'
-        },
-        {
-            title: 'Git Version Control',
-            date: '15 Fév 2024'
-        }
-    ];
+    history: CompletedTraining[] = [];
 
     // Getters for HTML
     get recommendedTrainings() {

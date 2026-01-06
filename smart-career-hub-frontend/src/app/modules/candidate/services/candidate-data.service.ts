@@ -35,4 +35,32 @@ export class CandidateDataService {
         }
         return of(null);
     }
+
+    getDashboardStats(): Observable<any> {
+        const user = this.authService.getCurrentUser();
+        if (user && user.id) {
+            return this.apiService.get(`stats/candidate/${user.id}`);
+        }
+        return of(null);
+    }
+
+    getApplications(): Observable<any[]> {
+        const user = this.authService.getCurrentUser();
+        if (user && user.id) {
+            return this.apiService.get(`candidature/chercheur/${user.id}`);
+        }
+        return of([]);
+    }
+
+    submitApplication(jobId: number): Observable<any> {
+        const user = this.authService.getCurrentUser();
+        if (user && user.id) {
+            return this.apiService.post(`candidature/chercheur/${user.id}/offre/${jobId}`, {});
+        }
+        return of(null);
+    }
+
+    cancelApplication(applicationId: number): Observable<any> {
+        return this.apiService.delete(`candidature/${applicationId}`);
+    }
 }

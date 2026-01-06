@@ -1,13 +1,25 @@
-//ici on va créer les interfaces JpaRepository ou CrudRepository , sert à accéder à la bdd sans écrire sql manuellement
 package com.smarthub.smart_career_hub_backend.repository;
 
-import com.smarthub.smart_career_hub_backend.entity.Administrateur;// entity
-import org.springframework.data.jpa.repository.JpaRepository; // Import de JpaRepository pour gérer les opérations CRUD automatiquement
-import org.springframework.stereotype.Repository; // Import de l'annotation Repository
+import com.smarthub.smart_career_hub_backend.entity.Administrateur;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// Annotation pour indiquer à Spring que c'est un composant Repository
+import java.util.Optional;
+
 @Repository
 public interface AdministrateurRepository extends JpaRepository<Administrateur, Long> {
 
+    /*
+     * =========================
+     * Méthodes personnalisées
+     * (Spring Data JPA auto-génère les requêtes)
+     * =========================
+     */
+
+    // Trouver un administrateur par email (login / profile)
+    Optional<Administrateur> findByEmail(String email);
+
+    // Vérifier si un email existe déjà (création / update)
+    boolean existsByEmail(String email);
+
 }
-/// JpaRepository fournit déjà les méthodes CRUD suivantes automatiquement  je veut les mettre ensuite seoln my needs

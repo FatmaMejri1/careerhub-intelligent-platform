@@ -115,4 +115,12 @@ export class RecruiterService {
     getStatsByRecruiterId(recruiterId: number): Observable<RecruiterStats> {
         return this.http.get<RecruiterStats>(`${this.apiUrl}/stats/recruiter/${recruiterId}`);
     }
+
+    getCandidaturesByRecruiterId(recruiterId: number): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/candidature/recruteur/${recruiterId}`);
+    }
+
+    updateCandidatureStatus(id: number, status: string): Observable<any> {
+        return this.http.put(`${this.apiUrl}/candidature/${id}/statut?statut=${status}`, {});
+    }
 }

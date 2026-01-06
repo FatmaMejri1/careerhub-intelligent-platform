@@ -5,6 +5,7 @@ import { CandidateDataService } from '../../services/candidate-data.service';
 
 @Component({
   selector: 'app-my-profile',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './my-profile.html',
   styleUrl: './my-profile.css',

@@ -17,6 +17,7 @@ public class Quiz {
     private Long id;
 
     private String titre;
+    private Double score;
 
     @ManyToOne
     @JoinColumn(name = "chercheur_id")

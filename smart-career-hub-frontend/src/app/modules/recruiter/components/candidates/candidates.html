@@ -9,9 +9,8 @@
                     <p class="text-muted mb-0">Analysez et sélectionnez les meilleurs talents</p>
                 </div>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-outline-secondary"><i class="fas fa-download me-2"></i>Export</button>
-                    <button class="btn btn-primary"><i class="fas fa-plus me-2"></i>Ajouter</button>
-                    <!-- Manual add for demo -->
+                    <button class="btn btn-outline-secondary" (click)="exportReport()"><i
+                            class="fas fa-download me-2"></i>Exporter Rapport</button>
                 </div>
             </div>
 
@@ -160,9 +159,27 @@
                                 </td>
                                 <td class="text-muted small">{{candidate.date | date:'dd MMM'}}</td>
                                 <td class="text-end pe-4">
-                                    <button class="btn btn-sm btn-icon btn-light rounded-circle">
-                                        <i class="fas fa-chevron-right text-muted"></i>
-                                    </button>
+                                    <div class="d-flex justify-content-end gap-1">
+                                        <button class="btn btn-sm btn-icon btn-light rounded-circle"
+                                            (click)="$event.stopPropagation(); viewCv(candidate)" title="Voir CV">
+                                            <i class="fas fa-file-pdf text-info"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-icon btn-light rounded-circle"
+                                            (click)="$event.stopPropagation(); contactCandidate(candidate)"
+                                            title="Contacter">
+                                            <i class="fas fa-envelope text-primary"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-icon btn-light rounded-circle"
+                                            (click)="onUpdateStatus($event, candidate, 'Présélectionné')"
+                                            title="Accepter" *ngIf="candidate.status === 'Nouveau'">
+                                            <i class="fas fa-check text-success"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-icon btn-light rounded-circle"
+                                            (click)="onUpdateStatus($event, candidate, 'Rejeté')" title="Refuser"
+                                            *ngIf="candidate.status !== 'Rejeté' && candidate.status !== 'Recruté'">
+                                            <i class="fas fa-times text-danger"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -192,14 +209,15 @@
                             Actions
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
-                            <li><a class="dropdown-item" href="#"><i
-                                        class="fas fa-download me-2 text-muted"></i>Télécharger CV</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-envelope me-2 text-muted"></i>Envoyer
+                            <li><a class="dropdown-item" (click)="viewCv(selectedCandidate)"><i
+                                        class="fas fa-download me-2 text-muted"></i>Voir CV</a></li>
+                            <li><a class="dropdown-item" (click)="contactCandidate(selectedCandidate)"><i
+                                        class="fas fa-envelope me-2 text-muted"></i>Envoyer
                                     email</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-danger" href="#"><i
+                            <li><a class="dropdown-item text-danger" (click)="updateStatus('Rejeté')"><i
                                         class="fas fa-trash me-2"></i>Refuser</a></li>
                         </ul>
                     </div>
@@ -213,10 +231,12 @@
                     <h4 class="fw-bold mb-1">{{selectedCandidate.name}}</h4>
                     <p class="text-muted mb-2">{{selectedCandidate.offerTitle}}</p>
                     <div class="d-flex justify-content-center gap-2 mb-3">
-                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3"
+                            (click)="contactCandidate(selectedCandidate)">
                             <i class="fas fa-phone me-1"></i> Contacter
                         </button>
-                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                        <button class="btn btn-sm btn-outline-secondary rounded-pill px-3"
+                            (click)="viewCv(selectedCandidate)">
                             <i class="fas fa-file-alt me-1"></i> Voir CV
                         </button>
                     </div>
@@ -252,14 +272,37 @@
                 <!-- AI Analysis -->
                 <div class="card bg-primary-subtle border-0 mb-4">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between mb-2">
+                        <div class="d-flex justify-content-between mb-3">
                             <h6 class="fw-bold text-primary"><i class="fas fa-robot me-2"></i>Analyse IA</h6>
                             <span class="badge bg-primary">{{selectedCandidate.matchScore}}% Match</span>
                         </div>
+
+                        <!-- Scores Details -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <div class="p-2 bg-white rounded shadow-sm border text-center">
+                                    <div class="small text-muted">Employabilité</div>
+                                    <div class="fw-bold text-primary">{{selectedCandidate.matchScore}}%</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 bg-white rounded shadow-sm border text-center">
+                                    <div class="small text-muted">Fiabilité</div>
+                                    <div class="fw-bold"
+                                        [ngClass]="(selectedCandidate.fraudScore || 0) > 50 ? 'text-danger' : 'text-success'">
+                                        {{100 - (selectedCandidate.fraudScore || 0)}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <p class="small text-muted mb-0">
                             Excellent profil correspondant aux exigences techniques. Forte expérience en
                             {{selectedCandidate.topSkill}}.
-                            Points d'attention: Niveau d'anglais à vérifier.
+                            <span class="text-danger fw-bold" *ngIf="(selectedCandidate.fraudScore || 0) >= 30">
+                                <br><i class="fas fa-exclamation-triangle me-1"></i> Vigilance: Des incohérences ont été
+                                détectées.
+                            </span>
                         </p>
                     </div>
                 </div>

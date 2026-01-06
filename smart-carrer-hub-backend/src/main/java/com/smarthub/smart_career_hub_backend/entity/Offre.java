@@ -8,10 +8,14 @@ import com.smarthub.smart_career_hub_backend.enums.StatutOffre;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
+import lombok.EqualsAndHashCode;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = { "recruteur", "candidatures" })
+@EqualsAndHashCode(exclude = { "recruteur", "candidatures" })
 @Entity
 @Table(name = "offres")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })

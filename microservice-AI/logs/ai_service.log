@@ -1,0 +1,1392 @@
+2026-01-04 09:40:56.012 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 09:44:24.158 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 09:46:53.733 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 09:46:56.145 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 09:54:32.373 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 10:16:25.402 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 10:17:24.089 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 11:49:14.829 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 11:49:38.032 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 11:49:38.109 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 3 questions for skills: ['Python', 'FastAPI']
+2026-01-04 11:50:27.358 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: Expecting ',' delimiter: line 9 column 69 (char 361)
+2026-01-04 11:50:28.396 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 11:50:33.335 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 11:50:35.570 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 11:50:35.571 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 11:50:35.571 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 11:52:02.489 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 11:52:02.557 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 3 questions for skills: ['Python', 'FastAPI']
+2026-01-04 11:53:33.304 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 11:58:50.949 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 11:58:50.954 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 5 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 12:00:23.103 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 12:11:06.601 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 12:11:06.607 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 5 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 12:12:37.448 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 12:12:41.560 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:12:41.660 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:12:41.669 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:12:41.669 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:12:41.688 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:12:49.009 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:12:49.568 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:12:49.571 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:12:49.576 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:12:52.844 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:49:53.722 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 12:49:53.796 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 3 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 12:50:48.822 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 12:50:48.837 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 3 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 12:51:25.379 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 12:52:26.562 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 12:57:21.312 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:57:21.332 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:57:21.364 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:57:21.383 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:57:21.419 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 12:57:30.572 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:57:30.577 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:57:30.591 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:57:30.605 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 12:57:30.765 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:06:17.825 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 13:06:17.833 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 8 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 13:07:48.395 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 13:12:59.511 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-04 13:12:59.519 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 8 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 13:14:31.260 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 13:18:29.806 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:19:14.629 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:19:17.070 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:22:03.599 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:22:03.670 | INFO     | app.intelligence.generators.quiz_generator:generate:24 - Generating 8 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 13:27:05.633 | ERROR    | app.intelligence.generators.quiz_generator:generate:83 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 13:30:01.303 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:30:09.355 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:30:17.030 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:30:20.522 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:31:00.642 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:37:27.527 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:37:27.560 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 13:40:19.093 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:40:19.097 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 13:43:35.630 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:44:03.222 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:44:39.208 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:44:46.791 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:47:21.884 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:47:21.902 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Linux embarqué', 'C/C++', 'Kernel Linux', 'Drivers', 'U-Boot', 'Yocto']
+2026-01-04 13:48:18.327 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: Error in Ollama structured generation: Expecting ',' delimiter: line 12 column 192 (char 477)
+2026-01-04 13:49:09.549 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:49:09.550 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Linux embarqué', 'C/C++', 'Kernel Linux', 'Drivers', 'U-Boot', 'Yocto']
+2026-01-04 13:51:30.752 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:51:48.449 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:52:55.108 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:53:00.673 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:53:24.153 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 13:53:24.163 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Linux embarqué', 'C/C++', 'Kernel Linux', 'Drivers', 'U-Boot', 'Yocto']
+2026-01-04 13:54:53.471 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:55:13.886 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:55:17.866 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:55:35.170 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:55:51.466 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:56:17.524 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 13:56:18.119 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 13:56:24.137 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:16:53.449 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:16:53.744 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:16:55.891 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:16:56.116 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:17:33.440 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:17:33.455 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:17:35.838 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:17:35.839 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:19:13.277 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:19:13.277 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:19:15.980 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:19:16.056 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:19:48.868 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:19:48.914 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:19:51.405 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:19:51.434 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:21:21.968 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:21:21.984 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:21:25.064 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:21:25.069 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:12.974 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:12.974 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:15.186 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:15.204 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:23.545 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:23.561 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:26.114 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:26.119 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:33.952 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:36.576 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:36.578 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:46.474 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:46.567 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:48.711 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:48.766 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:54.557 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:54.606 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:24:56.975 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:24:57.024 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:25:06.770 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:25:06.816 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:25:09.083 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:25:09.116 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:35:22.709 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:39:00.115 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 14:39:00.145 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 14:50:56.849 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:50:59.634 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:51:03.598 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 14:51:04.907 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:58:43.453 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 14:59:29.805 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 14:59:29.815 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 15:00:33.394 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: Error in Ollama structured generation: 
+2026-01-04 15:00:42.388 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 15:00:42.389 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 15:11:20.642 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:11:23.568 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:32:13.783 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:37:58.167 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:38:06.267 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:40:10.810 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 15:40:23.087 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 15:40:23.536 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 15:40:23.539 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 15:40:26.245 | ERROR    | app.llm.providers.openai_provider:generate_structured:81 - OpenAI structured generation failed: Error code: 401 - Invalid token
+2026-01-04 15:40:26.245 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: Error code: 401 - Invalid token
+2026-01-04 15:41:23.149 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 15:41:23.182 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 15:41:23.635 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 15:41:23.636 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 15:41:25.362 | ERROR    | app.llm.providers.openai_provider:generate_structured:81 - OpenAI structured generation failed: Error code: 401 - Invalid token
+2026-01-04 15:41:25.363 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: Error code: 401 - Invalid token
+2026-01-04 15:43:16.812 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:43:19.227 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:43:24.050 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:43:26.117 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:43:34.335 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:43:37.264 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:43:37.378 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:43:39.769 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:43:39.831 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:43:41.310 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 15:44:25.244 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 15:44:26.551 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 16:55:49.132 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 16:56:07.876 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 16:57:33.167 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 16:58:03.448 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 16:58:03.824 | INFO     | app.llm.providers.openai_provider:__init__:13 - Initialized OpenAI provider with model: deepseek-ai/DeepSeek-V2.5 at https://api.siliconflow.cn/v1
+2026-01-04 16:58:03.825 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 16:58:06.938 | ERROR    | app.llm.providers.openai_provider:generate_structured:81 - OpenAI structured generation failed: Error code: 401 - Invalid token
+2026-01-04 16:58:06.939 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: Error code: 401 - Invalid token
+2026-01-04 17:09:46.443 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 17:09:50.234 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:10:11.711 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 17:10:13.887 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:11:42.495 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 17:11:44.881 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:22:56.458 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 17:22:58.644 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:23:12.166 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 17:23:14.544 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:24:07.735 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 17:27:04.343 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 17:27:04.369 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 17:36:12.096 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:17:27.969 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 18:17:30.927 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:17:38.774 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 18:17:42.371 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:17:51.223 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 18:17:54.672 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:18:05.562 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 18:18:09.086 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:22:08.850 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 18:22:11.207 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 18:22:12.926 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 19:24:51.769 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:27:20.270 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 19:27:20.282 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 19:27:20.657 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+2026-01-04 19:37:12.404 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:39:04.885 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 19:39:04.898 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 19:39:05.273 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+2026-01-04 19:39:23.106 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 19:42:14.477 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:43:16.192 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 19:43:16.206 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 19:43:16.484 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+Please retry in 43.502713141s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-exp"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-exp"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash-exp"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 43
+}
+]
+2026-01-04 19:44:53.273 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 19:44:57.837 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:49:16.417 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:51:03.254 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 19:51:03.267 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 19:51:03.636 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 400 API key not valid. Please pass a valid API key. [reason: "API_KEY_INVALID"
+domain: "googleapis.com"
+metadata {
+  key: "service"
+  value: "generativelanguage.googleapis.com"
+}
+, locale: "en-US"
+message: "API key not valid. Please pass a valid API key."
+]
+2026-01-04 19:51:51.186 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 19:51:59.725 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 19:52:42.032 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 19:52:42.045 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 19:52:42.323 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-04 19:53:41.956 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 19:53:48.368 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:01:57.228 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:04:44.791 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 20:04:44.823 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 20:04:45.192 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-04 20:07:23.736 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:08:05.640 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 20:08:05.652 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 20:08:05.858 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 54.122617652s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 54
+}
+]
+2026-01-04 20:08:23.572 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 20:13:45.677 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:15:31.744 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 20:15:31.757 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 20:15:32.089 | ERROR    | app.intelligence.generators.quiz_generator:generate:81 - Quiz generation failed: 404 models/gemini-1.5-flash-latest is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-04 20:15:48.793 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-04 20:20:01.465 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:22:23.236 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 20:22:23.249 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 20:33:35.135 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-04 20:43:44.521 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 20:43:44.535 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 22:57:29.187 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 22:57:29.196 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-04 22:58:01.043 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 22:58:01.048 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Systems']
+2026-01-04 22:58:43.691 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-04 22:58:43.696 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Systems']
+2026-01-05 00:02:52.051 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:02:52.062 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Ingénieur', 'Embedded', 'Linux']
+2026-01-05 00:28:01.973 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:28:01.981 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Data', 'Engineer']
+2026-01-05 00:30:32.354 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:30:32.360 | INFO     | app.intelligence.generators.quiz_generator:generate:27 - Generating 4 questions for skills: ['Data', 'Engineer']
+2026-01-05 00:35:13.220 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 00:35:21.210 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 00:38:28.025 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:38:28.055 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer']
+2026-01-05 00:42:25.199 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 00:42:29.310 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 00:42:35.012 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 00:42:36.367 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 00:44:59.499 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:44:59.518 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-05 00:51:26.508 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:51:26.510 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-05 00:57:03.206 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 00:57:03.209 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-05 01:03:36.548 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 01:03:36.551 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-05 01:10:02.912 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:10:08.351 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:10:14.231 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:10:16.462 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:10:25.909 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:10:28.211 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:10:33.278 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:10:35.428 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:24:28.510 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:24:33.092 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:24:48.797 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 01:24:51.122 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 01:28:13.222 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 09:57:15.216 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 09:57:15.216 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 09:57:18.576 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 09:59:46.981 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 09:59:47.007 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 09:59:53.630 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 1 skills.
+2026-01-05 10:08:50.817 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:08:50.821 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 10:09:03.398 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 16 skills.
+2026-01-05 10:09:55.599 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:09:55.601 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 10:10:09.428 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 19 skills.
+2026-01-05 10:15:50.614 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:15:50.815 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:15:54.178 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:15:56.399 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:15:56.442 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:15:58.046 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:15:58.582 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:15:58.644 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:16:00.472 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:16:00.512 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:16:06.673 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:16:06.751 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:19:23.703 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:19:23.706 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:25:11.012 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:25:11.037 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 10:25:23.677 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 17 skills.
+2026-01-05 10:29:20.918 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:31:31.385 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:31:33.055 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:31:33.675 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:31:39.292 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:31:39.339 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:31:40.728 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:31:40.730 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:32:57.491 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:35:19.439 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:35:19.532 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:35:19.532 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:35:21.143 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:35:21.201 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:35:36.398 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:35:36.460 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:35:38.088 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:35:38.156 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:35:53.645 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:36:00.641 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:36:02.123 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:36:06.522 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:36:06.574 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:36:07.756 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:36:08.008 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:36:13.252 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:36:13.268 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:36:14.861 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:36:14.879 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:36:29.788 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:36:29.795 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:36:29.795 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:36:29.795 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:36:29.796 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:36:37.231 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:37:08.545 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:08.577 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:10.246 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:37:12.793 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:37:20.226 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:20.256 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:21.867 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:37:21.896 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:37:56.323 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:56.354 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:37:57.901 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:37:57.910 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:38:12.294 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:38:12.302 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:38:12.302 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:38:12.302 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:38:12.302 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:38:19.356 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:38:23.291 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:38:23.383 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:38:25.061 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:38:28.013 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:39:10.558 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:39:10.869 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:39:12.147 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:39:12.394 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:39:28.485 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:39:28.497 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:39:28.497 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:39:28.497 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:39:28.497 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:39:36.333 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:39:36.503 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:39:36.551 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:39:38.208 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:39:40.906 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:39:43.239 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:39:43.239 | INFO     | app.dependencies:get_llm_provider:33 - Using Gemini Cloud Provider (gemini-flash-latest)
+2026-01-05 10:39:52.231 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:39:52.240 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:39:52.240 | INFO     | app.dependencies:get_llm_provider:33 - Using Gemini Cloud Provider (gemini-flash-latest)
+2026-01-05 10:39:52.241 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:39:52.241 | INFO     | app.dependencies:get_llm_provider:33 - Using Gemini Cloud Provider (gemini-flash-latest)
+2026-01-05 10:39:52.241 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:39:52.242 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:39:52.242 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:39:52.242 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:39:59.583 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:40:17.078 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:40:17.093 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:40:18.656 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:40:21.594 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:40:23.626 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:40:23.627 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:40:34.221 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:40:34.236 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:40:34.237 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:40:34.237 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:40:34.237 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:40:34.238 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:40:34.239 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:40:34.239 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:40:34.239 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:40:42.072 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:40:43.786 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:40:43.817 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:40:45.518 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:40:48.072 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:45:24.949 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:45:24.950 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:45:34.330 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:45:34.360 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:45:34.361 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:45:34.361 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:45:34.362 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:45:34.362 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:45:34.363 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:45:34.363 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:45:34.363 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:45:41.120 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:47:26.720 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:47:26.751 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:47:28.320 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:47:30.984 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:47:34.040 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:47:34.040 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:47:43.154 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:47:43.164 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:47:43.165 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:47:43.165 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:47:43.165 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:47:43.166 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:47:43.166 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:47:43.166 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:47:43.167 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:47:49.841 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:49:21.866 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:49:21.883 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 10:49:23.604 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:49:26.110 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 10:49:29.212 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:49:29.213 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:49:38.070 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:49:38.077 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:49:38.077 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:49:38.077 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:49:38.077 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:49:38.078 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:49:38.078 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:49:38.078 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:49:38.078 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:49:45.128 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 10:53:49.670 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:53:49.670 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:53:49.722 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 10:53:49.723 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:53:49.723 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:53:49.723 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 10:53:49.724 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 10:53:49.724 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 10:53:49.724 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 10:53:49.724 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 10:53:49.724 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 10:53:56.923 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 11:02:02.984 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:02:03.015 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:02:07.448 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:02:11.018 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:05:08.787 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:05:08.818 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:05:12.509 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:05:12.510 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:05:37.232 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:05:37.233 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:05:53.524 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 11:05:53.535 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:05:53.536 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:05:53.536 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:05:53.536 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:05:53.537 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 11:05:53.537 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Java Developer
+2026-01-05 11:05:53.538 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Java Developer (cv)
+2026-01-05 11:05:53.538 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 11:06:01.375 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 11:06:20.573 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:06:20.635 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 11:06:24.174 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:06:26.652 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 11:28:43.298 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:28:43.300 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:29:22.943 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 11:29:22.977 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:29:22.978 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:29:22.978 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 11:29:22.979 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 11:29:22.981 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 11:29:22.982 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Administrateur System 
+2026-01-05 11:29:22.982 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Administrateur System  (cv)
+2026-01-05 11:29:22.983 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 11:29:30.456 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 14:11:48.858 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:11:48.874 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:11:51.784 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:11:55.206 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:12:10.844 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:12:10.860 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:12:13.414 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:12:13.416 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:25:54.405 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:25:54.406 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:25:57.405 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:25:57.812 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:27:52.871 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:27:52.902 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:28:07.509 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:28:07.516 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:28:20.209 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:28:20.224 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 14:28:30.448 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:28:30.455 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 14:43:21.373 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 14:43:21.399 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 14:44:04.087 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 14:44:04.140 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 14:44:04.141 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 14:44:04.142 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 14:44:04.143 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 14:44:04.144 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 14:44:04.145 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 14:44:04.147 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Python Developer
+2026-01-05 16:19:56.213 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:19:56.224 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:19:56.986 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 16:19:56.994 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:19:56.994 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:19:56.995 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:19:56.996 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:19:56.998 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:19:56.998 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:19:57.003 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 16:49:41.675 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:49:41.677 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:49:41.862 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 16:49:41.865 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:49:41.866 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:49:41.867 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:49:41.867 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:49:41.868 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:49:41.868 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:49:41.870 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 16:50:31.595 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:31.596 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:31.746 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 16:50:31.748 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:31.748 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:31.749 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:31.750 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:31.751 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:31.751 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:31.752 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 16:50:40.373 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:40.374 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:40.488 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 16:50:40.490 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:40.491 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:40.492 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:40.493 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:40.493 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 16:50:40.494 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 16:50:40.495 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 20:23:30.007 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 20:23:30.014 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 20:23:30.394 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 20:23:30.400 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 20:23:30.401 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 20:23:30.402 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 20:23:30.404 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 20:23:30.406 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 20:23:30.407 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 20:23:30.410 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 21:16:03.153 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:03.159 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:03.392 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:16:03.400 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:03.401 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:03.402 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:03.402 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:03.403 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:03.404 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:03.407 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 21:16:28.777 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:28.779 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:28.917 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:16:28.922 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:28.923 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:28.924 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:28.924 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:28.926 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:28.926 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:28.929 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 21:16:30.671 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:30.675 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:30.795 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:16:30.798 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:30.799 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:30.800 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:30.800 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:30.801 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:30.802 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:30.804 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 21:16:48.990 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:48.992 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:49.140 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:16:49.145 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:49.146 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:49.147 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:49.148 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:49.149 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:16:49.150 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:16:49.162 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 21:16:49.165 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 21:16:49.615 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 10.001604208s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 10
+}
+]
+2026-01-05 21:21:20.372 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:21:20.390 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:21:37.789 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:21:37.789 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:21:37.943 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:21:37.943 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:21:47.481 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:21:47.545 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:22:39.876 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:22:39.940 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:22:48.388 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:22:48.897 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:22:49.885 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:22:49.885 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:22:58.470 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:22:58.830 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:28:49.955 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:28:49.956 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:29:14.343 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:29:14.345 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:29:25.935 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:29:25.975 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:29:25.979 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:29:25.980 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:29:25.981 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:29:25.982 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:29:25.984 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:29:25.985 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 21:29:25.986 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 21:29:26.667 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 32.958110352s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 32
+}
+]
+2026-01-05 21:29:56.255 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:29:56.256 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:30:03.400 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:30:05.377 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:30:39.536 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:30:39.538 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:30:53.435 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:30:53.438 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:14.847 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:31:14.880 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:14.881 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:14.882 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:14.883 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:14.884 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:14.884 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:14.886 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 21:31:14.886 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 21:31:15.143 | INFO     | app.storage.vector.chroma_store:__init__:31 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-ai\data\chromadb
+2026-01-05 21:31:15.148 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:15.149 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:15.150 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:15.151 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:15.153 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:31:15.153 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:31:18.641 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 41.116524981s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 41
+}
+]
+2026-01-05 21:31:18.646 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 21:36:36.166 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:36:36.198 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:36:44.733 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:36:47.945 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:52:16.402 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 21:52:37.314 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 21:57:56.067 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:57:56.070 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:58:26.612 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 21:58:26.626 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:58:26.626 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:58:26.627 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:58:26.627 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:58:26.628 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 21:58:26.628 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 21:58:26.629 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 22:30:26.332 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:26.333 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:26.473 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:30:26.474 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:26.475 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:26.476 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:26.476 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:26.477 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:26.478 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:26.481 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 22:30:54.067 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:54.067 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:54.142 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:30:54.144 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:54.144 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:54.144 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:54.145 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:54.145 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:30:54.146 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:30:54.146 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 22:31:40.476 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:31:40.477 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:31:40.609 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:31:40.612 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:31:40.613 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:31:40.613 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:31:40.614 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:31:40.615 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:31:40.615 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:31:40.621 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 22:31:40.622 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 22:31:41.209 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 18.382013396s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 18
+}
+]
+2026-01-05 22:32:32.272 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:32:32.273 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:32:32.346 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:32:32.348 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:32:32.348 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:32:32.348 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:32:32.349 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:32:32.349 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:32:32.350 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:32:32.351 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 22:32:32.351 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 22:32:32.772 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 26.810886537s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 26
+}
+]
+2026-01-05 22:34:24.841 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:34:24.842 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:34:24.904 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:34:24.906 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:34:24.906 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:34:24.906 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:34:24.906 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:34:24.907 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:34:24.907 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:34:24.907 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer']
+2026-01-05 22:34:25.430 | ERROR    | app.intelligence.generators.quiz_generator:generate:88 - Quiz generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 34.155714035s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 34
+}
+]
+2026-01-05 22:34:41.225 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 22:34:56.934 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 22:48:21.850 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:48:21.850 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:48:22.035 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:48:22.036 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:48:22.037 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:48:22.037 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:48:22.037 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:48:22.037 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:48:22.037 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:48:22.038 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 22:48:22.038 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Python Developer
+2026-01-05 22:48:22.038 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Python Developer (cv)
+2026-01-05 22:48:22.039 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 22:48:22.676 | ERROR    | app.intelligence.generators.cv_generator:generate:22 - LLM generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 36.918247451s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 36
+}
+]
+2026-01-05 22:49:25.046 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 22:49:25.079 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 22:49:35.988 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 22:49:38.611 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 22:50:02.757 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:50:02.759 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:50:33.749 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:50:33.762 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:50:33.762 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:50:33.763 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:50:33.763 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:50:33.764 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:50:33.764 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:50:33.765 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 22:50:33.765 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Data Scientist
+2026-01-05 22:50:33.766 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Data Scientist (cv)
+2026-01-05 22:50:33.766 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 22:50:41.917 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-05 22:51:09.183 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:51:09.184 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:51:09.264 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:51:09.266 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:51:09.267 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:51:09.267 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:51:09.267 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:51:09.268 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:51:09.268 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:51:09.269 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 3 mixed-difficulty questions for skills: ['Python', 'Machine Learning']
+2026-01-05 22:52:17.476 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 22:52:17.523 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 22:52:26.993 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 22:52:28.819 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 22:59:01.941 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:59:01.945 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:59:30.264 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 22:59:30.293 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:59:30.293 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:59:30.294 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:59:30.295 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:59:30.295 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 22:59:30.296 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 22:59:30.297 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 22:59:30.298 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 22:59:45.665 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 18 skills.
+2026-01-05 23:00:24.149 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 23:00:40.297 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:00:58.206 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:00:58.207 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:00:58.322 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:00:58.325 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:00:58.326 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:00:58.326 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:00:58.327 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:00:58.327 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:00:58.328 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:00:58.329 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-05 23:01:14.559 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:01:14.560 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:01:14.661 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:01:14.663 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:01:14.664 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:01:14.664 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:01:14.664 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:01:14.665 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:01:14.665 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:01:14.666 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 23:01:14.666 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 23:01:34.065 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 20 skills.
+2026-01-05 23:21:02.608 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:21:02.618 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:21:02.977 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:21:02.987 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:21:02.989 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:21:02.990 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:21:02.990 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:21:02.991 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:21:02.991 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:21:02.996 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 23:21:02.997 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 23:21:21.323 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 19 skills.
+2026-01-05 23:22:44.363 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 23:23:06.711 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:23:46.331 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:23:46.332 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:23:46.441 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:23:46.444 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:23:46.444 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:23:46.445 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:23:46.446 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:23:46.446 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:23:46.447 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:23:46.451 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 23:23:46.453 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 23:24:03.309 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 15 skills.
+2026-01-05 23:43:40.740 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 23:43:40.821 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 23:44:00.121 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:44:00.780 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:46:52.881 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:49:33.987 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-05 23:49:51.559 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-05 23:50:32.033 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:50:32.034 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:50:52.079 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:50:52.103 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:50:52.104 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:50:52.104 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:50:52.105 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:50:52.106 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:50:52.107 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:50:52.108 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 23:50:52.109 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 23:51:06.475 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 21 skills.
+2026-01-05 23:56:17.682 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:56:17.684 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:56:17.932 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:56:17.937 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:56:17.938 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:56:17.941 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:56:17.951 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:56:17.954 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:56:17.955 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:56:17.956 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-05 23:56:17.957 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-05 23:56:33.938 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 24 skills.
+2026-01-05 23:59:07.357 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:59:07.359 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:59:07.655 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-05 23:59:07.659 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:59:07.661 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:59:07.661 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:59:07.663 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:59:07.664 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-05 23:59:07.665 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-05 23:59:07.667 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-05 23:59:07.668 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Developpeur Full Stack 
+2026-01-05 23:59:07.669 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Developpeur Full Stack  (cv)
+2026-01-05 23:59:07.670 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-05 23:59:16.239 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-06 00:00:19.358 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:19.359 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:19.511 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:00:19.514 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:19.514 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:19.515 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:19.516 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:19.517 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:19.518 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:19.520 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:00:27.922 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:27.923 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:28.049 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:00:28.053 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:28.054 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:28.055 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:28.055 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:28.056 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:28.057 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:28.058 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:00:59.151 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:59.152 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:59.282 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:00:59.286 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:59.287 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:59.288 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:59.289 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:59.290 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:00:59.291 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:00:59.292 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:02:43.834 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:02:43.836 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:02:44.039 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:02:44.043 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:02:44.045 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:02:44.046 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:02:44.048 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:02:44.049 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:02:44.050 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:02:44.052 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Ingénieur', 'DevOps']
+2026-01-06 00:06:09.224 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:06:09.226 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:06:09.477 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:06:09.485 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:06:09.491 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:06:09.493 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:06:09.493 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:06:09.495 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:06:09.497 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:06:09.501 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Ingénieur', 'DevOps']
+2026-01-06 00:12:07.786 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:12:07.788 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:12:07.997 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:12:08.000 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:12:08.002 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:12:08.003 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:12:08.009 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:12:08.011 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:12:08.012 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:12:08.015 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Ingénieur', 'DevOps']
+2026-01-06 00:21:05.205 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:21:05.206 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:21:05.257 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:21:16.643 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:21:16.645 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:21:16.648 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:25:54.825 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:25:54.827 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:26:28.124 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:26:28.137 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:26:28.138 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:26:28.138 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:26:28.138 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:26:28.139 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:26:28.139 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:26:28.140 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:28:27.156 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:28:27.156 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:28:27.172 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 00:28:40.162 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:28:40.172 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:28:41.289 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 00:34:22.019 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:22.020 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:49.789 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:49.790 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:51.540 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:34:51.569 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:51.570 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:51.572 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:51.573 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:51.573 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:51.574 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:51.576 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:34:55.553 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:34:55.558 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:55.559 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:55.560 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:55.561 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:55.562 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:34:55.563 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:34:59.161 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 00:37:22.035 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:37:22.037 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:37:22.206 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 00:37:22.209 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:37:22.210 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:37:22.211 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:37:22.212 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:37:22.213 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 00:37:22.214 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 00:37:22.216 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 08:54:29.865 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:54:29.872 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:54:30.174 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 08:54:30.196 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:54:30.197 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:54:30.198 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:54:30.199 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:54:30.200 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:54:30.200 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:54:30.203 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 08:55:12.402 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:55:12.403 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:55:12.532 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 08:55:12.536 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:55:12.537 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:55:12.537 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:55:12.538 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:55:12.538 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:55:12.538 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:55:12.540 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 08:57:48.125 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:57:48.126 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:57:48.273 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 08:57:48.275 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:57:48.276 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:57:48.276 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:57:48.277 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:57:48.278 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:57:48.278 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:57:48.281 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 08:58:16.079 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:58:16.079 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:58:16.212 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 08:58:16.215 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:58:16.216 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:58:16.216 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:58:16.217 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:58:16.219 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 08:58:16.225 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 08:58:16.227 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 09:04:27.775 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:04:27.777 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:04:27.932 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 09:04:27.935 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:04:27.936 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:04:27.937 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:04:27.938 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:04:27.939 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:04:27.940 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:04:27.942 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 09:05:44.436 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 09:05:44.449 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 09:05:44.460 | INFO     | app.main:shutdown_event:47 - Shutting down Smart Career AI Service...
+2026-01-06 09:05:55.468 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 09:05:55.469 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 09:05:55.470 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...
+2026-01-06 09:31:14.514 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:31:14.541 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:31:14.567 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:31:14.618 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:33:03.893 | INFO     | app.storage.vector.chroma_store:__init__:34 - Initialized ChromaDB with collection 'courses' at C:\Users\fatma\OneDrive\Bureau\smart-carrer\microservice-AI\data\chromadb
+2026-01-06 09:33:04.081 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:33:04.083 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:33:04.086 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:33:04.113 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:33:04.133 | INFO     | app.dependencies:get_llm_provider:21 - Keys: HF=False, Gemini=True, OpenAI=False, Ollama_Enabled=True
+2026-01-06 09:33:04.146 | INFO     | app.dependencies:get_llm_provider:34 - Attempting to use Gemini Provider (gemini-flash-latest)
+2026-01-06 09:33:04.168 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-06 11:55:52.390 | INFO     | app.main:startup_event:41 - Starting Smart Career AI Service...

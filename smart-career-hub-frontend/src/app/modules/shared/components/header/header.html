@@ -18,14 +18,11 @@
             [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">A propos</a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="closeMobileMenu()">À propos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/opportunities']" routerLinkActive="active"
             (click)="closeMobileMenu()">Opportunités</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'/'" fragment="coaching">Formations</a>
         </li>
       </ul>
 
