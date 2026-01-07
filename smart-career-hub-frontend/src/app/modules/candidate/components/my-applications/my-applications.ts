@@ -47,37 +47,56 @@ export class MyApplicationsComponent implements OnInit {
                 this.applications = apps.map((app: any) => ({
                     id: app.id,
                     jobId: app.offre?.id,
-                    companyName: app.offre?.recruteur?.nomEntreprise || 'N/A',
+                    companyName: app.offre?.recruteur?.nomEntreprise || (app.offre?.source === 'INTERNAL' ? 'Smart Hub' : 'Entreprise Externe'),
                     jobTitle: app.offre?.titre || 'Poste inconnu',
                     location: app.offre?.location || 'Non spécifié',
                     appliedDate: app.dateCandidature || new Date().toISOString(),
-                    status: app.statut,
-                    timelineStep: this.getTimelineStep(app.statut),
-                    salary: 'N/A', // Mock until available in DB
+                    status: this.normalizeStatus(app.statut),
+                    timelineStep: this.getTimelineStep(this.normalizeStatus(app.statut)),
+                    salary: app.offre?.salaire || 'N/A',
                 }));
             },
             error: (err) => console.error('Error loading applications', err)
         });
     }
 
+    private normalizeStatus(statut: string): 'PENDING' | 'IN_REVIEW' | 'ACCEPTED' | 'REJECTED' | 'INTERVIEW' {
+        switch (statut) {
+            case 'EN_ATTENTE': return 'PENDING';
+            case 'A_L_EXAMEN': return 'IN_REVIEW';
+            case 'INTERVIEW': return 'INTERVIEW';
+            case 'ACCEPTEE': return 'ACCEPTED';
+            case 'REFUSEE': return 'REJECTED';
+            default: return 'PENDING';
+        }
+    }
+
     getTimelineStep(status: string): number {
         switch (status) {
-            case 'EN_ATTENTE': return 1;
-            case 'A_L_EXAMEN': return 2;
+            case 'PENDING': return 1;
+            case 'IN_REVIEW': return 2;
             case 'INTERVIEW': return 2;
-            case 'ACCEPTEE': return 3;
-            case 'REFUSEE': return 3;
+            case 'ACCEPTED': return 3;
+            case 'REJECTED': return 3;
             default: return 1;
         }
     }
 
     get filteredApplications() {
-        return this.applications.filter(app => {
+        let filtered = this.applications.filter(app => {
             const matchesSearch = app.companyName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-                app.jobTitle.toLowerCase().includes(this.searchTerm.toLowerCase());
+                app.jobTitle.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                app.location.toLowerCase().includes(this.searchTerm.toLowerCase());
             const matchesFilter = this.statusFilter === 'ALL' || app.status === this.statusFilter;
 
             return matchesSearch && matchesFilter;
+        });
+
+        // Sort by date
+        return filtered.sort((a, b) => {
+            const dateA = new Date(a.appliedDate).getTime();
+            const dateB = new Date(b.appliedDate).getTime();
+            return this.dateFilter === 'newest' ? dateB - dateA : dateA - dateB;
         });
     }
 
@@ -88,7 +107,7 @@ export class MyApplicationsComponent implements OnInit {
             case 'INTERVIEW': return 'status-interview';
             case 'ACCEPTED': return 'status-accepted';
             case 'REJECTED': return 'status-rejected';
-            default: return '';
+            default: return 'status-pending';
         }
     }
 
@@ -99,7 +118,7 @@ export class MyApplicationsComponent implements OnInit {
             case 'INTERVIEW': return 'Entretien';
             case 'ACCEPTED': return 'Accepté';
             case 'REJECTED': return 'Refusé';
-            default: return status;
+            default: return 'En Attente';
         }
     }
 
@@ -119,7 +138,6 @@ export class MyApplicationsComponent implements OnInit {
     }
 
     viewJob(jobId: string | number) {
-        console.log('Naviguer vers l\'offre:', jobId);
         this.router.navigate(['/opportunities']);
     }
 
@@ -130,10 +148,9 @@ export class MyApplicationsComponent implements OnInit {
             details += `Poste: ${app.jobTitle}\n`;
             details += `Entreprise: ${app.companyName}\n`;
             details += `Lieu: ${app.location}\n`;
-            if (app.salary) details += `Salaire: ${app.salary}\n`;
-            details += `Date de candidature: ${new Date(app.appliedDate).toLocaleDateString('fr-FR')}\n`;
+            if (app.salary && app.salary !== 'N/A') details += `Salaire: ${app.salary}\n`;
+            details += `Date: ${new Date(app.appliedDate).toLocaleDateString('fr-FR')}\n`;
             details += `Statut: ${this.getStatusLabel(app.status)}\n`;
-            if (app.coverLetter) details += `\nLettre de motivation:\n${app.coverLetter}`;
 
             alert(details);
         }

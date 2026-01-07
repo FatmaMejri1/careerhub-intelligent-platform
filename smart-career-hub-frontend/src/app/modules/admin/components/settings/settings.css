@@ -1,65 +1,72 @@
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.settings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
 }
 
 .page-header h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: #1e1b4b;
-    margin-bottom: 0.25rem;
+    font-size: 2.25rem;
+    letter-spacing: -0.02em;
 }
 
-.w-25px {
-    width: 25px;
-    text-align: center;
-    margin-right: 8px;
+.setting-section h5 {
+    font-size: 1.1rem;
+    color: #1e293b;
 }
 
-.list-group-item {
-    border: none;
-    color: #64748b;
-    font-weight: 500;
-    transition: all 0.2s;
-    border-radius: 8px !important;
-    margin-bottom: 4px;
+.form-control-lg {
+    font-size: 0.95rem;
+    border-color: #e2e8f0;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
-.list-group-item:hover {
-    background-color: #f1f5f9;
-    color: #4f46e5;
+.form-control:focus {
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
 
-.list-group-item.active {
-    background-color: #eef2ff !important;
-    color: #4f46e5 !important;
-    font-weight: 700;
-    border-left: 4px solid #4f46e5;
-}
-
-.form-check-input:checked {
-    background-color: #4f46e5;
-    border-color: #4f46e5;
+.form-switch .form-check-input {
+    width: 3rem;
+    height: 1.5rem;
+    cursor: pointer;
 }
 
 .form-range::-webkit-slider-thumb {
     background: #4f46e5;
 }
 
-.x-small {
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
+.card {
+    transition: transform 0.2s;
+}
+
+.border-dashed {
+    border-style: dashed !important;
+}
+
+.bg-primary-subtle {
+    background-color: #eef2ff !important;
+}
+
+.bg-warning-subtle {
+    background-color: #fffbeb !important;
+}
+
+.bg-danger-subtle {
+    background-color: #fef2f2 !important;
+}
+
+.bg-success-subtle {
+    background-color: #f0fdf4 !important;
 }
 
 .fade-in {
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
 
     to {

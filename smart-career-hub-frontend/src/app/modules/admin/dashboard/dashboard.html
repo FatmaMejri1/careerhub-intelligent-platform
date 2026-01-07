@@ -3,15 +3,18 @@
 
   <aside class="sidebar" [class.active]="sidebarActive">
     <div class="sidebar-profile">
-      <div class="profile-photo-container" routerLink="/admin/profile" style="cursor: pointer;">
-        <div class="photo-placeholder-icon" *ngIf="!profileImage">
+      <div class="profile-photo-container">
+        <div class="photo-placeholder-icon" *ngIf="!(profileImage$ | async)" routerLink="/admin/profile">
           <i class="fas fa-user-shield"></i>
         </div>
-        <img *ngIf="profileImage" [src]="profileImage"
-          style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        <img *ngIf="profileImage$ | async as photo" [src]="photo" routerLink="/admin/profile"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; cursor: pointer;">
+
+        <input type="file" #sidebarFileInput (change)="onSidebarFileSelected($event)" accept="image/*" hidden>
 
         <!-- Camera Icon Badge -->
-        <div class="sidebar-photo-badge">
+        <div class="sidebar-photo-badge" (click)="sidebarFileInput.click()" style="cursor: pointer; z-index: 10;"
+          title="Changer la photo">
           <i class="fas fa-camera"></i>
         </div>
       </div>
@@ -41,10 +44,7 @@
         <span>Détection de Fraudes</span>
       </a>
 
-      <a class="nav-item" routerLink="/admin/notifications" routerLinkActive="active" (click)="sidebarActive = false">
-        <i class="fas fa-bell"></i>
-        <span>Notifications</span>
-      </a>
+
 
       <!-- Separation for Bottom Items -->
       <div class="mt-auto"></div>

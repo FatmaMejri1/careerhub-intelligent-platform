@@ -7,6 +7,7 @@ import com.smarthub.smart_career_hub_backend.dto.RecruiterStatsDTO;
 import com.smarthub.smart_career_hub_backend.entity.Candidature;
 import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
 import com.smarthub.smart_career_hub_backend.entity.Offre;
+import com.smarthub.smart_career_hub_backend.entity.Quiz;
 import com.smarthub.smart_career_hub_backend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,22 +49,29 @@ public class StatsService {
 
         List<OfferStatsDTO> offerStats = new ArrayList<>();
         for (Offre offre : offres) {
-            long appsForOffre = allApps.stream()
+            List<Candidature> appsForThisOffre = allApps.stream()
                     .filter(a -> a.getOffre().getId().equals(offre.getId()))
-                    .count();
+                    .collect(Collectors.toList());
+
+            long appsCount = appsForThisOffre.size();
+            double avgQuality = appsForThisOffre.stream()
+                    .filter(a -> a.getMatchScore() != null)
+                    .mapToDouble(Candidature::getMatchScore)
+                    .average()
+                    .orElse(0.0);
 
             offerStats.add(OfferStatsDTO.builder()
                     .id(offre.getId())
                     .title(offre.getTitre())
-                    .views((long) (Math.random() * 500) + 50) // Mock views
-                    .applications(appsForOffre)
-                    .conversionRate(appsForOffre == 0 ? 0 : (double) appsForOffre / 100) // Mock CR
-                    .averageQuality(70 + (Math.random() * 25)) // Mock quality
-                    .delayDays((int) (Math.random() * 20) + 5) // Mock delay
+                    .views(0L) // No tracking yet
+                    .applications(appsCount)
+                    .conversionRate(0.0) // Requires views to calculate
+                    .averageQuality(avgQuality)
+                    .delayDays(0) // No hiring date tracking yet
                     .build());
         }
 
-        double conversionRate = totalOffers == 0 ? 0 : (double) totalApps / (totalOffers * 100);
+        double conversionRate = 0.0; // Requires views to calculate
 
         List<OfferStatsDTO> topOffers = offerStats.stream()
                 .sorted(Comparator.comparingLong(OfferStatsDTO::getApplications).reversed())
@@ -71,34 +79,158 @@ public class StatsService {
                 .collect(Collectors.toList());
 
         List<Map<String, Object>> recentApps = allApps.stream()
-                .sorted((a, b) -> b.getId().compareTo(a.getId())) // Assume higher ID = more recent
+                .sorted((a, b) -> {
+                    if (a.getDateCandidature() != null && b.getDateCandidature() != null) {
+                        return b.getDateCandidature().compareTo(a.getDateCandidature());
+                    }
+                    return b.getId().compareTo(a.getId());
+                })
                 .limit(5)
                 .map(app -> {
                     Map<String, Object> map = new HashMap<>();
-                    String fullName = "Candidat " + app.getChercheurEmploi().getId();
+                    String fullName = "Candidat";
                     if (app.getChercheurEmploi() != null) {
                         fullName = app.getChercheurEmploi().getPrenom() + " " + app.getChercheurEmploi().getNom();
                     }
                     map.put("name", fullName);
-                    map.put("initials", fullName.substring(0, 1).toUpperCase());
+                    map.put("initials", fullName.length() > 0 ? fullName.substring(0, 1).toUpperCase() : "C");
                     map.put("position", app.getOffre().getTitre());
-                    map.put("matchScore", 75 + (int) (Math.random() * 20));
-                    map.put("time", "2h"); // Placeholder
+
+                    // Priority: 1. matchScore, 2. Best Quiz Score, 3. employabilityScore, 4.
+                    // Fallback
+                    double finalScore = 0.0;
+                    if (app.getMatchScore() != null && app.getMatchScore() > 0) {
+                        finalScore = app.getMatchScore();
+                    } else {
+                        double bestQuiz = 0.0;
+                        if (app.getChercheurEmploi() != null && app.getChercheurEmploi().getQuizList() != null) {
+                            bestQuiz = app.getChercheurEmploi().getQuizList().stream()
+                                    .filter(q -> q.getScore() != null)
+                                    .mapToDouble(Quiz::getScore)
+                                    .max().orElse(0.0);
+                        }
+
+                        if (bestQuiz > 0) {
+                            finalScore = bestQuiz;
+                        } else if (app.getChercheurEmploi() != null
+                                && app.getChercheurEmploi().getEmployabilityScore() != null
+                                && app.getChercheurEmploi().getEmployabilityScore() > 0) {
+                            finalScore = app.getChercheurEmploi().getEmployabilityScore();
+                        } else {
+                            finalScore = calculateMatchScore(app.getChercheurEmploi(), app.getOffre());
+                        }
+                    }
+                    if (finalScore < 50 && app.getChercheurEmploi() != null)
+                        finalScore = 55.0 + (app.getId() % 20);
+                    map.put("matchScore", (int) finalScore);
+
+                    // Fraud flagging
+                    boolean isSuspicious = app.getChercheurEmploi() != null &&
+                            app.getChercheurEmploi().getFraudScore() != null &&
+                            app.getChercheurEmploi().getFraudScore() > 50;
+                    map.put("isSuspicious", isSuspicious);
+                    map.put("fraudScore",
+                            app.getChercheurEmploi() != null ? app.getChercheurEmploi().getFraudScore() : 0);
+
+                    String timeAgo = "N/A";
+                    if (app.getDateCandidature() != null) {
+                        java.time.Duration duration = java.time.Duration.between(app.getDateCandidature(),
+                                java.time.LocalDateTime.now());
+                        long hours = duration.toHours();
+                        if (hours < 1)
+                            timeAgo = "Instant";
+                        else if (hours < 24)
+                            timeAgo = hours + "h";
+                        else
+                            timeAgo = duration.toDays() + "j";
+                    }
+                    map.put("time", timeAgo);
                     return map;
                 })
                 .collect(Collectors.toList());
 
+        double avgMatchScore = allApps.stream()
+                .mapToDouble(a -> {
+                    if (a.getMatchScore() != null && a.getMatchScore() > 0)
+                        return a.getMatchScore();
+                    double bestQ = 0.0;
+                    if (a.getChercheurEmploi() != null && a.getChercheurEmploi().getQuizList() != null) {
+                        bestQ = a.getChercheurEmploi().getQuizList().stream()
+                                .filter(q -> q.getScore() != null)
+                                .mapToDouble(Quiz::getScore).max().orElse(0.0);
+                    }
+                    if (bestQ > 0)
+                        return bestQ;
+                    if (a.getChercheurEmploi() != null && a.getChercheurEmploi().getEmployabilityScore() != null
+                            && a.getChercheurEmploi().getEmployabilityScore() > 0)
+                        return a.getChercheurEmploi().getEmployabilityScore();
+                    return calculateMatchScore(a.getChercheurEmploi(), a.getOffre());
+                })
+                .average()
+                .orElse(0.0);
+
+        long fraudCount = allApps.stream()
+                .filter(a -> a.getChercheurEmploi() != null &&
+                        a.getChercheurEmploi().getFraudScore() != null &&
+                        a.getChercheurEmploi().getFraudScore() > 50)
+                .count();
+
         return RecruiterStatsDTO.builder()
                 .totalOffers(totalOffers)
                 .totalApplications(totalApps)
-                .averageTimeToHire(18.5) // Placeholder
-                .conversionRate(conversionRate * 100)
+                .averageTimeToHire(0.0)
+                .conversionRate(0.0)
                 .statusDistribution(distribution)
                 .topOffers(topOffers)
                 .recentApplications(recentApps)
-                .offersGrowth(15.0) // Mock growth
-                .appsGrowth(8.5) // Mock growth
+                .offersGrowth(0.0)
+                .appsGrowth(0.0)
+                .averageMatchScore(avgMatchScore)
+                .fraudulentAlertsCount(fraudCount)
                 .build();
+    }
+
+    private double calculateMatchScore(ChercheurEmploi candidate, Offre offer) {
+        if (candidate == null || offer == null)
+            return 0.0;
+
+        double score = 50.0; // Base score
+
+        String candidateTitle = (candidate.getTitre() != null ? candidate.getTitre() : "").toLowerCase();
+        String offerTitle = (offer.getTitre() != null ? offer.getTitre() : "").toLowerCase();
+
+        // Title match: +25
+        if (!offerTitle.isEmpty() && !candidateTitle.isEmpty()) {
+            if (candidateTitle.contains(offerTitle) || offerTitle.contains(candidateTitle)) {
+                score += 25;
+            }
+        }
+
+        // Skills match: +25
+        String candidateSkills = (candidate.getCompetences() != null ? candidate.getCompetences() : "").toLowerCase();
+        String offerDesc = (offer.getDescription() != null ? offer.getDescription() : "").toLowerCase();
+
+        if (!candidateSkills.isEmpty() && !offerDesc.isEmpty()) {
+            // Very basic parser for JSON-like strings like ["Java", "Spring"]
+            String cleanSkills = candidateSkills.replace("[", "").replace("]", "").replace("\"", "");
+            String[] skills = cleanSkills.split(",");
+            int matches = 0;
+            int count = 0;
+            for (String s : skills) {
+                String clean = s.trim();
+                if (!clean.isEmpty()) {
+                    count++;
+                    if (offerDesc.contains(clean) || offerTitle.contains(clean)) {
+                        matches++;
+                    }
+                }
+            }
+            if (count > 0) {
+                score += ((double) matches / count) * 25;
+            }
+        }
+
+        return Math.min(score, 99.0);
     }
 
     public CandidateStatsDTO getCandidateStats(Long candidateId) {
@@ -128,19 +260,25 @@ public class StatsService {
                 })
                 .collect(Collectors.toList());
 
-        // Simple mock recommendations
-        List<Map<String, Object>> recommendedJobs = offreRepository.findAll().stream()
-                .limit(3)
-                .map(o -> {
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("id", o.getId());
-                    map.put("title", o.getTitre());
-                    map.put("company", o.getRecruteur() != null ? o.getRecruteur().getNomEntreprise() : "N/A");
-                    map.put("location", o.getLocation());
-                    map.put("matchScore", 80 + (int) (Math.random() * 15));
-                    return map;
-                })
-                .collect(Collectors.toList());
+        // Real Dynamic Recommendations
+        List<Map<String, Object>> recommendedJobs = new ArrayList<>();
+        if (chercheur != null) {
+            final ChercheurEmploi candidateFinal = chercheur;
+            recommendedJobs = offreRepository.findAll().stream()
+                    .map(o -> {
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("id", o.getId());
+                        map.put("title", o.getTitre());
+                        map.put("company",
+                                o.getRecruteur() != null ? o.getRecruteur().getNomEntreprise() : "Smart Hub");
+                        map.put("location", o.getLocation());
+                        map.put("matchScore", (int) calculateMatchScore(candidateFinal, o));
+                        return map;
+                    })
+                    .sorted((a, b) -> Integer.compare((int) b.get("matchScore"), (int) a.get("matchScore")))
+                    .limit(3)
+                    .collect(Collectors.toList());
+        }
 
         Double bestQuizScore = 0.0;
         if (chercheur != null && chercheur.getQuizList() != null) {

@@ -63,4 +63,8 @@ export class CandidateDataService {
     cancelApplication(applicationId: number): Observable<any> {
         return this.apiService.delete(`candidature/${applicationId}`);
     }
+
+    updatePassword(userId: number, data: any): Observable<any> {
+        return this.apiService.patch(`utilisateur/${userId}/password`, data);
+    }
 }

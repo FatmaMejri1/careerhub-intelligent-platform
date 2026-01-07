@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
+import com.smarthub.smart_career_hub_backend.repository.ChercheurEmploiRepository;
+import com.smarthub.smart_career_hub_backend.repository.OffreRepository;
 
 @Service
 public class RecruteurService {
@@ -21,6 +24,12 @@ public class RecruteurService {
 
     @Autowired
     private UtilisateurRepository utilisateurRepository;
+
+    @Autowired
+    private OffreRepository offreRepository;
+
+    @Autowired
+    private ChercheurEmploiRepository chercheurEmploiRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -165,5 +174,74 @@ public class RecruteurService {
             e.printStackTrace();
             throw new RuntimeException("Failed to promote user: " + e.getMessage());
         }
+    }
+
+    public List<Map<String, Object>> getRecommendedCandidates(Long recruiterId) {
+        List<Offre> offers = offreRepository.findByRecruteur_Id(recruiterId);
+        List<ChercheurEmploi> candidates = chercheurEmploiRepository.findAll();
+        List<Map<String, Object>> recommendations = new ArrayList<>();
+
+        if (offers.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        for (ChercheurEmploi candidate : candidates) {
+            // Skill matching
+            String candidateSkillsRaw = candidate.getCompetences() != null ? candidate.getCompetences().toLowerCase()
+                    : "";
+
+            Offre bestMatch = null;
+            double bestScore = 0;
+
+            for (Offre offer : offers) {
+                String offerSkillsRaw = offer.getDescription() != null ? offer.getDescription().toLowerCase() : "";
+                String offerTitle = offer.getTitre() != null ? offer.getTitre().toLowerCase() : "";
+
+                double score = 50.0;
+
+                if (candidate.getTitre() != null && (candidate.getTitre().toLowerCase().contains(offerTitle)
+                        || offerTitle.contains(candidate.getTitre().toLowerCase()))) {
+                    score += 20;
+                }
+
+                if (!candidateSkillsRaw.isEmpty() && !offerSkillsRaw.isEmpty()) {
+                    String[] skills = candidateSkillsRaw.split("[,|\\[\\]]");
+                    int matches = 0;
+                    int count = 0;
+                    for (String s : skills) {
+                        String cleanSkill = s.trim();
+                        if (!cleanSkill.isEmpty()) {
+                            count++;
+                            if (offerSkillsRaw.contains(cleanSkill) || offerTitle.contains(cleanSkill)) {
+                                matches++;
+                            }
+                        }
+                    }
+                    if (count > 0) {
+                        score += (double) matches / count * 30;
+                    }
+                }
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMatch = offer;
+                }
+            }
+
+            if (bestMatch != null && bestScore > 60) {
+                Map<String, Object> recommendation = new HashMap<>();
+                recommendation.put("candidateName", candidate.getPrenom() + " " + candidate.getNom());
+                recommendation.put("role", bestMatch.getTitre());
+                recommendation.put("match", (int) Math.min(bestScore, 99));
+                recommendation.put("skills", candidate.getCompetences());
+                recommendation.put("isSuspicious", candidate.getFraudScore() != null && candidate.getFraudScore() > 50);
+                recommendations.add(recommendation);
+            }
+        }
+
+        return recommendations.stream()
+                .sorted((a, b) -> (Integer) b.get("match") - (Integer) a.get("match"))
+                .limit(5)
+                .collect(Collectors.toList());
     }
 }

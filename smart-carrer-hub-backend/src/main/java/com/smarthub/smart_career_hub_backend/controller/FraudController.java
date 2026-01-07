@@ -2,21 +2,31 @@ package com.smarthub.smart_career_hub_backend.controller;
 
 import com.smarthub.smart_career_hub_backend.service.StatsService;
 import com.smarthub.smart_career_hub_backend.service.UtilisateurService;
-import lombok.RequiredArgsConstructor;
+import com.smarthub.smart_career_hub_backend.dto.AdminStatsDTO;
+import com.smarthub.smart_career_hub_backend.service.AIService;
+import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admin/fraud")
-@RequiredArgsConstructor
 public class FraudController {
 
-    private final StatsService statsService;
-    private final UtilisateurService utilisateurService;
-    private final com.smarthub.smart_career_hub_backend.service.AIService aiService;
+    @Autowired
+    private StatsService statsService;
+
+    @Autowired
+    private UtilisateurService utilisateurService;
+
+    @Autowired
+    private AIService aiService;
 
     @GetMapping("/alerts")
     public ResponseEntity<List<Map<String, Object>>> getFraudAlerts() {
@@ -26,19 +36,18 @@ public class FraudController {
     @GetMapping("/ai-analysis/{userId}")
     public ResponseEntity<?> getAIAnalysis(@PathVariable Long userId) {
         try {
-            java.util.Optional<com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi> optionalChercheur = utilisateurService
-                    .getChercheurById(userId);
+            Optional<ChercheurEmploi> optionalChercheur = utilisateurService.getChercheurById(userId);
             if (optionalChercheur.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi c = optionalChercheur.get();
+            ChercheurEmploi c = optionalChercheur.get();
 
-            Map<String, Object> aiRequest = new java.util.HashMap<>();
+            Map<String, Object> aiRequest = new HashMap<>();
             aiRequest.put("user_id", c.getId());
             aiRequest.put("full_name", c.getPrenom() + " " + c.getNom());
 
-            java.util.List<String> links = new java.util.ArrayList<>();
+            List<String> links = new ArrayList<>();
             if (c.getLinkedin() != null)
                 links.add(c.getLinkedin());
             if (c.getGithub() != null)
@@ -59,38 +68,36 @@ public class FraudController {
 
             return ResponseEntity.ok(analysis);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("AI Analysis Error: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", "AI Analysis Error: " + e.getMessage()));
         }
     }
 
-    private java.util.List<?> parseJson(String json) {
+    private List<?> parseJson(String json) {
         if (json == null || json.isEmpty() || json.equals("[]"))
-            return new java.util.ArrayList<>();
+            return new ArrayList<>();
         try {
             com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            return mapper.readValue(json, java.util.List.class);
+            return mapper.readValue(json, List.class);
         } catch (Exception e) {
-            return new java.util.ArrayList<>();
+            return new ArrayList<>();
         }
     }
 
     @GetMapping("/report/{userId}")
     public ResponseEntity<?> getFraudReport(@PathVariable Long userId) {
         try {
-            java.util.Optional<com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi> optionalChercheur = utilisateurService
-                    .getChercheurById(userId);
+            Optional<ChercheurEmploi> optionalChercheur = utilisateurService.getChercheurById(userId);
             if (optionalChercheur.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi c = optionalChercheur.get();
+            ChercheurEmploi c = optionalChercheur.get();
 
-            // Re-run or get cached analysis
-            Map<String, Object> aiRequest = new java.util.HashMap<>();
+            Map<String, Object> aiRequest = new HashMap<>();
             aiRequest.put("user_id", c.getId());
             aiRequest.put("full_name", c.getPrenom() + " " + c.getNom());
 
-            java.util.List<String> links = new java.util.ArrayList<>();
+            List<String> links = new ArrayList<>();
             if (c.getLinkedin() != null)
                 links.add(c.getLinkedin());
             if (c.getGithub() != null)
@@ -104,7 +111,7 @@ public class FraudController {
             Map<String, Object> analysis = aiService.analyzeFraud(aiRequest);
 
             if (analysis == null) {
-                return ResponseEntity.internalServerError().body("Failed to generate analysis for report");
+                return ResponseEntity.status(500).body(Map.of("error", "Failed to generate analysis for report"));
             }
 
             int finalScore = ((Number) analysis.getOrDefault("fraud_score", 0)).intValue();
@@ -112,7 +119,6 @@ public class FraudController {
             int aiScore = ((Number) analysis.getOrDefault("ai_fraud_score", 0)).intValue();
             int reliability = 100 - finalScore;
 
-            // Constructing an enhanced text report
             StringBuilder report = new StringBuilder();
             report.append("====================================================\n");
             report.append("   RAPPORT D'ANALYSE D'INTÉGRITÉ & FIABILITÉ\n");
@@ -142,8 +148,8 @@ public class FraudController {
 
             report.append("FAISCEAU DE PREUVES DÉTECTÉES :\n");
             Object evidenceRaw = analysis.get("evidence");
-            if (evidenceRaw instanceof java.util.List) {
-                java.util.List<?> evidenceList = (java.util.List<?>) evidenceRaw;
+            if (evidenceRaw instanceof List) {
+                List<?> evidenceList = (List<?>) evidenceRaw;
                 if (!evidenceList.isEmpty()) {
                     for (Object obj : evidenceList) {
                         if (obj instanceof Map) {
@@ -172,7 +178,7 @@ public class FraudController {
                     .body(reportBytes);
 
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Report Generation Error: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", "Report Generation Error: " + e.getMessage()));
         }
     }
 
@@ -181,20 +187,19 @@ public class FraudController {
             @PathVariable Long userId,
             @RequestParam("action") String action) {
         try {
+            String message;
             if ("Bloquer".equalsIgnoreCase(action)) {
-                // Logic to block user
                 utilisateurService.getUtilisateurById(userId).ifPresent(u -> {
                     u.setStatut("Suspendu");
                     utilisateurService.ajouterUtilisateur(u);
                 });
-                return ResponseEntity.ok("Utilisateur bloqué avec succès");
+                message = "Utilisateur bloqué avec succès";
             } else {
-                // Reset fraud score or mark as ignored
-                // For now just return success
-                return ResponseEntity.ok("Alerte ignorée");
+                message = "Alerte ignorée";
             }
+            return ResponseEntity.ok(Map.of("message", message));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error resolving alert: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", "Error resolving alert: " + e.getMessage()));
         }
     }
 }

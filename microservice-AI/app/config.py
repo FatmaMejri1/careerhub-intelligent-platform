@@ -9,25 +9,14 @@ class Settings(BaseSettings):
     api_host: str = "0.0.0.0"
     api_port: int = 5000
     
-    # OpenAI
-    openai_api_key: Optional[str] = None
-    openai_model: str = "google/gemini-1.5-flash"
-    openai_base_url: Optional[str] = None
-    
-    # Ollama
-    ollama_base_url: str = "http://localhost:11434"
-    ollama_api_key: Optional[str] = None
-    ollama_model: str = "mistral"
-    use_ollama: bool = True # Use true to prioritize the provided key
-    
     # Gemini
     gemini_api_key: Optional[str] = None
-    gemini_model: str = "gemini-1.5-flash"
+    gemini_model: str = "gemini-2.5-flash"
 
-    # Hugging Face
-    huggingface_api_key: Optional[str] = None
-    huggingface_model: str = "mistralai/Mistral-7B-Instruct-v0.2"
-    
+    # MongoDB
+    mongodb_uri: str = "mongodb://localhost:27017/smartcareerhub_fresh"
+    mongodb_db: str = "smartcareerhub_fresh"
+
     # Redis
     redis_url: str = "redis://localhost:6379"
     

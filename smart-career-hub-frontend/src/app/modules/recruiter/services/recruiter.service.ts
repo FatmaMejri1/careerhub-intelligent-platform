@@ -58,6 +58,8 @@ export interface RecruiterStats {
     recentApplications: any[];
     offersGrowth: number;
     appsGrowth: number;
+    averageMatchScore: number;
+    fraudulentAlertsCount: number;
 }
 
 @Injectable({
@@ -116,11 +118,19 @@ export class RecruiterService {
         return this.http.get<RecruiterStats>(`${this.apiUrl}/stats/recruiter/${recruiterId}`);
     }
 
+    getRecommendations(recruiterId: number): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/recruteur/recommendations/${recruiterId}`);
+    }
+
     getCandidaturesByRecruiterId(recruiterId: number): Observable<any[]> {
         return this.http.get<any[]>(`${this.apiUrl}/candidature/recruteur/${recruiterId}`);
     }
 
     updateCandidatureStatus(id: number, status: string): Observable<any> {
         return this.http.put(`${this.apiUrl}/candidature/${id}/statut?statut=${status}`, {});
+    }
+
+    updatePassword(userId: number, data: any): Observable<any> {
+        return this.http.patch(`${this.apiUrl}/utilisateur/${userId}/password`, data);
     }
 }

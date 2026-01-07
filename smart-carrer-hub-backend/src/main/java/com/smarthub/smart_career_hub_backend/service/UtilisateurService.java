@@ -165,4 +165,16 @@ public class UtilisateurService {
 
         return utilisateurRepository.save(utilisateur);
     }
+
+    public void updatePassword(Long id, String currentPassword, String newPassword) {
+        Utilisateur utilisateur = utilisateurRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+
+        if (!utilisateur.getMotDePasse().equals(currentPassword)) {
+            throw new RuntimeException("L'ancien mot de passe est incorrect.");
+        }
+
+        utilisateur.setMotDePasse(newPassword);
+        utilisateurRepository.save(utilisateur);
+    }
 }

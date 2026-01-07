@@ -3,6 +3,7 @@ package com.smarthub.smart_career_hub_backend.controller;
 import com.smarthub.smart_career_hub_backend.entity.Utilisateur;
 import com.smarthub.smart_career_hub_backend.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,5 +55,15 @@ public class UtilisateurController {
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         u.setStatut(nouveauStatut);
         return utilisateurService.ajouterUtilisateur(u);
+    }
+
+    @PatchMapping("/{id}/password")
+    public ResponseEntity<?> updatePassword(@PathVariable Long id, @RequestBody java.util.Map<String, String> body) {
+        try {
+            utilisateurService.updatePassword(id, body.get("currentPassword"), body.get("newPassword"));
+            return ResponseEntity.ok(java.util.Map.of("message", "Mot de passe mis à jour"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("message", e.getMessage()));
+        }
     }
 }

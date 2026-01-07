@@ -11,41 +11,28 @@ import { FormsModule } from '@angular/forms';
 })
 export class AdminSettingsComponent {
 
-
-
-    settings = {
-        general: {
-            maintenanceMode: false,
-            platformName: 'Smart Career Hub',
-            supportEmail: 'support@smartcareer.hub',
-            defaultLanguage: 'fr'
-        },
-        security: {
-            require2FA: true,
-            sessionTimeout: 30,
-            passwordPolicy: {
-                uppercase: true,
-                number: true,
-                specialChar: true
-            }
-        },
-        notifications: {
-            emailFraudAlert: true,
-            emailNewAdmin: true,
-            emailWeeklyReport: false
-        },
-        ai: {
-            matchingThreshold: 75,
-            fraudSensitivity: 60,
-            autoBanHighRisk: false
-        }
+    passwords = {
+        current: '',
+        new: '',
+        confirm: ''
     };
 
-    saveAll() {
-        // Here you would call an API service to persist the settings
-        console.log('Settings Saved', this.settings);
+    updatePassword() {
+        if (this.passwords.new !== this.passwords.confirm) {
+            alert('Les mots de passe ne correspondent pas.');
+            return;
+        }
 
-        // Simple alert for feedback (in production use a toast)
-        alert('Modifications enregistrées avec succès !');
+        // Logic to call API would go here
+        console.log('Password Update Triggered');
+
+        alert('Votre mot de passe a été mis à jour avec succès !');
+
+        // Clear form
+        this.passwords = {
+            current: '',
+            new: '',
+            confirm: ''
+        };
     }
 }

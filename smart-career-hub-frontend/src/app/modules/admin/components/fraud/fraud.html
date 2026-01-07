@@ -9,71 +9,11 @@
             <button class="btn btn-outline-dark rounded-pill px-4" (click)="refreshData()">
                 <i class="fas fa-sync-alt me-2"></i> Sync
             </button>
-            <button class="btn btn-dark rounded-pill px-4" (click)="purgeHighRisk()">
-                <i class="fas fa-shield-alt me-2"></i> Maintenance
-            </button>
+
         </div>
     </header>
 
-    <!-- KPI Cards -->
-    <div class="row g-4 mb-5">
-        <div class="col-md-3">
-            <div class="card card-kpi shadow-sm h-100 p-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="avatar-preview bg-danger-subtle text-danger">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <span class="badge bg-danger rounded-pill">Critical</span>
-                    </div>
-                    <h3 class="fw-bold mb-0">12</h3>
-                    <p class="text-muted small mb-0">Alertes hautes priorités</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-kpi shadow-sm h-100 p-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="avatar-preview bg-warning-subtle text-warning">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <span class="badge bg-warning text-dark rounded-pill">Pending</span>
-                    </div>
-                    <h3 class="fw-bold mb-0">45</h3>
-                    <p class="text-muted small mb-0">Suspects en attente</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-kpi shadow-sm h-100 p-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="avatar-preview bg-success-subtle text-success">
-                            <i class="fas fa-check-double"></i>
-                        </div>
-                        <span class="badge bg-success rounded-pill">Solved</span>
-                    </div>
-                    <h3 class="fw-bold mb-0">89</h3>
-                    <p class="text-muted small mb-0">Résolus aujourd'hui</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card card-kpi bg-dark text-white shadow-sm h-100 p-3">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="avatar-preview bg-secondary bg-opacity-25 text-white">
-                            <i class="fas fa-fingerprint"></i>
-                        </div>
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
-                    <h3 class="fw-bold mb-0">98.2%</h3>
-                    <p class="text-white-50 small mb-0">Précision de détection</p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="row g-4">
         <!-- Fraud Table -->

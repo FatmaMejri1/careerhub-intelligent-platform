@@ -25,4 +25,6 @@ public class RecruiterStatsDTO {
     // Performance vs last month (placeholders for now)
     private double offersGrowth;
     private double appsGrowth;
+    private double averageMatchScore;
+    private long fraudulentAlertsCount;
 }

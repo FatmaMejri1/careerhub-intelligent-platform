@@ -13,10 +13,7 @@ import { AuthService } from '../../../shared/services/auth';
 export class RecruiterHomeComponent implements OnInit {
     stats?: RecruiterStats;
     recentApplications: any[] = [];
-    recommendations = [
-        { role: 'Senior Java Dev', candidateName: 'Youssef K.', match: 94, skills: 'Java, Spring Boot, Microservices' },
-        { role: 'UX Designer', candidateName: 'Nour E.', match: 89, skills: 'Figma, Adobe XD, Prototyping' }
-    ];
+    recommendations: any[] = [];
 
     constructor(
         private recruiterService: RecruiterService,
@@ -30,13 +27,24 @@ export class RecruiterHomeComponent implements OnInit {
     loadDashboardData(): void {
         this.authService.currentUser$.subscribe(user => {
             if (user && user.id) {
-                this.recruiterService.getStatsByRecruiterId(Number(user.id)).subscribe({
+                const userId = Number(user.id);
+
+                this.recruiterService.getStatsByRecruiterId(userId).subscribe({
                     next: (data) => {
                         this.stats = data;
                         this.recentApplications = data.recentApplications || [];
                     },
                     error: (err) => {
                         console.error('Error loading dashboard stats:', err);
+                    }
+                });
+
+                this.recruiterService.getRecommendations(userId).subscribe({
+                    next: (recs) => {
+                        this.recommendations = recs;
+                    },
+                    error: (err) => {
+                        console.error('Error loading recommendations:', err);
                     }
                 });
             }

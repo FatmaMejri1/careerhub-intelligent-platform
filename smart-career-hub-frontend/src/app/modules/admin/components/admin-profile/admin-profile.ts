@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminProfileService } from '../../services/admin-profile.service';
+import { AuthService } from '../../../shared/services/auth';
 
 @Component({
     selector: 'app-admin-profile',
@@ -22,7 +23,10 @@ export class AdminProfileComponent implements OnInit {
         role: 'Administrateur Système'
     };
 
-    constructor(private profileService: AdminProfileService) {
+    constructor(
+        private profileService: AdminProfileService,
+        private authService: AuthService
+    ) {
         this.profileService.profileImage$.subscribe(img => {
             if (img) this.profileImage = img;
         });
@@ -64,9 +68,19 @@ export class AdminProfileComponent implements OnInit {
             profileImage: this.profileImage
         };
         this.profileService.updateProfile(payload).subscribe({
-            next: () => {
+            next: (updatedAdmin) => {
                 this.isEditing = false;
                 alert('Profil mis à jour avec succès !');
+
+                // Update AuthService cached user to sync sidebar name
+                const currentUser = this.authService.getCurrentUser();
+                if (currentUser) {
+                    this.authService.updateUser({
+                        ...currentUser,
+                        name: `${updatedAdmin.firstName} ${updatedAdmin.lastName}`
+                    });
+                }
+
                 this.loadProfile();
             },
             error: (err) => {

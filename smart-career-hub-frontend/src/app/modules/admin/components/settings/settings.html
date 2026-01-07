@@ -1,92 +1,60 @@
 <div class="settings-container fade-in">
     <!-- Header -->
-    <header class="page-header mb-4">
+    <header class="page-header mb-5">
         <div>
-            <h1>Paramètres Globaux</h1>
-            <p class="text-muted">Configuration simplifiée du système.</p>
+            <h1 class="fw-bold text-dark">Paramètres du Compte</h1>
+            <p class="text-muted">Gérez votre sécurité et vos identifiants d'accès.</p>
         </div>
-        <button class="btn btn-primary" (click)="saveAll()">
-            <i class="fas fa-save me-2"></i> Enregistrer
-        </button>
     </header>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
-
-            <!-- Combined Settings Card -->
-            <div class="card shadow-sm border-0">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h5 class="fw-bold d-flex align-items-center">
+                        <span class="p-2 bg-primary-subtle rounded-3 me-3">
+                            <i class="fas fa-key text-primary"></i>
+                        </span>
+                        Changer le mot de passe
+                    </h5>
+                </div>
                 <div class="card-body p-4">
-
-                    <!-- General -->
-                    <h5 class="fw-bold mb-3 section-title text-primary"><i class="fas fa-sliders-h me-2"></i>Général
-                    </h5>
-                    <div class="mb-4">
-                        <div class="form-check form-switch mb-3">
-                            <input class="form-check-input" type="checkbox" id="maintenanceMode"
-                                [(ngModel)]="settings.general.maintenanceMode">
-                            <label class="form-check-label fw-bold" for="maintenanceMode">Mode Maintenance</label>
-                            <div class="small text-muted">Restreindre l'accès aux administrateurs uniquement.</div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Nom de la Plateforme</label>
-                                <input type="text" class="form-control" [(ngModel)]="settings.general.platformName">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Langue</label>
-                                <select class="form-select" [(ngModel)]="settings.general.defaultLanguage">
-                                    <option value="fr">Français</option>
-                                    <option value="en">Anglais</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="my-4 opacity-10">
-
-                    <!-- Security -->
-                    <h5 class="fw-bold mb-3 section-title text-primary"><i class="fas fa-shield-alt me-2"></i>Sécurité
-                    </h5>
-                    <div class="mb-4">
-                        <div class="form-check form-switch mb-3">
-                            <input class="form-check-input" type="checkbox" id="require2FA"
-                                [(ngModel)]="settings.security.require2FA">
-                            <label class="form-check-label fw-bold" for="require2FA">Double Authentification (Soit
-                                strict !)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                [(ngModel)]="settings.security.passwordPolicy.specialChar">
-                            <label class="form-check-label">Exiger des caractères spéciaux pour les mots de
-                                passe</label>
-                        </div>
-                    </div>
-
-                    <hr class="my-4 opacity-10">
-
-                    <!-- AI & Automation -->
-                    <h5 class="fw-bold mb-3 section-title text-primary"><i class="fas fa-robot me-2"></i>Intelligence
-                        Artificielle</h5>
-                    <div>
+                    <form (ngSubmit)="updatePassword()">
                         <div class="mb-3">
-                            <label class="d-flex justify-content-between fw-bold small text-muted mb-1">
-                                Sensibilité Fraude
-                                <span class="text-danger">{{settings.ai.fraudSensitivity}}%</span>
-                            </label>
-                            <input type="range" class="form-range" [(ngModel)]="settings.ai.fraudSensitivity">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Mot de passe
+                                actuel</label>
+                            <input type="password" class="form-control form-control-lg rounded-3"
+                                [(ngModel)]="passwords.current" name="current" placeholder="••••••••">
                         </div>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="autoBan"
-                                [(ngModel)]="settings.ai.autoBanHighRisk">
-                            <label class="form-check-label fw-bold" for="autoBan">Blocage Automatique des
-                                Fraudes</label>
-                        </div>
-                    </div>
 
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Nouveau mot de
+                                passe</label>
+                            <input type="password" class="form-control form-control-lg rounded-3"
+                                [(ngModel)]="passwords.new" name="new" placeholder="••••••••">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-muted text-uppercase">Confirmer le nouveau mot
+                                de passe</label>
+                            <input type="password" class="form-control form-control-lg rounded-3"
+                                [(ngModel)]="passwords.confirm" name="confirm" placeholder="••••••••">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm py-3"
+                            [disabled]="!passwords.current || !passwords.new || passwords.new !== passwords.confirm">
+                            <i class="fas fa-shield-alt me-2"></i> Mettre à jour la sécurité
+                        </button>
+                    </form>
                 </div>
             </div>
 
+            <div class="mt-4 p-3 bg-light rounded-4 border text-center">
+                <p class="small text-muted mb-0">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Pour des raisons de sécurité, vous serez déconnecté après le changement de mot de passe.
+                </p>
+            </div>
         </div>
     </div>
 </div>

@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './modules/shared/components/home/home';
+// HomeComponent is now loaded lazily to fix hydration timing issues
 
 export const routes: Routes = [
   // Landing page
   {
     path: '',
-    component: HomeComponent
+    loadComponent: () => import('./modules/shared/components/home/home').then(m => m.HomeComponent)
   },
 
   // Optional alias for home

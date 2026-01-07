@@ -2,6 +2,7 @@ package com.smarthub.smart_career_hub_backend.controller;
 
 import com.smarthub.smart_career_hub_backend.dto.CandidateStatsDTO;
 import com.smarthub.smart_career_hub_backend.dto.RecruiterStatsDTO;
+import com.smarthub.smart_career_hub_backend.dto.AdminStatsDTO;
 import com.smarthub.smart_career_hub_backend.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

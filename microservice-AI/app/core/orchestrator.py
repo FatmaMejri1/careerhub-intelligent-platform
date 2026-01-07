@@ -8,11 +8,12 @@ from app.intelligence.analyzers.fraud_analyzer import FraudAnalyzer
 from app.intelligence.generators.cv_generator import CVGenerator
 from app.intelligence.generators.profile_recommender import ProfileRecommender
 from app.llm.providers.gemini_provider import GeminiProvider # Or use get_llm_provider
-from app.dependencies import get_llm_provider
+from app.dependencies import get_llm_provider, get_mongodb
 from app.storage.cache.memory_cache import MemoryCache
 from app.schemas import FraudAnalysisRequest
 import logging
 import uuid
+import asyncio
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,22 @@ class AIOrchestrator:
         self.profile_recommender = ProfileRecommender(llm_provider=llm)
         
         self.cache = MemoryCache()  # Start with memory cache
+        self.mongodb = get_mongodb()
+
+    async def _log_activity(self, activity_type: str, request: Any, response: Any):
+        """Background logging to MongoDB"""
+        try:
+            req_dict = request.dict() if hasattr(request, "dict") else str(request)
+            res_dict = response.dict() if hasattr(response, "dict") else (response if isinstance(response, dict) else str(response))
+            
+            # Fire and forget logging
+            asyncio.create_task(self.mongodb.log_ai_activity(
+                activity_type=activity_type,
+                request_data=req_dict,
+                response_data=res_dict
+            ))
+        except Exception as e:
+            logger.warning(f"Failed to queue MongoDB log: {e}")
         
     async def generate_quiz_workflow(self, request: QuizGenerationRequest) -> QuizResponse:
         """
@@ -86,6 +103,7 @@ class AIOrchestrator:
         )
         
         logger.info(f"Quiz generated successfully with {len(questions)} questions")
+        await self._log_activity("quiz_generation", request, quiz_response)
         return quiz_response
     
     async def evaluate_quiz_workflow(self, submission: QuizSubmission) -> QuizEvaluation:
@@ -128,6 +146,7 @@ class AIOrchestrator:
         # Use the real AI analyzer
         analysis_result = await self.cv_analyzer.analyze(cv_text, job_description)
         
+        await self._log_activity("cv_analysis", {"cv_len": len(cv_text), "job": job_description}, analysis_result)
         logger.info("CV analysis completed successfully")
         return analysis_result
 
@@ -186,6 +205,7 @@ class AIOrchestrator:
             logger.warning(f"Failed to enhance recommendations with vector search: {e}")
             # Continue with LLM results (links will be missing/default)
             
+        await self._log_activity("profile_recommendations", profile_data, result)
         return result
 
     async def analyze_fraud_workflow(self, request: FraudAnalysisRequest) -> Dict[str, Any]:
@@ -199,7 +219,10 @@ class AIOrchestrator:
         
         score = result.get('fraud_score', 0) if result else 0
         logger.info(f"Fraud analysis completed with score: {score}")
-        return result or self.fraud_analyzer._fallback_fraud_analysis([])
+        
+        final_res = result or self.fraud_analyzer._fallback_fraud_analysis([])
+        await self._log_activity("fraud_analysis", request, final_res)
+        return final_res
 
     def _get_quiz_from_cache(self, quiz_id: str) -> Dict[str, Any]:
         """Get quiz from cache (mock for now)"""

@@ -1,5 +1,5 @@
 """
-Test script for CV Analysis with Ollama
+Test script for CV Analysis with Gemini
 """
 import asyncio
 import sys
@@ -9,7 +9,7 @@ from app.intelligence.analyzers.cv_analyzer import CVAnalyzer
 from app.dependencies import get_llm_provider
 
 async def test_cv_analysis():
-    print("🧪 Testing CV Analysis with Ollama Mistral...")
+    print("🧪 Testing CV Analysis with Gemini...")
     print("=" * 60)
     
     # Initialize analyzer

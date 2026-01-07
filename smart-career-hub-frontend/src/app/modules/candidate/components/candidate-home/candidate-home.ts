@@ -140,8 +140,8 @@ export class CandidateHome implements OnInit {
 
           this.recommendedJobs = (stats.recommendedJobs || []).map((job: any) => ({
             ...job,
-            contract: 'Temps Plein', // API doesn't provide this yet
-            postedTime: 'Récemment' // Mapping placeholder
+            contract: job.type || 'Temps Plein',
+            postedTime: job.date || 'Récemment'
           }));
 
           // Building timeline after data is loaded
@@ -228,28 +228,28 @@ export class CandidateHome implements OnInit {
 
     if (completionScore >= 80) {
       this.gamification.level = 5;
-      this.gamification.title = 'Maître du Code';
-      this.gamification.currentXp = 1800;
-      this.gamification.nextLevelXp = 2000;
+      this.gamification.title = 'Élite du Marché';
+      this.gamification.currentXp = completionScore * 10;
+      this.gamification.nextLevelXp = 1000;
     } else if (completionScore >= 60) {
       this.gamification.level = 4;
-      this.gamification.title = 'Guerrier du Code';
-      this.gamification.currentXp = 1200;
-      this.gamification.nextLevelXp = 1500;
+      this.gamification.title = 'Talent Confirmé';
+      this.gamification.currentXp = completionScore * 10;
+      this.gamification.nextLevelXp = 800;
     } else if (completionScore >= 40) {
       this.gamification.level = 3;
-      this.gamification.title = 'Explorateur';
-      this.gamification.currentXp = 600;
-      this.gamification.nextLevelXp = 1000;
+      this.gamification.title = 'Professionnel Actif';
+      this.gamification.currentXp = completionScore * 10;
+      this.gamification.nextLevelXp = 600;
     } else if (completionScore >= 20) {
       this.gamification.level = 2;
-      this.gamification.title = 'Apprenti';
-      this.gamification.currentXp = 200;
-      this.gamification.nextLevelXp = 500;
+      this.gamification.title = 'Potentiel Émergent';
+      this.gamification.currentXp = completionScore * 10;
+      this.gamification.nextLevelXp = 400;
     } else {
       this.gamification.level = 1;
-      this.gamification.title = 'Débutant';
-      this.gamification.currentXp = 50;
+      this.gamification.title = 'Profil en Devenir';
+      this.gamification.currentXp = completionScore * 10;
       this.gamification.nextLevelXp = 200;
     }
   }
@@ -346,7 +346,7 @@ export class CandidateHome implements OnInit {
   }
 
   playQuiz() {
-    this.router.navigate(['/candidate/gamification']);
+    this.router.navigate(['/opportunities']);
   }
 
   navigateToTrainings() {

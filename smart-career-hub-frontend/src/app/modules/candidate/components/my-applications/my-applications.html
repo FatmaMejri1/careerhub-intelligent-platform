@@ -32,7 +32,7 @@
 
     <!-- Applications List -->
     <div class="row g-3">
-        <div *ngFor="let app of applications" class="col-12">
+        <div *ngFor="let app of filteredApplications" class="col-12">
             <div class="card application-card border-0 shadow-sm">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -50,7 +50,7 @@
                             <div class="d-flex flex-column gap-1 small text-muted">
                                 <span><i class="fas fa-map-marker-alt me-2 width-20"></i> {{app.location}}</span>
                                 <span><i class="far fa-calendar-alt me-2 width-20"></i> Candidature:
-                                    {{app.appliedDate}}</span>
+                                    {{app.appliedDate | date:'dd/MM/yyyy'}}</span>
                                 <span><i class="fas fa-money-bill-wave me-2 width-20"></i> {{app.salary || 'Non
                                     spécifié'}}</span>
                             </div>
@@ -58,7 +58,7 @@
 
                         <!-- Status & Timeline -->
                         <div class="col-md-3">
-                            <div class="status-badge mb-2" [ngClass]="app.status.toLowerCase()">
+                            <div class="status-badge mb-2" [ngClass]="getStatusClass(app.status)">
                                 {{ getStatusLabel(app.status) }}
                             </div>
                             <!-- Mini Timeline -->
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Empty State -->
-    <div *ngIf="applications.length === 0" class="text-center py-5">
+    <div *ngIf="filteredApplications.length === 0" class="text-center py-5">
         <img src="assets/images/no-data.svg" alt="No Applications" style="width: 200px; opacity: 0.5;">
         <p class="text-muted mt-3">Aucune candidature trouvée correspondant à vos critères.</p>
     </div>

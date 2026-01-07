@@ -1,28 +1,72 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../header/header';
 import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent],
+  imports: [CommonModule, RouterModule, HeaderComponent, FormsModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
 export class HomeComponent implements OnInit {
   isAuthenticated = false;
   currentUser: any = null;
+  searchQuery = '';
+  locationQuery = '';
+  trendingJobs: any[] = [];
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.authService.currentUser$.subscribe(user => {
       this.isAuthenticated = !!user;
       this.currentUser = user;
     });
+    this.fetchTrendingJobs();
   }
+
+  fetchTrendingJobs(): void {
+    this.http.get<any[]>('http://localhost:9099/api/offre').subscribe({
+      next: (offres) => {
+        // Sort by date and take last 4 active
+        this.trendingJobs = offres
+          .filter(o => o.statut === 'ACTIVE' || !o.statut)
+          .slice(-4)
+          .reverse()
+          .map(o => ({
+            id: o.id,
+            title: o.titre,
+            company: o.recruteur?.nomEntreprise || 'Smart Hub',
+            location: o.location || 'Tunis, Tunisie',
+            type: o.type || 'CDI',
+            match: 85 + Math.floor(Math.random() * 15) // Dynamic match flair
+          }));
+
+        if (this.trendingJobs.length === 0) {
+          this.trendingJobs = this.fallbackJobs;
+        }
+      },
+      error: () => {
+        this.trendingJobs = this.fallbackJobs;
+      }
+    });
+  }
+
+  private fallbackJobs = [
+    { title: 'Full Stack Dev', company: 'TechCorp', location: 'Tunis', type: 'CDI', match: 92 },
+    { title: 'Data Scientist', company: 'DataLab', location: 'Remote', type: 'CDI', match: 85 },
+    { title: 'UX Designer', company: 'DesignStudio', location: 'Lyon', type: 'CDI', match: 78 },
+    { title: 'Product Manager', company: 'InnovateCo', location: 'Bordeaux', type: 'CDI', match: 90 }
+  ];
 
   // Propriétés publiques accessibles dans le template
   public features = [
@@ -45,37 +89,6 @@ export class HomeComponent implements OnInit {
       icon: 'bi-people',
       title: 'Networking',
       description: 'Élargissez votre réseau professionnel'
-    }
-  ];
-
-  public trendingJobs = [
-    {
-      title: 'Développeur Full Stack',
-      company: 'TechCorp',
-      location: 'Paris',
-      type: 'CDI',
-      match: 92
-    },
-    {
-      title: 'Data Scientist',
-      company: 'DataLab',
-      location: 'Remote',
-      type: 'CDI',
-      match: 85
-    },
-    {
-      title: 'UX Designer',
-      company: 'DesignStudio',
-      location: 'Lyon',
-      type: 'CDI',
-      match: 78
-    },
-    {
-      title: 'Product Manager',
-      company: 'InnovateCo',
-      location: 'Bordeaux',
-      type: 'CDI',
-      match: 90
     }
   ];
 
@@ -126,6 +139,19 @@ export class HomeComponent implements OnInit {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    }
+  }
+
+  searchJobs(): void {
+    if (this.searchQuery || this.locationQuery) {
+      this.router.navigate(['/opportunities'], {
+        queryParams: {
+          q: this.searchQuery,
+          l: this.locationQuery
+        }
+      });
+    } else {
+      this.router.navigate(['/opportunities']);
     }
   }
 

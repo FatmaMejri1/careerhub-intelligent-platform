@@ -141,20 +141,15 @@ export class TrainingsComponent {
         });
     }
 
-    get completedCount() {
-        return this.allTrainings.filter(t => t.isCompleted).length + this.history.length;
-    }
-
-    get totalCount() {
-        return this.allTrainings.length + this.history.length;
-    }
-
     markCompleted(id: number) {
         const training = this.allTrainings.find(t => t.id === id);
         if (training) {
             training.isCompleted = true;
-            // In real app, move to history/backend
-            // alert(`Cours "${training.title}" marqué comme terminé !`);
+            // Add to history dynamically
+            this.history.unshift({
+                title: training.title,
+                date: new Date().toLocaleDateString('fr-FR')
+            });
         }
     }
 }

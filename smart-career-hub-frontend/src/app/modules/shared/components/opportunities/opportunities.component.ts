@@ -1,12 +1,12 @@
 // src/app/modules/shared/components/opportunities/opportunities.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { JobCardComponent } from '../job-card/job-card';
 import { HeaderComponent } from '../header/header';
 import { JobDetailsModalComponent } from '../job-details-modal/job-details-modal.component';
 import { AuthService } from '../../services/auth';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { QuizComponent } from '../quiz/quiz';
 
 interface Job {
@@ -28,7 +28,7 @@ interface Job {
 @Component({
     selector: 'app-opportunities',
     standalone: true,
-    imports: [CommonModule, HttpClientModule, JobCardComponent, HeaderComponent, JobDetailsModalComponent, RouterModule, QuizComponent],
+    imports: [CommonModule, JobCardComponent, HeaderComponent, JobDetailsModalComponent, RouterModule, QuizComponent],
     templateUrl: './opportunities.component.html',
     styleUrls: ['./opportunities.component.css']
 })
@@ -49,14 +49,19 @@ export class OpportunitiesComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
-        this.fetchJobs();
+        this.route.queryParams.subscribe(params => {
+            const q = params['q'] || '';
+            const l = params['l'] || '';
+            this.fetchJobs(q, l);
+        });
     }
 
-    fetchJobs(): void {
+    fetchJobs(q: string = '', l: string = ''): void {
         this.http.get<any[]>(this.apiUrl).subscribe({
             next: (data) => {
                 if (!data || data.length === 0) {
@@ -64,7 +69,23 @@ export class OpportunitiesComponent implements OnInit {
                 } else {
                     this.opportunities = this.mapJobs(data);
                 }
-                this.filteredOpportunities = [...this.opportunities];
+
+                // Apply initial filters if provided via query params
+                if (q || l) {
+                    this.filteredOpportunities = this.opportunities.filter(job => {
+                        const matchQ = !q ||
+                            job.title.toLowerCase().includes(q.toLowerCase()) ||
+                            job.company.toLowerCase().includes(q.toLowerCase()) ||
+                            (job.description && job.description.toLowerCase().includes(q.toLowerCase()));
+
+                        const matchL = !l ||
+                            job.location.toLowerCase().includes(l.toLowerCase());
+
+                        return matchQ && matchL;
+                    });
+                } else {
+                    this.filteredOpportunities = [...this.opportunities];
+                }
             },
             error: (error) => {
                 console.error('Error fetching jobs, using fallback data:', error);

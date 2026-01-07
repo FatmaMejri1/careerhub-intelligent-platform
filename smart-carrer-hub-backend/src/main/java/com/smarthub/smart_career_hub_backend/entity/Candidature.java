@@ -41,6 +41,12 @@ public class Candidature {
 
     private Double quizScore;
 
+    @Column(name = "match_score")
+    private Double matchScore;
+
+    @Column(name = "date_candidature")
+    private java.time.LocalDateTime dateCandidature;
+
     @Column(name = "cv_url")
     private String cvUrl;
 

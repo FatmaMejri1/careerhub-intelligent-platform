@@ -104,4 +104,9 @@ public class RecruteurController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @GetMapping("/recommendations/{id}")
+    public ResponseEntity<List<java.util.Map<String, Object>>> getRecommendations(@PathVariable Long id) {
+        return ResponseEntity.ok(recruteurService.getRecommendedCandidates(id));
+    }
 }

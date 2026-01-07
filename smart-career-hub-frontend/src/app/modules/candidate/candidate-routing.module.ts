@@ -17,7 +17,6 @@ export const candidateRoutes: Routes = [
       { path: 'trainings', loadComponent: () => import('./components/trainings/trainings').then(m => m.TrainingsComponent) },
       { path: 'cv-manager', loadComponent: () => import('./components/cv-manager/cv-manager').then(m => m.CvManagerComponent) },
       { path: 'settings', loadComponent: () => import('./components/settings/settings').then(m => m.SettingsComponent) },
-      { path: 'help', loadComponent: () => import('./components/help/help').then(m => m.HelpComponent) },
       { path: '**', redirectTo: 'dashboard' }
     ]
   }
