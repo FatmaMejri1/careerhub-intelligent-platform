@@ -97,15 +97,26 @@ export class QuizComponent implements OnInit {
             title: this.jobTitle,
             description: this.jobDescription
         };
+
+        console.log('🔍 Fetching quiz with:', body);
+
         this.http.post<QuizData>(url, body).subscribe({
             next: (data) => {
+                console.log('✅ Quiz data received:', data);
+                console.log('📊 Questions count:', data.questions?.length);
+                console.log('📝 First question:', data.questions?.[0]);
+
                 this.quizData = data;
                 this.isLoading = false;
                 this.userAnswers = new Array(data.questions.length).fill(-1);
                 this.startTimer();
+
+                console.log('✅ Quiz initialized successfully');
             },
             error: (err) => {
-                console.error('Error fetching quiz:', err);
+                console.error('❌ Error fetching quiz:', err);
+                console.error('❌ Error details:', err.error);
+                console.error('❌ Error status:', err.status);
                 this.isLoading = false;
                 this.useMockQuiz();
             }

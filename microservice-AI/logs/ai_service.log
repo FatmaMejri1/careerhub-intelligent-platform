@@ -2305,3 +2305,326 @@ Please retry in 43.9400993s. [links {
 2026-01-07 04:44:14.428 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
 2026-01-07 04:44:14.438 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
 2026-01-07 04:44:14.445 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 11:15:08.857 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-01-07 11:34:13.007 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:13.007 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:24.229 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:34:24.256 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:24.256 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:24.256 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:24.257 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:24.257 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:24.257 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:24.257 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:24.257 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:24.558 | INFO     | app.storage.mongodb:_initialize:18 - Connected to MongoDB at mongodb://localhost:27017/smartcareerhub_fresh
+2026-01-07 11:34:24.559 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: 
+            John Doe
+            Software Enginee...
+2026-01-07 11:34:24.559 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-07 11:34:36.604 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 9 skills.
+2026-01-07 11:34:40.690 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:40.691 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:40.736 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:34:40.737 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:40.737 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:40.737 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:40.737 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:40.737 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:40.738 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:40.738 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:40.738 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.471 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:55.472 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.509 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:34:55.510 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:55.510 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.510 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:55.510 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.511 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:55.511 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.511 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:34:55.511 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:34:55.511 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: 
+            John Doe
+            Software Enginee...
+2026-01-07 11:34:55.511 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-07 11:35:08.030 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 8 skills.
+2026-01-07 11:35:12.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:35:12.107 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:35:12.147 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:35:12.148 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:35:12.149 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:35:12.149 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:35:12.149 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:35:12.149 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:35:12.149 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:35:12.150 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:35:12.150 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.615 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:32.616 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.722 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:41:32.723 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:32.724 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.724 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:32.724 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.724 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:32.725 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.725 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:32.725 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:32.726 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: 
+    Jean Dupont
+    Développeur Full Stack Senior...
+2026-01-07 11:41:32.726 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-07 11:41:44.700 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:44.700 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:44.740 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:41:44.741 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:41:44.742 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:41:47.712 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 16 skills.
+2026-01-07 11:43:32.309 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:32.309 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:32.353 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:32.354 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:32.355 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:32.355 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:32.355 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: 
+    Jean Dupont
+    Développeur Full Stack Senior...
+2026-01-07 11:43:32.355 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-07 11:43:44.369 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:44.369 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:44.412 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 11:43:44.412 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 11:43:44.413 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 11:43:46.425 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 17 skills.
+2026-01-07 12:06:20.382 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:06:20.383 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:06:20.474 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:06:20.477 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:06:20.477 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:06:20.478 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:06:20.478 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:06:20.478 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:06:20.479 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:06:20.479 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:06:20.479 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:06:20.480 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 12:07:22.163 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:22.164 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:22.239 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:07:22.241 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:22.242 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:22.242 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:22.242 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:22.242 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:22.242 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:22.243 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:22.243 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:22.244 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 12:07:25.738 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:25.739 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:25.786 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:07:25.787 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:25.787 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:25.787 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:25.788 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:25.788 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:25.788 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:25.788 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:25.788 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:25.789 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 12:07:38.186 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:38.186 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:38.231 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:07:38.232 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:38.232 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:38.232 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:38.232 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:38.233 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:38.233 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:38.233 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:07:38.233 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:07:38.234 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 12:08:12.065 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:08:12.067 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:08:12.142 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:08:12.143 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:08:12.143 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:08:12.143 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:08:12.143 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:08:12.144 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:08:12.144 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:08:12.144 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:08:12.144 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:08:12.145 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
+2026-01-07 12:09:26.911 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:09:26.912 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:09:27.017 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:09:27.019 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:09:27.020 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:09:27.020 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:09:27.022 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:09:27.022 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:09:27.023 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:09:27.023 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:09:27.024 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:09:27.027 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: ISTIC | Bordj Cedria 
+      Bachelor's degree in ...
+2026-01-07 12:09:27.028 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-01-07 12:09:50.762 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:65 - CV analysis complete. Found 50 skills.
+2026-01-07 12:12:43.008 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:12:43.009 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:12:43.126 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:12:43.127 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:12:43.128 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:12:43.128 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:12:43.128 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:12:43.129 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:12:43.129 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:12:43.129 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:12:43.130 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:12:43.132 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-01-07 12:12:43.134 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: full stack engineer 
+2026-01-07 12:12:43.135 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for full stack engineer  (cv)
+2026-01-07 12:12:43.136 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-01-07 12:12:52.772 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-01-07 12:14:05.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:14:05.107 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:14:05.241 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:14:05.245 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:14:05.247 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:14:05.249 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:14:05.250 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:14:05.251 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:14:05.251 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:14:05.252 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:14:05.252 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:14:05.254 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer']
+2026-01-07 12:20:08.442 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:08.442 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:08.599 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:20:08.599 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:08.600 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:08.600 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:08.600 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:08.600 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:08.600 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:08.601 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:08.601 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:08.601 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer', 'Figma']
+2026-01-07 12:20:40.916 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:40.916 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:40.958 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:20:40.959 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:40.959 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:40.960 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:40.960 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:40.960 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:40.960 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:40.960 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:20:40.961 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:20:40.961 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer']
+2026-01-07 12:23:40.027 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:23:40.029 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:23:40.318 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:23:40.319 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:23:40.320 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:23:40.320 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:23:40.320 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:23:40.321 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:23:40.321 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:23:40.321 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:23:40.321 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:23:40.322 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Ingénieur', 'DevOps']
+2026-01-07 12:25:01.428 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:25:01.429 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:25:01.572 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:25:01.574 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:25:01.575 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:25:01.576 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:25:01.577 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:25:01.578 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:25:01.579 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:25:01.580 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:25:01.580 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:25:01.582 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-07 12:27:01.835 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:27:01.837 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:27:01.987 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:27:01.990 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:27:01.992 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:27:01.993 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:27:01.993 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:27:01.994 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:27:01.995 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:27:01.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:27:01.995 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:27:01.996 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['UX/UI', 'Designer']
+2026-01-07 12:44:06.207 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:44:06.208 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:44:06.692 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:44:06.695 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:44:06.696 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:44:06.698 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:44:06.699 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:44:06.702 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:44:06.704 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:44:06.706 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:44:06.707 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:44:06.711 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']
+2026-01-07 12:44:07.234 | ERROR    | app.intelligence.generators.quiz_generator:generate:88 - Quiz generation failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash
+Please retry in 52.424135321s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.5-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+  seconds: 52
+}
+]
+2026-01-07 12:47:35.547 | INFO     | app.main:shutdown_event:48 - Shutting down Smart Career AI Service...
+2026-01-07 12:47:55.056 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-01-07 12:48:45.303 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:48:45.305 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:49:31.440 | INFO     | app.storage.vector.chroma_store:__init__:27 - ChromaDB initialized: collection=courses, path=data/chroma
+2026-01-07 12:49:31.466 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:49:31.467 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:49:31.467 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:49:31.467 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:49:31.468 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:49:31.468 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:49:31.468 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-01-07 12:49:31.469 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-01-07 12:49:32.068 | INFO     | app.storage.mongodb:_initialize:18 - Connected to MongoDB at mongodb://localhost:27017/smartcareerhub_fresh
+2026-01-07 12:49:32.070 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Data', 'Engineer']

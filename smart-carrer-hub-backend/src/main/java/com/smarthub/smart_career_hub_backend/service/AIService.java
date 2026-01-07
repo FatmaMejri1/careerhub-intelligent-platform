@@ -30,7 +30,7 @@ public class AIService {
                         .addHandlerLast(new WriteTimeoutHandler(300, TimeUnit.SECONDS)));
 
         this.webClient = webClientBuilder
-                .baseUrl("http://127.0.0.1:8000")
+                .baseUrl("http://localhost:5000")
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }
