@@ -49,7 +49,7 @@ public class ChercheurController {
             return ResponseEntity.ok(updatedChercheur);
         } catch (RuntimeException e) {
             if (e.getMessage() != null && e.getMessage().contains("non trouvé")) {
-                 return ResponseEntity.notFound().build();
+                return ResponseEntity.notFound().build();
             }
             System.err.println("Error updating chercheur: " + e.getMessage());
             e.printStackTrace();

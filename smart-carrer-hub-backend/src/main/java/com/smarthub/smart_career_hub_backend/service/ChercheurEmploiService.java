@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 public class ChercheurEmploiService {
-//Constructor injection
+    // Constructor injection
     private final ChercheurEmploiRepository chercheurEmploiRepository;
     private final QuizRepository quizRepository;
     private final CoachingRepository coachingRepository;
@@ -24,10 +24,10 @@ public class ChercheurEmploiService {
     private final ScoreService scoreService;
 
     public ChercheurEmploiService(ChercheurEmploiRepository chercheurEmploiRepository,
-                                  QuizRepository quizRepository,
-                                  CoachingRepository coachingRepository,
-                                  FormationRepository formationRepository,
-                                  ScoreService scoreService) {
+            QuizRepository quizRepository,
+            CoachingRepository coachingRepository,
+            FormationRepository formationRepository,
+            ScoreService scoreService) {
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.quizRepository = quizRepository;
         this.coachingRepository = coachingRepository;
@@ -63,7 +63,7 @@ public class ChercheurEmploiService {
         chercheur.setPrenom(chercheurDetails.getPrenom());
         chercheur.setTelephone(chercheurDetails.getTelephone());
         chercheur.setPhotoUrl(chercheurDetails.getPhotoUrl()); // Persist photo URL
-        
+
         // Profile Details
         chercheur.setTitre(chercheurDetails.getTitre());
         chercheur.setAdresse(chercheurDetails.getAdresse());
@@ -83,7 +83,7 @@ public class ChercheurEmploiService {
         chercheur.setCertifications(chercheurDetails.getCertifications());
 
         ChercheurEmploi saved = chercheurEmploiRepository.save(chercheur);
-        
+
         // Recalculate scores
         try {
             scoreService.updateScores(saved);
@@ -142,7 +142,8 @@ public class ChercheurEmploiService {
     // =========================
     public Gamification genererGamification(ChercheurEmploi chercheur) {
         Gamification gamification = new Gamification();
-        gamification.setPoints(chercheur.getQuizList() != null ? chercheur.getQuizList().size() * 10 : 0); // Exemple simple
+        gamification.setPoints(chercheur.getQuizList() != null ? chercheur.getQuizList().size() * 10 : 0); // Exemple
+                                                                                                           // simple
         gamification.setType("Badge");
         gamification.setDescription("Débutant");
         gamification.setChercheurEmploi(chercheur);

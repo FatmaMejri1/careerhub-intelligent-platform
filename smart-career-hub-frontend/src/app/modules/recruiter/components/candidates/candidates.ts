@@ -261,8 +261,8 @@ export class RecruiterCandidatesComponent implements OnInit {
     viewCv(candidate: Candidate) {
         console.log('Attempting to view CV for:', candidate.name, 'URL:', candidate.cvUrl);
         if (candidate.cvUrl) {
-            // Use the new file serving endpoint
-            const url = `http://localhost:9099/api/files/cv?path=${encodeURIComponent(candidate.cvUrl)}`;
+            // Use the new simplified document endpoint
+            const url = `http://localhost:9099/api/documents/cv?path=${encodeURIComponent(candidate.cvUrl)}`;
             console.log('Opening CV at:', url);
             window.open(url, '_blank');
         } else {

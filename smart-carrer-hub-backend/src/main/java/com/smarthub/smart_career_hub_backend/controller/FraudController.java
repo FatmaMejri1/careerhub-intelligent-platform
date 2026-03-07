@@ -1,11 +1,11 @@
 package com.smarthub.smart_career_hub_backend.controller;
 
+import com.smarthub.smart_career_hub_backend.service.ChercheurEmploiService;
 import com.smarthub.smart_career_hub_backend.service.StatsService;
 import com.smarthub.smart_career_hub_backend.service.UtilisateurService;
-import com.smarthub.smart_career_hub_backend.dto.AdminStatsDTO;
 import com.smarthub.smart_career_hub_backend.service.AIService;
+import lombok.RequiredArgsConstructor;
 import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,16 +17,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admin/fraud")
+@RequiredArgsConstructor
 public class FraudController {
 
-    @Autowired
-    private StatsService statsService;
-
-    @Autowired
-    private UtilisateurService utilisateurService;
-
-    @Autowired
-    private AIService aiService;
+    private final StatsService statsService;
+    private final UtilisateurService utilisateurService;
+    private final ChercheurEmploiService chercheurEmploiService;
+    private final AIService aiService;
 
     @GetMapping("/alerts")
     public ResponseEntity<List<Map<String, Object>>> getFraudAlerts() {
@@ -36,7 +33,7 @@ public class FraudController {
     @GetMapping("/ai-analysis/{userId}")
     public ResponseEntity<?> getAIAnalysis(@PathVariable Long userId) {
         try {
-            Optional<ChercheurEmploi> optionalChercheur = utilisateurService.getChercheurById(userId);
+            Optional<ChercheurEmploi> optionalChercheur = chercheurEmploiService.getChercheurById(userId);
             if (optionalChercheur.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
@@ -63,7 +60,7 @@ public class FraudController {
 
             if (analysis != null && analysis.containsKey("fraud_score")) {
                 c.setFraudScore(((Number) analysis.get("fraud_score")).doubleValue());
-                utilisateurService.ajouterChercheur(c);
+                chercheurEmploiService.ajouterChercheur(c);
             }
 
             return ResponseEntity.ok(analysis);
@@ -86,7 +83,7 @@ public class FraudController {
     @GetMapping("/report/{userId}")
     public ResponseEntity<?> getFraudReport(@PathVariable Long userId) {
         try {
-            Optional<ChercheurEmploi> optionalChercheur = utilisateurService.getChercheurById(userId);
+            Optional<ChercheurEmploi> optionalChercheur = chercheurEmploiService.getChercheurById(userId);
             if (optionalChercheur.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
