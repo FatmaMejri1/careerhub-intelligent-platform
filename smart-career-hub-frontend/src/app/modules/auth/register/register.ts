@@ -133,6 +133,16 @@ export class RegisterComponent implements OnInit {
       });
     } else {
       this.registerForm.markAllAsTouched();
+      const invalidFields = [];
+      for (const name in this.registerForm.controls) {
+        if (this.registerForm.controls[name].invalid) {
+          invalidFields.push(name);
+        }
+      }
+      if (this.registerForm.hasError('passwordMismatch')) {
+        invalidFields.push('mots de passe ne correspondent pas');
+      }
+      this.errorMessage = 'Veuillez remplir correctement les champs obligatoires: ' + invalidFields.join(', ');
     }
   }
 }

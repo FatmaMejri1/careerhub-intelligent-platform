@@ -2,12 +2,9 @@ package com.smarthub.smart_career_hub_backend.service;
 
 import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
 import com.smarthub.smart_career_hub_backend.entity.Quiz;
-import com.smarthub.smart_career_hub_backend.entity.Coaching;
 import com.smarthub.smart_career_hub_backend.entity.Formation;
-import com.smarthub.smart_career_hub_backend.entity.Gamification;
 import com.smarthub.smart_career_hub_backend.repository.ChercheurEmploiRepository;
 import com.smarthub.smart_career_hub_backend.repository.QuizRepository;
-import com.smarthub.smart_career_hub_backend.repository.CoachingRepository;
 import com.smarthub.smart_career_hub_backend.repository.FormationRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +16,20 @@ public class ChercheurEmploiService {
     // Constructor injection
     private final ChercheurEmploiRepository chercheurEmploiRepository;
     private final QuizRepository quizRepository;
-    private final CoachingRepository coachingRepository;
     private final FormationRepository formationRepository;
     private final ScoreService scoreService;
+    private final GamificationService gamificationService;
 
     public ChercheurEmploiService(ChercheurEmploiRepository chercheurEmploiRepository,
             QuizRepository quizRepository,
-            CoachingRepository coachingRepository,
             FormationRepository formationRepository,
-            ScoreService scoreService) {
+            ScoreService scoreService,
+            GamificationService gamificationService) {
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.quizRepository = quizRepository;
-        this.coachingRepository = coachingRepository;
         this.formationRepository = formationRepository;
         this.scoreService = scoreService;
+        this.gamificationService = gamificationService;
     }
 
     // =========================
@@ -68,6 +65,12 @@ public class ChercheurEmploiService {
         chercheur.setTitre(chercheurDetails.getTitre());
         chercheur.setAdresse(chercheurDetails.getAdresse());
         chercheur.setObjectif(chercheurDetails.getObjectif());
+        
+        // Track CV upload points
+        if ((chercheur.getCvUrl() == null || chercheur.getCvUrl().isEmpty()) && 
+            (chercheurDetails.getCvUrl() != null && !chercheurDetails.getCvUrl().isEmpty())) {
+            gamificationService.addPoints(id, 30); // Upload CV rewards
+        }
         chercheur.setCvUrl(chercheurDetails.getCvUrl());
 
         // Socials
@@ -92,6 +95,14 @@ public class ChercheurEmploiService {
         }
 
         System.out.println("Saved successfully with ID: " + saved.getId());
+        
+        // Add points for profile milestone (if completion is 100)
+        if (gamificationService.calculateProfileCompletion(saved) >= 100) {
+            gamificationService.addPoints(id, 100);
+        } else {
+            gamificationService.addPoints(id, 10); // Small reward for general update
+        }
+
         return saved;
     }
 
@@ -102,7 +113,17 @@ public class ChercheurEmploiService {
         ChercheurEmploi chercheur = chercheurEmploiRepository.findById(chercheurId)
                 .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
         quiz.setChercheurEmploi(chercheur);
-        return quizRepository.save(quiz);
+        Quiz savedQuiz = quizRepository.save(quiz);
+
+        // Gamification: Pass quiz
+        if (savedQuiz.getScore() != null && savedQuiz.getScore() >= 50) {
+            gamificationService.addPoints(chercheurId, 40); // Pass
+            if (savedQuiz.getScore() >= 90) {
+                gamificationService.addPoints(chercheurId, 60); // High score BONUS
+            }
+        }
+        
+        return savedQuiz;
     }
 
     public List<Quiz> getQuizByChercheur(Long chercheurId) {
@@ -111,21 +132,6 @@ public class ChercheurEmploiService {
         return chercheur.getQuizList();
     }
 
-    // =========================
-    // Gestion Coaching
-    // =========================
-    public Coaching ajouterCoaching(Long chercheurId, Coaching coaching) {
-        ChercheurEmploi chercheur = chercheurEmploiRepository.findById(chercheurId)
-                .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
-        coaching.setChercheurEmploi(chercheur);
-        return coachingRepository.save(coaching);
-    }
-
-    public List<Coaching> getCoachingsByChercheur(Long chercheurId) {
-        ChercheurEmploi chercheur = chercheurEmploiRepository.findById(chercheurId)
-                .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
-        return chercheur.getCoachings();
-    }
 
     // =========================
     // Gestion Formations
@@ -137,20 +143,10 @@ public class ChercheurEmploiService {
         return formationRepository.save(formation);
     }
 
-    // =========================
-    // Gestion Gamification (Dynamique)
-    // =========================
-    public Gamification genererGamification(ChercheurEmploi chercheur) {
-        Gamification gamification = new Gamification();
-        gamification.setPoints(chercheur.getQuizList() != null ? chercheur.getQuizList().size() * 10 : 0); // Exemple
-                                                                                                           // simple
-        gamification.setType("Badge");
-        gamification.setDescription("Débutant");
-        gamification.setChercheurEmploi(chercheur);
-        return gamification; // Ne pas sauvegarder en DB
-    }
 
-    public ChercheurEmploi createChercheur(ChercheurEmploi chercheur) {
-        return chercheur;
+    public List<Formation> getFormationsByChercheur(Long chercheurId) {
+        ChercheurEmploi chercheur = chercheurEmploiRepository.findById(chercheurId)
+                .orElseThrow(() -> new RuntimeException("Chercheur non trouvé"));
+        return chercheur.getFormations();
     }
 }

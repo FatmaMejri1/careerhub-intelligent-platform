@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from app.schemas import RecommendationRequest, CourseRecommendation
+from typing import List, Dict, Any
 from app.core.orchestrator import AIOrchestrator
 import logging
 
@@ -13,10 +14,6 @@ async def recommend_courses(
 ):
     """Recommend courses based on weak skills"""
     try:
-        # Get flattened recommendations from orchestrator
-        # The orchestrator returns: [{'skill': 'Python', 'courses': [...]}, ...]
-        # We need to flatten this to list[CourseRecommendation]
-        
         grouped_recs = await orchestrator.recommend_courses_workflow(
             weak_skills=request.weak_skills,
             job_context=request.job_context
@@ -42,4 +39,16 @@ async def recommend_courses(
 
     except Exception as e:
         logger.error(f"Recommendation failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/jobs")
+async def recommend_jobs(
+    profile_data: Dict[str, Any],
+    orchestrator: AIOrchestrator = Depends()
+):
+    """Recommend job offers based on candidate profile"""
+    try:
+        return await orchestrator.recommend_jobs_workflow(profile_data)
+    except Exception as e:
+        logger.error(f"Job recommendation failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))

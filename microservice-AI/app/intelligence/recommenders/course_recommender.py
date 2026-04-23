@@ -11,6 +11,9 @@ class CourseRecommender:
     
     def __init__(self):
         self.vector_store = ChromaVectorStore(collection_name="courses")
+        from app.storage.postgres import PostgresManager
+        import asyncio
+        self.db = PostgresManager()
         self._seed_if_empty()
         
     async def recommend(self, weak_skills: List[str], job_context: str = "") -> List[Dict[str, Any]]:
@@ -25,6 +28,8 @@ class CourseRecommender:
             results = self.vector_store.query(query_text=query, n_results=2)
             
             skill_recs = []
+            
+            # Add Vector DB results
             for res in results:
                 meta = res["metadata"]
                 skill_recs.append({
@@ -33,8 +38,30 @@ class CourseRecommender:
                     "link": meta.get("url", "#"),
                     "duration": meta.get("duration", "Self-paced"),
                     "level": meta.get("level", "All Levels"),
-                    "match_score": 1.0 - (res["distance"] if res["distance"] else 0.5)
+                    "match_score": 1.0 - (res["distance"] if res["distance"] else 0.5),
+                    "type": "AI Suggested"
                 })
+
+            # Add PostgreSQL results for this skill
+            try:
+                # Simple keyword search in PostgreSQL
+                async with self.db.pool.acquire() as conn:
+                    rows = await conn.fetch(
+                        "SELECT titre, plateforme, url, duree, niveau FROM formations WHERE competence_associee ILIKE $1 OR titre ILIKE $1 LIMIT 2",
+                        f"%{skill}%"
+                    )
+                    for row in rows:
+                        skill_recs.append({
+                            "title": row["titre"],
+                            "provider": row["plateforme"],
+                            "link": row["url"],
+                            "duration": row["duree"],
+                            "level": row["niveau"],
+                            "match_score": 0.9,
+                            "type": "Internal Platform"
+                        })
+            except Exception as e:
+                logger.error(f"PostgreSQL course search failed: {e}")
             
             if skill_recs:
                 recommendations.append({

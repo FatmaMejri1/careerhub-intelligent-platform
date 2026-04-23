@@ -19,4 +19,7 @@ public class CVGenerationRequestDTO {
     @JsonAlias("additionalInfo")
     private String additionalInfo;
     private String type; // 'cv' or 'lm'
+    @JsonProperty("profile_data")
+    @JsonAlias("profileData")
+    private java.util.Map<String, Object> profileData;
 }

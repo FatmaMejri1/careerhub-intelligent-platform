@@ -31,35 +31,8 @@ export class CandidateHome implements OnInit {
   };
 
   // 2.2 AI Recommended Jobs
-  recommendedJobs = [
-    {
-      id: 1,
-      title: 'Développeur Backend (Java/Spring)',
-      company: 'Tech Solutions',
-      location: 'Télétravail',
-      contract: 'Temps Plein',
-      matchScore: 95,
-      postedTime: 'il y a 2 jours'
-    },
-    {
-      id: 2,
-      title: 'Ingénieur Full Stack',
-      company: 'Global Innovators',
-      location: 'Paris, France',
-      contract: 'Hybride',
-      matchScore: 88,
-      postedTime: 'il y a 5 heures'
-    },
-    {
-      id: 3,
-      title: 'Dév Frontend Angular',
-      company: 'Creative Agency',
-      location: 'Tunis',
-      contract: 'Freelance',
-      matchScore: 82,
-      postedTime: 'il y a 1 jour'
-    }
-  ];
+  recommendedJobs: any[] = [];
+  isLoadingJobs = false;
 
   // 2.3 Gamification & Skills
   gamification = {
@@ -116,8 +89,10 @@ export class CandidateHome implements OnInit {
     });
 
     // Load application stats and recent activity from Backend
+    this.isLoadingJobs = true;
     this.candidateDataService.getDashboardStats().subscribe({
       next: (stats) => {
+        this.isLoadingJobs = false;
         if (stats) {
           this.applicationStats = {
             pending: stats.applicationStatusDistribution?.EN_ATTENTE || 0,
@@ -150,6 +125,7 @@ export class CandidateHome implements OnInit {
       },
       error: (err) => {
         console.error('Error loading stats', err);
+        this.isLoadingJobs = false;
         // Build timeline even if stats fail
         this.buildTimeline();
       }

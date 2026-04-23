@@ -1,21 +1,29 @@
 package com.smarthub.smart_career_hub_backend.exception;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-@RestControllerAdvice
+
+import java.util.HashMap;
+import java.util.Map;
+
+@ControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleNotFound(ResourceNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
-    }
-    @ExceptionHandler(InvalidRequestException.class)
-    public ResponseEntity<String> handleInvalid(InvalidRequestException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGeneric(Exception ex) {
-        ex.printStackTrace();
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur est survenue : " + ex.getMessage());
+    public ResponseEntity<Map<String, Object>> handleAllExceptions(Exception ex) {
+        ex.printStackTrace(); // Log to console
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "An unexpected error occurred: " + ex.getMessage());
+        body.put("type", ex.getClass().getSimpleName());
+        
+        // Include partial stack trace for debugging
+        StackTraceElement[] stackTrace = ex.getStackTrace();
+        if (stackTrace != null && stackTrace.length > 0) {
+            body.put("at", stackTrace[0].toString());
+        }
+
+        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

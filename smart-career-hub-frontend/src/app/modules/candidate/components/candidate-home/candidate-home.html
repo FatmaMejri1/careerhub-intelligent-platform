@@ -107,7 +107,23 @@
                 </div>
 
                 <div class="job-list">
-                    <div class="job-item p-3 mb-3 rounded-3 border hover-border-primary transition-all"
+                    <!-- Loading State -->
+                    <div *ngIf="isLoadingJobs" class="text-center py-5">
+                        <div class="spinner-border text-primary mb-3"></div>
+                        <p class="text-muted">L'IA recherche les meilleures opportunités pour vous...</p>
+                    </div>
+
+                    <!-- Empty State -->
+                    <div *ngIf="!isLoadingJobs && recommendedJobs.length === 0"
+                        class="text-center py-5 bg-light rounded-3 italic">
+                        <i class="fas fa-search mb-3 fa-2x text-muted"></i>
+                        <p class="text-muted">Aucune offre ne correspond exactement à votre profil pour le moment.
+                            <br><small>Essayez de compléter vos compétences !</small>
+                        </p>
+                    </div>
+
+                    <!-- Job Items -->
+                    <div class="job-item p-3 mb-3 rounded-3 border hover-border-primary transition-all animate-fade-in"
                         *ngFor="let job of recommendedJobs">
                         <div class="row align-items-center">
                             <div class="col-auto">

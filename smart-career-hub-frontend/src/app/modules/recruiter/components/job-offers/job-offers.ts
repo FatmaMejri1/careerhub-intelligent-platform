@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -49,7 +49,8 @@ export class RecruiterJobOffersComponent implements OnInit {
 
     constructor(
         private recruiterService: RecruiterService,
-        private authService: AuthService
+        private authService: AuthService,
+        private cdr: ChangeDetectorRef
     ) { }
 
     ngOnInit() {
@@ -61,11 +62,11 @@ export class RecruiterJobOffersComponent implements OnInit {
                 console.log('[JobOffers] Identified recruiter ID:', this.currentRecruiterId);
                 this.loadOffers();
             } else {
-                console.warn('[JobOffers] No user or ID found in auth state');
                 this.currentRecruiterId = null;
                 this.allOffers = [];
                 this.filteredOffers = [];
                 this.updateKPIs();
+                this.cdr.detectChanges();
             }
         });
     }
@@ -77,50 +78,52 @@ export class RecruiterJobOffersComponent implements OnInit {
     }
 
     loadOffers() {
-        if (!this.currentRecruiterId) {
-            console.warn('[JobOffers] Skipping load: No recruiter ID');
-            return;
-        }
+        if (!this.currentRecruiterId) return;
 
-        console.log('[JobOffers] Loading offers for ID:', this.currentRecruiterId);
+        console.log('[JobOffers] Fetching from API for recruiter:', this.currentRecruiterId);
         this.isLoading = true;
-        this.errorMessage = '';
-        this.allOffers = []; // Clear current list to avoid "readded" confusion
 
         this.recruiterService.getOffersByRecruiterId(this.currentRecruiterId).subscribe({
             next: (offers) => {
-                console.log('[JobOffers] Received offers from server:', offers);
-                this.allOffers = offers.map(offer => ({
+                console.log('[JobOffers] Data received:', offers?.length || 0, 'items');
+                this.allOffers = (offers || []).map(offer => ({
                     ...offer,
                     dateCreation: offer.dateCreation || new Date().toISOString(),
                     type: offer.type || 'CDI',
                     location: offer.location || 'Tunis',
+                    statut: offer.statut || 'ACTIVE',
                     applicationsCount: offer.applicationsCount || 0,
                     performanceScore: offer.performanceScore || 0
                 }));
+                
                 this.applyFilters();
                 this.updateKPIs();
                 this.isLoading = false;
-                console.log('[JobOffers] Offers mapped and displayed:', this.filteredOffers.length);
+                this.cdr.detectChanges(); // Force UI update
             },
             error: (error) => {
-                console.error('Error loading offers from server:', error);
-                this.errorMessage = 'Impossible de charger vos offres. Veuillez vérifier votre connexion.';
+                console.error('[JobOffers] Load error:', error);
+                this.errorMessage = 'Erreur lors du chargement des offres.';
                 this.isLoading = false;
-                this.allOffers = [];
-                this.filteredOffers = [];
-                this.updateKPIs();
+                this.cdr.detectChanges();
             }
         });
     }
 
     applyFilters() {
+        const search = this.filters.search.toLowerCase();
+        const type = this.filters.type;
+        const status = this.filters.status;
+
         this.filteredOffers = this.allOffers.filter(offer => {
-            const matchesSearch = offer.titre.toLowerCase().includes(this.filters.search.toLowerCase());
-            const matchesType = this.filters.type === 'all' || offer.type === this.filters.type;
-            const matchesStatus = this.filters.status === 'all' || this.mapStatus(offer.statut) === this.filters.status;
+            const matchesSearch = !search || (offer.titre && offer.titre.toLowerCase().includes(search));
+            const matchesType = type === 'all' || offer.type === type;
+            const matchesStatus = status === 'all' || this.getDisplayStatus(offer.statut) === status || offer.statut === status;
             return matchesSearch && matchesType && matchesStatus;
         });
+        
+        console.log('[JobOffers] Filtered count:', this.filteredOffers.length);
+        this.cdr.detectChanges();
     }
 
     updateKPIs() {
@@ -180,11 +183,19 @@ export class RecruiterJobOffersComponent implements OnInit {
 
         if (this.isEditing && this.currentOffer.id) {
             console.log('Updating offer with ID:', this.currentOffer.id, offerData);
-            // Update existing offer
             this.recruiterService.updateOffer(this.currentOffer.id, offerData).subscribe({
                 next: (updated) => {
                     console.log('Offer updated successfully', updated);
-                    this.loadOffers();
+                    // Update locally for immediate feedback
+                    const index = this.allOffers.findIndex(o => o.id === updated.id);
+                    if (index !== -1) {
+                        this.allOffers[index] = {
+                            ...updated,
+                            applicationsCount: this.allOffers[index].applicationsCount || 0
+                        };
+                    }
+                    this.applyFilters();
+                    this.updateKPIs();
                     this.closeModal();
                 },
                 error: (error) => {
@@ -197,8 +208,18 @@ export class RecruiterJobOffersComponent implements OnInit {
             // Create new offer
             this.recruiterService.createOffer(offerData).subscribe({
                 next: (created) => {
-                    this.loadOffers();
+                    console.log('Offer created successfully', created);
+                    // Add to local list immediately
+                    this.allOffers.unshift({
+                        ...created,
+                        dateCreation: created.dateCreation || new Date().toISOString(),
+                        applicationsCount: 0,
+                        performanceScore: 0
+                    });
+                    this.applyFilters();
+                    this.updateKPIs();
                     this.closeModal();
+                    this.isLoading = false;
                 },
                 error: (error) => {
                     console.error('Error creating offer:', error);
@@ -219,7 +240,11 @@ export class RecruiterJobOffersComponent implements OnInit {
         this.recruiterService.deleteOffer(id).subscribe({
             next: () => {
                 console.log('Offer deleted successfully from server');
-                this.loadOffers();
+                // Remove locally immediately
+                this.allOffers = this.allOffers.filter(o => o.id !== id);
+                this.applyFilters();
+                this.updateKPIs();
+                this.isLoading = false;
             },
             error: (error) => {
                 console.error('Error deleting offer:', error);

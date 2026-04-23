@@ -26,7 +26,7 @@ public class Candidature {
     @ManyToOne // many candidature can belong to one searcher"submit multiple apps for
                // different job offers."
     @JoinColumn(name = "chercheur_id")
-    @JsonIgnoreProperties({ "quizList", "coachings" })
+    @JsonIgnoreProperties({ "quizList" })
     private ChercheurEmploi chercheurEmploi;
 
     // can receive many applications from different candidates.

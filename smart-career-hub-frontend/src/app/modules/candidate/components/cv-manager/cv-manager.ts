@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnalysisService, CVAnalysisResult } from '../../../../core/services/analysis.service';
+import { CandidateDataService } from '../../services/candidate-data.service';
 import { FormsModule } from '@angular/forms';
 
 export interface CVDocument {
@@ -40,7 +41,10 @@ export class CvManagerComponent implements OnInit {
   targetJob = '';
   additionalInfo = '';
 
-  constructor(private analysisService: AnalysisService) { }
+  constructor(
+    private analysisService: AnalysisService,
+    private candidateDataService: CandidateDataService
+  ) { }
 
   ngOnInit() {
     this.loadDocuments();
@@ -48,7 +52,6 @@ export class CvManagerComponent implements OnInit {
   }
 
   loadDocuments() {
-    // Load from localStorage
     const cvs = localStorage.getItem('user_cvs');
     this.cvList = cvs ? JSON.parse(cvs) : [];
   }
@@ -56,7 +59,6 @@ export class CvManagerComponent implements OnInit {
   loadStats() {
     this.cvCount = this.cvList.length;
   }
-
 
   openGenerator(type: 'cv') {
     this.generationType = type;
@@ -173,48 +175,74 @@ export class CvManagerComponent implements OnInit {
     }
 
     this.isGenerating = true;
-    this.analysisService.generateDocument(this.targetJob, this.additionalInfo, this.generationType).subscribe({
-      next: (result) => {
-        // Create a fake file from the generated content
-        const generatedText = this.formatGeneratedCV(result);
+    
+    this.candidateDataService.getProfile().subscribe({
+      next: (profile) => {
+        this.analysisService.generateDocument(this.targetJob, this.additionalInfo, this.generationType, profile).subscribe({
+          next: (result) => {
+            let fileUrl: string;
+            let fileName: string;
+            let fileType: string;
+            let fileSize: number;
 
-        const blob = new Blob([generatedText], { type: 'text/plain' });
-        const fileName = `CV_${this.targetJob.replace(/\s+/g, '_')}.txt`;
+            if (result.pdf_base64) {
+              fileType = 'pdf';
+              fileName = `CV_${this.targetJob.replace(/\s+/g, '_')}.pdf`;
+              fileUrl = `data:application/pdf;base64,${result.pdf_base64}`;
+              fileSize = (result.pdf_base64.length * 3) / 4;
+            } else {
+              const generatedText = this.formatGeneratedCV(result);
+              const blob = new Blob([generatedText], { type: 'text/plain' });
+              fileName = `CV_${this.targetJob.replace(/\s+/g, '_')}.txt`;
+              fileType = 'txt';
+              fileSize = blob.size;
+              
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                this.saveCVDocument(fileName, fileType, e.target?.result as string, fileSize);
+              };
+              reader.readAsDataURL(blob);
+              return;
+            }
 
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const fileUrl = e.target?.result as string;
-
-          const document: CVDocument = {
-            id: Date.now(),
-            name: fileName,
-            type: 'cv',
-            fileType: 'txt',
-            fileUrl: fileUrl,
-            fileSize: blob.size,
-            isDefault: false,
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-          };
-
-          this.cvList.unshift(document);
-          localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
-
-          this.isGenerating = false;
-          this.showGenerator = false;
-          this.loadStats();
-          this.targetJob = '';
-          this.additionalInfo = '';
-          alert('Document généré avec succès !');
-        };
-        reader.readAsDataURL(blob);
+            this.saveCVDocument(fileName, fileType, fileUrl, fileSize);
+            this.isGenerating = false;
+            this.showGenerator = false;
+            this.loadStats();
+            this.targetJob = '';
+            this.additionalInfo = '';
+            alert('CV Professionnel généré avec succès !');
+          },
+          error: (err) => {
+            console.error('Generation failed:', err);
+            this.isGenerating = false;
+            alert('La génération a échoué. Veuillez réessayer.');
+          }
+        });
       },
       error: (err) => {
-        console.error('Generation failed:', err);
+        console.error('Failed to load profile for generation:', err);
         this.isGenerating = false;
-        alert('La génération a échoué. Veuillez réessayer.');
+        alert('Impossible de charger votre profil pour la génération.');
       }
     });
+  }
+
+  private saveCVDocument(name: string, fileType: string, fileUrl: string, fileSize: number) {
+    const document: CVDocument = {
+      id: Date.now(),
+      name: name,
+      type: 'cv',
+      fileType: fileType,
+      fileUrl: fileUrl,
+      fileSize: fileSize,
+      isDefault: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    this.cvList.unshift(document);
+    localStorage.setItem('user_cvs', JSON.stringify(this.cvList));
   }
 
   private formatGeneratedCV(data: any): string {

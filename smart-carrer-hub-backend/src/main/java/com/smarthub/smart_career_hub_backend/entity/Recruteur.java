@@ -21,8 +21,7 @@ public class Recruteur extends Utilisateur {
     // Informations professionnelles
     private String nomEntreprise;
     private String siteWeb;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String descriptionEntreprise;
     private String adresseEntreprise;
     private String poste; // ex: Talent Acquisition Manager
@@ -32,18 +31,17 @@ public class Recruteur extends Utilisateur {
     private String twitter;
 
     // Image de profil (stockage base64 ou URL)
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String profileImage;
 
-    // Spécialités de recrutement
-    @ElementCollection
-    @CollectionTable(name = "recruteur_specialities", joinColumns = @JoinColumn(name = "recruteur_id"))
-    @Column(name = "speciality")
-    private List<String> specialities;
+    // Spécialités de recrutement (stored as comma-separated string to minimize tables)
+    @Column(columnDefinition = "TEXT")
+    private String specialities;
 
     // Offres publiées par le recruteur
     @OneToMany(mappedBy = "recruteur", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Offre> offres;
 }
+
+

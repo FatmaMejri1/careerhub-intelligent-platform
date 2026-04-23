@@ -146,9 +146,9 @@ public class RecruteurService {
 
             // 2. Insert into recruteurs table
             // Hibernate expects a row here for any entity of type Recruteur
-            String sqlInsert = "INSERT INTO recruteurs (id, nom_entreprise, site_web, description_entreprise, adresse_entreprise, poste, linkedin, twitter, profile_image) "
+            String sqlInsert = "INSERT INTO recruteurs (id, nom_entreprise, site_web, description_entreprise, adresse_entreprise, poste, linkedin, twitter, profile_image, specialities) "
                     +
-                    "VALUES (:id, :company, :web, :desc, :addr, :role, :linkedin, :twitter, :profileImage)";
+                    "VALUES (:id, :company, :web, :desc, :addr, :role, :linkedin, :twitter, :profileImage, :specialities)";
 
             entityManager.createNativeQuery(sqlInsert)
                     .setParameter("id", userId)
@@ -160,6 +160,7 @@ public class RecruteurService {
                     .setParameter("linkedin", recruteurData.getLinkedin())
                     .setParameter("twitter", recruteurData.getTwitter())
                     .setParameter("profileImage", recruteurData.getProfileImage())
+                    .setParameter("specialities", recruteurData.getSpecialities())
                     .executeUpdate();
 
             entityManager.flush();

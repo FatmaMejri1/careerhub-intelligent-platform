@@ -39,9 +39,10 @@ class ProfileRecommender:
         - Experience Level: {data.get('niveau_experience', 'N/A')}
         - Current Skills: {data.get('competences', [])}
         - Bio: {data.get('objectif', 'N/A')}
+        - USER SPECIFIED KEYWORDS: {data.get('keywords', 'None')}
         
         TASK:
-        1. Identify skill gaps or next-level skills needed for their role.
+        1. Identify skill gaps or next-level skills needed for their role, prioritizing any interests mentioned in the keywords.
         2. Recommend exactly 3 high-quality Online Courses (from Coursera, Udemy, edX, Pluralsight, etc.).
         3. Recommend exactly 3 recognized Professional Certifications (e.g., AWS, PMS, Google, Microsoft, etc.).
         

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AnalysisService } from '../../../../core/services/analysis.service';
 import { CandidateDataService } from '../../services/candidate-data.service';
+import { FormationService } from '../../../../core/services/formation.service';
 
 interface Training {
     id: number;
@@ -38,11 +39,13 @@ export class TrainingsComponent {
 
     constructor(
         private analysisService: AnalysisService,
-        private candidateDataService: CandidateDataService
+        private candidateDataService: CandidateDataService,
+        private formationService: FormationService
     ) { }
 
     ngOnInit() {
         this.loadUserProfile();
+        this.loadRealFormations();
     }
 
     loadUserProfile() {
@@ -58,37 +61,76 @@ export class TrainingsComponent {
         });
     }
 
+    loadRealFormations() {
+        this.formationService.getFormations().subscribe({
+            next: (data) => {
+                const mapped = data.map(f => ({
+                    id: f.id,
+                    provider: f.plateforme,
+                    title: f.titre,
+                    focus: f.competenceAssociee,
+                    category: 'Formation',
+                    level: f.niveau as any,
+                    duration: f.duree,
+                    durationCategory: 'Medium' as any,
+                    matchScore: 80, // Base match for official courses
+                    icon: 'fas fa-university',
+                    link: f.url,
+                    isCompleted: false
+                }));
+                // Merge without duplicates (by title)
+                const existingTitles = new Set(this.allTrainings.map(t => t.title.toLowerCase()));
+                mapped.forEach(m => {
+                    if (!existingTitles.has(m.title.toLowerCase())) {
+                        this.allTrainings.push(m);
+                    }
+                });
+            },
+            error: (err) => console.error('Failed to load real formations', err)
+        });
+    }
+
     getAIRecommendations() {
         if (!this.userProfile) return;
 
+        if (this.isLoadingRecommendations) return;
         this.isLoadingRecommendations = true;
 
         const profileData = {
             titre: this.userProfile.titre || 'Chercheur d\'emploi',
             niveau_experience: this.calculateExperienceLevel(),
             competences: this.parseSkills(this.userProfile.competences),
-            objectif: this.userProfile.objectif || ''
+            objectif: this.userProfile.objectif || '',
+            keywords: this.searchTerm || ''
         };
 
         this.analysisService.recommendForProfile(profileData).subscribe({
             next: (res) => {
                 this.recommendations = res;
-                // Populate the main grid with AI recommendations
+                // Merge AI recommendations into the main list
                 if (res && res.courses) {
-                    this.allTrainings = res.courses.map((c: any, index: number) => ({
-                        id: index + 1,
+                    const aiTrainings: Training[] = res.courses.map((c: any, index: number) => ({
+                        id: 1000 + index, // High ID for AI recommendations
                         provider: c.platform || 'Online',
                         title: c.title,
-                        focus: 'General', // Could be inferred
+                        focus: 'AI Boost',
                         category: 'Recommended',
-                        level: c.difficulty || 'Tous niveaux',
-                        duration: 'Flexible',
+                        level: c.difficulty || 'Intermediate',
+                        duration: 'Self-paced',
                         durationCategory: 'Medium',
-                        matchScore: 95, // AI recommended
-                        icon: 'fas fa-graduation-cap',
-                        link: c.link || '#', // Ensure link is mapped if available
+                        matchScore: 98, 
+                        icon: 'fas fa-magic',
+                        link: c.link || '#', 
                         isCompleted: false
                     }));
+
+                    // Add to allTrainings if not already there
+                    aiTrainings.forEach(at => {
+                        const exists = this.allTrainings.some(t => t.title.toLowerCase() === at.title.toLowerCase());
+                        if (!exists) {
+                            this.allTrainings.unshift(at);
+                        }
+                    });
                 }
                 this.isLoadingRecommendations = false;
             },
@@ -133,11 +175,11 @@ export class TrainingsComponent {
     // Getters for HTML
     get recommendedTrainings() {
         return this.allTrainings.filter(t => {
-            const matchesSearch = t.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+            const matchesSearch = t.title.toLowerCase().includes(this.searchTerm.toLowerCase()) || t.category === 'Recommended';
             const matchesCategory = this.filterCategory === 'All' || t.category === this.filterCategory;
             const matchesDuration = this.filterDuration === 'All' || t.durationCategory === this.filterDuration;
 
-            return matchesSearch && matchesCategory && matchesDuration;
+            return matchesCategory && matchesDuration && (this.searchTerm ? matchesSearch : true);
         });
     }
 

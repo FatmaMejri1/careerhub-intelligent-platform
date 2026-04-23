@@ -38,11 +38,12 @@ export class AnalysisService {
         return this.http.post<CVAnalysisResult>(`${this.apiUrl}/cv`, formData);
     }
 
-    generateDocument(targetJob: string, additionalInfo: string, type: 'cv' | 'lm'): Observable<any> {
+    generateDocument(targetJob: string, additionalInfo: string, type: 'cv' | 'lm', profileData?: any): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/generate`, {
             targetJob,
             additionalInfo,
-            type
+            type,
+            profileData
         });
     }
 

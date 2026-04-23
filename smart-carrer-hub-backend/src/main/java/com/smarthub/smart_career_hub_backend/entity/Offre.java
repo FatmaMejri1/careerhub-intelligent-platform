@@ -27,8 +27,7 @@ public class Offre {
 
     private String titre;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Transient
@@ -57,3 +56,5 @@ public class Offre {
     @JsonIgnore
     private List<Candidature> candidatures;
 }
+
+

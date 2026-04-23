@@ -22,6 +22,7 @@ class CVGenerationRequest(BaseModel):
     target_job: str
     additional_info: Optional[str] = ""
     type: str = "cv" # 'cv' or 'lm'
+    profile_data: Optional[Dict[str, Any]] = None
 
 class QuizGenerationRequest(BaseModel):
     job_description: str

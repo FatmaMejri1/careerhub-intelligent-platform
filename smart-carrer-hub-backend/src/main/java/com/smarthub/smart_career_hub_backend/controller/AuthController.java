@@ -1,5 +1,7 @@
 package com.smarthub.smart_career_hub_backend.controller;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.smarthub.smart_career_hub_backend.dto.LoginRequest;
 import com.smarthub.smart_career_hub_backend.dto.RegisterRequest;
 import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
@@ -26,6 +28,9 @@ public class AuthController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    @Autowired
+    private com.smarthub.smart_career_hub_backend.service.GamificationService gamificationService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -72,10 +77,13 @@ public class AuthController {
         }
     }
 
+    @Transactional
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
         try {
+            System.out.println("Processing registration for email: " + registerRequest.getEmail() + ", role: " + registerRequest.getRole());
             if (utilisateurRepository.findByEmail(registerRequest.getEmail()).isPresent()) {
+                System.out.println("Email already exists: " + registerRequest.getEmail());
                 return ResponseEntity.badRequest().body(Map.of("message", "Email already in use"));
             }
 
@@ -96,7 +104,16 @@ public class AuthController {
                 newRecruteur.setPoste(registerRequest.getJobTitle());
                 newRecruteur.setAdresseEntreprise(registerRequest.getCompanyAddress());
 
-                utilisateurRepository.save(newRecruteur);
+                Recruteur savedRecruiter = utilisateurRepository.saveAndFlush(newRecruteur);
+                System.out.println("Recruiter saved with ID: " + savedRecruiter.getId());
+                
+                // Gamification: Registration
+                try {
+                    gamificationService.addPoints(savedRecruiter.getId(), 50);
+                    System.out.println("Points added for recruiter");
+                } catch (Exception ge) {
+                    System.err.println("Gamification failed (non-critical): " + ge.getMessage());
+                }
 
                 String token = jwtTokenUtil.generateToken(newRecruteur.getEmail());
                 Map<String, Object> response = new HashMap<>();
@@ -128,7 +145,16 @@ public class AuthController {
                 newUser.setCompetences(String.join(",", registerRequest.getInterests()));
             }
 
-            utilisateurRepository.save(newUser);
+            ChercheurEmploi savedUser = utilisateurRepository.saveAndFlush(newUser);
+                System.out.println("Candidate saved with ID: " + savedUser.getId());
+
+                // Gamification: Registration
+                try {
+                    gamificationService.addPoints(savedUser.getId(), 50);
+                    System.out.println("Points added for candidate");
+                } catch (Exception ge) {
+                    System.err.println("Gamification failed (non-critical): " + ge.getMessage());
+                }
 
             String token = jwtTokenUtil.generateToken(newUser.getEmail());
             Map<String, Object> response = new HashMap<>();

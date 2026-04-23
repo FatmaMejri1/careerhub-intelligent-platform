@@ -2693,3 +2693,854 @@ Please retry in 52.424135321s. [links {
 2026-01-07 21:27:27.378 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
 2026-01-07 21:27:27.380 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Devops and cloud engineer
 2026-01-07 22:06:20.295 | INFO     | app.main:shutdown_event:48 - Shutting down Smart Career AI Service...
+2026-03-14 12:32:02.043 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-14 12:32:06.619 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-14 12:32:58.448 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:32:58.448 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:32:58.451 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 12:32:58.452 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 0 items
+2026-03-14 12:32:58.918 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-14 12:32:58.919 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-14 12:32:58.923 | INFO     | app.storage.vector.simpler_store:add_texts:80 - Added 11 texts to SimplerVectorStore
+2026-03-14 12:32:58.923 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:32:58.924 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:32:58.925 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:32:58.925 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:32:58.926 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:32:58.927 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:32:58.928 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:32:58.929 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:32:59.018 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 3 mixed-difficulty questions for skills: ['React', 'JavaScript', 'CSS']
+2026-03-14 12:33:05.476 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-14 12:33:05.702 | ERROR    | app.storage.postgres:log_ai_activity:58 - Failed to save AI log to PostgreSQL: Object of type datetime is not JSON serializable
+2026-03-14 12:43:20.273 | INFO     | app.main:shutdown_event:48 - Shutting down Smart Career AI Service...
+2026-03-14 12:44:04.193 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-14 12:44:07.939 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-14 12:45:07.222 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:45:07.223 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:45:07.225 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 12:45:07.229 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 12:45:07.229 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:45:07.231 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:45:07.233 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:45:07.233 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:45:07.235 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:45:07.236 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:45:07.237 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 12:45:07.238 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 12:45:07.339 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 3 mixed-difficulty questions for skills: ['React', 'JavaScript', 'CSS']
+2026-03-14 12:45:15.759 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-14 13:36:29.231 | INFO     | app.main:shutdown_event:48 - Shutting down Smart Career AI Service...
+2026-03-14 13:37:11.550 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-14 13:37:18.309 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-14 13:38:03.768 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 13:38:03.769 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 13:38:03.771 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 13:38:03.773 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 13:38:03.824 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 13:38:03.825 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 13:38:03.825 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 3 mixed-difficulty questions for skills: ['React', 'JavaScript', 'CSS']
+2026-03-14 13:38:12.630 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-14 23:16:29.006 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:29.013 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:29.064 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:16:29.073 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:16:29.074 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:29.074 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:29.075 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:29.075 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:29.075 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:29.076 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:29.077 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:29.078 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:53.414 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:53.415 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:53.416 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:16:53.418 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:16:53.419 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:53.419 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:53.420 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:53.420 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:53.420 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:53.421 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:16:53.421 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:16:53.422 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:09.238 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:09.239 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:09.239 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:17:09.242 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:17:09.242 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:09.242 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:09.243 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:09.243 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:09.244 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:09.244 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:09.244 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:09.245 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:24.315 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:24.316 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:24.318 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:17:24.322 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:17:24.323 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:24.324 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:24.325 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:24.326 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:24.327 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:24.327 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:24.328 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:24.328 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.552 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:45.553 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.555 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:17:45.561 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:17:45.562 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:45.562 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.564 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:45.567 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.569 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:45.570 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.571 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:17:45.571 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:17:45.580 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 3 mixed-difficulty questions for skills: ['Java', 'Spring Boot', 'PostgreSQL']
+2026-03-14 23:29:40.136 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:29:40.138 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:29:40.140 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-14 23:29:40.142 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-14 23:29:40.143 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:29:40.143 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:29:40.146 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:29:40.147 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:29:40.148 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:29:40.149 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:29:40.150 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-14 23:29:40.152 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-2.5-flash)
+2026-03-14 23:29:40.156 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Chercheur d'emploi
+2026-03-14 23:29:51.384 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-14 23:29:51.385 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-14 23:29:51.544 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-14 23:29:51.547 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-14 23:29:51.645 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-14 23:29:51.646 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-14 23:37:11.804 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 00:37:53.828 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:17:44.395 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:20:53.194 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:21:29.167 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:22:02.474 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:23:24.080 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:23:41.510 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:25:05.877 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:25:08.906 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 21:25:30.955 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:25:30.955 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:25:30.955 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:25:30.956 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:25:30.956 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:25:30.956 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:25:30.956 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:25:30.957 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:25:30.957 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:25:30.958 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:25:30.958 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:25:30.958 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:25:30.960 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Développeur
+2026-03-15 21:25:31.832 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:25:31.832 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:25:32.103 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:25:32.104 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:25:32.666 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-15 21:28:32.254 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:28:32.255 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:28:32.258 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:28:32.262 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:28:32.264 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:28:32.264 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:28:32.264 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:28:32.266 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:28:32.266 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:28:32.267 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:28:32.267 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:28:32.267 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:28:32.268 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 21:28:32.269 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: full stack developer 
+2026-03-15 21:28:32.269 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for full stack developer  (cv)
+2026-03-15 21:28:32.269 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 21:28:32.633 | ERROR    | app.intelligence.generators.cv_generator:generate:22 - LLM generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:16.652 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:16.653 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:16.654 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:29:16.655 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:29:16.656 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:16.656 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:16.656 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:16.657 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:16.657 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:16.657 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:16.658 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:16.658 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:16.659 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Full Stack Developer
+2026-03-15 21:29:17.234 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:17.235 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:29:17.333 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:17.333 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:29:57.201 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.204 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.207 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.208 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.208 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:29:57.211 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:29:57.211 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:29:57.212 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.212 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.214 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.214 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.215 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.215 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.216 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:29:57.216 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.216 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.217 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.217 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.220 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.220 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Full Stack Developer
+2026-03-15 21:29:57.221 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.223 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.228 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.228 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:29:57.229 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:29:57.230 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Full Stack Developer
+2026-03-15 21:29:57.785 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:57.785 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:29:57.907 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:57.908 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:29:58.013 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:58.015 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:29:58.114 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:29:58.115 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:36:43.268 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:43.269 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:43.270 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:36:43.271 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:36:43.272 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:43.272 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:43.272 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:43.273 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:43.273 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:43.273 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:43.273 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:43.274 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:43.276 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Full Stack Developer
+2026-03-15 21:36:44.176 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:36:44.176 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:36:44.269 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:36:44.269 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 21:36:57.931 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:57.931 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:57.934 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:36:57.935 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:36:57.935 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:57.936 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:57.936 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:57.936 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:57.938 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:57.938 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:57.940 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:36:57.941 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:36:57.947 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Java', 'Developer']
+2026-03-15 21:36:58.314 | ERROR    | app.intelligence.generators.quiz_generator:generate:88 - Quiz generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:49:51.609 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:49:51.610 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:49:51.612 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:49:51.618 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:49:51.619 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:49:51.619 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:49:51.620 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:49:51.620 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:49:51.620 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:49:51.620 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:49:51.620 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:49:51.621 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-1.5-flash)
+2026-03-15 21:49:51.621 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Java', 'Developer']
+2026-03-15 21:49:52.433 | ERROR    | app.intelligence.generators.quiz_generator:generate:88 - Quiz generation failed: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 21:59:18.602 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 21:59:24.289 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 21:59:57.206 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:59:57.206 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 21:59:57.209 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 21:59:57.209 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 21:59:57.209 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:59:57.209 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 21:59:57.209 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:59:57.211 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 21:59:57.211 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:59:57.211 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 21:59:57.211 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 21:59:57.211 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 21:59:57.212 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Développeur
+2026-03-15 22:00:04.600 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:04.600 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:00:05.055 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:05.055 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:00:05.290 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:05.290 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:00:07.314 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-15 22:00:15.714 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:00:15.714 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:00:15.716 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:00:15.717 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:00:15.717 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:00:15.718 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:00:15.718 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:00:15.719 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:00:15.720 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:00:15.720 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:00:15.721 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:00:15.721 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:00:15.722 | INFO     | app.api.analysis:recommend_for_profile:57 - Received recommendation request for: Développeur
+2026-03-15 22:00:24.519 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:24.519 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:00:25.106 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:25.106 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:00:25.247 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 22:00:25.248 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 22:05:48.398 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:05:48.398 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:05:48.399 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:05:48.400 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:05:48.401 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:05:48.401 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:05:48.401 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:05:48.401 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:05:48.402 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:05:48.402 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:05:48.402 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:05:48.403 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:05:48.404 | INFO     | app.intelligence.generators.quiz_generator:generate:26 - Generating 4 mixed-difficulty questions for skills: ['Java', 'Developer']
+2026-03-15 22:21:57.446 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:21:57.447 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:21:57.448 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:21:57.449 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:21:57.450 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:21:57.450 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:21:57.450 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:21:57.450 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:21:57.450 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:21:57.452 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:21:57.452 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:21:57.452 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:22:38.011 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:22:38.013 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:22:38.014 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:22:38.015 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:22:38.015 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:22:38.015 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:22:38.016 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:29:51.686 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 22:30:02.005 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 22:31:30.691 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 22:31:33.628 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 22:33:25.103 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:33:25.103 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:33:25.105 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:33:25.105 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:33:25.106 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:33:25.108 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 22:33:25.109 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: full stack developer 
+2026-03-15 22:33:25.109 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for full stack developer  (cv)
+2026-03-15 22:33:25.109 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 22:33:34.223 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-03-15 22:35:54.043 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:35:54.043 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:35:54.046 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:35:54.048 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:35:54.048 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:35:54.049 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:35:54.049 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:35:54.049 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:35:54.049 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:35:54.049 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:35:54.050 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:35:54.050 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:35:55.299 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-15 22:57:22.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:57:22.997 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:57:23.000 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:57:23.003 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:57:23.004 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:57:23.004 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:57:23.004 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:57:23.005 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:57:23.005 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:57:23.005 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:57:23.006 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:57:23.006 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.257 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:58:31.257 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.259 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 22:58:31.260 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 22:58:31.260 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:58:31.260 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.261 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:58:31.261 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.261 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:58:31.262 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.263 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 22:58:31.263 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 22:58:31.265 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 22:58:31.266 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: full stack developer 
+2026-03-15 22:58:31.266 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for full stack developer  (cv)
+2026-03-15 22:58:31.266 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 22:58:39.486 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-03-15 23:05:50.061 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 23:05:55.975 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 23:06:10.419 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:06:10.419 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:06:10.419 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:06:10.420 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:06:10.420 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:06:10.420 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:06:10.420 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:06:10.420 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:06:10.421 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:06:10.421 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:06:10.421 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:06:10.421 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:06:10.421 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 23:06:10.421 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: Developer
+2026-03-15 23:06:10.421 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for Developer (cv)
+2026-03-15 23:06:10.421 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 23:06:22.180 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-03-15 23:07:54.591 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:07:54.591 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:07:54.593 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:07:54.594 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:07:54.595 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:07:54.595 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:07:54.598 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:07:54.598 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:07:54.598 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:07:54.599 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:07:54.599 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:07:54.599 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:07:54.600 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 23:07:54.600 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: full stack developer 
+2026-03-15 23:07:54.600 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for full stack developer  (cv)
+2026-03-15 23:07:54.601 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 23:08:03.085 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-03-15 23:13:11.971 | WARNING  | app.storage.vector.chroma_store:<module>:11 - chromadb not installed. Falling back to SimplerVectorStore.
+2026-03-15 23:13:18.282 | INFO     | app.main:startup_event:42 - Starting Smart Career AI Service...
+2026-03-15 23:20:29.681 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:29.684 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:29.688 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:20:29.693 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:20:29.694 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:29.694 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:29.695 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:29.697 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:29.698 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:29.699 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:29.704 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:29.704 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:31.924 | INFO     | app.storage.postgres:_initialize:20 - Connected to PostgreSQL for AI storage
+2026-03-15 23:20:42.778 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:42.779 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:42.784 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:20:42.786 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:20:42.788 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:42.789 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:42.789 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:42.791 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:42.791 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:42.791 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:20:42.792 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:20:42.792 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.211 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:21:53.212 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.212 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:21:53.213 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:21:53.213 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:21:53.213 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.213 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:21:53.215 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.215 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:21:53.215 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.215 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:21:53.216 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:21:53.217 | INFO     | app.api.analysis:generate_document:37 - !! GENERATE REQUEST RECEIVED !!
+2026-03-15 23:21:53.217 | INFO     | app.api.analysis:generate_document:39 - Generating cv for job: fuul stack developer 
+2026-03-15 23:21:53.217 | INFO     | app.intelligence.generators.cv_generator:generate:13 - Generating content for fuul stack developer  (cv) using profile: True
+2026-03-15 23:21:53.219 | INFO     | app.intelligence.generators.cv_generator:generate:17 - Calling LLM generate_structured
+2026-03-15 23:22:01.178 | INFO     | app.intelligence.generators.cv_generator:generate:19 - LLM generation successful
+2026-03-15 23:54:09.593 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:54:09.594 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:54:09.600 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:54:09.602 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:54:09.602 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:54:09.602 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:54:09.602 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:54:09.603 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:54:09.603 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:54:09.603 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:54:09.603 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:54:09.605 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:54:09.607 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:54:18.549 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:54:18.549 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:54:18.658 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:54:18.659 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:54:18.756 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:54:18.756 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:55:57.693 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:55:57.694 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:55:57.697 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:55:57.698 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:55:57.699 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:55:57.699 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:55:57.700 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:55:57.700 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:55:57.701 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:55:57.701 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:55:57.702 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:55:57.702 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:55:57.702 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:56:02.533 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:02.533 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:02.534 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:56:02.535 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:56:02.535 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:02.535 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:02.535 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:02.536 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:02.536 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:02.536 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:02.536 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:02.537 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:02.537 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:56:03.525 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:03.526 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:03.621 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:03.621 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:03.714 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:03.714 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:09.801 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:09.801 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:09.900 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:09.901 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:09.992 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:09.992 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:10.029 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:10.029 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:10.030 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:56:10.034 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:56:10.034 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:10.035 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:10.035 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:10.035 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:10.035 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:10.036 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:10.036 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:10.036 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:10.036 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:56:17.628 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:17.628 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:17.728 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:17.728 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:17.828 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:17.829 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:34.001 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:34.002 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:34.004 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:56:34.007 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:56:34.008 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:34.008 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:34.009 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:34.009 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:34.009 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:34.010 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:34.010 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:56:34.011 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:56:34.011 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:56:43.066 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:43.067 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:43.160 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:43.162 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:56:43.259 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:56:43.261 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:57:00.992 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:57:00.994 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:57:00.996 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:57:00.997 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:57:00.998 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:57:00.999 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:57:00.999 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:57:01.000 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:57:01.000 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:57:01.000 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:57:01.000 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:57:01.001 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:57:01.002 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:57:09.573 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:57:09.574 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:57:09.658 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:57:09.658 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:57:09.752 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:57:09.752 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:58:16.239 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:58:16.239 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:58:16.242 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-15 23:58:16.243 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-15 23:58:16.243 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:58:16.243 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:58:16.243 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:58:16.243 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:58:16.243 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:58:16.244 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:58:16.244 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-15 23:58:16.245 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-15 23:58:16.246 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-15 23:58:24.939 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:58:24.939 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:58:25.036 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:58:25.037 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-15 23:58:25.126 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-15 23:58:25.127 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:12:12.874 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:12:12.875 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:12:12.876 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:12:12.878 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:12:12.878 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:12:12.880 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:12:12.880 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:12:12.880 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:12:19.914 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:12:19.915 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:12:20.011 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:12:20.011 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:12:20.109 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:12:20.109 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:37:23.964 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:37:23.966 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:37:23.966 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:37:23.967 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:37:23.967 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:37:23.967 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:37:23.969 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:37:23.969 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Java Developer
+2026-03-16 00:37:31.595 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:37:31.597 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:37:32.181 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:37:32.181 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:37:32.482 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:37:32.482 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:38:59.890 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:38:59.890 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:38:59.891 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:38:59.892 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:38:59.892 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:38:59.893 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:38:59.893 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:38:59.894 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:38:59.894 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:38:59.895 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:38:59.895 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:38:59.896 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:38:59.897 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:39:04.221 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:39:04.222 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:39:04.224 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:39:04.226 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:39:04.226 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:39:04.226 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:39:04.227 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:39:04.228 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:39:04.228 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:39:04.228 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:39:04.229 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:39:04.229 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:39:04.229 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:39:07.338 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:07.338 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:39:07.434 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:07.435 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:39:07.541 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:07.542 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:39:12.917 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:12.919 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:39:13.003 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:13.004 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:39:13.096 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:39:13.097 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:47:04.992 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:47:04.993 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:47:04.994 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:47:04.995 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:47:04.995 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:47:04.996 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:47:04.996 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:47:12.215 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:47:12.216 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:47:12.351 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:47:12.351 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:47:12.550 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:47:12.550 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:49:25.128 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:25.128 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:25.131 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:49:25.132 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:49:25.133 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:25.133 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:25.134 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:25.135 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:25.135 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:25.136 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:25.136 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:25.137 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.637 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:47.637 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.638 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:49:47.639 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:49:47.640 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:47.640 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.641 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:47.641 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.642 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:47.642 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.642 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:49:47.642 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:49:47.644 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:49:51.032 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:49:51.033 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:49:51.121 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:49:51.126 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:50:56.182 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:50:56.184 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:50:56.184 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:50:56.185 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:50:56.185 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:50:56.185 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:50:56.185 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:50:56.186 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:50:56.187 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:50:56.187 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:50:56.187 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:50:56.188 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:50:56.191 | INFO     | app.api.analysis:analyze_cv:18 - Analyzing CV showing first 50 chars: Aya Ben Salah
+fuul stack developer
+Tunis, Tunisi...
+2026-03-16 00:50:56.192 | INFO     | app.intelligence.analyzers.cv_analyzer:analyze:16 - Analyzing CV with AI...
+2026-03-16 00:50:59.477 | ERROR    | app.intelligence.analyzers.cv_analyzer:analyze:69 - CV analysis failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash
+Please retry in 215.210923ms. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-3-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+  quota_value: 20
+}
+, retry_delay {
+}
+]
+2026-03-16 00:53:04.400 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:53:04.400 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:53:04.402 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 00:53:04.405 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 00:53:04.408 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:53:04.408 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:53:04.409 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:53:04.409 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:53:04.409 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:53:04.409 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:53:04.410 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 00:53:04.410 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 00:53:04.411 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 00:53:07.025 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:53:07.025 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 00:53:07.309 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 00:53:07.309 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 01:29:26.702 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:26.705 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:26.710 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 01:29:26.713 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 01:29:26.714 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:26.714 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:26.714 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:26.716 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:26.716 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:26.716 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:26.717 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:26.717 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:48.830 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:48.830 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:48.833 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 01:29:48.835 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 01:29:48.836 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:48.836 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:48.837 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:48.837 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:48.838 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:48.838 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 01:29:48.838 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 01:29:48.839 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.786 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 12:30:42.787 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.789 | INFO     | app.storage.vector.simpler_store:__init__:22 - Using Gemini embeddings for SimplerVectorStore
+2026-03-16 12:30:42.793 | INFO     | app.storage.vector.simpler_store:__init__:29 - SimplerVectorStore initialized with 11 items
+2026-03-16 12:30:42.793 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 12:30:42.793 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.794 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 12:30:42.794 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.794 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 12:30:42.795 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.795 | INFO     | app.dependencies:get_llm_provider:27 - LLM Setup: Gemini=True
+2026-03-16 12:30:42.795 | INFO     | app.dependencies:get_llm_provider:34 - Initializing Gemini Provider (gemini-flash-latest)
+2026-03-16 12:30:42.797 | INFO     | app.api.analysis:recommend_for_profile:58 - Received recommendation request for: Full Stack Developer
+2026-03-16 12:31:09.208 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 12:31:09.208 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 12:31:09.333 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 12:31:09.333 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding
+2026-03-16 12:31:09.429 | ERROR    | app.storage.vector.simpler_store:_get_embeddings:57 - Gemini embedding failed: 404 models/embedding-001 is not found for API version v1beta, or is not supported for embedContent. Call ListModels to see the list of available models and their supported methods.
+2026-03-16 12:31:09.429 | WARNING  | app.storage.vector.simpler_store:_get_embeddings:60 - Using random vectors as fallback for embedding

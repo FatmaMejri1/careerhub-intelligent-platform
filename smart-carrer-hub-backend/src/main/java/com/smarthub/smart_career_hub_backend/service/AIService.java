@@ -120,4 +120,19 @@ public class AIService {
             return null;
         }
     }
+    public java.util.List<java.util.Map<String, Object>> recommendJobs(java.util.Map<String, Object> profileData) {
+        try {
+            return this.webClient.post()
+                    .uri("/api/recommendations/jobs")
+                    .bodyValue(profileData)
+                    .retrieve()
+                    .bodyToMono(
+                            new org.springframework.core.ParameterizedTypeReference<java.util.List<java.util.Map<String, Object>>>() {
+                            })
+                    .block();
+        } catch (Exception e) {
+            System.err.println("Error in AIService recommending jobs: " + e.getMessage());
+            return java.util.Collections.emptyList();
+        }
+    }
 }

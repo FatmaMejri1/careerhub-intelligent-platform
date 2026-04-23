@@ -15,6 +15,9 @@
                 </div>
                 <div class="card-body px-4 pb-4">
                     <form (submit)="changePassword()">
+                        <!-- Hidden username for accessibility and password managers -->
+                        <input type="text" name="username" style="display:none" autocomplete="username">
+                        
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold small">Mot de passe actuel</label>

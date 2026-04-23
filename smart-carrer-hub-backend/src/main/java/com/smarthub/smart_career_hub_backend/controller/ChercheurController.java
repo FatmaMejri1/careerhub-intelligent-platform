@@ -2,7 +2,6 @@ package com.smarthub.smart_career_hub_backend.controller;
 
 import com.smarthub.smart_career_hub_backend.entity.ChercheurEmploi;
 import com.smarthub.smart_career_hub_backend.entity.Quiz;
-import com.smarthub.smart_career_hub_backend.entity.Coaching;
 import com.smarthub.smart_career_hub_backend.entity.Formation;
 import com.smarthub.smart_career_hub_backend.service.ChercheurEmploiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,23 +91,24 @@ public class ChercheurController {
         }
     }
 
-    @PostMapping("/{chercheurId}/coaching")
-    public ResponseEntity<Coaching> ajouterCoaching(@PathVariable Long chercheurId, @RequestBody Coaching coaching) {
+    @PostMapping("/{chercheurId}/formation")
+    public ResponseEntity<Formation> ajouterFormation(@PathVariable Long chercheurId, @RequestBody Formation formation) {
         try {
-            Coaching savedCoaching = chercheurEmploiService.ajouterCoaching(chercheurId, coaching);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedCoaching);
+            Formation savedFormation = chercheurEmploiService.ajouterFormation(chercheurId, formation);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedFormation);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/{chercheurId}/coaching")
-    public ResponseEntity<List<Coaching>> getCoachingsByChercheur(@PathVariable Long chercheurId) {
+    @GetMapping("/{chercheurId}/formations")
+    public ResponseEntity<List<Formation>> getFormationsByChercheur(@PathVariable Long chercheurId) {
         try {
-            List<Coaching> coachings = chercheurEmploiService.getCoachingsByChercheur(chercheurId);
-            return ResponseEntity.ok(coachings);
+            List<Formation> formations = chercheurEmploiService.getFormationsByChercheur(chercheurId);
+            return ResponseEntity.ok(formations);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

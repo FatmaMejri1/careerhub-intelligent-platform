@@ -1,0 +1,18 @@
+# Virtual Environments
+venv/
+env/
+.env
+
+# Python Caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log
+backend_start_*.log
+boot_log.txt
+
+# OS Files
+.DS_Store
+Thumbs.db

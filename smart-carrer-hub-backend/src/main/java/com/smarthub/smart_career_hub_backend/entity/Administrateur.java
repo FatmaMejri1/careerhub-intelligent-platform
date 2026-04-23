@@ -33,8 +33,7 @@ public class Administrateur extends Utilisateur {
      * Stocke l’URL ou le chemin de l’image de profil ou base64
      * ex: /uploads/admins/admin_1.jpg
      */
-    @Lob
-    @Column(name = "profile_image", columnDefinition = "LONGTEXT")
+    @Column(name = "profile_image", columnDefinition = "TEXT")
     private String profileImage;
 
     /*
@@ -57,3 +56,5 @@ public class Administrateur extends Utilisateur {
     @ToString.Exclude
     private List<Notification> managedNotifications;
 }
+
+

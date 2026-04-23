@@ -40,7 +40,8 @@ async def generate_document(
         result = await orchestrator.generate_document_workflow(
             target_job=request.target_job,
             additional_info=request.additional_info,
-            type=request.type
+            type=request.type,
+            profile_data=request.profile_data
         )
         return result
     except Exception as e:

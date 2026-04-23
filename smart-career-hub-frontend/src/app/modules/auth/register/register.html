@@ -128,7 +128,7 @@
       </div>
       }
 
-      <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || isLoading">
+      <button type="submit" class="submit-btn" [disabled]="isLoading">
         @if (isLoading) {
         <span>Création du compte...</span>
         } @else {

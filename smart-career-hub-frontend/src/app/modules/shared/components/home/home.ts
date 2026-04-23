@@ -124,13 +124,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  startCoaching(): void {
-    if (this.isAuthenticated) {
-      // TODO: Rediriger vers la page de coaching
-      console.log('Démarrer le coaching');
-      alert('Redirection vers le coaching...');
-    }
-  }
+
 
   exploreOpportunities(): void {
     if (this.isAuthenticated) {

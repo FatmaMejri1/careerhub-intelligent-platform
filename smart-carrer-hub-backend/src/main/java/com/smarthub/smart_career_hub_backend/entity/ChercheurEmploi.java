@@ -12,13 +12,12 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true, exclude = { "quizList", "coachings" })
-@EqualsAndHashCode(callSuper = true, exclude = { "quizList", "coachings" })
+@ToString(callSuper = true, exclude = { "quizList", "formations" })
+@EqualsAndHashCode(callSuper = true, exclude = { "quizList", "formations" })
 @Entity
 @Table(name = "chercheurs")
 public class ChercheurEmploi extends Utilisateur {
 
-    @Lob
     @Column(columnDefinition = "TEXT")
     private String objectif; // Used as Bio
 
@@ -30,29 +29,23 @@ public class ChercheurEmploi extends Utilisateur {
     @Column(length = 500)
     private String titre; // Professional title
 
-    // JSON Arrays stored as Strings (TEXT/LONGTEXT)
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    // JSON Arrays stored as Strings (TEXT/TEXT)
+    @Column(columnDefinition = "TEXT")
     private String competences;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String experiences;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String educations;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String projects;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String certifications;
 
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String cvUrl;
 
     // Social Links
@@ -68,7 +61,10 @@ public class ChercheurEmploi extends Utilisateur {
     @JsonIgnore
     private List<Quiz> quizList;
 
-    @OneToMany(mappedBy = "chercheurEmploi")
+    @ManyToMany(mappedBy = "participants")
     @JsonIgnore
-    private List<Coaching> coachings;
+    private List<Formation> formations;
+
 }
+
+

@@ -1,19 +1,26 @@
 package com.smarthub.smart_career_hub_backend.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Document(collection = "opportunities")
+@Entity
+@Table(name = "opportunities")
 public class Opportunity {
 
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
     private String title;
     private String company;
     private String location;
+    
+    @Column(columnDefinition = "TEXT")
     private String description;
+    
     private String salary;
     private String link;
     private String type; // Full-time, Part-time, Contract, etc.

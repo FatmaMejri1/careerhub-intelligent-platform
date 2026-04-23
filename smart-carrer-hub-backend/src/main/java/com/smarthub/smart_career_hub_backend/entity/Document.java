@@ -20,8 +20,7 @@ public class Document {
     private String type; // 'cv' or 'coverLetter'
     private String fileType; // 'pdf', 'docx', etc.
     
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String fileUrl; // Base64 or URL
     
     private Long fileSize; // in bytes
@@ -49,3 +48,5 @@ public class Document {
         updatedAt = LocalDateTime.now();
     }
 }
+
+

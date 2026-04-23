@@ -17,13 +17,29 @@ public class OffreController {
     private OffreService offreService;
 
     @GetMapping
-    public List<Offre> getAll() {
-        return offreService.getAllOffres();
+    public List<com.smarthub.smart_career_hub_backend.dto.OffreDTO> getAll() {
+        return offreService.getAllOffres().stream().map(o -> {
+            com.smarthub.smart_career_hub_backend.dto.OffreDTO dto = new com.smarthub.smart_career_hub_backend.dto.OffreDTO();
+            dto.setId(o.getId());
+            dto.setTitre(o.getTitre());
+            dto.setDescription(o.getDescription());
+            dto.setType(o.getType());
+            dto.setLocation(o.getLocation());
+            dto.setStatut(o.getStatut() != null ? o.getStatut().name() : "ACTIVE");
+            dto.setDateCreation(o.getDateCreation());
+            if (o.getRecruteur() != null) {
+                dto.setRecruteurId(o.getRecruteur().getId());
+                dto.setNomEntreprise(o.getRecruteur().getNomEntreprise());
+            }
+            return dto;
+        }).toList();
     }
 
     @GetMapping("/recruteur/{recruteurId}")
     public ResponseEntity<List<java.util.Map<String, Object>>> getByRecruteur(@PathVariable Long recruteurId) {
+        System.out.println("DEBUG: Fetching offers for recruiter ID: " + recruteurId);
         List<Offre> offres = offreService.getOffresByRecruteur(recruteurId);
+        System.out.println("DEBUG: Found " + offres.size() + " offers for recruiter " + recruteurId);
         List<java.util.Map<String, Object>> result = offres.stream().map(offre -> {
             java.util.Map<String, Object> map = new java.util.HashMap<>();
             map.put("id", offre.getId());

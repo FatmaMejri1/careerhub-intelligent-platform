@@ -15,11 +15,11 @@ def get_redis_client() -> redis.Redis:
         # Fallback to in-memory cache
         return None
 
-# MongoDB dependency
-def get_mongodb():
-    """Get MongoDB manager instance"""
-    from app.storage.mongodb import mongodb_manager
-    return mongodb_manager
+# PostgreSQL dependency (Replaces MongoDB)
+def get_db_manager():
+    """Get database manager instance (PostgreSQL)"""
+    from app.storage.postgres import postgres_manager
+    return postgres_manager
 
 # LLM Provider dependency
 def get_llm_provider():

@@ -1,4 +1,4 @@
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 from app.schemas import QuizGenerationRequest, QuizResponse, QuizSubmission, QuizEvaluation
 from app.intelligence.generators.quiz_generator import QuizGenerator
 from app.evaluation.scoring.quiz_scorer import QuizScorer
@@ -7,8 +7,9 @@ from app.intelligence.analyzers.cv_analyzer import CVAnalyzer
 from app.intelligence.analyzers.fraud_analyzer import FraudAnalyzer
 from app.intelligence.generators.cv_generator import CVGenerator
 from app.intelligence.generators.profile_recommender import ProfileRecommender
+from app.intelligence.recommenders.job_recommender import JobRecommender
 from app.llm.providers.gemini_provider import GeminiProvider # Or use get_llm_provider
-from app.dependencies import get_llm_provider, get_mongodb
+from app.dependencies import get_llm_provider, get_db_manager
 from app.storage.cache.memory_cache import MemoryCache
 from app.schemas import FraudAnalysisRequest
 import logging
@@ -31,9 +32,10 @@ class AIOrchestrator:
         # Get LLM provider for recommender
         llm = get_llm_provider()
         self.profile_recommender = ProfileRecommender(llm_provider=llm)
+        self.job_recommender = JobRecommender(llm_provider=llm)
         
         self.cache = MemoryCache()  # Start with memory cache
-        self.mongodb = get_mongodb()
+        self.db = get_db_manager()
 
     async def _log_activity(self, activity_type: str, request: Any, response: Any):
         """Background logging to MongoDB"""
@@ -42,7 +44,7 @@ class AIOrchestrator:
             res_dict = response.dict() if hasattr(response, "dict") else (response if isinstance(response, dict) else str(response))
             
             # Fire and forget logging
-            asyncio.create_task(self.mongodb.log_ai_activity(
+            asyncio.create_task(self.db.log_ai_activity(
                 activity_type=activity_type,
                 request_data=req_dict,
                 response_data=res_dict
@@ -150,12 +152,31 @@ class AIOrchestrator:
         logger.info("CV analysis completed successfully")
         return analysis_result
 
-    async def generate_document_workflow(self, target_job: str, additional_info: str = "", type: str = "cv") -> Dict[str, Any]:
+    async def generate_document_workflow(self, target_job: str, additional_info: str = "", type: str = "cv", profile_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
-        CV/LM generation workflow
+        CV/LM generation workflow with PDF conversion
         """
         logger.info(f"Starting {type} generation workflow for {target_job}")
-        return await self.cv_generator.generate(target_job, additional_info, type)
+        result = await self.cv_generator.generate(target_job, additional_info, type, profile_data)
+        
+        # If it's a CV, generate matching PDF
+        if type == "cv" and result:
+            try:
+                from app.core.pdf_generator import generate_cv_pdf
+                import base64
+                
+                # Add target_job to result for the PDF header
+                result['target_job'] = target_job
+                
+                pdf_buffer = generate_cv_pdf(result)
+                if pdf_buffer:
+                    pdf_base64 = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')
+                    result['pdf_base64'] = pdf_base64
+                    logger.info("PDF generated and attached as base64")
+            except Exception as e:
+                logger.error(f"Failed to generate PDF in workflow: {e}")
+                
+        return result
 
     async def recommend_courses_workflow(self, weak_skills: List[str], job_context: str = "") -> List[Dict[str, Any]]:
         """
@@ -223,6 +244,15 @@ class AIOrchestrator:
         final_res = result or self.fraud_analyzer._fallback_fraud_analysis([])
         await self._log_activity("fraud_analysis", request, final_res)
         return final_res
+
+    async def recommend_jobs_workflow(self, profile_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """
+        AI-powered job recommendation workflow
+        """
+        logger.info("Starting AI job recommendation workflow")
+        recommendations = await self.job_recommender.recommend(profile_data)
+        await self._log_activity("job_recommendations", profile_data, recommendations)
+        return recommendations
 
     def _get_quiz_from_cache(self, quiz_id: str) -> Dict[str, Any]:
         """Get quiz from cache (mock for now)"""

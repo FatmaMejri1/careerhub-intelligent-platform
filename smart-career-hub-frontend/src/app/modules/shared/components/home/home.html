@@ -80,8 +80,7 @@
         </p>
         <ul class="list-unstyled text-muted">
           <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Interface claire et professionnelle</li>
-          <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i>Accès rapide aux offres et clubs</li>
-          <li><i class="bi bi-check2-circle text-primary me-2"></i>Accompagnement continu avec coaching</li>
+          <li><i class="bi bi-check2-circle text-primary me-2"></i>Accès rapide aux offres et clubs</li>
         </ul>
       </div>
       <div class="col-lg-6">
@@ -230,74 +229,6 @@
   </div>
 </section>
 
-<!-- Coaching Section -->
-<section class="py-5 bg-white" id="coaching">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <h2 class="fw-bold mb-3">Un coaching pour chaque étape</h2>
-        <p class="text-muted mb-3">
-          Bénéficiez de l'accompagnement de coachs et de mentors pour structurer votre parcours,
-          préparer vos entretiens et valoriser votre profil.
-        </p>
-        <p class="text-muted mb-4">
-          Sessions individuelles, ateliers collectifs et ressources pratiques vous aident à avancer
-          plus sereinement vers vos objectifs professionnels.
-        </p>
-        <ul class="list-unstyled text-muted mb-4">
-          <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Coaching CV & profil LinkedIn</li>
-          <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Préparation aux entretiens</li>
-          <li><i class="bi bi-check2 text-primary me-2"></i>Suivi personnalisé de votre progression</li>
-        </ul>
-        @if (isAuthenticated) {
-        <button class="btn btn-outline-primary btn-lg" (click)="startCoaching()">
-          Commencer le coaching
-        </button>
-        } @else {
-        <button class="btn btn-outline-primary btn-lg" [routerLink]="['/auth', 'login']">
-          Commencer le coaching
-        </button>
-        }
-      </div>
-      <div class="col-lg-6">
-        <div class="row g-3">
-          <div class="col-md-6">
-            <div class="card border-0 shadow-soft h-100">
-              <div class="card-body">
-                <h6 class="fw-bold mb-1">Coaching individuel</h6>
-                <p class="text-muted mb-0">Des sessions adaptées à votre rythme et à vos besoins.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card border-0 shadow-soft h-100">
-              <div class="card-body">
-                <h6 class="fw-bold mb-1">Ateliers collectifs</h6>
-                <p class="text-muted mb-0">Apprenez avec d'autres professionnels et partagez vos retours.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card border-0 shadow-soft h-100">
-              <div class="card-body">
-                <h6 class="fw-bold mb-1">Ressources pratiques</h6>
-                <p class="text-muted mb-0">Guides, modèles et check-lists prêts à l'emploi.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card border-0 shadow-soft h-100">
-              <div class="card-body">
-                <h6 class="fw-bold mb-1">Suivi continu</h6>
-                <p class="text-muted mb-0">Visualisez vos progrès et vos prochaines étapes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- Testimonials Section -->
 <section class="testimonials-section py-5">

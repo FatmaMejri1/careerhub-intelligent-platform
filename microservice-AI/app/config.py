@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     
     # Gemini
     gemini_api_key: Optional[str] = None
-    gemini_model: str = "gemini-2.5-flash"
+    gemini_model: str = "gemini-flash-latest"
 
     # MongoDB
     mongodb_uri: str = "mongodb://localhost:27017/smartcareerhub_fresh"

@@ -19,14 +19,17 @@ public class CandidatureService {
     private final CandidatureRepository candidatureRepository;
     private final ChercheurEmploiRepository chercheurEmploiRepository;
     private final OffreRepository offreRepository;
+    private final GamificationService gamificationService;
 
     // constructor injection
     public CandidatureService(CandidatureRepository candidatureRepository,
             ChercheurEmploiRepository chercheurEmploiRepository,
-            OffreRepository offreRepository) {
+            OffreRepository offreRepository,
+            GamificationService gamificationService) {
         this.candidatureRepository = candidatureRepository;
         this.chercheurEmploiRepository = chercheurEmploiRepository;
         this.offreRepository = offreRepository;
+        this.gamificationService = gamificationService;
     }
 
     // Gestion Candidature (crud)
@@ -57,7 +60,12 @@ public class CandidatureService {
         candidature.setCvUrl(cvUrl);
         candidature.setLettreMotivation(lettreMotivation);
 
-        return candidatureRepository.save(candidature);
+        Candidature saved = candidatureRepository.save(candidature);
+        
+        // Gamification: Apply to job
+        gamificationService.addPoints(chercheurId, 20);
+        
+        return saved;
     }
 
     // mise a jour le statut de candidature

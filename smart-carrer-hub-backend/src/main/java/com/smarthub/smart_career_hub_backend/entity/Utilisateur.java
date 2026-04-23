@@ -16,8 +16,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "notifications")
-@EqualsAndHashCode(exclude = "notifications")
+@ToString(exclude = { "notifications", "badges" })
+@EqualsAndHashCode(exclude = { "notifications", "badges" })
 @Entity
 @Table(name = "utilisateurs")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -33,8 +33,7 @@ public class Utilisateur {
     private String email;
     private String telephone;
     private String motDePasse;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String photoUrl;
 
     @Enumerated(EnumType.STRING)
@@ -48,4 +47,18 @@ public class Utilisateur {
     @OneToMany(mappedBy = "destinataire")
     @JsonIgnore
     private List<Notification> notifications;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_badges",
+        joinColumns = @JoinColumn(name = "utilisateur_id"),
+        inverseJoinColumns = @JoinColumn(name = "badge_id")
+    )
+    @JsonIgnore
+    private List<Badge> badges;
+
+    @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private UserPoints userPoints;
 }
+

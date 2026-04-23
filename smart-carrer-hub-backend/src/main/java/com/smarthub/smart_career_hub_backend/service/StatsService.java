@@ -33,6 +33,9 @@ public class StatsService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    @Autowired
+    private AIService aiService;
+
     public RecruiterStatsDTO getRecruiterStats(Long recruiterId) {
         List<Offre> offres = offreRepository.findByRecruteur_Id(recruiterId);
         List<Candidature> allApps = candidatureRepository.findByOffre_Recruteur_Id(recruiterId);
@@ -260,24 +263,33 @@ public class StatsService {
                 })
                 .collect(Collectors.toList());
 
-        // Real Dynamic Recommendations
+        // AI-Powered Dynamic Recommendations
         List<Map<String, Object>> recommendedJobs = new ArrayList<>();
         if (chercheur != null) {
-            final ChercheurEmploi candidateFinal = chercheur;
-            recommendedJobs = offreRepository.findAll().stream()
-                    .map(o -> {
-                        Map<String, Object> map = new HashMap<>();
-                        map.put("id", o.getId());
-                        map.put("title", o.getTitre());
-                        map.put("company",
-                                o.getRecruteur() != null ? o.getRecruteur().getNomEntreprise() : "Smart Hub");
-                        map.put("location", o.getLocation());
-                        map.put("matchScore", (int) calculateMatchScore(candidateFinal, o));
-                        return map;
-                    })
-                    .sorted((a, b) -> Integer.compare((int) b.get("matchScore"), (int) a.get("matchScore")))
-                    .limit(3)
-                    .collect(Collectors.toList());
+            try {
+                Map<String, Object> profileData = new HashMap<>();
+                profileData.put("id", chercheur.getId());
+                profileData.put("titre", chercheur.getTitre());
+                profileData.put("competences", parseSkills(chercheur.getCompetences()));
+                
+                recommendedJobs = aiService.recommendJobs(profileData);
+            } catch (Exception e) {
+                System.err.println("AI Job recommendation failed, falling back to basic match: " + e.getMessage());
+                final ChercheurEmploi candidateFinal = chercheur;
+                recommendedJobs = offreRepository.findAll().stream()
+                        .map(o -> {
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("id", o.getId());
+                            map.put("title", o.getTitre());
+                            map.put("company", o.getRecruteur() != null ? o.getRecruteur().getNomEntreprise() : "Smart Hub");
+                            map.put("location", o.getLocation());
+                            map.put("matchScore", (int) calculateMatchScore(candidateFinal, o));
+                            return map;
+                        })
+                        .sorted((a, b) -> Integer.compare((int) b.get("matchScore"), (int) a.get("matchScore")))
+                        .limit(3)
+                        .collect(Collectors.toList());
+            }
         }
 
         Double bestQuizScore = 0.0;
@@ -391,5 +403,21 @@ public class StatsService {
         if (chercheur.getExperiences() != null && !chercheur.getExperiences().equals("[]"))
             score += 15;
         return Math.min(score, 100);
+    }
+
+    private List<String> parseSkills(String skillsJson) {
+        if (skillsJson == null || skillsJson.isEmpty() || skillsJson.equals("[]")) {
+            return Collections.emptyList();
+        }
+        try {
+            // Very basic parser for ["Skill1", "Skill2"]
+            String clean = skillsJson.replace("[", "").replace("]", "").replace("\"", "");
+            return Arrays.stream(clean.split(","))
+                    .map(String::trim)
+                    .filter(s -> !s.isEmpty())
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            return Collections.emptyList();
+        }
     }
 }
