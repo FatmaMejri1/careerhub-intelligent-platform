@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎯 CareerHub — Intelligent Platform
+# CareerHub — Intelligent Platform
 
 ### _AI-Powered Career Management & Smart Recruitment_
 
@@ -353,26 +353,11 @@ docker run -p 5000:5000 --env-file .env careerhub-ai
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. 🍴 Fork the repository
-2. 🌿 Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. 💾 Commit your changes (`git commit -m 'Add amazing feature'`)
-4. 📤 Push to the branch (`git push origin feature/amazing-feature`)
-5. 📬 Open a Pull Request
-
----
 
 ## 📄 License
 
-This project is developed for **educational and professional development purposes**.
+MIT License
 
----
+Copyright (c) 2026 Fatma Mejri
 
-<div align="center">
-
-**Built with ❤️ using Angular · Spring Boot · FastAPI · Google Gemini**
-
-</div>
+Permission is hereby granted, free of charge, to any person obtaining a copy...
