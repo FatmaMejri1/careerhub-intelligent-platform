@@ -356,8 +356,6 @@ docker run -p 5000:5000 --env-file .env careerhub-ai
 
 ## 📄 License
 
-MIT License
-
-Copyright (c) 2026 Fatma Mejri
-
-Permission is hereby granted, free of charge, to any person obtaining a copy...
+This project is **not open source**.  
+All rights reserved © 2026 Fatma Mejri.  
+Unauthorized copying, modification, or distribution is strictly prohibited.
