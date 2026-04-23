@@ -16,7 +16,6 @@
 <br/>
 
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)](https://redis.io/)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6F00?style=flat-square&logo=databricks&logoColor=white)](https://www.trychroma.com/)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
@@ -101,10 +100,10 @@
 │                                │                       │            │
 │                    ┌───────────┼───────────┐   ┌───────┴────────┐  │
 │                    ▼           ▼           ▼   ▼                │  │
-│              ┌──────────┐ ┌────────┐ ┌───────┐ ┌────────────┐  │  │
-│              │🐘PostgreSQL│ │🍃MongoDB│ │ Redis │ │ 🔮 ChromaDB │  │  │
-│              │  :3306    │ │ :27017 │ │Cache  │ │ VectorStore│  │  │
-│              └──────────┘ └────────┘ └───────┘ └────────────┘  │  │
+│              ┌──────────┐ ┌───────┐ ┌────────────┐     │  │
+│              │🐘PostgreSQL│ │ Redis │ │ 🔮 ChromaDB │     │  │
+│              │  :5432    │ │Cache  │ │ VectorStore│     │  │
+│              └──────────┘ └───────┘ └────────────┘     │  │
 │                                                                 │  │
 │                                        ┌────────────────────┐   │  │
 │                                        │ ✨ Google Gemini AI │   │  │
@@ -165,8 +164,7 @@ CareerHub is equipped with a robust, fully automated Continuous Integration and 
 
 | Technology | Purpose |
 | :--- | :--- |
-| ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) | Primary relational database |
-| ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) | AI activity logs & unstructured data |
+| ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) | Primary relational database & AI logs |
 | ![Redis](https://img.shields.io/badge/-Redis-DC382D?style=flat-square&logo=redis&logoColor=white) | Caching layer |
 | ![Docker](https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white) | Containerization |
 
@@ -182,7 +180,6 @@ CareerHub is equipped with a robust, fully automated Continuous Integration and 
 | ![Java](https://img.shields.io/badge/-Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white) | `17+` |
 | ![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white) | `3.10+` |
 | ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white) | `14+` |
-| ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white) | `6+` |
 | ![Maven](https://img.shields.io/badge/-Maven-C71A36?style=flat-square&logo=apachemaven&logoColor=white) | `3.9+` |
 
 ### 🔧 Installation
@@ -262,7 +259,7 @@ ng serve
 ### ⚡ Quick Start (Execution Order)
 
 ```
-1. 🗄️  Start PostgreSQL & MongoDB
+1. 🗄️  Start PostgreSQL
 2. ⚙️  Start Backend          →  mvn spring-boot:run
 3. 🤖  Start AI Service       →  python -m app.main
 4. 🌐  Start Frontend         →  ng serve
@@ -278,7 +275,6 @@ ng serve
 | ⚙️ Spring Boot API | `9099` | http://localhost:9099/actuator/health |
 | 🤖 FastAPI AI Service | `5000` | http://localhost:5000/api/health/health |
 | 🐘 PostgreSQL | `5432` | — |
-| 🍃 MongoDB | `27017` | — |
 
 ---
 

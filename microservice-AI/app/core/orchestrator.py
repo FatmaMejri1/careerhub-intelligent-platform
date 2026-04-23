@@ -38,7 +38,7 @@ class AIOrchestrator:
         self.db = get_db_manager()
 
     async def _log_activity(self, activity_type: str, request: Any, response: Any):
-        """Background logging to MongoDB"""
+        """Background logging to PostgreSQL"""
         try:
             req_dict = request.dict() if hasattr(request, "dict") else str(request)
             res_dict = response.dict() if hasattr(response, "dict") else (response if isinstance(response, dict) else str(response))
@@ -50,7 +50,7 @@ class AIOrchestrator:
                 response_data=res_dict
             ))
         except Exception as e:
-            logger.warning(f"Failed to queue MongoDB log: {e}")
+            logger.warning(f"Failed to queue PostgreSQL log: {e}")
         
     async def generate_quiz_workflow(self, request: QuizGenerationRequest) -> QuizResponse:
         """

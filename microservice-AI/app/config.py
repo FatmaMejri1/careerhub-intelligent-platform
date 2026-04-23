@@ -13,9 +13,8 @@ class Settings(BaseSettings):
     gemini_api_key: Optional[str] = None
     gemini_model: str = "gemini-flash-latest"
 
-    # MongoDB
-    mongodb_uri: str = "mongodb://localhost:27017/smartcareerhub_fresh"
-    mongodb_db: str = "smartcareerhub_fresh"
+    # PostgreSQL
+    postgres_url: str = "postgresql://postgres:admin@localhost:5432/careerhub"
 
     # Redis
     redis_url: str = "redis://localhost:6379"

@@ -34,7 +34,7 @@ chromadb>=0.5.0
 
 # === DATABASE ===
 redis>=5.0.8
-motor>=3.6.0
+asyncpg>=0.29.0
 
 # === LOGGING ===
 loguru>=0.7.2
